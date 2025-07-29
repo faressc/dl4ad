@@ -1,0 +1,20 @@
+{
+  "name": "dl4ad",
+  "version": "0.0.1",
+  "description": "Deep Learning for Audio Data Course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node scripts/dev-server.js",
+    "dev": "node scripts/dev-server.js",
+    "build": "node scripts/build.js"
+  },
+  "author": "Fares Schulz",
+  "license": "ISC",
+  "dependencies": {
+    "marked": "^16.1.1",
+    "reveal.js": "^5.2.1"
+  },
+  "devDependencies": {
+    "ws": "^8.18.3"
+  }
+}
