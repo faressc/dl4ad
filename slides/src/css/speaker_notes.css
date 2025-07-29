@@ -1,0 +1,76 @@
+/* Custom Speaker Notes Styling */
+body {
+    background: #2c3e50 !important;
+    background-image: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+    color: #ffffff !important;
+}
+
+#current-slide,
+#upcoming-slide {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 8px !important;
+}
+
+#current-slide iframe,
+#upcoming-slide iframe {
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    border-radius: 4px !important;
+}
+
+#speaker-controls {
+    background: rgba(0,0,0,0.3) !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+}
+
+.speaker-controls-time,
+.speaker-controls-pace {
+    border-bottom: 1px solid rgba(255,255,255,0.2) !important;
+    color: #ffffff !important;
+}
+
+.speaker-controls-notes .value {
+    background: rgba(0,0,0,0.5) !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+.overlay-element {
+    background: rgba(44, 62, 80, 0.9) !important;
+    color: #ffffff !important;
+}
+
+.overlay-element.interactive:hover {
+    background: rgba(52, 73, 94, 1) !important;
+}
+
+#speaker-layout {
+    color: #ffffff !important;
+}
+
+.label {
+    color: #cccccc !important;
+}
+
+.speaker-controls-time .reset-button {
+    color: #cccccc !important;
+}
+
+.speaker-controls-time .pacing.ahead {
+    color: #5dade2 !important;
+}
+
+.speaker-controls-time .pacing.on-track {
+    color: #58d68d !important;
+}
+
+.speaker-controls-time .pacing.behind {
+    color: #ec7063 !important;
+}
+
+#connection-status {
+    background: #2c3e50 !important;
+    color: #ffffff !important;
+}

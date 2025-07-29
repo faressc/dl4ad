@@ -33,8 +33,23 @@ async function generateHTML(isDev = false) {
   const template = await fs.readFile(templatePath, 'utf-8');
   
   const slides = await combineSlides();
+  const slidesContent = buildSlidesContent(slides);
+
+  // Use a simple template function instead of string replace
+  const html = renderTemplate(template, {
+    slidesContent: slidesContent,
+    isDev: isDev,
+  });
   
-  // Build the slides content with proper ordering
+  const distDir = path.join(__dirname, '../dist');
+  await fs.mkdir(distDir, { recursive: true });
+  
+  await fs.writeFile(path.join(distDir, 'index.html'), html);
+  
+  console.log('✅ HTML generated successfully!');
+}
+
+function buildSlidesContent(slides) {
   let slidesContent = '';
   let markdownContent = '';
   let isInMarkdownSection = false;
@@ -45,7 +60,7 @@ async function generateHTML(isDev = false) {
     if (slide.isHtml) {
       // Close markdown section if we're in one
       if (isInMarkdownSection) {
-        slidesContent += '<section data-markdown data-separator="^---" data-separator-vertical="^--">\n        <textarea data-template>\n' + markdownContent.replace(/\n\n---\n\n$/, '') + '\n        </textarea>\n      </section>\n      ';
+        slidesContent += createMarkdownSection(markdownContent);
         markdownContent = '';
         isInMarkdownSection = false;
       }
@@ -60,102 +75,73 @@ async function generateHTML(isDev = false) {
   
   // Close final markdown section if needed
   if (isInMarkdownSection) {
-    slidesContent += '<section data-markdown data-separator="^---" data-separator-vertical="^--">\n        <textarea data-template>\n' + markdownContent.replace(/\n\n---\n\n$/, '') + '\n        </textarea>\n      </section>';
+    slidesContent += createMarkdownSection(markdownContent);
   }
   
-  // Add hot reload script only in development
-  const hotReloadScript = isDev ? `
-    // Hot reload WebSocket connection
-    const ws = new WebSocket(\`ws://\${window.location.host}\`);
-    ws.onmessage = function(event) {
-      if (event.data === 'reload') {
-        window.location.reload();
-      }
-    };
-    ws.onopen = function() {
-      console.log('🔥 Hot reload connected');
-    };
-    ws.onclose = function() {
-      console.log('🔌 Hot reload disconnected');
-    };` : '';
+  return slidesContent;
+}
 
-  const html = template
-    .replace('{{SLIDES_CONTENT}}', slidesContent)
-    .replace('{{HOT_RELOAD_SCRIPT}}', hotReloadScript);
+function createMarkdownSection(markdownContent) {
+  const cleanContent = markdownContent.replace(/\n\n---\n\n$/, '');
+  return `<section data-markdown data-separator="^---" data-separator-vertical="^--">
+        <textarea data-template>
+${cleanContent}
+        </textarea>
+      </section>
+      `;
+}
+
+function renderTemplate(template, data) {
+  let result = template;
   
+  // Replace SLIDES_CONTENT
+  if (data.slidesContent) {
+    result = result.replace(/\{\{SLIDES_CONTENT\}\}/g, data.slidesContent);
+  }
+
+  let hotReloadScript = data.isDev ? '<script src="js/hot_reload.js"></script>' : '';
+
+  // Replace HOT_RELOAD_SCRIPT
+  result = result.replace(/\{\{HOT_RELOAD_SCRIPT\}\}/g, hotReloadScript);
+  
+  return result;
+}
+
+async function copyAllFolders() {
+  const slidesDir = path.join(__dirname, '../slides/src');
   const distDir = path.join(__dirname, '../dist');
+  
+  // Create dist directory
   await fs.mkdir(distDir, { recursive: true });
   
-  await fs.writeFile(path.join(distDir, 'index.html'), html);
+  // Copy all folders from slides/src to dist (except content folder)
+  const entries = await fs.readdir(slidesDir, { withFileTypes: true });
   
-  const srcThemePath = path.join(__dirname, '../slides/src/themes/custom-theme.css');
-  const distThemePath = path.join(distDir, 'custom-theme.css');
-  
-  const themeCSS = await fs.readFile(srcThemePath, 'utf-8');
-  await fs.writeFile(distThemePath, themeCSS);
-  
-  // Copy reveal-config.js
-  const configSrcPath = path.join(__dirname, '../slides/src/config/reveal-config.js');
-  const configDistPath = path.join(distDir, 'reveal-config.js');
-  const configContent = await fs.readFile(configSrcPath, 'utf-8');
-  await fs.writeFile(configDistPath, configContent);
-  
-  console.log('✅ Build completed successfully!');
-  console.log('📁 Output: dist/index.html');
-}
-
-async function copyAssets() {
-  const assetsDir = path.join(__dirname, '../slides/src/assets');
-  const distAssetsDir = path.join(__dirname, '../dist/assets');
-  
-  try {
-    await fs.mkdir(distAssetsDir, { recursive: true });
-    
-    const assetTypes = ['images', 'videos', 'fonts'];
-    
-    for (const assetType of assetTypes) {
-      const srcPath = path.join(assetsDir, assetType);
-      const destPath = path.join(distAssetsDir, assetType);
-      
-      try {
-        const files = await fs.readdir(srcPath);
-        if (files.length > 0) {
-          await fs.mkdir(destPath, { recursive: true });
-          
-          for (const file of files) {
-            const srcFile = path.join(srcPath, file);
-            const destFile = path.join(destPath, file);
-            await fs.copyFile(srcFile, destFile);
-          }
-          console.log(`📂 Copied ${assetType}`);
-        }
-      } catch (error) {
-        // Directory doesn't exist or is empty, skip
-      }
+  for (const entry of entries) {
+    if (entry.isDirectory() && entry.name !== 'content') {
+      const srcPath = path.join(slidesDir, entry.name);
+      const destPath = path.join(distDir, entry.name);
+      await copyDirectory(srcPath, destPath);
+      console.log(`📂 Copied ${entry.name}/`);
     }
-  } catch (error) {
-    console.log('ℹ️  No assets to copy');
   }
-}
-
-async function copyRevealJS() {
+  
+  // Copy reveal.js from node_modules
   const nodeModulesReveal = path.join(__dirname, '../node_modules/reveal.js');
-  const distReveal = path.join(__dirname, '../dist/reveal.js');
+  const distReveal = path.join(distDir, 'reveal.js');
   
   try {
-    await fs.mkdir(distReveal, { recursive: true });
-    
     // Copy reveal.js core files
-    const distDir = path.join(nodeModulesReveal, 'dist');
+    const revealDistDir = path.join(nodeModulesReveal, 'dist');
     const targetDistDir = path.join(distReveal, 'dist');
-    await copyDirectory(distDir, targetDistDir);
+    await copyDirectory(revealDistDir, targetDistDir);
     
     // Copy plugins
     const pluginDir = path.join(nodeModulesReveal, 'plugin');
     const targetPluginDir = path.join(distReveal, 'plugin');
     await copyDirectory(pluginDir, targetPluginDir);
     
-    console.log('📂 Copied reveal.js files');
+    console.log('📂 Copied reveal.js/');
   } catch (error) {
     console.error('❌ Failed to copy reveal.js files:', error.message);
   }
@@ -181,8 +167,7 @@ async function build(isDev = false) {
   try {
     console.log('🔨 Building presentation...');
     await generateHTML(isDev);
-    await copyRevealJS();
-    await copyAssets();
+    await copyAllFolders();
     console.log('🎉 Build process completed!');
   } catch (error) {
     console.error('❌ Build failed:', error.message);
