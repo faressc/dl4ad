@@ -2,7 +2,6 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const { marked } = require('marked');
 
 async function combineSlides() {
   const slidesDir = path.join(__dirname, '../slides/src/content');
