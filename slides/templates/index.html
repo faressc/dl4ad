@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reveal.js Presentation</title>
+  
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
+  <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="custom-theme.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      {{SLIDES_CONTENT}}
+    </div>
+  </div>
+
+  <script src="reveal.js/dist/reveal.js"></script>
+  <script src="reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="reveal.js/plugin/highlight/highlight.js"></script>
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  
+  <script type="module">
+    import { revealConfig } from './reveal-config.js';
+    Reveal.initialize({
+      ...revealConfig,
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+    {{HOT_RELOAD_SCRIPT}}
+  </script>
+</body>
+</html>
