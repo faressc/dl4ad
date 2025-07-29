@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
   <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
-  <link rel="stylesheet" href="custom-theme.css">
+  <link rel="stylesheet" href="css/slides.css">
 </head>
 <body>
   <div class="reveal">
@@ -21,14 +21,17 @@
   <script src="reveal.js/plugin/markdown/markdown.js"></script>
   <script src="reveal.js/plugin/highlight/highlight.js"></script>
   <script src="reveal.js/plugin/notes/notes.js"></script>
-  
+  <script src="js/custom_speaker_notes.js"></script>
+  {{HOT_RELOAD_SCRIPT}}
   <script type="module">
-    import { revealConfig } from './reveal-config.js';
+
     Reveal.initialize({
-      ...revealConfig,
-      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+      plugins: [
+        RevealMarkdown,
+        RevealHighlight,
+        RevealNotes
+      ]
     });
-    {{HOT_RELOAD_SCRIPT}}
   </script>
 </body>
 </html>
