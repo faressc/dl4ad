@@ -23,13 +23,17 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-transform: none;
-  text-shadow: none;
   word-wrap: break-word;
 }
 
 .reveal h1 {
   text-align: center;
   font-size: 2.5em;
+}
+
+.reveal h2 {
+  font-size: 2em;
+  margin-top: 20px;
 }
 
 .reveal .progress {
@@ -71,22 +75,3 @@
   padding: 20px;
   border-radius: 4px;
 }
-
-.reveal .slides section.has-dark-background,
-.reveal .slides section.has-dark-background h1,
-.reveal .slides section.has-dark-background h2,
-.reveal .slides section.has-dark-background h3,
-.reveal .slides section.has-dark-background h4,
-.reveal .slides section.has-dark-background h5,
-.reveal .slides section.has-dark-background h6 {
-  color: #fff;
-}
-
-.highlight {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-

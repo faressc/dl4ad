@@ -30,6 +30,9 @@
         RevealHighlight,
         RevealNotes
       ]
+    }).then(() => {
+      // Emit custom event when Reveal.js is ready
+      window.dispatchEvent(new CustomEvent('reveal-ready'));
     });
   </script>
 </body>
