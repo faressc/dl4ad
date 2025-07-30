@@ -177,7 +177,7 @@ async function build(isDev = false) {
     console.log('🔨 Building presentation...');
     await generateHTML(isDev);
     await copyAllFolders();
-    console.log('🎉 Build process completed!');
+    console.log('✅ Build process completed!');
   } catch (error) {
     console.error('❌ Build failed:', error.message);
     process.exit(1);
