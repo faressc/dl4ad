@@ -1,11 +1,15 @@
 # Deep Learning for Audio Data
 
 Note:
-Welcome everyone to this presentation about Reveal.js. This is the opening slide where I'll introduce the topic. Remember to speak slowly and make eye contact with the audience.
+    - Seminar Deep Learning for Audio Data
 
 ---
 
-<section>
-    <h2>Lecturer</h2>
-    <p>Fares Schulz</p>
-</section>
+## Lecturer
+
+<img src="assets/images/profile_picture.jpg" alt="faressc" style="width: 330px; height: 330px;">
+<p style="text-align: center; font-size: 0.8em;">
+    Fares Schulz
+    <br>
+    <a href="mailto:fares.schulz@tu-berlin.de" style="font-size: 0.7em;">fares.schulz@tu-berlin.de</a>
+</p>

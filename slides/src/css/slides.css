@@ -1,77 +1,342 @@
-:root {
-  --primary-color: #2c3e50;
-  --secondary-color: #3498db;
-  --accent-color: #e74c3c;
-  --text-color: #ecf0f1;
-  --background-color: #34495e;
-  --code-background: #2d3748;
+/**
+ *  Inspired by the black theme for reveal.js. By Hakim El Hattab, http://hakim.se
+ */
+@import url(./fonts/source-sans-pro/source-sans-pro.css);
+section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
+  color: #222;
 }
 
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+:root {
+  --fs-background-color: #191919;
+  --fs-main-font: Source Sans Pro, Helvetica, sans-serif;
+  --fs-main-font-size: 42px;
+  --fs-main-color: #fff;
+  --fs-block-margin: 20px;
+  --fs-heading-margin: 0 0 0 0;
+  --fs-heading-font: Source Sans Pro, Helvetica, sans-serif;
+  --fs-heading-color: #fff;
+  --fs-heading-letter-spacing: normal;
+  --fs-heading-font-weight: 600;
+  --fs-code-font: monospace;
+  --fs-link-color: #42affa;
+  --fs-link-color-dark: rgb(19.8216494845, 155.4536082474, 248.7783505155);
+  --fs-link-color-hover: rgb(94.35, 187, 250.75);
+  --fs-selection-background-color: rgba(66, 175, 250, 0.75);
+  --fs-selection-color: #fff;
+  --fs-overlay-element-bg-color: 240, 240, 240;
+  --fs-overlay-element-fg-color: 0, 0, 0;
+}
+
+.reveal-viewport {
+  background: #191919;
+  background-color: var(--fs-background-color);
+}
 
 .reveal {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-color);
+  font-family: var(--fs-main-font);
+  font-size: var(--fs-main-font-size);
+  font-weight: normal;
+  color: var(--fs-main-color);
 }
 
-.reveal .slides section {
-  text-align: left;
+.reveal ::selection {
+  color: var(--fs-selection-color);
+  background: var(--fs-selection-background-color);
+  text-shadow: none;
 }
 
-.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
-  color: var(--secondary-color);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+.reveal ::-moz-selection {
+  color: var(--fs-selection-color);
+  background: var(--fs-selection-background-color);
+  text-shadow: none;
+}
+
+.reveal .slides section,
+.reveal .slides section > section {
+  line-height: 1.3;
+  font-weight: inherit;
+}
+
+/*********************************************
+ * HEADERS
+ *********************************************/
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: var(--fs-heading-color);
+  font-family: var(--fs-heading-font);
+  font-weight: var(--fs-heading-font-weight);
+  letter-spacing: var(--fs-heading-letter-spacing);
   text-transform: none;
   word-wrap: break-word;
+  text-align: left;
 }
 
 .reveal h1 {
   text-align: center;
-  font-size: 2.5em;
+  margin-top: 22%;
 }
 
 .reveal h2 {
-  font-size: 2em;
-  margin-top: 20px;
+  margin-top: 5%;
 }
 
-.reveal .progress {
-  color: var(--accent-color);
+.reveal h3 {
+  font-size: 1.3em;
+  margin-top: 4%;
 }
 
-.reveal .controls {
-  color: var(--secondary-color);
+/*********************************************
+ * OTHER
+ *********************************************/
+.reveal p {
+  margin: var(--fs-block-margin) 0;
+  font-size: 1em;
+  text-align: left;
+}
+
+/* Remove trailing margins after titles */
+.reveal h1:last-child,
+.reveal h2:last-child,
+.reveal h3:last-child,
+.reveal h4:last-child,
+.reveal h5:last-child,
+.reveal h6:last-child {
+  margin-bottom: 0;
+}
+
+/* Ensure certain elements are never larger than the slide itself */
+.reveal img,
+.reveal video,
+.reveal iframe {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+.reveal ol,
+.reveal dl,
+.reveal ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1em;
+}
+
+.reveal ol {
+  list-style-type: decimal;
+}
+
+.reveal ul {
+  list-style-type: disc;
+}
+
+.reveal ul ul {
+  list-style-type: square;
+}
+
+.reveal ul ul ul {
+  list-style-type: circle;
+}
+
+.reveal ul ul,
+.reveal ul ol,
+.reveal ol ol,
+.reveal ol ul {
+  display: block;
+  margin-left: 40px;
+}
+
+.reveal dt {
+  font-weight: bold;
+}
+
+.reveal dd {
+  margin-left: 40px;
+}
+
+.reveal blockquote {
+  display: block;
+  position: relative;
+  width: 70%;
+  margin: var(--fs-block-margin) auto;
+  padding: 5px;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+
+.reveal blockquote p:first-child,
+.reveal blockquote p:last-child {
+  display: inline-block;
+}
+
+.reveal q {
+  font-style: italic;
 }
 
 .reveal pre {
   display: block;
   position: relative;
   width: 90%;
-  margin: 20px auto;
+  margin: var(--fs-block-margin) auto;
   text-align: left;
   font-size: 0.55em;
-  font-family: 'Fira Code', 'Monaco', 'Menlo', monospace;
+  font-family: var(--fs-code-font);
   line-height: 1.2em;
   word-wrap: break-word;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
 }
 
 .reveal code {
-  font-family: 'Fira Code', 'Monaco', 'Menlo', monospace;
+  font-family: var(--fs-code-font);
   text-transform: none;
-  background: var(--code-background);
-  padding: 2px 6px;
-  border-radius: 4px;
+  tab-size: 2;
 }
 
-.reveal blockquote {
-  border-left: 4px solid var(--secondary-color);
-  padding-left: 20px;
-  font-style: italic;
-  background: rgba(52, 152, 219, 0.1);
-  margin: 20px 0;
-  padding: 20px;
-  border-radius: 4px;
+.reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: auto;
+  max-height: 400px;
+  word-wrap: normal;
+}
+
+.reveal .code-wrapper {
+  white-space: normal;
+}
+
+.reveal .code-wrapper code {
+  white-space: pre;
+}
+
+.reveal table {
+  margin: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.reveal table th {
+  font-weight: bold;
+}
+
+.reveal table th,
+.reveal table td {
+  text-align: left;
+  padding: 0.2em 0.5em 0.2em 0.5em;
+  border-bottom: 1px solid;
+}
+
+.reveal table th[align=center],
+.reveal table td[align=center] {
+  text-align: center;
+}
+
+.reveal table th[align=right],
+.reveal table td[align=right] {
+  text-align: right;
+}
+
+.reveal table tbody tr:last-child th,
+.reveal table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.reveal sub {
+  vertical-align: sub;
+  font-size: smaller;
+}
+
+.reveal small {
+  display: inline-block;
+  font-size: 0.6em;
+  line-height: 1.2em;
+  vertical-align: top;
+}
+
+.reveal small * {
+  vertical-align: top;
+}
+
+.reveal img {
+  margin: var(--fs-block-margin) 0;
+}
+
+/*********************************************
+ * LINKS
+ *********************************************/
+.reveal a {
+  color: var(--fs-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.reveal a:hover {
+  color: var(--fs-link-color-hover);
+  text-shadow: none;
+  border: none;
+}
+
+.reveal .roll span:after {
+  color: #fff;
+  background: var(--fs-link-color-dark);
+}
+
+/*********************************************
+ * Frame helper
+ *********************************************/
+.reveal .r-frame {
+  border: 4px solid var(--fs-main-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.reveal a .r-frame {
+  transition: all 0.15s linear;
+}
+
+.reveal a:hover .r-frame {
+  border-color: var(--fs-link-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls {
+  color: var(--fs-link-color);
+}
+
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--fs-link-color);
+}
+
+/*********************************************
+ * PRINT BACKGROUND
+ *********************************************/
+@media print {
+  .backgrounds {
+    background-color: var(--fs-background-color);
+  }
 }

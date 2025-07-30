@@ -108,6 +108,7 @@ function renderTemplate(template, data) {
 
 async function copyAllFolders() {
   const slidesDir = path.join(__dirname, '../slides/src');
+  const assetsDir = path.join(__dirname, '../slides/assets');
   const distDir = path.join(__dirname, '../dist');
   
   // Create dist directory
@@ -123,6 +124,15 @@ async function copyAllFolders() {
       await copyDirectory(srcPath, destPath);
       console.log(`📂 Copied ${entry.name}/`);
     }
+  }
+  
+  // Copy assets folder
+  try {
+    const distAssetsDir = path.join(distDir, 'assets');
+    await copyDirectory(assetsDir, distAssetsDir);
+    console.log('📂 Copied assets/');
+  } catch (error) {
+    console.error('❌ Failed to copy assets:', error.message);
   }
   
   // Copy reveal.js from node_modules
