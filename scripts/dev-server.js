@@ -10,7 +10,7 @@ let server = null;
 let wss = null;
 
 async function startDevServer() {
-  console.log('🚀 Starting development server...');
+  console.log('🛑 Starting development server...');
   
   await build(true);
   
@@ -73,7 +73,7 @@ async function startDevServer() {
   server.listen(PORT, () => {
     console.log(`✅ Development server started at http://localhost:${PORT}`);
     console.log('🔌 Hot reload WebSocket server running on same port');
-    console.log('👀 Watching for changes...');
+    console.log('⚡ Watching for changes...');
   });
 }
 
