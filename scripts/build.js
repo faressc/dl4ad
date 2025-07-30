@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require('path');
 
 async function combineSlides() {
-  const slidesDir = path.join(__dirname, '../slides/src/content');
+  const slidesDir = path.join(__dirname, '../slides/content');
   const slideFiles = await fs.readdir(slidesDir);
   
   const sortedFiles = slideFiles
@@ -113,11 +113,11 @@ async function copyAllFolders() {
   // Create dist directory
   await fs.mkdir(distDir, { recursive: true });
   
-  // Copy all folders from slides/src to dist (except content folder)
+  // Copy all folders from slides/src to dist
   const entries = await fs.readdir(slidesDir, { withFileTypes: true });
   
   for (const entry of entries) {
-    if (entry.isDirectory() && entry.name !== 'content') {
+    if (entry.isDirectory()) {
       const srcPath = path.join(slidesDir, entry.name);
       const destPath = path.join(distDir, entry.name);
       await copyDirectory(srcPath, destPath);
