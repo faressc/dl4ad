@@ -5,6 +5,7 @@ Welcome everyone to this presentation about Reveal.js. This is the opening slide
 
 ---
 
-## Lecturer
-
-Fares Schulz
+<section>
+    <h2>Lecturer</h2>
+    <p>Fares Schulz</p>
+</section>
