@@ -1,8 +1,9 @@
-# Deep Learning for Audio Data
+# Deep Learning for<br>Audio Data
 
 Note:
     - Seminar Deep Learning for Audio Data
 
+<!-- .slide: data-state="no-header" -->
 ---
 
 ## Lecturer
@@ -10,8 +11,8 @@ Note:
 <div style="display: flex; align-items: center; gap: 40px;">
     <div style="flex: 0 0 380px;">
         <figure style="text-align: center;">
-            <img src="assets/images/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 330px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
-            <figcaption">
+            <img src="assets/images/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 380px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
+            <figcaption>
                 <strong>Fares Schulz</strong><br>
                 <a href="mailto:fares.schulz@tu-berlin.de" class="small">fares.schulz@tu-berlin.de</a>
             </figcaption>
@@ -52,9 +53,10 @@ Note:
 
 ## Deep Learning
 
-![](assets/images/ai_vs_ml_vs_dl.png)
-
-<sub>Image source: [Atul. (2025). *AI vs Machine Learning vs Deep Learning*. Edureka.](https://www.edureka.co/blog/ai-vs-machine-learning-vs-deep-learning/)</sub>
+<div style="text-align: center;">
+    <img src="assets/images/ai_vs_ml_vs_dl.png" alt="AI vs ML vs DL" style="max-width: 80%; height: auto;">
+    <figcaption><a href="https://www.edureka.co/blog/ai-vs-machine-learning-vs-deep-learning/">Atul. (2025). <em>AI vs Machine Learning vs Deep Learning</em>. Edureka.</a></figcaption>
+</div>
 
 ---
 
