@@ -6,16 +6,15 @@
   <title>Reveal.js Presentation</title>
   
   <link rel="stylesheet" href="reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="reveal.js/dist/theme/black.css">
   <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
   <link rel="stylesheet" href="css/slides.css">
 </head>
 <body>
   <div class="reveal">
     <header class="slide-header">
-      <div class="header-logo-box">
-        <img src="assets/images/TULogo.png" alt="TU Berlin Logo" class="header-logo">
-      </div>
+      <button class="header-logo-box" onclick="toggleTheme()">
+        <img src="assets/images/TULogo.png" alt="TU Berlin Logo" class="header-logo" title="Toggle theme">
+      </button>
     </header>
     
     <div class="slides">
@@ -40,6 +39,27 @@
   <script src="js/custom_speaker_notes.js"></script>
   {{HOT_RELOAD_SCRIPT}}
   <script type="module">
+    // Theme switching functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    }
+    
+    // Load saved theme or default to light
+    function loadTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    
+    // Make toggleTheme globally available
+    window.toggleTheme = toggleTheme;
+    
+    // Load theme before Reveal.js initializes
+    loadTheme();
+    
     Reveal.initialize({
       center: false,
       margin: 0.1,
