@@ -4,11 +4,11 @@ const fs = require('fs').promises;
 const path = require('path');
 
 async function combineSlides() {
-  const slidesDir = path.join(__dirname, '../slides/content');
+  const slidesDir = path.join(__dirname, '../slides');
   const slideFiles = await fs.readdir(slidesDir);
   
   const sortedFiles = slideFiles
-    .filter(file => file.endsWith('.md') || file.endsWith('.html'))
+    .filter(file => file.endsWith('.md') || (file.endsWith('.html') && file !== 'index.html'))
     .sort();
   
   let slides = [];
@@ -107,7 +107,8 @@ function renderTemplate(template, data) {
 }
 
 async function copyAllFolders() {
-  const slidesDir = path.join(__dirname, '../slides/src');
+  const jsDir = path.join(__dirname, '../slides/js');
+  const cssDir = path.join(__dirname, '../slides/css');
   const assetsDir = path.join(__dirname, '../slides/assets');
   const distDir = path.join(__dirname, '../dist');
   
@@ -115,24 +116,15 @@ async function copyAllFolders() {
   await fs.mkdir(distDir, { recursive: true });
   
   // Copy all folders from slides/src to dist
-  const entries = await fs.readdir(slidesDir, { withFileTypes: true });
-  
-  for (const entry of entries) {
-    if (entry.isDirectory()) {
-      const srcPath = path.join(slidesDir, entry.name);
-      const destPath = path.join(distDir, entry.name);
-      await copyDirectory(srcPath, destPath);
-      console.log(`📂 Copied ${entry.name}/`);
+  const entries = { jsDir, cssDir, assetsDir };
+  for (const [key, srcDir] of Object.entries(entries)) {
+    const destDir = path.join(distDir, key.replace('Dir', ''));
+    try {
+      await copyDirectory(srcDir, destDir);
+      console.log(`📂 Copied ${key.replace('Dir', '')}/`);
+    } catch (error) {
+      console.error(`❌ Failed to copy ${key.replace('Dir', '')}:`, error.message);
     }
-  }
-  
-  // Copy assets folder
-  try {
-    const distAssetsDir = path.join(distDir, 'assets');
-    await copyDirectory(assetsDir, distAssetsDir);
-    console.log('📂 Copied assets/');
-  } catch (error) {
-    console.error('❌ Failed to copy assets:', error.message);
   }
   
   // Copy reveal.js from node_modules

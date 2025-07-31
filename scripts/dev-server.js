@@ -79,11 +79,7 @@ async function startDevServer() {
 
 async function watchFiles() {
   const watchDirs = [
-    path.join(__dirname, '../slides/src/css'),
-    path.join(__dirname, '../slides/content'),
-    path.join(__dirname, '../slides/src/js'),
-    path.join(__dirname, '../slides/templates'),
-    path.join(__dirname, '../slides/assets')
+    path.join(__dirname, '../slides')
   ];
   
   for (const dir of watchDirs) {
