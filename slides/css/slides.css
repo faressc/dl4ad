@@ -39,7 +39,7 @@
 }
 
 [data-theme="dark"] {
-  --fs-background-color: #191919;
+  --fs-background-color: #242529;
   --fs-text-color: #fafafa;
   --fs-heading-color: #fafafa;
   --fs-highlight-color: #fafafa;
@@ -56,7 +56,7 @@
   --fs-border-light: rgba(250, 250, 250, 0.06);
   --fs-surface: rgba(250, 250, 250, 0.05);
   --fs-surface-alt: rgba(250, 250, 250, 0.08);
-  --fs-header-bg: #191919;
+  --fs-header-bg: #242529;
 }
 
 /* Importing Google Fonts */
