@@ -12,9 +12,25 @@
 </head>
 <body>
   <div class="reveal">
+    <header class="slide-header">
+      <div class="header-logo-box">
+        <img src="assets/images/TULogo.png" alt="TU Berlin Logo" class="header-logo">
+      </div>
+    </header>
+    
     <div class="slides">
       {{SLIDES_CONTENT}}
     </div>
+    
+    <footer class="slide-footer">
+      <div class="footer-content">
+        <div class="course-title">Deep Learning for Audio Data</div>
+        <div class="footer-separator"></div>
+        <div class="slide-counter"></div>
+        <div class="footer-separator"></div>
+        <div class="akt">Audio Communication Group</div>
+      </div>
+    </footer>
   </div>
 
   <script src="reveal.js/dist/reveal.js"></script>
@@ -26,12 +42,29 @@
   <script type="module">
     Reveal.initialize({
       center: false,
+      margin: 0.1,
       plugins: [
         RevealMarkdown,
         RevealHighlight,
         RevealNotes
       ]
     }).then(() => {
+      // Update slide counter
+      function updateSlideCounter() {
+        const slideCounter = document.querySelector('.slide-counter');
+        if (slideCounter) {
+          const current = Reveal.getState().indexh + 1;
+          const total = Reveal.getTotalSlides();
+          slideCounter.textContent = `${current} / ${total}`;
+        }
+      }
+      
+      // Initial update
+      updateSlideCounter();
+      
+      // Update on slide change
+      Reveal.on('slidechanged', updateSlideCounter);
+      
       // Emit custom event when Reveal.js is ready
       window.dispatchEvent(new CustomEvent('reveal-ready'));
     });

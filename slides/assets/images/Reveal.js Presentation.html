@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="reveal-full-page reveal-print print-pdf"><span id="uas-port" data-disabled="true"></span><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Reveal.js Presentation</title>
+  
+  <link rel="stylesheet" href="Reveal.js%20Presentation_files/reveal.css">
+  <link rel="stylesheet" href="Reveal.js%20Presentation_files/black.css">
+  <link rel="stylesheet" href="Reveal.js%20Presentation_files/monokai.css">
+  <link rel="stylesheet" href="Reveal.js%20Presentation_files/slides.css">
+<style type="text/css">.hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}</style><style type="text/css">@page{size:998px 728px; margin: 0px;}</style><style type="text/css">.reveal section>img, .reveal section>video, .reveal section>iframe{max-width: 960px; max-height:700px}</style></head>
+<body class="reveal-viewport" style="--slide-width: 960px; --slide-height: 700px; width: 998px; height: 728px;">
+  <div class="reveal slide focused ready" role="application" data-transition-speed="default" data-background-transition="fade" style="">
+    <header class="slide-header">
+      <div class="header-logo-box">
+        <img src="Reveal.js%20Presentation_files/TULogo.png" alt="TU Berlin Logo" class="header-logo">
+      </div>
+    </header>
+    
+    <div class="slides">
+      
+      
+      <section class="stack present" style="display: block;"></section>
+      
+    <div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" data-state="no-header" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h1 id="deep-learning-for-audio-data">Deep Learning for Audio Data</h1>
+<aside class="notes"><ul>
+<li>Seminar Deep Learning for Audio Data</li>
+</ul>
+<!-- --></aside></section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="lecturer">Lecturer</h2>
+<div style="display: flex; align-items: center; gap: 40px;">
+    <div style="flex: 0 0 380px;">
+        <figure style="text-align: center;">
+            <img src="Reveal.js%20Presentation_files/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 330px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
+            <figcaption">
+                <strong>Fares Schulz</strong><br>
+                <a href="mailto:fares.schulz@tu-berlin.de" class="small">fares.schulz@tu-berlin.de</a>
+            
+        </figcaption"></figure>
+    </div>
+    <div style="flex: 1 0; max-width: 500px; display: flex; flex-direction: column; text-align: left;">
+        <strong style="margin-bottom: 0.5em;">Research Interests</strong>
+        <div class="small">
+            <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Neural Networks for Audio Effects and Synthesis</span></div>
+            <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Real-Time Audio Environments</span></div>
+            <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Mixed-Signal Audio Processing</span></div>
+        </div>
+        <strong style="margin: 1em 0 0.5em 0;">Research Associate –<br>Audio Communication Group</strong>
+        <div class="small">
+            <div>Lead of:</div>
+            <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Research Team Computer Music and Neural Audio Systems</span></div>
+            <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Electronic Studio of TU Berlin</span></div>
+        </div>
+    </div>
+</div>
+
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="course-topic">Course Topic</h2>
+<ul>
+<li>Theory and application of deep learning techniques for audio data</li>
+</ul>
+<h4>Covers:</h4>
+
+<ul>
+<li>Mathematical and algorithmic fundamentals of machine learning with focus on deep learning and neural networks</li>
+<li>Various architectures and methods for processing, generating and analyzing audio signals</li>
+</ul>
+<div class="highlight">
+  <p>Emphasis on: Creative applications of deep learning in the music production domain</p>
+</div>
+
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="deep-learning">Deep Learning</h2>
+<p><img src="Reveal.js%20Presentation_files/ai_vs_ml_vs_dl.png" alt=""></p>
+<p><sub>Image source: <a href="https://www.edureka.co/blog/ai-vs-machine-learning-vs-deep-learning/">Atul. (2025). <em>AI vs Machine Learning vs Deep Learning</em>. Edureka.</a></sub></p>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="types-of-learning">Types of Learning</h2>
+<div class="tiles-grid">
+    <div class="tile fragment custom select" data-fragment-index="0">
+        <h3>Supervised Learning</h3>
+        <div class="tile-description fragment custom select" data-fragment-index="0">
+            Learn from input-output pairs with external labels, where 
+the algorithm is trained on a dataset containing both features and their
+ corresponding correct answers.
+        </div>
+        <div class="tile-applications">
+            <div class="applications-label">Common Applications:</div>
+            Classification and regression tasks
+        </div>
+    </div>
+    <div class="tile fragment custom select" data-fragment-index="0">
+        <h3>Unsupervised Learning</h3>
+        <div class="tile-description fragment custom select" data-fragment-index="0">
+            Learn from unlabeled data to discover hidden patterns and 
+structures without explicit guidance or target variables (includes 
+self-supervised learning).
+        </div>
+        <div class="tile-applications">
+            <div class="applications-label">Common Applications:</div>
+            Clustering, dimensionality reduction, and generative models
+        </div>
+    </div>
+    <div class="tile">
+        <h3>Reinforcement Learning</h3>
+        <div class="tile-description">
+            Learn through trial-and-error interaction with an 
+environment, optimizing actions based on rewards and penalties received.
+        </div>
+        <div class="tile-applications">
+            <div class="applications-label">Common Applications:</div>
+            Robotics, gaming, and autonomous systems
+        </div>
+    </div>
+</div>
+
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="types-of-learning">Types of Learning</h2>
+<div class="tiles-grid">
+    <div class="tile fragment custom select visible current-fragment" data-fragment-index="0">
+        <h3>Supervised Learning</h3>
+        <div class="tile-description fragment custom select visible current-fragment" data-fragment-index="0">
+            Learn from input-output pairs with external labels, where 
+the algorithm is trained on a dataset containing both features and their
+ corresponding correct answers.
+        </div>
+        <div class="tile-applications">
+            <div class="applications-label">Common Applications:</div>
+            Classification and regression tasks
+        </div>
+    </div>
+    <div class="tile fragment custom select visible current-fragment" data-fragment-index="0">
+        <h3>Unsupervised Learning</h3>
+        <div class="tile-description fragment custom select visible current-fragment" data-fragment-index="0">
+            Learn from unlabeled data to discover hidden patterns and 
+structures without explicit guidance or target variables (includes 
+self-supervised learning).
+        </div>
+        <div class="tile-applications">
+            <div class="applications-label">Common Applications:</div>
+            Clustering, dimensionality reduction, and generative models
+        </div>
+    </div>
+    <div class="tile">
+        <h3>Reinforcement Learning</h3>
+        <div class="tile-description">
+            Learn through trial-and-error interaction with an 
+environment, optimizing actions based on rewards and penalties received.
+        </div>
+        <div class="tile-applications">
+            <div class="applications-label">Common Applications:</div>
+            Robotics, gaming, and autonomous systems
+        </div>
+    </div>
+</div>
+
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="how-is-this-taught">How is this taught?</h2>
+<ul>
+<li><p>Combination of lectures, hands-on coding exercises, and projects</p>
+</li>
+<li><p>Emphasis on practical applications and real-world examples</p>
+</li>
+<li><p><a href="https://github.com/your-repo">Course Github Repository</a></p>
+</li>
+</ul>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="dates-and-topics">Dates and Topics</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.5em;">
+
+<div style="flex: 1; min-width: 40%;">
+
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Week&nbsp;1</td>
+<td>Introduction / Machine Learning I</td>
+</tr>
+<tr>
+<td>Week&nbsp;2</td>
+<td>Machine Learning II</td>
+</tr>
+<tr>
+<td>Week&nbsp;3</td>
+<td>Time-Frequency Representations</td>
+</tr>
+<tr>
+<td>Week&nbsp;4</td>
+<td>Convolutional Neural Networks for Audio</td>
+</tr>
+<tr>
+<td>Week&nbsp;5</td>
+<td>Recurrent Neural Networks for Sequential Data</td>
+</tr>
+<tr>
+<td>Week&nbsp;6</td>
+<td>Attention Mechanisms and Transformers</td>
+</tr>
+<tr>
+<td>Week&nbsp;7</td>
+<td>Audio Classification and Recognition</td>
+</tr>
+<tr>
+<td>Week&nbsp;8</td>
+<td>Speech Processing and Recognition</td>
+</tr>
+</tbody></table>
+</div>
+
+<div style="flex: 1; min-width: 40%;">
+
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Week&nbsp;9</td>
+<td>Music Information Retrieval</td>
+</tr>
+<tr>
+<td>Week&nbsp;10</td>
+<td>Audio Generation and Synthesis</td>
+</tr>
+<tr>
+<td>Week&nbsp;11</td>
+<td>Self-Supervised Learning for Audio</td>
+</tr>
+<tr>
+<td>Week&nbsp;12</td>
+<td>Multi-Modal Audio-Visual Learning</td>
+</tr>
+<tr>
+<td>Week&nbsp;13</td>
+<td>Advanced Architectures and Techniques</td>
+</tr>
+<tr>
+<td>Week&nbsp;14</td>
+<td>Project Presentations I</td>
+</tr>
+<tr>
+<td>Week&nbsp;15</td>
+<td>Project Presentations II</td>
+</tr>
+<tr>
+<td>Week&nbsp;16</td>
+<td>Final Review and Discussion</td>
+</tr>
+</tbody></table>
+</div>
+
+</div>
+
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="assessment">Assessment</h2>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="modulebeschreibung">Modulebeschreibung</h2>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="prerequisites">Prerequisites</h2>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="additional-resources">Additional Resources</h2>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="deep-learning-history">Deep Learning History</h2>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="state-of-the-art-use-cases">State-of-the-art use cases</h2>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h1 id="machine-learning">Machine Learning</h1>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"></section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="code-examples">Code Examples</h2>
+<p>Let's look at some JavaScript:</p>
+<pre class="code-wrapper"><code class="javascript hljs language-javascript" data-highlighted="yes"><span class="hljs-comment">// Hello World function</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">greetUser</span>(<span class="hljs-params">name</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hello, <span class="hljs-subst">${name}</span>!`</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`Welcome to the presentation, <span class="hljs-subst">${name}</span>`</span>;
+}
+
+<span class="hljs-comment">// Usage example</span>
+<span class="hljs-keyword">const</span> message = <span class="hljs-title function_">greetUser</span>(<span class="hljs-string">"Developer"</span>);
+<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"output"</span>).<span class="hljs-property">innerHTML</span> = message;</code></pre></section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="css-styling-examplesadfjk">CSS Styling Examplesadfjk</h2>
+<p>Here's some custom CSS:</p>
+<pre class="code-wrapper"><code class="css hljs language-css" data-highlighted="yes"><span class="hljs-selector-class">.highlight</span> {
+    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">45deg</span>, <span class="hljs-number">#ff6b6b</span>, <span class="hljs-number">#4ecdc4</span>);
+    <span class="hljs-attribute">color</span>: white;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">15px</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.3</span>);
+}
+
+<span class="hljs-selector-class">.code-container</span> {
+    <span class="hljs-attribute">background</span>: <span class="hljs-number">#2d3748</span>;
+    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">4px</span> solid <span class="hljs-number">#4299e1</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1rem</span>;
+}</code></pre></section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="python-example">Python Example</h2>
+<p>Data processing with Python:</p>
+<pre class="code-wrapper"><code class="python hljs language-python" data-highlighted="yes"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+<span class="hljs-comment"># Create sample data</span>
+data = {
+    <span class="hljs-string">'name'</span>: [<span class="hljs-string">'Alice'</span>, <span class="hljs-string">'Bob'</span>, <span class="hljs-string">'Charlie'</span>],
+    <span class="hljs-string">'age'</span>: [<span class="hljs-number">25</span>, <span class="hljs-number">30</span>, <span class="hljs-number">35</span>],
+    <span class="hljs-string">'salary'</span>: [<span class="hljs-number">50000</span>, <span class="hljs-number">60000</span>, <span class="hljs-number">70000</span>]
+}
+
+<span class="hljs-comment"># Convert to DataFrame</span>
+df = pd.DataFrame(data)
+
+<span class="hljs-comment"># Calculate statistics</span>
+average_salary = df[<span class="hljs-string">'salary'</span>].mean()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"Average salary: $<span class="hljs-subst">{average_salary:,<span class="hljs-number">.2</span>f}</span>"</span>)</code></pre></section></div><div class="pdf-page" style="height: 1454px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;">
+  <h1>HTML Slide Example</h1>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 50px;">
+    <div style="flex: 1; padding-right: 30px;">
+      <h2>Interactive Elements</h2>
+      <ul data-protonpass-form="">
+        <li style="margin-bottom: 15px;">
+          <button onclick="alert('Hello from HTML!')" style="background: #4299e1; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Click Me!</button>
+        </li>
+        <li style="margin-bottom: 15px;">
+          <input type="text" placeholder="Type something..." style="padding: 8px; border: 2px solid #4299e1; border-radius: 4px; background: rgba(255,255,255,0.1); color: white;">
+        </li>
+        <li>
+          <div style="width: 200px; height: 20px; background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1); border-radius: 10px; margin-top: 10px;"></div>
+        </li>
+      </ul>
+    </div>
+    <div style="flex: 1; text-align: center;">
+      <div style="width: 150px; height: 150px; background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #ff6b6b); border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; animation: rotate 3s linear infinite;">
+        <div style="width: 100px; height: 100px; background: #1a1a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+          HTML
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 40px; font-style: italic; color: #888;">
+    This slide demonstrates native HTML capabilities with interactive elements and custom styling
+  </p>
+  <style>
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  
+  <aside class="notes">
+    This HTML slide showcases what's possible beyond markdown:
+    - Interactive button with onclick handler
+    - Form input element for user interaction
+    - CSS gradients and animations (notice the rotating circle)
+    - Custom styling without markdown limitations
+    
+    You can click the button to test the interactivity. This demonstrates that reveal.js supports full HTML/CSS/JS capabilities.
+  </aside>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="features">Features</h2>
+<p>Navigate with arrow keys or space bar</p>
+<p>Press 'S' for speaker view</p>
+<p>Press 'ESC' for slide overview</p>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h2 id="vertical-slides">Vertical Slides</h2>
+<p>This is a vertical slide</p>
+<p>Press down arrow to continue</p>
+</section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 14px; width: 960px;"><h3 id="html-structure-example">HTML Structure Example</h3>
+<pre class="code-wrapper"><code class="html hljs language-xml" data-highlighted="yes"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"reveal"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"slides"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Slide Title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Slide content goes here<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre></section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" class="present" aria-hidden="true" hidden="" style="display: block; left: 19px; top: 14px; width: 960px;"><h3 id="advanced-javascript">Advanced JavaScript</h3>
+<pre class="code-wrapper"><code class="javascript hljs language-javascript" data-highlighted="yes"><span class="hljs-comment">// Reveal.js initialization</span>
+<span class="hljs-title class_">Reveal</span>.<span class="hljs-title function_">initialize</span>({
+    <span class="hljs-attr">hash</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">transition</span>: <span class="hljs-string">'slide'</span>,
+    <span class="hljs-attr">dependencies</span>: [
+        { <span class="hljs-attr">src</span>: <span class="hljs-string">'plugin/highlight/highlight.js'</span> },
+        { <span class="hljs-attr">src</span>: <span class="hljs-string">'plugin/notes/notes.js'</span> }
+    ]
+});
+
+<span class="hljs-comment">// Custom event listener</span>
+<span class="hljs-title class_">Reveal</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'slidechanged'</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'Slide changed:'</span>, event.<span class="hljs-property">currentSlide</span>);
+});</code></pre></section></div><div class="pdf-page" style="height: 727px; background: rgb(25, 25, 25);"><div class="slide-background future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><section data-markdown="" data-markdown-parsed="true" hidden="" aria-hidden="true" class="present" style="display: block; left: 19px; top: 14px; width: 960px;"><h1 id="thank-you">Thank You!</h1>
+<p>Questions?</p>
+</section></div></div>
+    
+    <footer class="slide-footer">
+      <div class="footer-content">
+        <div class="course-title">Deep Learning for Audio Data</div>
+        <div class="footer-separator"></div>
+        <div class="slide-counter">1 / 24</div>
+        <div class="footer-separator"></div>
+        <div class="akt">Audio Communication Group</div>
+      </div>
+    </footer>
+  <div class="backgrounds"><div class="slide-background stack present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div></div><div class="slide-number" style="display: none;"></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right" aria-label="next slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true"></div></div>
+
+  <script src="Reveal.js%20Presentation_files/reveal.js"></script>
+  <script src="Reveal.js%20Presentation_files/markdown.js"></script>
+  <script src="Reveal.js%20Presentation_files/highlight.js"></script>
+  <script src="Reveal.js%20Presentation_files/notes.js"></script>
+  <script src="Reveal.js%20Presentation_files/custom_speaker_notes.js"></script>
+  <script src="Reveal.js%20Presentation_files/hot_reload.js"></script>
+  <script type="module">
+    Reveal.initialize({
+      center: false,
+      plugins: [
+        RevealMarkdown,
+        RevealHighlight,
+        RevealNotes
+      ]
+    }).then(() => {
+      // Update slide counter
+      function updateSlideCounter() {
+        const slideCounter = document.querySelector('.slide-counter');
+        if (slideCounter) {
+          const current = Reveal.getState().indexh + 1;
+          const total = Reveal.getTotalSlides();
+          slideCounter.textContent = `${current} / ${total}`;
+        }
+      }
+      
+      // Initial update
+      updateSlideCounter();
+      
+      // Update on slide change
+      Reveal.on('slidechanged', updateSlideCounter);
+      
+      // Emit custom event when Reveal.js is ready
+      window.dispatchEvent(new CustomEvent('reveal-ready'));
+    });
+  </script>
+
+<protonpass-root-1517 data-protonpass-role="root" data-protonpass-theme="os"></protonpass-root-1517></body></html>

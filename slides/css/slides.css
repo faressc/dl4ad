@@ -157,10 +157,11 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal h1 {
   text-align: center;
   margin-top: 22%;
+  line-height: 1.5em;
 }
 
 .reveal h2 {
-  margin: 5% 0 0.6em 0;
+  margin: 24px 0 0.6em 0;
 }
 
 .reveal h3 {
@@ -286,6 +287,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal sub {
   vertical-align: sub;
   font-size: smaller;
+  text-align: center;
 }
 
 .reveal small {
@@ -343,8 +345,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
+
 .reveal .controls {
-  color: var(--fs-link-color);
+  display: none !important;
 }
 
 /*********************************************
@@ -363,3 +366,87 @@ section.has-light-background, section.has-light-background h1, section.has-light
     background-color: var(--fs-background-color);
   }
 }
+
+/*********************************************
+ * SLIDE HEADER AND FOOTER
+ *********************************************/
+
+.header-logo-box {
+  position: fixed;
+  right: 0;
+  top: -10px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  margin-right: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.slide-footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 0 24px 30px 24px;
+  font-size: 0.65em;
+}
+
+.course-title {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  text-align: left;
+  position: relative;
+}
+
+.footer-separator {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  margin: 0 18px;
+  opacity: 0.7;
+}
+
+.slide-counter {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
+  text-align: center;
+  position: relative;
+}
+
+.akt {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  text-align: right;
+  position: relative;
+}
+
+/* Hide header and footer for specific slides */
+.no-header .slide-header,
+.no-footer .slide-footer,
+.no-chrome .slide-header,
+.no-chrome .slide-footer {
+  display: none !important;
+}
+
