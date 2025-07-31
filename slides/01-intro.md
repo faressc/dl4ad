@@ -25,7 +25,7 @@ Note:
             <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Real-Time Audio Environments</span></div>
             <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Mixed-Signal Audio Processing</span></div>
         </div>
-        <strong style="margin: 1em 0 0.5em 0;">Research Associate –<br>Audio Communication Group</strong>
+        <strong style="margin: 1em 0 0.5em 0;">Research Associate<br><span style="font-size: 0.8em; font-weight: normal;">Audio Communication Group</span></strong>
         <div class="small">
             <div>Lead of:</div>
             <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Research Team Computer Music and Neural Audio Systems</span></div>
@@ -46,7 +46,7 @@ Note:
 - Various architectures and methods for processing, generating and analyzing audio signals
 
 <div class="highlight">
-  <p>Emphasis on: Creative applications of deep learning in the music production domain</p>
+  <p>Emphasis on: Creative applications of deep learning in the<br>music production domain</p>
 </div>
 
 ---
@@ -64,7 +64,7 @@ Note:
 
 <div class="tiles-grid">
     <div class="tile fragment custom select" data-fragment-index="1">
-        <h3>Supervised Learning</h3>
+        <h3>Supervised<br>Learning</h3>
         <div class="tile-description fragment custom select" data-fragment-index="1">
             Learn from input-output pairs with external labels, where the algorithm is trained on a dataset containing both features and their corresponding correct answers.
         </div>
@@ -74,7 +74,7 @@ Note:
         </div>
     </div>
     <div class="tile fragment custom select" data-fragment-index="1">
-        <h3>Unsupervised Learning</h3>
+        <h3>Unsupervised<br>Learning</h3>
         <div class="tile-description fragment custom select" data-fragment-index="1">
             Learn from unlabeled data to discover hidden patterns and structures without explicit guidance or target variables (includes self-supervised learning).
         </div>
@@ -84,7 +84,7 @@ Note:
         </div>
     </div>
     <div class="tile">
-        <h3>Reinforcement Learning</h3>
+        <h3>Reinforcement<br>Learning</h3>
         <div class="tile-description">
             Learn through trial-and-error interaction with an environment, optimizing actions based on rewards and penalties received.
         </div>

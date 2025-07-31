@@ -3,12 +3,10 @@
  *********************************************/
 :root {
   /* Font settings */
-  --fs-main-font: Source Sans Pro, Helvetica, sans-serif;
-  --fs-heading-font: Source Sans Pro, Helvetica, sans-serif;
-  --fs-heading-letter-spacing: 0.03em;
+  --fs-main-font: 'Lato', sans-serif;
+  --fs-heading-font: 'Poppins', sans-serif;
   --fs-code-font: monospace;
-  --fs-main-font-size: 30px;
-  --fs-heading-font-weight: 600;
+  --fs-main-font-size: 28px;
 
   --fs-highlight-background: #BF85FC;
   --fs-highlight-color: #D6FCB7;
@@ -61,88 +59,208 @@
   --fs-header-bg: #191919;
 }
 
-/* Highlighted emphasis */
-.highlight {
-  background: var(--fs-highlight-background);
-  color: var(--fs-highlight-color);
-  padding: 0.1em 0 0.1em 0;
-  border-radius: 0.3em;
-  margin: 1em 0 1em 0;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 0 20px var(--fs-shadow-color);
+/* Importing Google Fonts */
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Thin.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100;
 }
 
-.small {
-  font-size: 0.8em;
-}
-
-.tiles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 20px 0;
-}
-
-.tile {
-  background: var(--fs-surface);
-  border: 1px solid var(--fs-border);
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 0px 20px var(--fs-shadow-color-light);
-}
-
-.tile h3 {
-  font-size: 1.2rem;
-  color: var(--fs-text-color);
-  margin-top: 5px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.tile-description {
-  color: var(--fs-text-muted-color);
-  height: 150px;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.tile-applications {
-  color: var(--fs-text-subtle-color);
-  font-size: 0.9rem;
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-ThinItalic.ttf') format('truetype');
   font-style: italic;
-  padding-top: 15px;
-  border-top: 1px solid var(--fs-border);
+  font-weight: 100;
 }
 
-.applications-label {
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-LightItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 300;
+}
+
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-BoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../assets/fonts/Lato/Lato-BlackItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 900;
+}
+
+/* Poppins Font Family */
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Thin.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-ThinItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-ExtraLight.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Light.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-LightItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-MediumItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-style: normal;
   font-weight: 600;
-  color: var(--fs-text-muted-color);
-  margin-bottom: 5px;
 }
 
-.fragment.select.visible {
-  background-color: var(--fs-fragment-select-color);
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 600;
 }
 
-.fragment.select.visible.tile-description {
-  background: none;
-  color: var(--fs-fragment-select-text-color);
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
 }
 
-.reveal .slides section .fragment.select {
-  transition: 5s;
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-BoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 700;
 }
 
-/**
- *  Inspired by the black theme for reveal.js. By Hakim El Hattab, http://hakim.se
- */
-@import url(./fonts/source-sans-pro/source-sans-pro.css);
-section.has-light-background, section.has-light-background h1, section.has-light-background h2, section.has-light-background h3, section.has-light-background h4, section.has-light-background h5, section.has-light-background h6 {
-  color: #222;
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-ExtraBold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 800;
 }
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins/Poppins-BlackItalic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 900;
+}
+
+/*********************************************
+ * REVEAL.js
+ *********************************************/
 
 .reveal-viewport {
   background: #191919;
@@ -175,6 +293,27 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 /*********************************************
+ * Font
+ *********************************************/
+
+.reveal strong,
+.reveal b {
+  font-weight: bold;
+}
+
+.reveal em {
+  font-style: italic;
+}
+
+.reveal dt {
+  font-weight: bold;
+}
+
+.reveal .small {
+  font-size: 0.7em;
+}
+
+/*********************************************
  * HEADERS
  *********************************************/
 .reveal h1,
@@ -185,8 +324,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal h6 {
   color: var(--fs-heading-color);
   font-family: var(--fs-heading-font);
-  font-weight: var(--fs-heading-font-weight);
-  letter-spacing: var(--fs-heading-letter-spacing);
   text-transform: none;
   word-wrap: break-word;
   text-align: left;
@@ -194,22 +331,41 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .reveal h1 {
   text-align: center;
-  margin-top: 22%;
-  line-height: 1.5em;
+  margin-block: 22% 10%;
+  line-height: 1.7em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 2em;
 }
 
 .reveal h2 {
-  margin-top: 24px;
+  margin: 24px 0 50px 0;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .reveal h3 {
-  margin-top: 1.2em 0 0px 0;
+  font-weight: 600;
+}
+
+/*********************************************
+* LISTS
+*********************************************/
+
+.reveal ul,
+.reveal ol {
+  padding-left: 2em;
+  margin: 1em 0;
+}
+
+.reveal li {
+  margin: 0.5em 0;
 }
 
 /*********************************************
  * OTHER
  *********************************************/
-
 
 /* Remove trailing margins after titles */
 .reveal h1:last-child,
@@ -227,20 +383,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal iframe {
   max-width: 95%;
   max-height: 95%;
-}
-
-.reveal strong,
-.reveal b {
-  font-weight: bold;
-}
-
-.reveal em {
-  font-style: italic;
-}
-
-
-.reveal dt {
-  font-weight: bold;
 }
 
 /*********************************************
@@ -331,6 +473,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
   flex: 1;
   padding: 0 24px 30px 24px;
   font-size: 0.65em;
+  letter-spacing: -0.02em;
 }
 
 .course-title {
@@ -368,4 +511,79 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .no-chrome .slide-header,
 .no-chrome .slide-footer {
   display: none;
+}
+
+/*********************************************
+ * Highlighted Elements
+ *********************************************/
+
+ /* Highlighted emphasis */
+.highlight {
+  background: var(--fs-highlight-background);
+  color: var(--fs-highlight-color);
+  padding: 0.1em 0 0.1em 0;
+  border-radius: 0.3em;
+  margin: 1em 0 1em 0;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 0 20px var(--fs-shadow-color);
+}
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+}
+
+.tile {
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 0px 20px var(--fs-shadow-color-light);
+}
+
+.tile h3 {
+  font-size: 1.2rem;
+  color: var(--fs-text-color);
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.tile-description {
+  color: var(--fs-text-muted-color);
+  height: 150px;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.tile-applications {
+  color: var(--fs-text-subtle-color);
+  font-size: 0.9rem;
+  font-style: italic;
+  padding-top: 15px;
+  border-top: 1px solid var(--fs-border);
+}
+
+.applications-label {
+  font-weight: 600;
+  color: var(--fs-text-muted-color);
+  margin-bottom: 5px;
+}
+
+.fragment.select.visible {
+  background-color: var(--fs-fragment-select-color);
+}
+
+.fragment.select.visible.tile-description {
+  background: none;
+  color: var(--fs-fragment-select-text-color);
+}
+
+.reveal .slides section .fragment.select {
+  transition: 5s;
 }
