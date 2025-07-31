@@ -1,12 +1,76 @@
+/*********************************************
+ * GLOBAL STYLES
+ *********************************************/
+:root {
+  /* Font settings */
+  --fs-main-font: Source Sans Pro, Helvetica, sans-serif;
+  --fs-heading-font: Source Sans Pro, Helvetica, sans-serif;
+  --fs-heading-letter-spacing: 0.03em;
+  --fs-code-font: monospace;
+  --fs-main-font-size: 30px;
+  --fs-heading-font-weight: 600;
+
+  --fs-highlight-background: #BF85FC;
+  --fs-highlight-color: #D6FCB7;
+
+  /* Colors */
+  --fs-link-color: #55A49F;
+  --fs-link-color-hover: #FE938C;
+  --fs-fragment-select-color: rgb(110, 82, 82);
+  --fs-fragment-select-light: #EDAF97;
+}
+
+[data-theme="light"] {
+  --fs-text-color: #231123;
+  --fs-background-color: #fafafa;
+  --fs-heading-color: #231123;
+  --fs-highlight-color: #fafafa;
+  --fs-selection-color: #231123;
+  --fs-selection-background-color: rgba(191, 133, 252, 0.25);
+  --fs-shadow-color: #4040405a;
+  --fs-shadow-color-light: #40404013; 
+  --fs-navigation-color: #231123;
+
+  --fs-fragment-select-text-color: rgb(255, 180, 180);
+  --fs-text-muted-color: rgba(35, 17, 35, 0.7);
+  --fs-text-subtle-color: rgba(35, 17, 35, 0.6);
+  --fs-border: #4040405a;
+  --fs-border-light: #40404013;
+  --fs-surface: #ffffff;
+  --fs-header-bg: #fafafa;
+}
+
+[data-theme="dark"] {
+  --fs-background-color: #191919;
+  --fs-text-color: #fafafa;
+  --fs-heading-color: #fafafa;
+  --fs-highlight-color: #fafafa;
+  --fs-selection-color: #fafafa;
+  --fs-selection-background-color: rgba(191, 133, 252, 0.4);
+  --fs-shadow-color: #ecebeb71;
+  --fs-shadow-color-light: #ecebeb21;
+  --fs-navigation-color: #BF85FC;
+  
+  --fs-fragment-select-text-color: rgb(49, 27, 27);
+  --fs-text-muted-color: #b8b8b8;
+  --fs-text-subtle-color: #888888;
+  --fs-border: rgba(250, 250, 250, 0.15);
+  --fs-border-light: rgba(250, 250, 250, 0.06);
+  --fs-surface: rgba(250, 250, 250, 0.05);
+  --fs-surface-alt: rgba(250, 250, 250, 0.08);
+  --fs-header-bg: #191919;
+}
+
 /* Highlighted emphasis */
 .highlight {
-  background: #ffe066;
-  color: #222;
+  background: var(--fs-highlight-background);
+  color: var(--fs-highlight-color);
   padding: 0.1em 0 0.1em 0;
   border-radius: 0.3em;
   margin: 1em 0 1em 0;
   font-weight: bold;
   text-align: center;
+  box-shadow: 0 0 20px var(--fs-shadow-color);
 }
 
 .small {
@@ -21,27 +85,24 @@
 }
 
 .tile {
-  background: #2d2d2d;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
   border-radius: 20px;
   padding: 40px 30px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-}
-
-.tile-icon {
-  display: none;
+  box-shadow: 0 0px 20px var(--fs-shadow-color-light);
 }
 
 .tile h3 {
-  font-size: 1.2rem !important;
-  color: #ffffff !important;
-  margin-top: 5px !important;
-  margin-bottom: 20px !important;
-  font-weight: 600 !important;
-  text-align: center !important;
+  font-size: 1.2rem;
+  color: var(--fs-text-color);
+  margin-top: 5px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .tile-description {
-  color: #b8b8b8;
+  color: var(--fs-text-muted-color);
   height: 150px;
   font-size: 1rem;
   line-height: 1.6;
@@ -49,26 +110,26 @@
 }
 
 .tile-applications {
-  color: #888888;
+  color: var(--fs-text-subtle-color);
   font-size: 0.9rem;
   font-style: italic;
   padding-top: 15px;
-  border-top: 1px solid #404040;
+  border-top: 1px solid var(--fs-border);
 }
 
 .applications-label {
   font-weight: 600;
-  color: #cccccc;
+  color: var(--fs-text-muted-color);
   margin-bottom: 5px;
 }
 
 .fragment.select.visible {
-  background-color: rgb(110, 82, 82);
+  background-color: var(--fs-fragment-select-color);
 }
 
 .fragment.select.visible.tile-description {
   background: none;
-  color: rgb(49, 27, 27);
+  color: var(--fs-fragment-select-text-color);
 }
 
 .reveal .slides section .fragment.select {
@@ -83,30 +144,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
   color: #222;
 }
 
-/*********************************************
- * GLOBAL STYLES
- *********************************************/
-:root {
-  --fs-background-color: #191919;
-  --fs-main-font: Source Sans Pro, Helvetica, sans-serif;
-  --fs-main-font-size: 30px;
-  --fs-main-color: #fff;
-  --fs-block-margin: 20px;
-  --fs-heading-margin: 0 0 0 0;
-  --fs-heading-font: Source Sans Pro, Helvetica, sans-serif;
-  --fs-heading-color: #fff;
-  --fs-heading-letter-spacing: normal;
-  --fs-heading-font-weight: 600;
-  --fs-code-font: monospace;
-  --fs-link-color: #42affa;
-  --fs-link-color-dark: rgb(19.8216494845, 155.4536082474, 248.7783505155);
-  --fs-link-color-hover: rgb(94.35, 187, 250.75);
-  --fs-selection-background-color: rgba(66, 175, 250, 0.75);
-  --fs-selection-color: #fff;
-  --fs-overlay-element-bg-color: 240, 240, 240;
-  --fs-overlay-element-fg-color: 0, 0, 0;
-}
-
 .reveal-viewport {
   background: #191919;
   background-color: var(--fs-background-color);
@@ -116,7 +153,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
   font-family: var(--fs-main-font);
   font-size: var(--fs-main-font-size);
   font-weight: normal;
-  color: var(--fs-main-color);
+  color: var(--fs-text-color);
 }
 
 .reveal ::selection {
@@ -134,6 +171,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal .slides section,
 .reveal .slides section > section {
   text-align: left;
+  line-height: 1.3;
 }
 
 /*********************************************
@@ -161,32 +199,17 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 .reveal h2 {
-  margin: 24px 0 0.6em 0;
+  margin-top: 24px;
 }
 
 .reveal h3 {
-  margin: 0.8em 0 0.5em 0;
-}
-
-.reveal h4 {
-  margin: 0.8em 0 0.5em 0;
-}
-
-.reveal h5 {
-  margin-top: 1em;
-}
-
-.reveal h6 {
-  font-size: 0.7em;
-  margin-top: 1%;
+  margin-top: 1.2em 0 0px 0;
 }
 
 /*********************************************
  * OTHER
  *********************************************/
-.reveal p {
-  margin: var(--fs-block-margin) 0;
-}
+
 
 /* Remove trailing margins after titles */
 .reveal h1:last-child,
@@ -220,91 +243,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
   font-weight: bold;
 }
 
-.reveal dd {
-  margin-left: 40px;
-}
-
-.reveal blockquote {
-  display: block;
-  position: relative;
-  width: 70%;
-  margin: var(--fs-block-margin) auto;
-  padding: 5px;
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2);
-}
-
-.reveal blockquote p:first-child,
-.reveal blockquote p:last-child {
-  display: inline-block;
-}
-
-.reveal q {
-  font-style: italic;
-}
-
-.reveal pre {
-  display: block;
-  position: relative;
-  width: 90%;
-  margin: var(--fs-block-margin) auto;
-  text-align: left;
-  font-size: 0.55em;
-  font-family: var(--fs-code-font);
-  line-height: 1.2em;
-  word-wrap: break-word;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.reveal code {
-  font-family: var(--fs-code-font);
-  text-transform: none;
-  tab-size: 2;
-}
-
-.reveal pre code {
-  display: block;
-  padding: 5px;
-  overflow: auto;
-  max-height: 400px;
-  word-wrap: normal;
-}
-
-.reveal .code-wrapper {
-  white-space: normal;
-}
-
-.reveal .code-wrapper code {
-  white-space: pre;
-}
-
-.reveal sup {
-  vertical-align: super;
-  font-size: smaller;
-}
-
-.reveal sub {
-  vertical-align: sub;
-  font-size: smaller;
-  text-align: center;
-}
-
-.reveal small {
-  display: inline-block;
-  font-size: 0.6em;
-  line-height: 1.2em;
-  vertical-align: top;
-}
-
-.reveal small * {
-  vertical-align: top;
-}
-
-.reveal img {
-  margin: var(--fs-block-margin) 0;
-}
-
 /*********************************************
  * LINKS
  *********************************************/
@@ -316,30 +254,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .reveal a:hover {
   color: var(--fs-link-color-hover);
-  text-shadow: none;
+  text-shadow: 0 0 10px var(--fs-shadow-color);
   border: none;
-}
-
-.reveal .roll span:after {
-  color: #fff;
-  background: var(--fs-link-color-dark);
-}
-
-/*********************************************
- * Frame helper
- *********************************************/
-.reveal .r-frame {
-  border: 4px solid var(--fs-main-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.reveal a .r-frame {
-  transition: all 0.15s linear;
-}
-
-.reveal a:hover .r-frame {
-  border-color: var(--fs-link-color);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
 }
 
 /*********************************************
@@ -354,8 +270,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
-  background: rgba(0, 0, 0, 0.2);
-  color: var(--fs-link-color);
+  color: var(--fs-navigation-color);
+  height: 8px;
 }
 
 /*********************************************
@@ -373,16 +289,19 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .header-logo-box {
   position: fixed;
+  z-index: 1001;
+  cursor: pointer;
   right: 0;
   top: -10px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  background: rgba(255, 255, 255, 0.02);
+  padding: 15px;
+  background: var(--fs-header-bg);
   backdrop-filter: blur(5px);
   border-radius: 8px;
   margin-right: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--fs-border-light);
+  box-shadow: 0 0px 20px var(--fs-shadow-color-light);
 }
 
 .header-logo {
@@ -398,6 +317,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
   left: 0;
   width: 100%;
   height: 80px;
+  background: transparent;
   backdrop-filter: blur(10px);
   z-index: 1000;
   display: flex;
@@ -414,8 +334,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 .course-title {
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 300;
+  color: var(--fs-text-muted-color);
+  font-weight: 500;
   text-align: left;
   position: relative;
 }
@@ -423,21 +343,21 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .footer-separator {
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(to right, transparent, var(--fs-text-muted-color), transparent);
   margin: 0 18px;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .slide-counter {
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
+  color: var(--fs-text-subtle-color);
+  font-weight: 400;
   text-align: center;
   position: relative;
 }
 
 .akt {
-  color: rgba(255, 255, 255, 0.7);
-  font-weight: 300;
+  color: var(--fs-text-muted-color);
+  font-weight: 500;
   text-align: right;
   position: relative;
 }
@@ -447,6 +367,5 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .no-footer .slide-footer,
 .no-chrome .slide-header,
 .no-chrome .slide-footer {
-  display: none !important;
+  display: none;
 }
-

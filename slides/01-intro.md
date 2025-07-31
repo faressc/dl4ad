@@ -40,7 +40,7 @@ Note:
 
 - Theory and application of deep learning techniques for audio data
 
-<h4>Covers:</h4>
+<h3>Covers:</h3>
 
 - Mathematical and algorithmic fundamentals of machine learning with focus on deep learning and neural networks
 - Various architectures and methods for processing, generating and analyzing audio signals
@@ -54,8 +54,8 @@ Note:
 ## Deep Learning
 
 <div style="text-align: center;">
-    <img src="assets/images/ai_vs_ml_vs_dl.png" alt="AI vs ML vs DL" style="max-width: 80%; height: auto;">
-    <figcaption><a href="https://www.edureka.co/blog/ai-vs-machine-learning-vs-deep-learning/">Atul. (2025). <em>AI vs Machine Learning vs Deep Learning</em>. Edureka.</a></figcaption>
+    <img src="assets/images/ai_vs_ml_vs_dl.png" alt="AI vs ML vs DL" style="max-width: 90%; height: auto; margin-top: 28px;">
+    <figcaption><a href="https://www.edureka.co/blog/ai-vs-machine-learning-vs-deep-learning/" style="margin-top: 30px; display: inline-block;">Atul. (2025). <em>AI vs Machine Learning vs Deep Learning</em>. Edureka.</a></figcaption>
 </div>
 
 ---
