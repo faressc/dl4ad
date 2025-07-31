@@ -440,7 +440,7 @@
   padding: 15px;
   background: var(--fs-header-bg);
   backdrop-filter: blur(5px);
-  border-radius: 8px;
+  border-radius: 4px;
   margin-right: 20px;
   border: 1px solid var(--fs-border-light);
   box-shadow: 0 0px 20px var(--fs-shadow-color-light);
@@ -522,7 +522,7 @@
   background: var(--fs-highlight-background);
   color: var(--fs-highlight-color);
   padding: 0.1em 0 0.1em 0;
-  border-radius: 0.3em;
+  border-radius: 0.2em;
   margin: 1em 0 1em 0;
   font-weight: bold;
   text-align: center;
@@ -539,7 +539,7 @@
 .tile {
   background: var(--fs-surface);
   border: 1px solid var(--fs-border);
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 40px 30px;
   box-shadow: 0 0px 20px var(--fs-shadow-color-light);
 }
@@ -586,4 +586,95 @@
 
 .reveal .slides section .fragment.select {
   transition: 5s;
+}
+
+/*********************************************
+ * TABLES
+ *********************************************/
+
+.reveal table {
+  margin: 1.5em auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--fs-surface);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--fs-shadow-color-light);
+  border: 1px solid var(--fs-border);
+  font-family: var(--fs-main-font);
+  font-size: 0.85em;
+  max-width: 95%;
+}
+
+.reveal table th {
+  background: var(--fs-surface-alt, var(--fs-surface));
+  color: var(--fs-heading-color);
+  font-family: var(--fs-heading-font);
+  font-weight: 600;
+  font-size: 0.9em;
+  letter-spacing: 0.02em;
+  text-align: left;
+  padding: 16px 20px;
+  border-bottom: 2px solid var(--fs-border);
+  position: relative;
+}
+
+.reveal table th:first-child {
+  border-top-left-radius: 6px;
+}
+
+.reveal table th:last-child {
+  border-top-right-radius: 6px;
+}
+
+.reveal table td {
+  color: var(--fs-text-color);
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--fs-border-light);
+  vertical-align: top;
+  line-height: 1.4;
+}
+
+.reveal table tr:last-child td {
+  border-bottom: none;
+}
+
+.reveal table tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+.reveal table tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+.reveal table tr:hover {
+  background: var(--fs-surface-alt, var(--fs-selection-background-color));
+}
+
+.reveal table tr:hover td {
+  color: var(--fs-text-color);
+}
+
+.reveal table th:not(:last-child),
+.reveal table td:not(:last-child) {
+  border-right: 1px solid var(--fs-border-light);
+}
+
+.reveal table code {
+  background: var(--fs-surface-alt, var(--fs-selection-background-color));
+  color: var(--fs-text-color);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: var(--fs-code-font);
+}
+
+.reveal table strong {
+  color: var(--fs-heading-color);
+  font-weight: 600;
+}
+
+.reveal table em {
+  color: var(--fs-text-muted-color);
+  font-style: italic;
 }

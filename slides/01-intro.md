@@ -108,7 +108,7 @@ Note:
 
 ## Dates and Topics
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.5em;">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.6em;">
 
 <div style="flex: 1; min-width: 40%;">
 
