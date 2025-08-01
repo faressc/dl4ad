@@ -19,11 +19,11 @@
 }
 
 [data-theme="light"] {
-  --fs-text-color: #231123;
+  --fs-text-color: #2b2a2b;
   --fs-background-color: #fafafa;
-  --fs-heading-color: #231123;
+  --fs-heading-color: #100f10;
   --fs-highlight-color: #fafafa;
-  --fs-selection-color: #231123;
+  --fs-selection-color: #242324;
   --fs-selection-background-color: rgba(191, 133, 252, 0.25);
   --fs-shadow-color: #4040405a;
   --fs-shadow-color-light: #40404013; 
@@ -356,7 +356,7 @@
 .reveal ul,
 .reveal ol {
   padding-left: 2em;
-  margin: 1em 0;
+  margin: 0;
 }
 
 .reveal li {
@@ -677,4 +677,27 @@
 .reveal table em {
   color: var(--fs-text-muted-color);
   font-style: italic;
+}
+
+/*********************************************
+ * PICTURES LIGHT/DARK
+ *********************************************/
+
+[data-theme="light"] {
+  .picture-light {
+    display: block;
+  }
+  .picture-dark {
+    display: none;
+  }
+}
+
+[data-theme="dark"] {
+  .picture-light {
+    display: none;
+  }
+
+  .picture-dark {
+    display: block;
+  }
 }

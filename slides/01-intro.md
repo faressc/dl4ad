@@ -97,12 +97,30 @@ Note:
 
 ---
 
-## How is this taught?
+## Course Structure
 
-- Combination of lectures, hands-on coding exercises, and projects
-- Emphasis on practical applications and real-world examples
-
-- [Course Github Repository](https://github.com/your-repo)
+<div style="display: flex; gap: 40px; align-items: flex-start; justify-content: flex-start;">
+    <div style="flex: 1 0;">
+        <ul>
+            <li>Lectures: Theoretical foundations</li>
+            <li>Jupyter Notebooks: Practical implementations</li>
+            <li>Projects: Apply concepts to real-world, hands-on audio applications</li>
+            <li>Resources: Slides and notebooks available on the course repository</li>
+            <li>Project selection: On ISIS</li>
+        </ul>
+    </div>
+    <div style="flex: 0 0 450px;">
+        <figure>
+            <div style="text-align: center;">
+                <!-- Light theme QR code -->
+                <img src="assets/images/repo_qr_code.png" alt="Course Repo QR (Light)" style="width: 360px;" class="picture-light">
+                <!-- Dark theme QR code -->
+                <img src="assets/images/repo_qr_code_dark.png" alt="Course Repo QR (Dark)" style="width: 360px;" class="picture-dark">
+                <figcaption><a href="https://github.com/faressc/dl4ad" class="small">github.com/faressc/dl4ad</a></figcaption>
+            </div>
+        </figure>
+    </div>
+</div>
 
 ---
 
@@ -112,31 +130,95 @@ Note:
 
 <div style="flex: 1; min-width: 40%;">
 
-| Date | Topic |
-|------|-------|
-| Week&nbsp;1 | Introduction / Machine Learning I |
-| Week&nbsp;2 | Machine Learning II |
-| Week&nbsp;3 | Time-Frequency Representations |
-| Week&nbsp;4 | Convolutional Neural Networks for Audio |
-| Week&nbsp;5 | Recurrent Neural Networks for Sequential Data |
-| Week&nbsp;6 | Attention Mechanisms and Transformers |
-| Week&nbsp;7 | Audio Classification and Recognition |
-| Week&nbsp;8 | Speech Processing and Recognition |
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Topic</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Week&nbsp;1</td>
+            <td>Introduction / Machine Learning I</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;2</td>
+            <td>Machine Learning II</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;3</td>
+            <td>Time-Frequency Representations</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;4</td>
+            <td>Convolutional Neural Networks for Audio</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;5</td>
+            <td>Recurrent Neural Networks for Sequential Data</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;6</td>
+            <td>Attention Mechanisms and Transformers</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;7</td>
+            <td>Audio Classification and Recognition</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;8</td>
+            <td>Speech Processing and Recognition</td>
+        </tr>
+    </tbody>
+</table>
 
 </div>
 
 <div style="flex: 1; min-width: 40%;">
 
-| Date | Topic |
-|------|-------|
-| Week&nbsp;9 | Music Information Retrieval |
-| Week&nbsp;10 | Audio Generation and Synthesis |
-| Week&nbsp;11 | Self-Supervised Learning for Audio |
-| Week&nbsp;12 | Multi-Modal Audio-Visual Learning |
-| Week&nbsp;13 | Advanced Architectures and Techniques |
-| Week&nbsp;14 | Project Presentations I |
-| Week&nbsp;15 | Project Presentations II |
-| Week&nbsp;16 | Final Review and Discussion |
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Topic</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Week&nbsp;9</td>
+            <td>Music Information Retrieval</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;10</td>
+            <td>Audio Generation and Synthesis</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;11</td>
+            <td>Self-Supervised Learning for Audio</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;12</td>
+            <td>Multi-Modal Audio-Visual Learning</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;13</td>
+            <td>Advanced Architectures and Techniques</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;14</td>
+            <td>Project Presentations I</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;15</td>
+            <td>Project Presentations II</td>
+        </tr>
+        <tr>
+            <td>Week&nbsp;16</td>
+            <td>Final Review and Discussion</td>
+        </tr>
+    </tbody>
+</table>
 
 </div>
 
