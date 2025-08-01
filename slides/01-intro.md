@@ -1,7 +1,7 @@
-# Deep Learning for<br>Audio Data
+# Machine Learning for<br>Audio Data
 
 Note:
-    - Seminar Deep Learning for Audio Data
+    - Seminar Machine Learning for Audio Data
 
 <!-- .slide: data-state="no-header" -->
 ---
@@ -38,12 +38,10 @@ Note:
 
 ## Course Topic
 
-- Theory and application of deep learning techniques for audio data
-
-<h3>Covers:</h3>
-
 - Mathematical and algorithmic fundamentals of machine learning with focus on deep learning and neural networks
-- Various architectures and methods for processing, generating and analyzing audio signals
+- Methods for data exploration, preprocessing and augmentation
+- Training, evaluation, export and inference of deep learning models
+- Setup and optimization of machine learning workflows, pipelines and lifecycles
 
 <div class="highlight">
   <p>Emphasis on: Creative applications of deep learning in the<br>music production domain</p>
@@ -103,8 +101,11 @@ Note:
     <div style="flex: 1 0;">
         <ul>
             <li>Lectures: Theoretical foundations</li>
-            <li>Jupyter Notebooks: Practical implementations</li>
-            <li>Projects: Apply concepts to real-world, hands-on audio applications</li>
+            <li>Jupyter Notebooks: Practical implementations in Python</li>
+            <li>Projects: Hands-on experience with deep learning in audio</li>
+        </ul>
+        <strong>Where?</strong>
+        <ul>
             <li>Resources: Slides and notebooks available on the course repository</li>
             <li>Project selection: On ISIS</li>
         </ul>
@@ -122,15 +123,18 @@ Note:
     </div>
 </div>
 
+Note:
+    - New branch at the end of the semester
+
 ---
 
-## Dates and Topics
+## Dates and Deadlines
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 0.6em;">
 
-<div style="flex: 1; min-width: 40%;">
+<div style="flex: 1; width: 40%;">
 
-<table>
+<table style="width: 100%;">
     <thead>
         <tr>
             <th>Date</th>
@@ -139,45 +143,49 @@ Note:
     </thead>
     <tbody>
         <tr>
-            <td>Week&nbsp;1</td>
-            <td>Introduction / Machine Learning I</td>
+            <td class="date">16.10.2025</td>
+            <td>Introduction / Machine Learning Fundamentals I</td>
         </tr>
         <tr>
-            <td>Week&nbsp;2</td>
-            <td>Machine Learning II</td>
+            <td class="date">23.10.2025</td>
+            <td>Machine Learning Fundamentals II</td>
+        </tr>
+        <tr class="fragment custom appear-table highlight">
+            <td class="date">26.10.2025</td>
+            <td>Course Application Deadline</td>
         </tr>
         <tr>
-            <td>Week&nbsp;3</td>
-            <td>Time-Frequency Representations</td>
+            <td class="date">30.10.2025</td>
+            <td>Neural Networks</td>
         </tr>
         <tr>
-            <td>Week&nbsp;4</td>
-            <td>Convolutional Neural Networks for Audio</td>
+            <td class="date">06.11.2025</td>
+            <td>Convolutional and Recurrent Neural Networks</td>
         </tr>
         <tr>
-            <td>Week&nbsp;5</td>
-            <td>Recurrent Neural Networks for Sequential Data</td>
+            <td class="date">13.11.2025</td>
+            <td>Preprocessing / Training Deep Architectures</td>
         </tr>
         <tr>
-            <td>Week&nbsp;6</td>
-            <td>Attention Mechanisms and Transformers</td>
+            <td class="date">20.11.2025</td>
+            <td>Autoencoders / Transformers</td>
         </tr>
         <tr>
-            <td>Week&nbsp;7</td>
-            <td>Audio Classification and Recognition</td>
+            <td class="date">27.11.2025</td>
+            <td>Bayesian Inference</td>
         </tr>
         <tr>
-            <td>Week&nbsp;8</td>
-            <td>Speech Processing and Recognition</td>
+            <td class="date">04.12.2025</td>
+            <td>Variational Inference</td>
         </tr>
     </tbody>
 </table>
 
 </div>
 
-<div style="flex: 1; min-width: 40%;">
+<div style="flex: 1; width: 40%;">
 
-<table>
+<table style="width: 100%;">
     <thead>
         <tr>
             <th>Date</th>
@@ -186,63 +194,144 @@ Note:
     </thead>
     <tbody>
         <tr>
-            <td>Week&nbsp;9</td>
-            <td>Music Information Retrieval</td>
+            <td class="date">11.12.2025</td>
+            <td>Variational Autoencoder</td>
+        </tr>
+        <tr class="fragment custom appear-table highlight">
+            <td class="date">18.12.2025</td>
+            <td>Project Pitches</td>
         </tr>
         <tr>
-            <td>Week&nbsp;10</td>
-            <td>Audio Generation and Synthesis</td>
+            <td class="date">08.01.2026</td>
+            <td>Adversarial Training</td>
         </tr>
         <tr>
-            <td>Week&nbsp;11</td>
-            <td>Self-Supervised Learning for Audio</td>
+            <td class="date">15.01.2026</td>
+            <td>Diffusion Models</td>
         </tr>
         <tr>
-            <td>Week&nbsp;12</td>
-            <td>Multi-Modal Audio-Visual Learning</td>
+            <td class="date">22.01.2026</td>
+            <td>Real-Time Inference</td>
         </tr>
         <tr>
-            <td>Week&nbsp;13</td>
-            <td>Advanced Architectures and Techniques</td>
+            <td class="date">29.01.2026</td>
+            <td>Tricks of the Trade</td>
         </tr>
         <tr>
-            <td>Week&nbsp;14</td>
-            <td>Project Presentations I</td>
+            <td class="date">05.02.2026</td>
+            <td>Office Hours</td>
         </tr>
-        <tr>
-            <td>Week&nbsp;15</td>
-            <td>Project Presentations II</td>
+        <tr class="fragment custom appear-table highlight">
+            <td class="date">12.02.2026</td>
+            <td>Project Presentations (14:00 - 18:00)</td>
         </tr>
-        <tr>
-            <td>Week&nbsp;16</td>
-            <td>Final Review and Discussion</td>
+        <tr class="fragment custom appear-table highlight">
+            <td class="date">31.03.2026</td>
+            <td>Final Project Submission</td>
         </tr>
     </tbody>
 </table>
 
 </div>
 
+</div>
+
+---
+
+## Course Application
+
+<div style="display: flex; flex-direction: column; gap: 20px; font-size: 0.9em;">
+    <div>
+        <strong>Application Deadline:</strong> 26.10.2025
+    </div>
+    <div>
+        <strong>How to Apply:</strong> Send a confirmation email to <a href="mailto:fares.schulz@tu-berlin.de">fares.schulz@tu-berlin.de</a>
+    </div>
+    <div>
+        <strong>What to Include:</strong>
+        <ul>
+            <li>Your full name</li>
+            <li>Your matriculation number</li>
+            <li>Course of Study</li>
+            <li>University Email Address</li>
+            <li>Evidence of completion of the modules "Signale und Systeme" or "Digitale Signalverarbeitung" (e.g. excerpt from certificate of grades)</li>
+        </ul>
+    </div>
+    <div>
+        <strong>Note:</strong> The course is limited to 16 participants (4 groups of 4). Selection will be based on a lottery.
+    </div>
 </div>
 
 ---
 
 ## Assessment
 
+**Project Presentation** (1/3 Grade) – *Date:* 18.12.2025
+
+<ul class="small">
+    <li>10-minute presentation per group and 5-minute Q&A session</li>
+</ul>
+
+**Git repository** (1/3 Grade) – *Deadline:* 31.03.2026
+
+<ul class="small">
+    <li>README with clear, step-by-step instructions for running your code</li>
+    <li>Environment setup file (<code>requirements.txt</code>, <code>env.yml</code>, or <code>pyproject.toml</code>)</li>
+    <li>Well-commented source code</li>
+</ul>
+
+**Project Paper** (1/3 Grade) – *Deadline:* 31.03.2026
+
+<ul class="small">
+    <li>Maximum 4 pages</li>
+    <li>Use the <a href="https://www.ieee.org/conferences/publishing/templates.html">IEEE conference template</a></li>
+</ul>
+
 ---
 
-## Modulebeschreibung
+## Module Information
+
+- This course is part of the module [Machine Learning and Big Data Processing with Audio and Music](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?number=11005) (6 ECTS)
+- The module consists of:
+    - [Big Data Processing with Audio and Music](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13702)
+    - [Machine Learning for Audio Data](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
+- AKT students can take this course as part of "Wahlpflichtbereich Vertiefung"
 
 ---
 
 ## Prerequisites
 
+- Python Knowledge – [Python and Numpy Refresher](https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/python-colab.ipynb)
+- Linear Algebra – [Linear Algebra Review and Reference](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf)
+- Calculus – [Calculus Review](https://people.uncw.edu/hermanr/pde1/pdebook/CalcRev.pdf)
+- Probability Theory– [Probability Theory Review](https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf)
+- Statistics – [Statistics Cheat Sheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics)
+
+**Digital Signal Processing**
+<div class="highlight">
+    <p>Successful completion of the modules <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40700">40700</a> Signale und Systeme, <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10002">10002</a> Digitale Signalverarbeitung or similar is required.</p>
+</div>
+
+Note: If you don't know if your course counts, drop me an email.
+
 ---
 
 ## Additional Resources
 
+- [Creative Machine Learning Course](https://github.com/acids-ircam/creative_ml) – Prof. Philippe Esling
+- [Understanding Deep Learning](https://github.com/udlbook/udlbook) – Simon J.D. Prince
+- [Machine Learning Specialization](https://www.coursera.org/specializations/machine-learning-introduction) – Andrew Ng
+- [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) – Andrew Ng
+- [Milestone Paper Overview](https://github.com/faressc/dl4ad/blob/main/extras/milestone_paper_overview.md)
+
+**TU Berlin Modules**
+
+- Machine Learning I/II ([40550](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40550)/[40551](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40551))
+- Deep Learning I/II ([41071](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=41071)/[41072](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=41072))
+
 ---
 
-## Deep Learning History
+## Brief Machine Learning History
 
 ---
 
