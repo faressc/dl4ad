@@ -302,10 +302,10 @@ Note:
 ## Prerequisites
 
 - Python Knowledge – [Python and Numpy Refresher](https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/python-colab.ipynb)
-- Linear Algebra – [Linear Algebra Review and Reference](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf)
-- Calculus – [Calculus Review](https://people.uncw.edu/hermanr/pde1/pdebook/CalcRev.pdf)
-- Probability Theory– [Probability Theory Review](https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf)
-- Statistics – [Statistics Cheat Sheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics)
+- Linear Algebra – [Linear Algebra Review](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf) / [UDL Book Appendix B](https://github.com/udlbook/udlbook)
+- Calculus – [Calculus Review](https://people.uncw.edu/hermanr/pde1/pdebook/CalcRev.pdf) / [UDL Book Appendix B](https://github.com/udlbook/udlbook)
+- Probability Theory– [Probability Theory Review](https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
+- Statistics – [Statistics Cheat Sheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
 
 **Digital Signal Processing**
 <div class="highlight">
