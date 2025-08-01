@@ -291,11 +291,11 @@ Note:
 
 ## Module Information
 
-- This course is part of the module [Machine Learning and Big Data Processing with Audio and Music](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?number=11005) (6 ECTS)
+- This course is part of the module *Machine Learning and Big Data Processing with Audio and Music* [11005](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?number=11005) (6 ECTS)
 - The module consists of:
-    - [Big Data Processing with Audio and Music](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13702)
-    - [Machine Learning for Audio Data](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
-- AKT students can take this course as part of "Wahlpflichtbereich Vertiefung"
+    - *Big Data Processing with Audio and Music* [13702](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13702)
+    - *Machine Learning for Audio Data* [13575](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
+- AKT students can take this course as part of *Wahlpflichtbereich Vertiefung*
 
 ---
 
@@ -309,7 +309,7 @@ Note:
 
 **Digital Signal Processing**
 <div class="highlight">
-    <p>Successful completion of the modules <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40700">40700</a> Signale und Systeme, <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10002">10002</a> Digitale Signalverarbeitung or similar is required.</p>
+    <p>Successful completion of the modules <em>Signale und Systeme</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40700">40700</a>, <em>Digitale Signalverarbeitung</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10002">10002</a> or similar is required.</p>
 </div>
 
 Note: If you don't know if your course counts, drop me an email.
@@ -318,7 +318,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 ## Additional Resources
 
-- [Creative Machine Learning Course](https://github.com/acids-ircam/creative_ml) – Prof. Philippe Esling
+- [Creative Machine Learning](https://github.com/acids-ircam/creative_ml) – Prof. Philippe Esling
 - [Understanding Deep Learning](https://github.com/udlbook/udlbook) – Simon J.D. Prince
 - [Machine Learning Specialization](https://www.coursera.org/specializations/machine-learning-introduction) – Andrew Ng
 - [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) – Andrew Ng
@@ -326,8 +326,8 @@ Note: If you don't know if your course counts, drop me an email.
 
 **TU Berlin Modules**
 
-- Machine Learning I/II ([40550](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40550)/[40551](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40551))
-- Deep Learning I/II ([41071](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=41071)/[41072](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=41072))
+- *Machine Learning I/II* ([40550](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40550)/[40551](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40551))
+- *Deep Learning I/II* ([41071](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=41071)/[41072](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=41072))
 
 ---
 
