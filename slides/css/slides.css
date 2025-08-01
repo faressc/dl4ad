@@ -13,6 +13,7 @@
 
   /* Colors */
   --fs-link-color: #55A49F;
+  --fs-link-color-light: #D6FCB7;
   --fs-link-color-hover: #FE938C;
   --fs-fragment-select-color: rgb(110, 82, 82);
   --fs-fragment-select-light: #EDAF97;
@@ -35,6 +36,7 @@
   --fs-border: #4040405a;
   --fs-border-light: #40404013;
   --fs-surface: #ffffff;
+  --fs-surface-alt: #bf85fc32;
   --fs-header-bg: #fafafa;
 }
 
@@ -55,7 +57,7 @@
   --fs-border: rgba(250, 250, 250, 0.15);
   --fs-border-light: rgba(250, 250, 250, 0.06);
   --fs-surface: rgba(250, 250, 250, 0.05);
-  --fs-surface-alt: rgba(250, 250, 250, 0.08);
+  --fs-surface-alt: rgba(191, 133, 252, 0.1);
   --fs-header-bg: #242529;
 }
 
@@ -310,7 +312,7 @@
 }
 
 .reveal .small {
-  font-size: 0.7em;
+  font-size: 0.85em;
 }
 
 /*********************************************
@@ -529,6 +531,10 @@
   box-shadow: 0 0 20px var(--fs-shadow-color);
 }
 
+.highlight a {
+  color: var(--fs-link-color-light);
+}
+
 .tiles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -575,6 +581,10 @@
   margin-bottom: 5px;
 }
 
+/*********************************************
+ * FRAGMENTS
+ *********************************************/
+
 .fragment.select.visible {
   background-color: var(--fs-fragment-select-color);
 }
@@ -582,6 +592,14 @@
 .fragment.select.visible.tile-description {
   background: none;
   color: var(--fs-fragment-select-text-color);
+}
+
+.fragment.appear-table {
+  display: none;
+}
+
+.fragment.appear-table.visible {
+  display: table-row;
 }
 
 .reveal .slides section .fragment.select {
@@ -614,7 +632,7 @@
   font-size: 0.9em;
   letter-spacing: 0.02em;
   text-align: left;
-  padding: 16px 20px;
+  padding: 12px 20px;
   border-bottom: 2px solid var(--fs-border);
   position: relative;
 }
@@ -629,10 +647,18 @@
 
 .reveal table td {
   color: var(--fs-text-color);
-  padding: 14px 20px;
+  padding: 10px 20px;
   border-bottom: 1px solid var(--fs-border-light);
   vertical-align: top;
   line-height: 1.4;
+}
+
+.reveal table td.date {
+  width: 80px;
+}
+
+.reveal .highlight td {
+  text-align: left !important;
 }
 
 .reveal table tr:last-child td {
