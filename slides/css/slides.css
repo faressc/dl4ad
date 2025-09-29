@@ -456,56 +456,76 @@
 }
 
 .slide-footer {
-  position: fixed;
-  bottom: 0px;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: transparent;
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .footer-content {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  padding: 0 24px 30px 24px;
-  font-size: 0.65em;
-  letter-spacing: -0.02em;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    width: 100%;
+    padding: 0 24px 30px 24px;
+    font-size: 0.65em;
+    letter-spacing: -0.02em;
 }
 
-.course-title {
-  color: var(--fs-text-muted-color);
-  font-weight: 500;
-  text-align: left;
-  position: relative;
+.footer-left {
+    color: var(--fs-text-muted-color);
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
-.footer-separator {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--fs-text-muted-color), transparent);
-  margin: 0 18px;
-  opacity: 0.6;
+.footer-left::after {
+    content: '';
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--fs-text-muted-color), transparent);
+    opacity: 0.6;
+    flex: 1;
+    margin-left: auto;
 }
 
 .slide-counter {
-  color: var(--fs-text-subtle-color);
-  font-weight: 400;
-  text-align: center;
-  position: relative;
+    color: var(--fs-text-subtle-color);
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 18px;
+    grid-column: 2;
 }
 
-.akt {
-  color: var(--fs-text-muted-color);
-  font-weight: 500;
-  text-align: right;
-  position: relative;
+.footer-right {
+    color: var(--fs-text-muted-color);
+    font-weight: 500;
+    text-align: right;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
+
+.footer-right::before {
+    content: '';
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--fs-text-muted-color), transparent);
+    opacity: 0.6;
+    flex: 1;
+    margin-right: auto;
+}
+
 
 /* Hide header and footer for specific slides */
 .no-header .slide-header,
@@ -726,4 +746,22 @@
   .picture-dark {
     display: block;
   }
+}
+
+/*********************************************
+ * REFERENCES
+ *********************************************/
+
+.reference {
+  position: absolute;
+  bottom: 80px;
+  font-size: 0.5em;
+  color: var(--fs-text-subtle-color);
+  font-family: var(--fs-main-font);
+  font-weight: 400;
+}
+
+.reference em {
+  font-style: italic;
+  color: var(--fs-text-muted-color);
 }

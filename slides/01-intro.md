@@ -44,7 +44,7 @@ Note:
 - Setup and optimization of machine learning workflows, pipelines and lifecycles
 
 <div class="highlight">
-  <p>Emphasis on: Creative applications of deep learning in the<br>music production domain</p>
+  <p>Emphasis on: Creative applications of neural networks in the<br>music production domain</p>
 </div>
 
 ---
@@ -114,9 +114,9 @@ Note:
         <figure>
             <div style="text-align: center;">
                 <!-- Light theme QR code -->
-                <img src="assets/images/repo_qr_code.png" alt="Course Repo QR (Light)" style="width: 360px;" class="picture-light">
+                <img src="assets/images/repo_qr_code-light.png" alt="Course Repo QR (Light)" style="width: 360px;" class="picture-light">
                 <!-- Dark theme QR code -->
-                <img src="assets/images/repo_qr_code_dark.png" alt="Course Repo QR (Dark)" style="width: 360px;" class="picture-dark">
+                <img src="assets/images/repo_qr_code-dark.png" alt="Course Repo QR (Dark)" style="width: 360px;" class="picture-dark">
                 <figcaption><a href="https://github.com/faressc/dl4ad" class="small">github.com/faressc/dl4ad</a></figcaption>
             </div>
         </figure>
@@ -144,11 +144,11 @@ Note:
     <tbody>
         <tr>
             <td class="date">16.10.2025</td>
-            <td>Introduction / Machine Learning Fundamentals I</td>
+            <td>Introduction</td>
         </tr>
         <tr>
             <td class="date">23.10.2025</td>
-            <td>Machine Learning Fundamentals II</td>
+            <td>Machine Learning Fundamentals</td>
         </tr>
         <tr class="fragment custom appear-table highlight">
             <td class="date">26.10.2025</td>
@@ -199,7 +199,7 @@ Note:
         </tr>
         <tr class="fragment custom appear-table highlight">
             <td class="date">18.12.2025</td>
-            <td>Project Pitches</td>
+            <td>Project Pitches (14:00 - 18:00)</td>
         </tr>
         <tr>
             <td class="date">08.01.2026</td>
@@ -258,13 +258,13 @@ Note:
         </ul>
     </div>
     <div>
-        <strong>Note:</strong> The course is limited to 16 participants (4 groups of 4). Selection will be based on a lottery.
+        <strong>Note:</strong> The course is limited to 16 participants (4 groups of 4). Selection will be based on a lottery. After receiving confirmation, enroll in MOSES until 6. November 2025.
     </div>
 </div>
 
 ---
 
-## Assessment
+## Assessment – ML4AD
 
 **Project Presentation** (1/3 Grade) – *Date:* 18.12.2025
 
@@ -293,9 +293,15 @@ Note:
 
 - This course is part of the module *Machine Learning and Big Data Processing with Audio and Music* [11005](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?number=11005) (6 ECTS)
 - The module consists of:
-    - *Big Data Processing with Audio and Music* [13702](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13702)
+    - *Music Information Retrieval und Machine Learning für Audio* [13702](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13702)
     - *Machine Learning for Audio Data* [13575](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
 - AKT students can take this course as part of *Wahlpflichtbereich Vertiefung*
+
+### Grading
+
+- Project in Machine Learning for Audio Data (2/3 Grade)
+
+- Lecture excercises in Music Information Retrieval und Machine Learning für Audio (1/3 Grade)
 
 ---
 
@@ -308,6 +314,7 @@ Note:
 - Statistics – [Statistics Cheat Sheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
 
 **Digital Signal Processing**
+
 <div class="highlight">
     <p>Successful completion of the modules <em>Signale und Systeme</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40700">40700</a>, <em>Digitale Signalverarbeitung</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10002">10002</a> or similar is required.</p>
 </div>
@@ -333,12 +340,18 @@ Note: If you don't know if your course counts, drop me an email.
 
 ## Brief Machine Learning History
 
+<section class="reference">
+[1] S. Ji, J. Luo, and X. Yang, "A comprehensive survey on deep music generation: Multi-level representations, algorithms, evaluations, and future directions," <em>arXiv preprint arXiv:2011.06801</em>, 2020.<br>
+</section>
+
 ---
 
 ## State-of-the-art use cases
 
 ---
 
-# Machine Learning
+## Setup
 
 ---
+
+## References
