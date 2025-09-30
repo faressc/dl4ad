@@ -399,12 +399,12 @@ Note: If you don't know if your course counts, drop me an email.
 ## Mathematical Foundations
 
 <!-- Calculus & Optimization Timeline -->
-<div class="timeline-container">
-    <div class="timeline-description">
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
         <div class="timeline-title">Calculus & Linear Algebra</div>
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
-    <div class="timeline" style="--start-year: 1676; --end-year: 1948;">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1948;">
         <div class="timeline-dot" style="--year: 1676;"></div>
         <div class="timeline-item" style="--year: 1676;">
             <div class="timeline-content">
@@ -463,12 +463,12 @@ Note: If you don't know if your course counts, drop me an email.
 </div>
 
 <!-- Probability & Statistics Timeline -->
-<div class="timeline-container">
-    <div class="timeline-description">
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="--start-year: 1676; --end-year: 1948;">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1948;">
         <div class="timeline-dot" style="--year: 1763;"></div>
         <div class="timeline-item" style="--year: 1763;">
             <div class="timeline-content">
@@ -518,12 +518,12 @@ Note: If you don't know if your course counts, drop me an email.
 </div>
 
 <!-- Information & Computation Timeline -->
-<div class="timeline-container">
-    <div class="timeline-description">
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
         <div class="timeline-title">Information & Computation</div>
         <div class="timeline-text">Foundations of algorithmic thinking and information theory</div>
     </div>
-    <div class="timeline" style="--start-year: 1676; --end-year: 1948;">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1948;">
         <div class="timeline-dot" style="--year: 1843;"></div>
         <div class="timeline-item" style="--year: 1843;">
             <div class="timeline-content">
