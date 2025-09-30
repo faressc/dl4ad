@@ -852,18 +852,17 @@
     font-size: 0.45em;
     font-weight: bold;
     color: var(--fs-link-color);
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .timeline-name {
     font-size: 0.4em;
     font-weight: 600;
     color: var(--fs-heading-color);
-    margin-bottom: 3px;
 }
 
 .timeline-author {
-    font-size: 0.4em;
+    font-size: 0.3em;
     color: var(--fs-text-muted-color);
 }
 
