@@ -405,72 +405,60 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
     <div class="timeline" style="--start-year: 1676; --end-year: 1948;">
-        <div class="timeline-dot positioned" style="--year: 1676;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-dot" style="--year: 1676;"></div>
+        <div class="timeline-item" style="--year: 1676;">
             <div class="timeline-content">
                 <div class="timeline-year">1676</div>
                 <div class="timeline-name">Chain Rule</div>
                 <div class="timeline-author">Leibniz, G. W.</div>
             </div>
         </div>
-        <svg class="timeline-connector">
-            <line style="--year: 1676; --item-index: 0;" />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1805;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1676;"></div>
+        <div class="timeline-dot" style="--year: 1805;"></div>
+        <div class="timeline-item" style="--year: 1805;">
             <div class="timeline-content">
                 <div class="timeline-year">1805</div>
                 <div class="timeline-name">Least Squares</div>
                 <div class="timeline-author">Legendre, A. M.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1805; --item-index: 1;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1809;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1805;"></div>
+        <div class="timeline-dot" style="--year: 1809;"></div>
+        <div class="timeline-item" style="--year: 1809;">
             <div class="timeline-content">
                 <div class="timeline-year">1809</div>
                 <div class="timeline-name">Normal Equations</div>
                 <div class="timeline-author">Gauss, C. F.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1809; --item-index: 2;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1847;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1809;"></div>
+        <div class="timeline-dot" style="--year: 1847;"></div>
+        <div class="timeline-item" style="--year: 1847;">
             <div class="timeline-content">
                 <div class="timeline-year">1847</div>
                 <div class="timeline-name">Gradient Descent</div>
                 <div class="timeline-author">Cauchy, A. L.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1847; --item-index: 3;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1858;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1847;"></div>
+        <div class="timeline-dot" style="--year: 1858;"></div>
+        <div class="timeline-item" style="--year: 1858;">
             <div class="timeline-content">
                 <div class="timeline-year">1858</div>
                 <div class="timeline-name">Eigenvalue Theory</div>
                 <div class="timeline-author">Cayley & Hamilton</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1858; --item-index: 4;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1901;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1858;"></div>
+        <div class="timeline-dot" style="--year: 1901;"></div>
+        <div class="timeline-item" style="--year: 1901;">
             <div class="timeline-content">
                 <div class="timeline-year">1901</div>
                 <div class="timeline-name">PCA</div>
                 <div class="timeline-author">Pearson, K.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1901; --item-index: 5;">
-            <line />
-        </svg>
+        <div class="timeline-connector" style="--year: 1901;"></div>
     </div>
 </div>
 
@@ -481,61 +469,51 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
     <div class="timeline" style="--start-year: 1676; --end-year: 1948;">
-        <div class="timeline-dot positioned" style="--year: 1763;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-dot" style="--year: 1763;"></div>
+        <div class="timeline-item" style="--year: 1763;">
             <div class="timeline-content">
                 <div class="timeline-year">1763</div>
                 <div class="timeline-name">Bayes' Theorem</div>
                 <div class="timeline-author">Bayes, T.</div>
             </div>
         </div>
-        <svg class="timeline-connector">
-            <line style="--year: 1763; --item-index: 0;" />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1812;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1763;"></div>
+        <div class="timeline-dot" style="--year: 1812;"></div>
+        <div class="timeline-item" style="--year: 1812;">
             <div class="timeline-content">
                 <div class="timeline-year">1812</div>
                 <div class="timeline-name">Bayesian Probability</div>
                 <div class="timeline-author">Laplace, P. S.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1812; --item-index: 1;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1815;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1812;"></div>
+        <div class="timeline-dot" style="--year: 1815;"></div>
+        <div class="timeline-item" style="--year: 1815;">
             <div class="timeline-content">
                 <div class="timeline-year">1815</div>
                 <div class="timeline-name">Gaussian Distribution</div>
                 <div class="timeline-author">Gauss, C. F.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1815; --item-index: 2;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1830;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1815;"></div>
+        <div class="timeline-dot" style="--year: 1830;"></div>
+        <div class="timeline-item" style="--year: 1830;">
             <div class="timeline-content">
                 <div class="timeline-year">1830</div>
                 <div class="timeline-name">Central Limit Theorem</div>
                 <div class="timeline-author">Various</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1830; --item-index: 3;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1922;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1830;"></div>
+        <div class="timeline-dot" style="--year: 1922;"></div>
+        <div class="timeline-item" style="--year: 1922;">
             <div class="timeline-content">
                 <div class="timeline-year">1922</div>
                 <div class="timeline-name">Maximum Likelihood</div>
                 <div class="timeline-author">Fisher, R.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1922; --item-index: 4;">
-            <line />
-        </svg>
+        <div class="timeline-connector" style="--year: 1922;"></div>
     </div>
 </div>
 
@@ -546,50 +524,42 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Foundations of algorithmic thinking and information theory</div>
     </div>
     <div class="timeline" style="--start-year: 1676; --end-year: 1948;">
-        <div class="timeline-dot positioned" style="--year: 1843;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-dot" style="--year: 1843;"></div>
+        <div class="timeline-item" style="--year: 1843;">
             <div class="timeline-content">
                 <div class="timeline-year">1843</div>
                 <div class="timeline-name">First Computer Algorithm</div>
                 <div class="timeline-author">Lovelace, A.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1843; --item-index: 0;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1936;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1843;"></div>
+        <div class="timeline-dot" style="--year: 1936;"></div>
+        <div class="timeline-item" style="--year: 1936;">
             <div class="timeline-content">
                 <div class="timeline-year">1936</div>
                 <div class="timeline-name">Turing Machine</div>
                 <div class="timeline-author">Turing, A.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1936; --item-index: 1;">
-            <line />
-        </svg>
-        <div class="timeline-dot positioned" style="--year: 1947;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-connector" style="--year: 1936;"></div>
+        <div class="timeline-dot" style="--year: 1947;"></div>
+        <div class="timeline-item" style="--year: 1947;">
             <div class="timeline-content">
                 <div class="timeline-year">1947</div>
                 <div class="timeline-name">Linear Programming</div>
                 <div class="timeline-author">Dantzig, G.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1947; --item-index: 2;">
-            <line />
-        </svg>
+        <div class="timeline-connector" style="--year: 1947;"></div>
         <div class="timeline-dot positioned" style="--year: 1948;"></div>
-        <div class="timeline-item separate-dot">
+        <div class="timeline-item" style="--year: 1948;">
             <div class="timeline-content">
                 <div class="timeline-year">1948</div>
                 <div class="timeline-name">Information Theory</div>
                 <div class="timeline-author">Shannon, C.</div>
             </div>
         </div>
-        <svg class="timeline-connector" style="--year: 1948; --item-index: 3;">
-            <line />
-        </svg>
+        <div class="timeline-connector" style="--year: 1948;"></div>
     </div>
 </div>
 
