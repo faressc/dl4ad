@@ -1,7 +1,7 @@
-# Machine Learning for<br>Audio Data
+# Deep Learning for<br>Audio Data
 
 Note:
-    - Seminar Machine Learning for Audio Data
+    - Seminar Deep Learning for Audio Data
 
 <!-- .slide: data-state="no-header" -->
 ---
@@ -41,7 +41,7 @@ Note:
 - Mathematical and algorithmic fundamentals of machine learning with focus on deep learning and neural networks
 - Methods for data exploration, preprocessing and augmentation
 - Training, evaluation, export and inference of deep learning models
-- Setup and optimization of machine learning workflows, pipelines and lifecycles
+- Setup and optimization of deep learning workflows, pipelines and lifecycles
 
 <div class="highlight">
   <p>Emphasis on: Creative applications of deep learning in the<br>music production domain</p>
@@ -294,12 +294,12 @@ Note:
 - This course is part of the module *Machine Learning and Big Data Processing with Audio and Music* [11005](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?number=11005) (6 ECTS)
 - The module consists of:
     - *Music Information Retrieval und Machine Learning für Audio* [13702](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13702)
-    - *Machine Learning for Audio Data* [13575](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
+    - *Deep Learning for Audio Data* [13575](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
 - AKT students can take this course as part of *Wahlpflichtbereich Vertiefung*
 
 ### Grading
 
-- Project in Machine Learning for Audio Data (2/3 Grade)
+- Project in Deep Learning for Audio Data (2/3 Grade)
 
 - Lecture excercises in Music Information Retrieval und Machine Learning für Audio (1/3 Grade)
 
@@ -338,61 +338,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 ---
 
-## Machine Learning History
-
-15. **1943** – First mathematical model of artificial neurons — McCulloch, W. & Pitts, W. (1943).  
-18. **1957** – Perceptron, first trainable artificial neural network — Rosenblatt, F. (1957). *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*.  
-19. **1965** – First practical deep neural network learning algorithms — Ivakhnenko, A. & Lapa, V. (1965).  
-20. **1967–68** – Stochastic gradient descent for neural network optimization — Amari, S. (1967-68).
-21. **1970** – Automatic differentiation algorithm, theoretical basis for backpropagation — Linnainmaa, S. (1970). *The Representation of the Cumulative Rounding Error of an Algorithm as a Taylor Expansion of the Local Rounding Errors*.  
-22. **1979** – Neocognitron, first hierarchical convolutional neural network — Fukushima, K. (1979).  
-23. **1979** – k-means clustering algorithm for unsupervised partitioning of data into k clusters based on nearest centroids — Hartigan, J. A. & Wong, M. A. (1979). *Algorithm AS 136: A K-Means Clustering Algorithm. Building on MacQueen's 1967 concept*.  
-24. **1986** – Backpropagation algorithm enabling efficient neural network training — Hinton, G., Rumelhart, D., & Williams, R. (1986). *Learning Representations by Back-Propagating Errors*.  
-25. **1989–1998** – LeNet-5: successful application of CNNs to handwritten digit recognition — LeCun, Y. et al. (1989-1998).  
-26. **1992** – Weight decay (L2 regularization) preventing overfitting in neural networks — Krogh, A. & Hertz, J. (1992). *A Simple Weight Decay Can Improve Generalization*.  
-27. **1995–1999** – Support Vector Machines with kernel trick for non-linear classification — Vapnik, V. (1995-1999).  
-28. **1997** – LSTM networks solving vanishing gradient problem in RNNs — Hochreiter, S. & Schmidhuber, J. (1997). *Long Short-Term Memory*.  
-29. **1997** – Deep Blue defeats world chess champion, AI milestone — IBM (1997).  
-30. **1999-2001** – Gradient Boosting machines combining weak learners sequentially to correct errors — Friedman, J. (1999-2001). *Greedy Function Approximation: A Gradient Boosting Machine*.
-31. **2001** – Random Forests, powerful ensemble method for classification and regression — Breiman, L. (2001). *Random Forests*.  
-32. **2002** – Torch framework democratizing machine learning research — Torch Development Team (2002).
-33. **2006** – Deep Belief Networks enabling unsupervised pre-training of deep networks — Hinton, G. et al. (2006). *A Fast Learning Algorithm for Deep Belief Nets*.  
-34. **2007** – CUDA platform enabling massively parallel GPU computation — NVIDIA (2007).  
-35. **2009** – ImageNet dataset establishing large-scale visual recognition benchmark — Deng, J. et al. (2009).  
-36. **2010** – ReLU activation function enabling deeper network training — Nair, V. & Hinton, G. (2010).  
-37. **2010** – Xavier initialization solving gradient flow in deep networks — Glorot, X. & Bengio, Y. (2010). *Understanding the difficulty of training deep feedforward neural networks*.  
-38. **2011** – Siri democratizing AI through voice interfaces — Apple Inc. (2011).  
-39. **2012** – Dropout preventing overfitting through random neuron deactivation — Hinton, G. et al. (2012). *Improving neural networks by preventing co-adaptation of feature detectors*.  
-40. **2012** – AlexNet breakthrough: deep CNNs + GPUs dominating computer vision — Krizhevsky, A., Sutskever, I., & Hinton, G. (2012).  
-41. **2013** – Word2Vec creating dense semantic word representations — Mikolov, T. et al. (2013). *Efficient Estimation of Word Representations in Vector Space*.  
-42. **2014** – Attention mechanism enabling focus on relevant input regions — Bahdanau, D. et al. (2014). *Neural Machine Translation by Jointly Learning to Align and Translate*.  
-43. **2014** – Variational Autoencoders combining probabilistic modeling with deep learning — Kingma, D. P. & Welling, M. (2014). *Auto-Encoding Variational Bayes*.  
-44. **2014** – Generative Adversarial Networks: adversarial training for realistic data generation — Goodfellow, I. et al. (2014). *Generative Adversarial Nets*.  
-45. **2015** – Batch Normalization stabilizing and accelerating deep network training — Ioffe, S. & Szegedy, C. (2015). *Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift*.  
-46. **2015** – Adam optimizer combining momentum with adaptive learning rates — Kingma, D. P. & Ba, J. (2015). *Adam: A Method for Stochastic Optimization*.  
-47. **2015** – ResNet using skip connections to train extremely deep networks — He, K. et al. (2015). *Deep Residual Learning for Image Recognition*.  
-48. **2015** – U-Net encoder-decoder architecture for precise image segmentation — Ronneberger, O. et al. (2015). *U-Net: Convolutional Networks for Biomedical Image Segmentation*.  
-49. **2015** – Diffusion models using thermodynamic principles for generation — Sohl-Dickstein, J. et al. (2015). *Deep Unsupervised Learning using Nonequilibrium Thermodynamics*.  
-50. **2015** – YOLO unified single-shot object detection architecture — Redmon, J. et al. (2015). *You Only Look Once: Unified, Real-Time Object Detection*.  
-51. **2016** – Layer Normalization improving training stability across sequence lengths — Ba, J. L. et al. (2016). *Layer Normalization*.  
-52. **2016** – Neural style transfer combining content and artistic style in images — Gatys, L. A. et al. (2016). *Image Style Transfer Using Convolutional Neural Networks*.  
-53. **2016** – WaveNet generating raw audio waveforms with dilated convolutions — van den Oord, A. et al. (2016). *WaveNet: A Generative Model for Raw Audio*.  
-54. **2016** – AlphaGo achieving superhuman performance in complex strategy game — Silver, D. et al. (2016). Google DeepMind.  
-55. **2017** – PyTorch enabling dynamic neural networks with eager execution — Paszke, A. et al. (2017). Facebook AI Research.  
-56. **2017** – Transformer architecture replacing RNNs with self-attention mechanisms — Vaswani, A. et al. (2017). *Attention Is All You Need*.  
-57. **2018** – GPT-1 demonstrating unsupervised pre-training for language understanding — Radford, A. et al. (2018). *Improving Language Understanding by Generative Pre-Training*.  
-58. **2018** – BERT achieving bidirectional context understanding through masked language modeling — Devlin, J. et al. (2018). *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding*.  
-59. **2020** – GPT-3 exhibiting emergent few-shot learning capabilities at massive scale — Brown, T. B. et al. (2020). *Language Models are Few-Shot Learners*.  
-60. **2020** – DDPM making diffusion models practical for high-quality image synthesis — Ho, J. et al. (2020). *Denoising Diffusion Probabilistic Models*.
-61. **2021** – Vision Transformer proving Transformers can excel beyond NLP — Dosovitskiy, A. et al. (2021). *An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale*.  
-62. **2021** – CLIP learning joint text-image representations through contrastive learning — Radford, A. et al. (2021). *Learning Transferable Visual Representations from Natural Language Supervision*.  
-63. **2021** – S4 achieving linear-time sequence modeling with structured state spaces — Gu, A. et al. (2021). *Efficiently Modeling Long Sequences with Structured State Spaces*.  
-64. **2021** – RAVE enabling real-time neural audio synthesis and manipulation — Caillon, A. & Esling, P. (2021).  *RAVE: A Real-time Audio Variational Autoencoder for End-to-End Sound Modeling*.
-65. **2022** – ChatGPT demonstrating conversational AI capabilities to mainstream audiences — OpenAI (2022). Based on GPT-3.5.  
-66. **2022** – Stable Diffusion open-sourcing high-quality text-to-image generation — Rombach, R. et al. (2022). Stability AI.  
-67. **2022** – DiT (Diffusion Transformer) replacing U-Net with Transformer architecture in diffusion — Peebles, W. & Xie, S. (2022). *Scalable Diffusion Models with Transformers*.  
-68. **2023** – LLaMA demonstrating efficient training of competitive open-source language models — Touvron, H. et al. (2023). *LLaMA: Open and Efficient Foundation Language Models*.  
-69. **2023** – Mamba achieving linear scaling for sequence length with selective state spaces — Gu, A. & Dao, T. (2023). *Mamba: Linear-Time Sequence Modeling with Selective State Spaces*.
+# History
 
 ---
 
@@ -560,6 +506,416 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1948;"></div>
+    </div>
+</div>
+
+---
+
+## Deep Learning Evolution
+
+<!-- Neural Networks & Architectures Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Neural Networks & Architectures</div>
+        <div class="timeline-text">Evolution of network structures and architectural innovations</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
+        <div class="timeline-dot" style="--year: 1943;"></div>
+        <div class="timeline-item" style="--year: 1943;">
+            <div class="timeline-content">
+                <div class="timeline-year">1943</div>
+                <div class="timeline-name">Artificial Neurons</div>
+                <div class="timeline-author">McCulloch & Pitts</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1943;"></div>
+        <div class="timeline-dot" style="--year: 1957;"></div>
+        <div class="timeline-item" style="--year: 1957;">
+            <div class="timeline-content">
+                <div class="timeline-year">1957</div>
+                <div class="timeline-name">Perceptron</div>
+                <div class="timeline-author">Rosenblatt, F.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1957;"></div>
+        <div class="timeline-dot" style="--year: 1965;"></div>
+        <div class="timeline-item" style="--year: 1965;">
+            <div class="timeline-content">
+                <div class="timeline-year">1965</div>
+                <div class="timeline-name">Deep Networks</div>
+                <div class="timeline-author">Ivakhnenko & Lapa</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1965;"></div>
+        <div class="timeline-dot" style="--year: 1979;"></div>
+        <div class="timeline-item" style="--year: 1979;">
+            <div class="timeline-content">
+                <div class="timeline-year">1979</div>
+                <div class="timeline-name">Convolutional Networks</div>
+                <div class="timeline-author">Fukushima, K.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1979;"></div>
+        <div class="timeline-dot" style="--year: 1997;"></div>
+        <div class="timeline-item" style="--year: 1997;">
+            <div class="timeline-content">
+                <div class="timeline-year">1997</div>
+                <div class="timeline-name">LSTM</div>
+                <div class="timeline-author">Hochreiter & Schmidhuber</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1997;"></div>
+        <div class="timeline-dot" style="--year: 1998;"></div>
+        <div class="timeline-item" style="--year: 1998;">
+            <div class="timeline-content">
+                <div class="timeline-year">1998</div>
+                <div class="timeline-name">LeNet-5</div>
+                <div class="timeline-author">LeCun, Y. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1998;"></div>
+        <div class="timeline-dot" style="--year: 2006;"></div>
+        <div class="timeline-item" style="--year: 2006;">
+            <div class="timeline-content">
+                <div class="timeline-year">2006</div>
+                <div class="timeline-name">Deep Belief Networks</div>
+                <div class="timeline-author">Hinton, G. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2006;"></div>
+        <div class="timeline-dot positioned" style="--year: 2012;"></div>
+        <div class="timeline-item" style="--year: 2012;">
+            <div class="timeline-content">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-name">AlexNet</div>
+                <div class="timeline-author">Krizhevsky et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2012;"></div>
+    </div>
+</div>
+
+<!-- Training & Optimization Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Training & Optimization</div>
+        <div class="timeline-text">Methods for efficient learning and gradient-based optimization</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
+        <div class="timeline-dot" style="--year: 1967;"></div>
+        <div class="timeline-item" style="--year: 1967;">
+            <div class="timeline-content">
+                <div class="timeline-year">1967</div>
+                <div class="timeline-name">Stochastic Gradient Descent</div>
+                <div class="timeline-author">Amari, S.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1967;"></div>
+        <div class="timeline-dot" style="--year: 1970;"></div>
+        <div class="timeline-item" style="--year: 1970;">
+            <div class="timeline-content">
+                <div class="timeline-year">1970</div>
+                <div class="timeline-name">Automatic Differentiation</div>
+                <div class="timeline-author">Linnainmaa, S.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1970;"></div>
+        <div class="timeline-dot" style="--year: 1986;"></div>
+        <div class="timeline-item" style="--year: 1986;">
+            <div class="timeline-content">
+                <div class="timeline-year">1986</div>
+                <div class="timeline-name">Backpropagation</div>
+                <div class="timeline-author">Hinton et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1986;"></div>
+        <div class="timeline-dot" style="--year: 1992;"></div>
+        <div class="timeline-item" style="--year: 1992;">
+            <div class="timeline-content">
+                <div class="timeline-year">1992</div>
+                <div class="timeline-name">Weight Decay</div>
+                <div class="timeline-author">Krogh & Hertz</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1992;"></div>
+        <div class="timeline-dot" style="--year: 2010;"></div>
+        <div class="timeline-item" style="--year: 2010;">
+            <div class="timeline-content">
+                <div class="timeline-year">2010</div>
+                <div class="timeline-name">ReLU & Xavier Init</div>
+                <div class="timeline-author">Nair, Hinton & Glorot</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2010;"></div>
+        <div class="timeline-dot positioned" style="--year: 2012;"></div>
+        <div class="timeline-item" style="--year: 2012;">
+            <div class="timeline-content">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-name">Dropout</div>
+                <div class="timeline-author">Hinton, G. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2012;"></div>
+    </div>
+</div>
+
+<!-- Software & Datasets Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Software & Datasets</div>
+        <div class="timeline-text">Tools, platforms, and milestones that enabled practical deep learning</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
+        <div class="timeline-dot" style="--year: 1997;"></div>
+        <div class="timeline-item" style="--year: 1997;">
+            <div class="timeline-content">
+                <div class="timeline-year">1997</div>
+                <div class="timeline-name">Deep Blue</div>
+                <div class="timeline-author">IBM</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1997;"></div>
+        <div class="timeline-dot" style="--year: 1998;"></div>
+        <div class="timeline-item" style="--year: 1998;">
+            <div class="timeline-content">
+                <div class="timeline-year">1998</div>
+                <div class="timeline-name">MNIST Dataset</div>
+                <div class="timeline-author">LeCun, Y. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1998;"></div>
+        <div class="timeline-dot" style="--year: 2002;"></div>
+        <div class="timeline-item" style="--year: 2002;">
+            <div class="timeline-content">
+                <div class="timeline-year">2002</div>
+                <div class="timeline-name">Torch Framework</div>
+                <div class="timeline-author">Torch Team</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2002;"></div>
+        <div class="timeline-dot" style="--year: 2007;"></div>
+        <div class="timeline-item" style="--year: 2007;">
+            <div class="timeline-content">
+                <div class="timeline-year">2007</div>
+                <div class="timeline-name">CUDA Platform</div>
+                <div class="timeline-author">NVIDIA</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2007;"></div>
+        <div class="timeline-dot" style="--year: 2009;"></div>
+        <div class="timeline-item" style="--year: 2009;">
+            <div class="timeline-content">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-name">ImageNet Dataset</div>
+                <div class="timeline-author">Deng, J. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2009;"></div>
+        <div class="timeline-dot positioned" style="--year: 2011;"></div>
+        <div class="timeline-item" style="--year: 2011;">
+            <div class="timeline-content">
+                <div class="timeline-year">2011</div>
+                <div class="timeline-name">Siri</div>
+                <div class="timeline-author">Apple Inc.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2011;"></div>
+    </div>
+</div>
+
+---
+
+## Modern Deep Learning
+
+<!-- Neural Networks & Architectures Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Neural Networks & Architectures</div>
+        <div class="timeline-text">Advanced architectures and generative models transforming AI capabilities</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
+        <div class="timeline-dot" style="--year: 2014;"></div>
+        <div class="timeline-item" style="--year: 2014;">
+            <div class="timeline-content">
+                <div class="timeline-year">2014</div>
+                <div class="timeline-name">VAEs & GANs</div>
+                <div class="timeline-author">Kingma & Goodfellow</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2014;"></div>
+        <div class="timeline-dot" style="--year: 2015;"></div>
+        <div class="timeline-item" style="--year: 2015;">
+            <div class="timeline-content">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-name">ResNet & Diffusion</div>
+                <div class="timeline-author">He et al. & Sohl-Dickstein et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2015;"></div>
+        <div class="timeline-dot" style="--year: 2016;"></div>
+        <div class="timeline-item" style="--year: 2016;">
+            <div class="timeline-content">
+                <div class="timeline-year">2016</div>
+                <div class="timeline-name">Style Transfer & WaveNet</div>
+                <div class="timeline-author">Gatys & van den Oord</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2016;"></div>
+        <div class="timeline-dot" style="--year: 2017;"></div>
+        <div class="timeline-item" style="--year: 2017;">
+            <div class="timeline-content">
+                <div class="timeline-year">2017</div>
+                <div class="timeline-name">Transformers</div>
+                <div class="timeline-author">Vaswani et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2017;"></div>
+        <div class="timeline-dot" style="--year: 2021;"></div>
+        <div class="timeline-item" style="--year: 2021;">
+            <div class="timeline-content">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-name">ViT & CLIP</div>
+                <div class="timeline-author">Dosovitskiy & Radford</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2021;"></div>
+        <div class="timeline-dot" style="--year: 2022;"></div>
+        <div class="timeline-item" style="--year: 2022;">
+            <div class="timeline-content">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-name">DiT (Diffusion Transformer)</div>
+                <div class="timeline-author">Peebles & Xie</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2022;"></div>
+        <div class="timeline-dot positioned" style="--year: 2023;"></div>
+        <div class="timeline-item" style="--year: 2023;">
+            <div class="timeline-content">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-name">Mamba</div>
+                <div class="timeline-author">Gu & Dao</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2023;"></div>
+    </div>
+</div>
+
+<!-- Training & Optimization Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Training & Optimization</div>
+        <div class="timeline-text">Advanced learning techniques and representation learning breakthroughs</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
+        <div class="timeline-dot" style="--year: 2013;"></div>
+        <div class="timeline-item" style="--year: 2013;">
+            <div class="timeline-content">
+                <div class="timeline-year">2013</div>
+                <div class="timeline-name">Word2Vec</div>
+                <div class="timeline-author">Mikolov, T. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2013;"></div>
+        <div class="timeline-dot" style="--year: 2014;"></div>
+        <div class="timeline-item" style="--year: 2014;">
+            <div class="timeline-content">
+                <div class="timeline-year">2014</div>
+                <div class="timeline-name">Attention Mechanism</div>
+                <div class="timeline-author">Bahdanau, D. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2014;"></div>
+        <div class="timeline-dot" style="--year: 2015;"></div>
+        <div class="timeline-item" style="--year: 2015;">
+            <div class="timeline-content">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-name">BatchNorm & Adam</div>
+                <div class="timeline-author">Ioffe & Kingma</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2015;"></div>
+        <div class="timeline-dot" style="--year: 2016;"></div>
+        <div class="timeline-item" style="--year: 2016;">
+            <div class="timeline-content">
+                <div class="timeline-year">2016</div>
+                <div class="timeline-name">Layer Normalization</div>
+                <div class="timeline-author">Ba, J. L. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2016;"></div>
+        <div class="timeline-dot positioned" style="--year: 2020;"></div>
+        <div class="timeline-item" style="--year: 2020;">
+            <div class="timeline-content">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-name">DDPM</div>
+                <div class="timeline-author">Ho, J. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2020;"></div>
+    </div>
+</div>
+
+<!-- Software & Applications Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Software & Applications</div>
+        <div class="timeline-text">Practical deployment and mainstream adoption of deep learning systems</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
+        <div class="timeline-dot" style="--year: 2016;"></div>
+        <div class="timeline-item" style="--year: 2016;">
+            <div class="timeline-content">
+                <div class="timeline-year">2016</div>
+                <div class="timeline-name">AlphaGo</div>
+                <div class="timeline-author">Silver, D. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2016;"></div>
+        <div class="timeline-dot" style="--year: 2017;"></div>
+        <div class="timeline-item" style="--year: 2017;">
+            <div class="timeline-content">
+                <div class="timeline-year">2017</div>
+                <div class="timeline-name">PyTorch</div>
+                <div class="timeline-author">Paszke, A. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2017;"></div>
+        <div class="timeline-dot" style="--year: 2018;"></div>
+        <div class="timeline-item" style="--year: 2018;">
+            <div class="timeline-content">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-name">GPT-1</div>
+                <div class="timeline-author">Radford & Devlin</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2018;"></div>
+        <div class="timeline-dot" style="--year: 2020;"></div>
+        <div class="timeline-item" style="--year: 2020;">
+            <div class="timeline-content">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-name">GPT-3</div>
+                <div class="timeline-author">Brown, T. B. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2020;"></div>
+        <div class="timeline-dot" style="--year: 2022;"></div>
+        <div class="timeline-item" style="--year: 2022;">
+            <div class="timeline-content">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-name">ChatGPT & Stable Diffusion</div>
+                <div class="timeline-author">OpenAI & Stability AI</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2022;"></div>
+        <div class="timeline-dot positioned" style="--year: 2023;"></div>
+        <div class="timeline-item" style="--year: 2023;">
+            <div class="timeline-content">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-name">LLaMA</div>
+                <div class="timeline-author">Touvron, H. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2023;"></div>
     </div>
 </div>
 
