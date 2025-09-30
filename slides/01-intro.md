@@ -156,7 +156,7 @@ Note:
         </tr>
         <tr>
             <td class="date">30.10.2025</td>
-            <td>Neural Networks</td>
+            <td>Multi-layer Perceptrons</td>
         </tr>
         <tr>
             <td class="date">06.11.2025</td>
@@ -338,7 +338,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 ---
 
-# History
+# History of Deep Learning
 
 ---
 
@@ -516,8 +516,8 @@ Note: If you don't know if your course counts, drop me an email.
 <!-- Neural Networks & Architectures Timeline -->
 <div class="timeline-container" style="flex-direction: row;">
     <div style="width: 20%;">
-        <div class="timeline-title">Neural Networks & Architectures</div>
-        <div class="timeline-text">Evolution of network structures and architectural innovations</div>
+        <div class="timeline-title">Architectures & Layers</div>
+        <div class="timeline-text">Evolution of network architectures and layer innovations</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
         <div class="timeline-dot" style="--year: 1943;"></div>
@@ -554,8 +554,17 @@ Note: If you don't know if your course counts, drop me an email.
                 <div class="timeline-name">Convolutional Networks</div>
                 <div class="timeline-author">Fukushima, K.</div>
             </div>
-        </div>
+        </div> 
         <div class="timeline-connector" style="--year: 1979;"></div>
+        <div class="timeline-dot" style="--year: 1982;"></div>
+        <div class="timeline-item" style="--year: 1982;">
+            <div class="timeline-content">
+                <div class="timeline-year">1982</div>
+                <div class="timeline-name">Recurrent Networks</div>
+                <div class="timeline-author">Hopfield</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1982;"></div>
         <div class="timeline-dot" style="--year: 1997;"></div>
         <div class="timeline-item" style="--year: 1997;">
             <div class="timeline-content">
@@ -565,15 +574,6 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1997;"></div>
-        <div class="timeline-dot" style="--year: 1998;"></div>
-        <div class="timeline-item" style="--year: 1998;">
-            <div class="timeline-content">
-                <div class="timeline-year">1998</div>
-                <div class="timeline-name">LeNet-5</div>
-                <div class="timeline-author">LeCun, Y. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1998;"></div>
         <div class="timeline-dot" style="--year: 2006;"></div>
         <div class="timeline-item" style="--year: 2006;">
             <div class="timeline-content">
@@ -679,7 +679,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-item" style="--year: 1998;">
             <div class="timeline-content">
                 <div class="timeline-year">1998</div>
-                <div class="timeline-name">MNIST Dataset</div>
+                <div class="timeline-name">MNIST Dataset & LeNet 5</div>
                 <div class="timeline-author">LeCun, Y. et al.</div>
             </div>
         </div>
@@ -727,10 +727,10 @@ Note: If you don't know if your course counts, drop me an email.
 
 ## Modern Deep Learning
 
-<!-- Neural Networks & Architectures Timeline -->
+<!-- Layers & Architectures Timeline -->
 <div class="timeline-container" style="flex-direction: row;">
     <div style="width: 20%;">
-        <div class="timeline-title">Neural Networks & Architectures</div>
+        <div class="timeline-title">Architectures & Models</div>
         <div class="timeline-text">Advanced architectures and generative models transforming AI capabilities</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
@@ -921,7 +921,15 @@ Note: If you don't know if your course counts, drop me an email.
 
 ---
 
-## State-of-the-art use cases
+# Modern Neural Audio Systems
+
+---
+
+## Overview
+
+---
+
+
 
 ---
 
