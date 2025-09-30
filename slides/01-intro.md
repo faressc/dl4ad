@@ -44,7 +44,7 @@ Note:
 - Setup and optimization of machine learning workflows, pipelines and lifecycles
 
 <div class="highlight">
-  <p>Emphasis on: Creative applications of neural networks in the<br>music production domain</p>
+  <p>Emphasis on: Creative applications of deep learning in the<br>music production domain</p>
 </div>
 
 ---

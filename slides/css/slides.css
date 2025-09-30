@@ -818,7 +818,7 @@
 
 .timeline-dot {
     width: 2.2%;
-    height: 16px;
+    aspect-ratio: 1 / 1;
     background: var(--fs-background-color);
     border: 3px solid var(--fs-link-color);
     border-radius: 50%;
