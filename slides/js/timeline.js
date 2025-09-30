@@ -28,20 +28,28 @@ class TimelineController {
     
     findTimelineElements() {
         // Find all SVG lines in timeline containers
+        const timelineDivs = document.querySelectorAll('div.timeline-connector');
+
+        // This is needed to create SVG elements properly, createElement('svg') will not work
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+
+        for (const lineDiv of timelineDivs) {
+            const svg = document.createElementNS(SVG_NS, 'svg');
+            svg.classList.add('timeline-connector');
+            lineDiv.appendChild(svg);   
+            const line = document.createElementNS(SVG_NS, 'line');
+            svg.appendChild(line);
+        }
         const timelineLines = document.querySelectorAll('.timeline-connector line');
-        
+
         this.lines = Array.from(timelineLines).map((line, index) => ({
             element: line,
             id: index,
-            originalX1: line.getAttribute('x1'),
-            originalY1: line.getAttribute('y1'),
-            originalX2: line.getAttribute('x2'),
-            originalY2: line.getAttribute('y2'),
             year: this.getCSSVariable(line, '--year') || null,
             startYear: this.getCSSVariable(line, '--start-year') || null,
             endYear: this.getCSSVariable(line, '--end-year') || null,
-            itemIndex: this.getCSSVariable(line, '--item-index') || null,
-            itemsInTimeline: this.countItemsInTimeline(line)
+            itemsInTimeline: this.countItemsInTimeline(line),
+            timelineContainer: line.closest('.timeline-container') || null
         }));
         
         console.log(`Found ${this.lines.length} timeline lines:`, this.lines);
@@ -49,8 +57,23 @@ class TimelineController {
     
     processLines() {
         for (const lineData of this.lines) {
-            const { element, id, year, startYear, endYear, itemIndex, itemsInTimeline } = lineData;
-            console.log(`Processing line ID ${id}: year=${year}, startYear=${startYear}, endYear=${endYear}`);
+            const { element, id, year, startYear, endYear, itemsInTimeline, timelineContainer } = lineData;
+            
+            let itemIndex = -1;
+
+            const timelineItems = timelineContainer.querySelectorAll('.timeline-item');
+            for (const timelineItem of timelineItems) {
+                if (this.getCSSVariable(timelineItem, '--year') === year) {
+                    itemIndex = Array.from(timelineItems).indexOf(timelineItem);
+                    break;
+                }
+            }
+
+            if (itemIndex === -1) {
+                console.warn(`Could not find timeline item for year ${year} in line ID ${id}`);
+                continue;
+            }
+
             const x1 = (year - startYear) / (endYear - startYear) * (100 - 2.2) + 1.1;
             this.setLineX1(id, `${x1}%`);
             let x2 = (parseFloat(itemIndex) + 0.5) / itemsInTimeline * 100;
