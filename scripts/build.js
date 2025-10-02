@@ -146,6 +146,21 @@ async function copyAllFolders() {
   } catch (error) {
     console.error('❌ Failed to copy reveal.js files:', error.message);
   }
+  
+  // Copy KaTeX from node_modules
+  const nodeModulesKatex = path.join(__dirname, '../node_modules/katex');
+  const distKatex = path.join(distDir, 'katex');
+  
+  try {
+    // Copy KaTeX dist files
+    const katexDistDir = path.join(nodeModulesKatex, 'dist');
+    const targetDistDir = path.join(distKatex, 'dist');
+    await copyDirectory(katexDistDir, targetDistDir);
+
+    console.log('📂 Copied katex/');
+  } catch (error) {
+    console.error('❌ Failed to copy katex files:', error.message);
+  }
 }
 
 async function copyDirectory(src, dest) {
