@@ -264,7 +264,7 @@ Note:
 
 ---
 
-## Assessment – ML4AD
+## Assessment – DL4AD
 
 **Project Presentation** (1/3 Grade) – *Date:* 18.12.2025
 
