@@ -1,2 +1,0 @@
-# Milestone Paper Overview
-

@@ -27,9 +27,9 @@
 **1979** – k-means clustering algorithm for unsupervised partitioning of data into k clusters based on nearest centroids — Hartigan, J. A. & Wong, M. A. (1979). *Algorithm AS 136: A K-Means Clustering Algorithm. Building on MacQueen's 1967 concept*.
 **1982** – Recurrent Networks enabling associative memory and pattern completion — Hopfield, J. (1982). *Neural networks and physical systems with emergent collective computational abilities*.
 **1986** – Backpropagation algorithm enabling efficient neural network training — Hinton, G., Rumelhart, D., & Williams, R. (1986). *Learning Representations by Back-Propagating Errors*.  
+**1989** – LSTM invented. Networks solving vanishing gradient problem in RNNs — Hochreiter, S. & Schmidhuber, J. (1997). *Long Short-Term Memory*.  
 **1992** – Weight decay (L2 regularization) preventing overfitting in neural networks — Krogh, A. & Hertz, J. (1992). *A Simple Weight Decay Can Improve Generalization*.  
 **1995–1999** – Support Vector Machines with kernel trick for non-linear classification — Vapnik, V. (1995-1999).  
-**1997** – LSTM networks solving vanishing gradient problem in RNNs — Hochreiter, S. & Schmidhuber, J. (1997). *Long Short-Term Memory*.  
 **1997** – Deep Blue defeats world chess champion, AI milestone — IBM (1997).
 **1998** – MNIST dataset standard benchmark for handwritten digit recognition — LeCun, Y. et al. (1998). *Gradient-Based Learning Applied to Document Recognition*.  
 **1998** – LeNet-5: successful application of CNNs to handwritten digit recognition — LeCun, Y. et al. (1998). *Gradient-Based Learning Applied to Document Recognition*.  
