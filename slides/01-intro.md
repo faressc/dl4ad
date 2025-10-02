@@ -565,15 +565,15 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1982;"></div>
-        <div class="timeline-dot" style="--year: 1997;"></div>
-        <div class="timeline-item" style="--year: 1997;">
+        <div class="timeline-dot" style="--year: 1989;"></div>
+        <div class="timeline-item" style="--year: 1989;">
             <div class="timeline-content">
-                <div class="timeline-year">1997</div>
+                <div class="timeline-year">1989</div>
                 <div class="timeline-name">LSTM</div>
                 <div class="timeline-author">Hochreiter & Schmidhuber</div>
             </div>
         </div>
-        <div class="timeline-connector" style="--year: 1997;"></div>
+        <div class="timeline-connector" style="--year: 1989;"></div>
         <div class="timeline-dot" style="--year: 2006;"></div>
         <div class="timeline-item" style="--year: 2006;">
             <div class="timeline-content">
