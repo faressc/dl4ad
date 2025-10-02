@@ -6,7 +6,7 @@
   --fs-main-font: 'Lato', sans-serif;
   --fs-heading-font: 'Poppins', sans-serif;
   --fs-code-font: monospace;
-  --fs-main-font-size: 28px;
+  --fs-main-font-size: 46px;
 
   --fs-highlight-background: #BF85FC;
   --fs-highlight-color: #D6FCB7;
@@ -37,6 +37,7 @@
   --fs-border-light: #40404013;
   --fs-surface: #ffffff;
   --fs-surface-alt: #bf85fc32;
+  --fs-overlay: rgba(255, 255, 255, 0.96);
   --fs-header-bg: #fafafa;
 }
 
@@ -58,6 +59,7 @@
   --fs-border-light: rgba(250, 250, 250, 0.06);
   --fs-surface: rgba(250, 250, 250, 0.05);
   --fs-surface-alt: rgba(191, 133, 252, 0.1);
+  --fs-overlay: rgba(36, 37, 41, 0.96);
   --fs-header-bg: #242529;
 }
 
@@ -425,6 +427,61 @@
   .backgrounds {
     background-color: var(--fs-background-color);
   }
+
+  body {
+      counter-reset: page-counter;
+  }
+  
+  .pdf-page {
+      counter-increment: page-counter;
+      page-break-after: always;
+  }
+
+  .pdf-page::before {
+      content: counter(page-counter);
+      position: absolute;
+      left: 47.5%;
+      bottom: 39px;
+      color: var(--fs-text-subtle-color);
+      font-weight: 400;
+      width: 40px;
+      text-align: right;
+      white-space: nowrap;
+      font-size: 30px;
+      font-size: 0.65em;
+      letter-spacing: -0.02em;
+      z-index: 1000;
+  }
+
+  .pdf-page::after {
+      content: url('../assets/images/TULogo_50px.png');
+      position: fixed;
+      z-index: 1000;
+      right: 0;
+      top: -10px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: var(--fs-header-bg);
+      border-radius: 4px;
+      margin-right: 20px;
+      border: 1px solid var(--fs-border-light);
+      box-shadow: 0px 0px 5px 0px var(--fs-shadow-color-light);
+  }
+
+  .slide-footer {
+    background: transparent;
+    backdrop-filter: none !important;
+  }
+
+  .slide-header,
+  .header-logo-box {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 }
 
 /*********************************************
@@ -753,18 +810,52 @@
  *********************************************/
 
 .reference {
-  position: absolute;
-  bottom: 80px;
+  position: relative;
+  bottom: -20px; /* Above the footer which is 80px high */
+  width: 100%;
   font-size: 0.5em;
   color: var(--fs-text-subtle-color);
   font-family: var(--fs-main-font);
   font-weight: 400;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.reference a {
+  color: var(--fs-link-color);
+  text-decoration: none;
+  transition: color 0.15s ease;
+  pointer-events: auto; /* Re-enable clicks for links */
+  cursor: pointer;
+}
+
+.reference a:hover {
+  color: var(--fs-link-color-hover);
+  text-decoration: underline;
 }
 
 .reference em {
   font-style: italic;
   color: var(--fs-text-muted-color);
 }
+
+/*********************************************
+ * IMAGE OVERLAY
+ *********************************************/
+
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--fs-overlay);
+  border: 2px solid var(--fs-border);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px var(--fs-shadow-color);
+  color: var(--fs-text-color);
+  z-index: 10;
+}
+
 
 /***********************************************
  * TIMELINE

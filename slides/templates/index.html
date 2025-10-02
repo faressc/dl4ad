@@ -34,6 +34,7 @@
   <script src="reveal.js/plugin/markdown/markdown.js"></script>
   <script src="reveal.js/plugin/highlight/highlight.js"></script>
   <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/math/math.js"></script>
   <script src="js/custom_speaker_notes.js"></script>
   <script src="js/timeline.js"></script>
   {{HOT_RELOAD_SCRIPT}}
@@ -62,10 +63,19 @@
     Reveal.initialize({
       center: false,
       margin: 0.1,
+      width: 1920,
+      height: 1080,
+      minScale: 0.2,
+      maxScale: 2.0,
+      katex: {
+        local: 'katex',
+      },
+      transition: 'none',
       plugins: [
         RevealMarkdown,
         RevealHighlight,
-        RevealNotes
+        RevealNotes,
+        RevealMath.KaTeX
       ]
     }).then(() => {
       // Update slide counter
@@ -75,6 +85,7 @@
           const current = Reveal.getState().indexh + 1;
           const total = Reveal.getTotalSlides();
           slideCounter.textContent = `${current} / ${total}`;
+          console.log('Updating slide counter'); // Debugging line
         }
       }
       
@@ -86,6 +97,14 @@
       
       // Emit custom event when Reveal.js is ready
       window.dispatchEvent(new CustomEvent('reveal-ready'));
+
+      window.addEventListener('beforeprint', function() {
+        const pages = document.querySelectorAll('.pdf-page');
+        console.log(`Total pages: ${pages.length}`); // Debugging line
+        const slideCounter = document.querySelector('.slide-counter');
+        const total = Reveal.getTotalSlides();
+        slideCounter.textContent = `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 / ${total}`;
+      });
     });
   </script>
 </body>
