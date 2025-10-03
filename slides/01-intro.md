@@ -645,6 +645,15 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1992;"></div>
+        <div class="timeline-dot" style="--year: 2009;"></div>
+        <div class="timeline-item" style="--year: 2009;">
+            <div class="timeline-content">
+            <div class="timeline-year">2009</div>
+            <div class="timeline-name">Convolutional DBNs & Prob. Max Pooling</div>
+            <div class="timeline-author">Lee, H. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2009;"></div>
         <div class="timeline-dot" style="--year: 2010;"></div>
         <div class="timeline-item" style="--year: 2010;">
             <div class="timeline-content">
@@ -737,8 +746,8 @@ Note: If you don't know if your course counts, drop me an email.
 <!-- Layers & Architectures Timeline -->
 <div class="timeline-container" style="flex-direction: row;">
     <div style="width: 20%;">
-        <div class="timeline-title">Architectures & Models</div>
-        <div class="timeline-text">Advanced architectures and generative models transforming AI capabilities</div>
+        <div class="timeline-title">Deep architectures</div>
+        <div class="timeline-text">Deep architectures and generative models transforming AI capabilities</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
         <div class="timeline-dot" style="--year: 2014;"></div>
