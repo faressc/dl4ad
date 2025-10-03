@@ -60,6 +60,7 @@
 **2016** – Neural style transfer combining content and artistic style in images — Gatys, L. A. et al. (2016). *Image Style Transfer Using Convolutional Neural Networks*.  
 **2016** – WaveNet generating raw audio waveforms with dilated convolutions — van den Oord, A. et al. (2016). *WaveNet: A Generative Model for Raw Audio*.  
 **2016** – AlphaGo achieving superhuman performance in complex strategy game — Silver, D. et al. (2016). Google DeepMind.  
+**2015** – Variational Inference with Normalizing Flows enabling flexible posterior approximations — Rezende, D. & Mohamed, S. (2015). *Variational Inference with Normalizing Flows*.
 **2017** – PyTorch enabling dynamic neural networks with eager execution — Paszke, A. et al. (2017). Facebook AI Research.  
 **2017** – Transformer architecture replacing RNNs with self-attention mechanisms — Vaswani, A. et al. (2017). *Attention Is All You Need*.  
 **2018** – GPT-1 demonstrating unsupervised pre-training for language understanding — Radford, A. et al. (2018). *Improving Language Understanding by Generative Pre-Training*.  
@@ -74,5 +75,6 @@
 **2022** – ChatGPT demonstrating conversational AI capabilities to mainstream audiences — OpenAI (2022). Based on GPT-3.5.  
 **2022** – Stable Diffusion open-sourcing high-quality text-to-image generation — Rombach, R. et al. (2022). Stability AI.  
 **2022** – DiT (Diffusion Transformer) replacing U-Net with Transformer architecture in diffusion — Peebles, W. & Xie, S. (2022). *Scalable Diffusion Models with Transformers*.  
+**2022** – Rectified Flow enabling faster and more stable generative modeling through optimal transport — Liu, X., Gong, C., & Liu, Q. (2022). *Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow*.
 **2023** – LLaMA demonstrating efficient training of competitive open-source language models — Touvron, H. et al. (2023). *LLaMA: Open and Efficient Foundation Language Models*.  
 **2023** – Mamba achieving linear scaling for sequence length with selective state spaces — Gu, A. & Dao, T. (2023). *Mamba: Linear-Time Sequence Modeling with Selective State Spaces*.
