@@ -39,7 +39,8 @@
 **2002** – Torch framework democratizing machine learning research — Torch Development Team (2002).
 **2006** – Deep Belief Networks enabling unsupervised pre-training of deep networks — Hinton, G. et al. (2006). *A Fast Learning Algorithm for Deep Belief Nets*.  
 **2007** – CUDA platform enabling massively parallel GPU computation — NVIDIA (2007).  
-**2009** – ImageNet dataset establishing large-scale visual recognition benchmark — Deng, J. et al. (2009).  
+**2009** – ImageNet dataset establishing large-scale visual recognition benchmark — Deng, J. et al. (2009).
+**2009** – Convolutional Deep Belief Networks introducing probabilistic max pooling (for vision tasks) — Lee, H. et al. (2009). *Convolutional Deep Belief Networks for Scalable Unsupervised Learning of Hierarchical Representations*.  
 **2010** – ReLU activation function enabling deeper network training — Nair, V. & Hinton, G. (2010).  
 **2010** – Xavier initialization solving gradient flow in deep networks — Glorot, X. & Bengio, Y. (2010). *Understanding the difficulty of training deep feedforward neural networks*.  
 **2011** – Siri democratizing AI through voice interfaces — Apple Inc. (2011).  
@@ -65,6 +66,7 @@
 **2018** – BERT achieving bidirectional context understanding through masked language modeling — Devlin, J. et al. (2018). *BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding*.  
 **2020** – GPT-3 exhibiting emergent few-shot learning capabilities at massive scale — Brown, T. B. et al. (2020). *Language Models are Few-Shot Learners*.  
 **2020** – DDPM making diffusion models practical for high-quality image synthesis — Ho, J. et al. (2020). *Denoising Diffusion Probabilistic Models*.
+**2020** – T5 (Text-to-Text Transfer Transformer) unifying all NLP tasks as text generation — Raffel, C. et al. (2020). *Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer*.  
 **2021** – Vision Transformer proving Transformers can excel beyond NLP — Dosovitskiy, A. et al. (2021). *An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale*.  
 **2021** – CLIP learning joint text-image representations through contrastive learning — Radford, A. et al. (2021). *Learning Transferable Visual Representations from Natural Language Supervision*.  
 **2021** – S4 achieving linear-time sequence modeling with structured state spaces — Gu, A. et al. (2021). *Efficiently Modeling Long Sequences with Structured State Spaces*.  

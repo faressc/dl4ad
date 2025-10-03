@@ -26,7 +26,7 @@ II. Symbolic Music Generation
     1953: Iannis Xenakis uses probability theory and stochastic processes, formalized in "Formalized Music" (1963).
     1957: Hiller and Isaacson's "Illiac Suite" - First computer-composed score using Markov Chains.
     1981: David Cope starts EMI project - rule-based systems for style imitation.
-    1989: Todd and Koppelman - "A Connectionist Approach to Algorithmic Composition". First RNN for music composition.
+    1989: Todd - "A Connectionist Approach to Algorithmic Composition". First RNN for music composition.
     1994: Mozer's CONCERT system - "Neural Network Music Composition by Prediction". First successful neural melodic generation.
     2002: Eck and Schmidhuber - "Finding Temporal Structure in Music: Blues Improvisation with LSTM". First neural network to learn entire musical form (12-bar blues).
     2011: Boulanger-Lewandowski, Bengio, Vincent - "Modeling Temporal Dependencies in High-Dimensional Sequences" (RNN-RBM). Scaled polyphonic generation with deep generative models.
@@ -80,14 +80,15 @@ II. Neural Audio Synthesis
     2021: Rave: "A variational Autoencoder for fast and high-quality neural audio synthesis". Real-time synthesis with VAE architecture.
     2022: SoundStream: An End-to-End Neural Audio Codec
     2022: AudioLM (Google) – large language model for audio tokens, including music. Precursor to MusicLM.
+    2022: MuLan: A Joint Embedding of Music Audio and Natural Language
     2023: GanStrument: "Adversarial Instrument Sound Synthesis with Pitch-invariant Instance Conditioning".
     2023: MusicLM:  Generating Music From Text (2023). Text-to-music generation with high fidelity and adherence to prompts.
-    2023: AudioLDM – text-to-audio diffusion. Important parallel to MusicLM/MusicGen.
+    2023: MusicGen (Meta) - Text-to-music model with open weights, enabling wider access to music generation technology.
     2023: MusicGen (Meta) - You have MusicLM but MusicGen was equally important
-    2023: Stable Audio: "High-Quality Audio Generation with Diffusion Models" (2023). High-quality audio synthesis using diffusion models.
     2023: Suno AI.
     2024: Udio
     2024: Music2Latent: Consistency Autoencoders for Latent Audio Compression (2024).
+    2024: Stable Audio Open
     2025: Adding Temporal Musical Controls on Top of Pretrained Generative Models (2025).
     2025: Live Music Models: Lyria 2
     2025: SpectroStream: A Versatile Neural Codec for General Audio
