@@ -350,7 +350,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Calculus & Linear Algebra</div>
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1948;">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
         <div class="timeline-dot" style="--year: 1676;"></div>
         <div class="timeline-item" style="--year: 1676;">
             <div class="timeline-content">
@@ -395,7 +395,6 @@ Note: If you don't know if your course counts, drop me an email.
                 <div class="timeline-author">Cayley & Hamilton</div>
             </div>
         </div>
-        <div class="timeline-connector" style="--year: 1858;"></div>
         <div class="timeline-dot" style="--year: 1901;"></div>
         <div class="timeline-item" style="--year: 1901;">
             <div class="timeline-content">
@@ -404,7 +403,15 @@ Note: If you don't know if your course counts, drop me an email.
                 <div class="timeline-author">Pearson, K.</div>
             </div>
         </div>
-        <div class="timeline-connector" style="--year: 1901;"></div>
+        <div class="timeline-dot" style="--year: 1951;"></div>
+        <div class="timeline-item" style="--year: 1951;">
+            <div class="timeline-content">
+            <div class="timeline-year">1951</div>
+            <div class="timeline-name">Stochastic Gradient Descent</div>
+            <div class="timeline-author">Robbins & Monro</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1951;"></div>
     </div>
 </div>
 
@@ -414,7 +421,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1948;">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
         <div class="timeline-dot" style="--year: 1763;"></div>
         <div class="timeline-item" style="--year: 1763;">
             <div class="timeline-content">
@@ -469,7 +476,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Information & Computation</div>
         <div class="timeline-text">Foundations of algorithmic thinking and information theory</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1948;">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
         <div class="timeline-dot" style="--year: 1843;"></div>
         <div class="timeline-item" style="--year: 1843;">
             <div class="timeline-content">
@@ -606,7 +613,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-item" style="--year: 1967;">
             <div class="timeline-content">
                 <div class="timeline-year">1967</div>
-                <div class="timeline-name">Stochastic Gradient Descent</div>
+                <div class="timeline-name">Stochastic Gradient Descent for NN</div>
                 <div class="timeline-author">Amari, S.</div>
             </div>
         </div>
@@ -624,7 +631,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-item" style="--year: 1986;">
             <div class="timeline-content">
                 <div class="timeline-year">1986</div>
-                <div class="timeline-name">Backpropagation</div>
+                <div class="timeline-name">Backpropagation for NN</div>
                 <div class="timeline-author">Hinton et al.</div>
             </div>
         </div>

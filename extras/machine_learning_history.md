@@ -19,6 +19,7 @@
 **1943** – First mathematical model of artificial neurons — McCulloch, W. & Pitts, W. (1943).  
 **1947** – Linear programming and simplex algorithm for constrained optimization — Dantzig, G. (1947).  
 **1948** – Information theory, quantifying information content and uncertainty — Shannon, C. (1948). *A Mathematical Theory of Communication*.  
+**1951** – Invention of Stochastic Gradient Descent (SGD) for iterative optimization — Robbins, H. & Monro, S. (1951). *A Stochastic Approximation Method*.  
 **1957** – Perceptron, first trainable artificial neural network — Rosenblatt, F. (1957). *The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain*.  
 **1965** – First practical deep neural network learning algorithms — Ivakhnenko, A. & Lapa, V. (1965).  
 **1967–68** – Stochastic gradient descent for neural network optimization — Amari, S. (1967-68).

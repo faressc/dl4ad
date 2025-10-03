@@ -16,7 +16,6 @@ I. Feature Extraction & Music Analysis
         2006: "Reducing the Dimensionality of Data with Neural Networks" in Science.
         Immediately applied to music transcription and genre classification.
     2006-2010: MIR community transition - Shift from hand-crafted features (MFCCs, chroma) to learned representations. MIREX competitions drive adoption.
-    2008: Bengio's "Learning Deep Architectures for AI" - theoretical foundation for deep vs. shallow networks.
     2009: Lee et al. - "Unsupervised feature learning for audio classification using convolutional deep belief networks". First CNNs on audio spectrograms.
     2009: Han and Wang - "Multi-pitch detection using neural networks". Outperforms traditional DSP.
     2010: Hamel and Eck - "Learning Features from Music Audio with Deep Belief Networks". First deep learning specifically for MIR. Autoencoder like architectures for unsupervised feature learning from raw audio. While it was not cross-modal, it it laid groundwork for later work that did combine modalities (e.g. shared latent spaces for audio, MIDI, tags).
@@ -29,14 +28,12 @@ II. Symbolic Music Generation
     1981: David Cope starts EMI project - rule-based systems for style imitation.
     1989: Todd and Koppelman - "A Connectionist Approach to Algorithmic Composition". First RNN for music composition.
     1994: Mozer's CONCERT system - "Neural Network Music Composition by Prediction". First successful neural melodic generation.
-    1989: Hochreiter and Schmidhuber invent LSTM - solves vanishing gradient problem (crucial for music 13 years later).
     2002: Eck and Schmidhuber - "Finding Temporal Structure in Music: Blues Improvisation with LSTM". First neural network to learn entire musical form (12-bar blues).
     2011: Boulanger-Lewandowski, Bengio, Vincent - "Modeling Temporal Dependencies in High-Dimensional Sequences" (RNN-RBM). Scaled polyphonic generation with deep generative models.
 
 III. Differentiable Audio Processing & Effects
 
     1960: Widrow and Hoff - LMS algorithm. "Adaptive Switching Circuits". Foundation for gradient-based audio processing, later used in echo cancellation, noise reduction.
-    1986: Rumelhart, Hinton, Williams - "Learning representations by back-propagating errors". Backpropagation algorithm - foundation for all neural network training.
     1989: Shynk and Moorer - "A Gradient-Based Approach to IIR Filter Design for Musical Applications". First gradient descent for musical DSP.
     1997: Zhang and Duhamel - "Neural Networks for Musical Effects Processing". First attempt at modeling analog effects with MLPs.
     2007 – David Yeh et al. (CCRMA, Stanford): “Automated physical modeling of nonlinear audio circuits for real-time audio effects—Part I: Theoretical development” (IEEE TCAS). MLPs for Guitar Amp Modeling. Bridged physical modeling (SPICE-like) and data-driven approaches.
