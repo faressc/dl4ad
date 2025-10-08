@@ -1,0 +1,87 @@
+/* Import shared stylesheets */
+@import url('colors.css');
+@import url('fonts.css');
+
+body {
+  font-family: var(--fs-main-font);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--fs-background-color);
+  color: var(--fs-text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1 {
+  color: var(--fs-heading-color);
+  font-family: var(--fs-heading-font);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--fs-text-muted-color);
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+}
+
+.presentations {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.presentation-card {
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.presentation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px var(--fs-shadow-color);
+}
+
+.presentation-card h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--fs-heading-color);
+  font-family: var(--fs-heading-font);
+  font-size: 1.3rem;
+}
+
+.presentation-card .filename {
+  color: var(--fs-text-muted-color);
+  font-size: 0.9rem;
+  font-family: var(--fs-code-font);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle img {
+  width: 30px;
+  height: 30px;
+}

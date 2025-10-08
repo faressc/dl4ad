@@ -28,24 +28,88 @@ async function combineSlides() {
 }
 
 async function generateHTML(isDev = false) {
-  const templatePath = path.join(__dirname, '../slides/templates/index.html');
-  const template = await fs.readFile(templatePath, 'utf-8');
+  const slidesTemplatePath = path.join(__dirname, '../slides/templates/slides.html');
+  const slidesTemplate = await fs.readFile(slidesTemplatePath, 'utf-8');
   
   const slides = await combineSlides();
-  const slidesContent = buildSlidesContent(slides);
-
-  // Use a simple template function instead of string replace
-  const html = renderTemplate(template, {
-    slidesContent: slidesContent,
-    isDev: isDev,
-  });
-  
   const distDir = path.join(__dirname, '../dist');
   await fs.mkdir(distDir, { recursive: true });
   
-  await fs.writeFile(path.join(distDir, 'index.html'), html);
+  const presentationFiles = [];
   
-  console.log('✅ HTML generated successfully!');
+  // Check if there's only one slide file
+  if (slides.length === 1) {
+    // Generate single index.html for the presentation
+    const slide = slides[0];
+    const slidesContent = buildSlidesContent([slide]);
+    
+    let html = renderTemplate(slidesTemplate, {
+      SLIDES_CONTENT: slidesContent,
+      HOT_RELOAD_SCRIPT: isDev ? '<script src="js/hot_reload.js"></script>' : ''
+    });
+    
+    await fs.writeFile(path.join(distDir, 'index.html'), html);
+    console.log(`✅ Generated index.html (single presentation)`);
+  } else {
+    // Generate a separate HTML file for each slide
+    for (const slide of slides) {
+      const slidesContent = buildSlidesContent([slide]);
+      
+      let html = renderTemplate(slidesTemplate, {
+        SLIDES_CONTENT: slidesContent,
+        HOT_RELOAD_SCRIPT: isDev ? '<script src="js/hot_reload.js"></script>' : ''
+      });
+      
+      // Get output filename (replace .md or .html extension with .html)
+      const outputFilename = slide.filename.replace(/\.(md|html)$/, '.html');
+      
+      await fs.writeFile(path.join(distDir, outputFilename), html);
+      console.log(`✅ Generated ${outputFilename}`);
+      
+      presentationFiles.push({
+        filename: outputFilename,
+        title: extractTitle(slide.content, slide.isHtml)
+      });
+    }
+    
+    // Generate index.html landing page
+    await generateIndexPage(presentationFiles, distDir, isDev);
+  }
+  
+  console.log('✅ All HTML files generated successfully!');
+}
+
+function extractTitle(content, isHtml) {
+  if (isHtml) {
+    // Try to extract title from HTML
+    const titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
+    if (titleMatch) return titleMatch[1].replace(/<[^>]*>/g, '').trim();
+  } else {
+    // Try to extract title from Markdown (first # heading)
+    const titleMatch = content.match(/^#\s+(.+)$/m);
+    if (titleMatch) return titleMatch[1].trim();
+  }
+  return 'Untitled Presentation';
+}
+
+async function generateIndexPage(presentationFiles, distDir, isDev) {
+  const indexTemplatePath = path.join(__dirname, '../slides/templates/index.html');
+  const indexTemplate = await fs.readFile(indexTemplatePath, 'utf-8');
+  
+  const presentationsList = presentationFiles.map(file => 
+    `    <a href="${file.filename}" class="presentation-card">
+      <h2>${file.title}</h2>
+      <p class="filename">${file.filename}</p>
+    </a>`
+  ).join('\n');
+  
+  const indexHTML = renderTemplate(indexTemplate, {
+    PRESENTATIONS_LIST: presentationsList,
+    HOT_RELOAD_SCRIPT: isDev ? '<script src="js/hot_reload.js"></script>' : ''
+  });
+
+  await fs.writeFile(path.join(distDir, 'index.html'), indexHTML);
+  console.log('✅ Generated index.html (landing page)');
 }
 
 function buildSlidesContent(slides) {
@@ -93,15 +157,11 @@ ${cleanContent}
 function renderTemplate(template, data) {
   let result = template;
   
-  // Replace SLIDES_CONTENT
-  if (data.slidesContent) {
-    result = result.replace(/\{\{SLIDES_CONTENT\}\}/g, data.slidesContent);
+  // Replace all placeholders
+  for (const [key, value] of Object.entries(data)) {
+    const placeholder = `{{${key}}}`;
+    result = result.replace(new RegExp(placeholder, 'g'), value);
   }
-
-  let hotReloadScript = data.isDev ? '<script src="js/hot_reload.js"></script>' : '';
-
-  // Replace HOT_RELOAD_SCRIPT
-  result = result.replace(/\{\{HOT_RELOAD_SCRIPT\}\}/g, hotReloadScript);
   
   return result;
 }
