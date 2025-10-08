@@ -215,12 +215,14 @@
   }
 
   .slide-footer {
-    background: transparent;
+    position: fixed !important;
+    background: transparent !important;
     backdrop-filter: none !important;
   }
 
   .slide-header,
   .header-logo-box {
+    position: fixed !important;
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
@@ -233,7 +235,7 @@
  *********************************************/
 
 .header-logo-box {
-  position: fixed;
+  position: absolute;
   z-index: 1001;
   cursor: pointer;
   right: 0;
@@ -257,7 +259,7 @@
 }
 
 .slide-footer {
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     left: 0;
     width: 100%;
