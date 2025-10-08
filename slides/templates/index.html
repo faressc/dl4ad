@@ -2,44 +2,24 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Reveal.js Presentation</title>
-  
-  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
-  <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
-  <link rel="stylesheet" href="css/slides.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Learning for Audio Data - Presentations</title>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <div class="reveal">
-    <header class="slide-header">
-      <button class="header-logo-box" onclick="toggleTheme()">
-        <img src="assets/images/TULogo.png" alt="TU Berlin Logo" class="header-logo" title="Toggle theme">
-      </button>
-    </header>
-    
-    <div class="slides">
-      {{SLIDES_CONTENT}}
-    </div>
-    
-    <footer class="slide-footer">
-      <div class="footer-content">
-        <div class="footer-left">Deep Learning for Audio Data</div>
-        <div class="slide-counter"></div>
-        <div class="footer-right">Audio Communication Group</div>
-      </div>
-    </footer>
+  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+    <img src="assets/images/TULogo.png" alt="Toggle theme">
+  </button>
+  
+  <h1>Deep Learning for Audio Data</h1>
+  <p class="subtitle">Audio Communication Group - Presentations</p>
+  
+  <div class="presentations">
+{{PRESENTATIONS_LIST}}
   </div>
-
-  <script src="reveal.js/dist/reveal.js"></script>
-  <script src="reveal.js/plugin/markdown/markdown.js"></script>
-  <script src="reveal.js/plugin/highlight/highlight.js"></script>
-  <script src="reveal.js/plugin/notes/notes.js"></script>
-  <script src="reveal.js/plugin/math/math.js"></script>
-  <script src="js/custom_speaker_notes.js"></script>
-  <script src="js/timeline.js"></script>
+  
   {{HOT_RELOAD_SCRIPT}}
-  <script type="module">
-    // Theme switching functionality
+  <script>
     function toggleTheme() {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -48,64 +28,12 @@
       localStorage.setItem('theme', newTheme);
     }
     
-    // Load saved theme or default to light
     function loadTheme() {
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
     }
     
-    // Make toggleTheme globally available
-    window.toggleTheme = toggleTheme;
-    
-    // Load theme before Reveal.js initializes
     loadTheme();
-    
-    Reveal.initialize({
-      center: false,
-      margin: 0.1,
-      width: 1920,
-      height: 1080,
-      minScale: 0.2,
-      maxScale: 2.0,
-      katex: {
-        local: 'katex',
-      },
-      transition: 'none',
-      plugins: [
-        RevealMarkdown,
-        RevealHighlight,
-        RevealNotes,
-        RevealMath.KaTeX
-      ]
-    }).then(() => {
-      // Update slide counter
-      function updateSlideCounter() {
-        const slideCounter = document.querySelector('.slide-counter');
-        if (slideCounter) {
-          const current = Reveal.getState().indexh + 1;
-          const total = Reveal.getTotalSlides();
-          slideCounter.textContent = `${current} / ${total}`;
-          console.log('Updating slide counter'); // Debugging line
-        }
-      }
-      
-      // Initial update
-      updateSlideCounter();
-      
-      // Update on slide change
-      Reveal.on('slidechanged', updateSlideCounter);
-      
-      // Emit custom event when Reveal.js is ready
-      window.dispatchEvent(new CustomEvent('reveal-ready'));
-
-      window.addEventListener('beforeprint', function() {
-        const pages = document.querySelectorAll('.pdf-page');
-        console.log(`Total pages: ${pages.length}`); // Debugging line
-        const slideCounter = document.querySelector('.slide-counter');
-        const total = Reveal.getTotalSlides();
-        slideCounter.textContent = `\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0 / ${total}`;
-      });
-    });
   </script>
 </body>
 </html>

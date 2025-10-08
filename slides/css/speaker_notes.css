@@ -1,4 +1,8 @@
 /* Custom Speaker Notes Styling */
+
+@import url('colors.css');
+@import url('fonts.css');
+
 body {
     background: #2c3e50 !important;
     background-image: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;

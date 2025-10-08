@@ -1,0 +1,58 @@
+/* Shared color theme variables for presentations and index page */
+
+:root {
+  --fs-highlight-background: #BF85FC;
+  --fs-highlight-color: #D6FCB7;
+
+  /* Colors */
+  --fs-link-color: #55A49F;
+  --fs-link-color-light: #D6FCB7;
+  --fs-link-color-hover: #FE938C;
+  --fs-fragment-select-color: rgb(110, 82, 82);
+  --fs-fragment-select-light: #EDAF97;
+  --fs-fragment-select-color-1: #77af49;
+}
+
+/* Light theme for presentations and index page */
+[data-theme="light"] {
+  --fs-text-color: #2b2a2b;
+  --fs-background-color: #fafafa;
+  --fs-heading-color: #100f10;
+  --fs-highlight-color: #fafafa;
+  --fs-selection-color: #242324;
+  --fs-selection-background-color: rgba(191, 133, 252, 0.25);
+  --fs-shadow-color: #4040405a;
+  --fs-shadow-color-light: #40404013; 
+  --fs-navigation-color: #231123;
+  --fs-fragment-select-text-color: rgb(255, 180, 180);
+  --fs-text-muted-color: rgba(35, 17, 35, 0.7);
+  --fs-text-subtle-color: rgba(35, 17, 35, 0.6);
+  --fs-border: #4040405a;
+  --fs-border-light: #40404013;
+  --fs-surface: #ffffff;
+  --fs-surface-alt: #bf85fc32;
+  --fs-overlay: rgba(255, 255, 255, 0.96);
+  --fs-header-bg: #fafafa;
+}
+
+/* Dark theme for presentations */
+[data-theme="dark"] {
+  --fs-background-color: #242529;
+  --fs-text-color: #fafafa;
+  --fs-heading-color: #fafafa;
+  --fs-highlight-color: #fafafa;
+  --fs-selection-color: #fafafa;
+  --fs-selection-background-color: rgba(191, 133, 252, 0.4);
+  --fs-shadow-color: #ecebeb71;
+  --fs-shadow-color-light: #ecebeb21;
+  --fs-navigation-color: #BF85FC;
+  --fs-fragment-select-text-color: rgb(49, 27, 27);
+  --fs-text-muted-color: #b8b8b8;
+  --fs-text-subtle-color: #888888;
+  --fs-border: rgba(250, 250, 250, 0.15);
+  --fs-border-light: rgba(250, 250, 250, 0.06);
+  --fs-surface: rgba(250, 250, 250, 0.05);
+  --fs-surface-alt: rgba(191, 133, 252, 0.1);
+  --fs-overlay: rgba(36, 37, 41, 0.96);
+  --fs-header-bg: #242529;
+}
