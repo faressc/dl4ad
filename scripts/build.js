@@ -42,9 +42,11 @@ async function generateHTML(isDev = false) {
     // Generate single index.html for the presentation
     const slide = slides[0];
     const slidesContent = buildSlidesContent([slide]);
+    const title = extractTitle(slide.content, slide.isHtml);
     
     let html = renderTemplate(slidesTemplate, {
       SLIDES_CONTENT: slidesContent,
+      PRESENTATION_TITLE: title,
       HOT_RELOAD_SCRIPT: isDev ? '<script src="js/hot_reload.js"></script>' : ''
     });
     
@@ -54,9 +56,11 @@ async function generateHTML(isDev = false) {
     // Generate a separate HTML file for each slide
     for (const slide of slides) {
       const slidesContent = buildSlidesContent([slide]);
+      const title = extractTitle(slide.content, slide.isHtml);
       
       let html = renderTemplate(slidesTemplate, {
         SLIDES_CONTENT: slidesContent,
+        PRESENTATION_TITLE: title,
         HOT_RELOAD_SCRIPT: isDev ? '<script src="js/hot_reload.js"></script>' : ''
       });
       
@@ -68,7 +72,7 @@ async function generateHTML(isDev = false) {
       
       presentationFiles.push({
         filename: outputFilename,
-        title: extractTitle(slide.content, slide.isHtml)
+        title: title
       });
     }
     
@@ -80,16 +84,13 @@ async function generateHTML(isDev = false) {
 }
 
 function extractTitle(content, isHtml) {
-  if (isHtml) {
-    // Try to extract title from HTML
-    const titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
-    if (titleMatch) return titleMatch[1].replace(/<[^>]*>/g, '').trim();
-  } else {
-    // Try to extract title from Markdown (first # heading)
-    const titleMatch = content.match(/^#\s+(.+)$/m);
-    if (titleMatch) return titleMatch[1].trim();
+  let titleMatch = content.match(/<h1[^>]*>(.*?)<\/h1>/i);
+  if (!titleMatch) {
+    titleMatch = content.match(/^#\s+(.+)$/m);
   }
-  return 'Untitled Presentation';
+  const formatTitle = titleMatch ? titleMatch[1].replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]*>/g, '').trim() : null;
+
+  return formatTitle || 'Untitled Presentation';
 }
 
 async function generateIndexPage(presentationFiles, distDir, isDev) {
