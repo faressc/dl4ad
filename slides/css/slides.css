@@ -216,17 +216,40 @@
 
   .slide-footer {
     position: fixed !important;
+    height: 80px !important;
     background: transparent !important;
     backdrop-filter: none !important;
+  }
+
+  .footer-content {
+    font-size: 30px !important;
+    padding: 0 24px 30px 24px !important;
+  }
+
+  .footer-left,
+  .footer-right {
+    gap: 18px !important;
+  }
+
+  .slide-counter {
+    margin: 0 18px !important;
   }
 
   .slide-header,
   .header-logo-box {
     position: fixed !important;
+    top: -10px !important;
+    padding: 15px !important;
     background: transparent !important;
     backdrop-filter: none !important;
     border: none !important;
     box-shadow: none !important;
+    border-radius: 4px !important;
+    margin-right: 20px !important;
+  }
+
+  .header-logo {
+    height: 50px !important;
   }
 }
 
@@ -239,33 +262,33 @@
   z-index: 1001;
   cursor: pointer;
   right: 0;
-  top: -10px;
+  top: -0.5vw;
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 0.8vw;
   background: var(--fs-header-bg);
-  backdrop-filter: blur(5px);
-  border-radius: 4px;
-  margin-right: 20px;
+  backdrop-filter: blur(0.26vw);
+  border-radius: 0.2vw;
+  margin-right: 1vw;
   border: 1px solid var(--fs-border-light);
-  box-shadow: 0 0px 20px var(--fs-shadow-color-light);
+  box-shadow: 0 0px 1vw var(--fs-shadow-color-light);
 }
 
 .header-logo {
-  height: 50px;
+  height: 2.9vw;
   width: auto;
   object-fit: contain;
   opacity: 0.8;
 }
 
 .slide-footer {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     left: 0;
     width: 100%;
-    height: 80px;
+    height: 4.2vw;
     background: transparent;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0.5vw);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -277,8 +300,8 @@
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     width: 100%;
-    padding: 0 24px 30px 24px;
-    font-size: 0.65em;
+    padding: 0 1.5vw 1.9vw 1.5vw;
+    font-size:  1.6vw;
     letter-spacing: -0.02em;
 }
 
@@ -289,7 +312,7 @@
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 0.9vw;
 }
 
 .footer-left::after {
@@ -306,7 +329,7 @@
     font-weight: 400;
     text-align: center;
     white-space: nowrap;
-    margin: 0 18px;
+    margin: 0 0.9vw;
     grid-column: 2;
 }
 
@@ -317,7 +340,7 @@
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 0.9vw;
 }
 
 .footer-right::before {
