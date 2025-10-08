@@ -79,12 +79,16 @@
 
 .reveal h1 {
   text-align: center;
-  margin-block: 22% 10%;
+  margin-block: 0;
   line-height: 1.7em;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-size: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .reveal h2 {
