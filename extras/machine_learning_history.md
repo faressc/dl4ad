@@ -78,3 +78,4 @@
 **2022** – Rectified Flow enabling faster and more stable generative modeling through optimal transport — Liu, X., Gong, C., & Liu, Q. (2022). *Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow*.
 **2023** – LLaMA demonstrating efficient training of competitive open-source language models — Touvron, H. et al. (2023). *LLaMA: Open and Efficient Foundation Language Models*.  
 **2023** – Mamba achieving linear scaling for sequence length with selective state spaces — Gu, A. & Dao, T. (2023). *Mamba: Linear-Time Sequence Modeling with Selective State Spaces*.
+**2024** – Consistency Models enabling one-step generation with diffusion models — Song, Y. et al. (2024). *Consistency Models*.
