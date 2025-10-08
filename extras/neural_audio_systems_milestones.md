@@ -1,6 +1,6 @@
-# Deep Learning for Music Production: History
+# Neural Audio Systems: History
 
-## Foundations for Deep Learning in Music Production
+## Foundations
 
 I. Feature Extraction & Music Analysis
 
@@ -47,7 +47,7 @@ IV. The Convergence (2012)
         Unified feature extraction, generation, and processing approaches
         Marked the beginning of modern deep learning era in music production
 
-## Milestones in Deep Learning for Music Production
+## Milestones in Deep Neural Audio Systems
 
 Universal:
 

@@ -9,16 +9,16 @@ Note:
 ## Lecturer
 
 <div style="display: flex; align-items: center; gap: 40px;">
-    <div style="flex: 0 0 380px;">
+    <div style="flex: 0 0 600px;">
         <figure style="text-align: center;">
-            <img src="assets/images/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 380px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
+            <img src="assets/images/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 600px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
             <figcaption>
                 <strong>Fares Schulz</strong><br>
                 <a href="mailto:fares.schulz@tu-berlin.de" class="small">fares.schulz@tu-berlin.de</a>
             </figcaption>
         </figure>
     </div>
-    <div style="flex: 1 0; max-width: 500px; display: flex; flex-direction: column; text-align: left;">
+    <div style="flex: 1 0; max-width: 1000px; display: flex; flex-direction: column; text-align: left;">
         <strong style="margin-bottom: 0.5em;">Research Interests</strong>
         <div class="small">
             <div style="display: flex; align-items: flex-start;"><span style="margin-right: 0.6em;">•</span><span>Neural Networks for Audio Effects and Synthesis</span></div>
@@ -49,12 +49,39 @@ Note:
 
 ---
 
-## Deep Learning
+## AI Overview
 
-<div style="text-align: center;">
-    <img src="assets/images/ai_vs_ml_vs_dl.png" alt="AI vs ML vs DL" style="max-width: 90%; height: auto; margin-top: 28px;">
-    <figcaption><a href="https://www.edureka.co/blog/ai-vs-machine-learning-vs-deep-learning/" style="margin-top: 30px; display: inline-block;">Atul. (2025). <em>AI vs Machine Learning vs Deep Learning</em>. Edureka.</a></figcaption>
+<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; font-size: 0.85em;">
+    <div style="flex: 1; padding-right: 30px;">
+        <div style="text-align: center;">
+            <img src="assets/images/ai_vs_ml_vs_nn_vs_dl.svg" alt="AI vs ML vs NN vs DL" style="max-width: 80%; height: auto;">
+        </div>
+        <div style="margin-top: 15px; font-size: 0.8em; color: var(--fs-text-muted-color); font-style: italic; text-align: center;">
+            <strong>Nested Relationship:</strong> AI ⊃ ML ⊃ NN ⊃ DL
+        </div>
+    </div>
+    <div style="flex: 1; padding-left: 30px; border-left: 2px solid #ddd;">
+        <h4>Hierarchical Relationship</h4>
+        <ul>
+            <li><strong>Artificial Intelligence (AI):</strong> Machines performing tasks requiring human-like intelligence</li>
+            <li><strong>Machine Learning (ML):</strong> Algorithms that learn patterns from data without explicit programming</li>
+            <li><strong>Neural Networks (NN):</strong> Interconnected nodes inspired by biological neurons</li>
+            <li><strong>Deep Learning (DL):</strong> Uses multi-layered neural networks to model complex patterns</li>
+        </ul>
+    </div>
 </div>
+
+<div class="image-overlay fragment" style="position: absolute; width: 60%; padding: 60px; text-align: center;">
+  <p><strong>Deep Learning for Audio Data</strong> = Applications of deep learning techniques to audio data.</p>
+</div>
+
+Notes:
+
+- Let's start with a quick overview of artificial intelligence
+- With AI, we refer to machines that can perform tasks that typically require human-like intelligence
+- Machine learning is a subset of AI that focuses on algorithms that can learn patterns from data without being explicitly programmed
+- Neural networks are a specific type of machine learning model inspired by the structure and function of biological neurons
+- Deep learning is a subset of neural networks that uses multiple layers to model complex patterns in data
 
 ---
 
@@ -300,7 +327,6 @@ Note:
 ### Grading
 
 - Project in Deep Learning for Audio Data (2/3 Grade)
-
 - Lecture excercises in Music Information Retrieval und Machine Learning für Audio (1/3 Grade)
 
 ---
@@ -329,7 +355,8 @@ Note: If you don't know if your course counts, drop me an email.
 - [Understanding Deep Learning](https://github.com/udlbook/udlbook) – Simon J.D. Prince
 - [Machine Learning Specialization](https://www.coursera.org/specializations/machine-learning-introduction) – Andrew Ng
 - [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) – Andrew Ng
-- [Milestone Paper Overview](https://github.com/faressc/dl4ad/blob/main/extras/milestone_paper_overview.md)
+- [Machine Learning History](https://github.com/faressc/dl4ad/blob/main/extras/machine_learning_history.md)
+- [Neural Audio Systems Milestones](https://github.com/faressc/dl4ad/blob/main/extras/neural_audio_systems_milestones.md)
 
 **TU Berlin Modules**
 
