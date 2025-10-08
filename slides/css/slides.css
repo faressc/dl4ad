@@ -265,17 +265,17 @@
   top: -0.5vw;
   display: flex;
   align-items: center;
-  padding: 0.8vw;
+  padding: min(0.8vw, 1.4vh);
   background: var(--fs-header-bg);
   backdrop-filter: blur(0.26vw);
   border-radius: 0.2vw;
-  margin-right: 1vw;
+  margin-right: min(2vw, 3vh);
   border: 1px solid var(--fs-border-light);
   box-shadow: 0 0px 1vw var(--fs-shadow-color-light);
 }
 
 .header-logo {
-  height: 2.9vw;
+  height: min(2.6vw, 4.65vh);
   width: auto;
   object-fit: contain;
   opacity: 0.8;
@@ -286,7 +286,7 @@
     bottom: 0px;
     left: 0;
     width: 100%;
-    height: 4.2vw;
+    height: min(4.2vw, 6.5vh);
     background: transparent;
     backdrop-filter: blur(0.5vw);
     z-index: 1000;
@@ -301,7 +301,7 @@
     align-items: center;
     width: 100%;
     padding: 0 1.5vw 1.9vw 1.5vw;
-    font-size:  1.6vw;
+    font-size:  min(1.4vw, 2.5vh);
     letter-spacing: -0.02em;
 }
 
