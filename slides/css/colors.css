@@ -8,7 +8,6 @@
   --fs-link-color: #55A49F;
   --fs-link-color-light: #D6FCB7;
   --fs-link-color-hover: #FE938C;
-  --fs-fragment-select-color: rgb(110, 82, 82);
   --fs-fragment-select-light: #EDAF97;
   --fs-fragment-select-color-1: #77af49;
 }
@@ -33,6 +32,7 @@
   --fs-surface-alt: #bf85fc32;
   --fs-overlay: rgba(255, 255, 255, 0.96);
   --fs-header-bg: #fafafa;
+  --fs-fragment-select-color: rgba(230, 152, 145, 0.921);
 }
 
 /* Dark theme for presentations */
@@ -55,4 +55,5 @@
   --fs-surface-alt: rgba(191, 133, 252, 0.1);
   --fs-overlay: rgba(36, 37, 41, 0.96);
   --fs-header-bg: #242529;
+  --fs-fragment-select-color: rgb(110, 82, 82);
 }

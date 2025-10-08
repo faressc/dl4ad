@@ -391,13 +391,13 @@
 .tile {
   background: var(--fs-surface);
   border: 1px solid var(--fs-border);
-  border-radius: 8px;
+  border-radius: 16px;
   padding: 40px 30px;
   box-shadow: 0 0px 20px var(--fs-shadow-color-light);
 }
 
 .tile h3 {
-  font-size: 0.7em;
+  font-size: 0.9em;
   color: var(--fs-text-color);
   margin-top: 5px;
   margin-bottom: 20px;
@@ -407,15 +407,15 @@
 
 .tile-description {
   color: var(--fs-text-muted-color);
-  height: 150px;
-  font-size: 0.5em;
+  height: auto;
+  font-size: 0.65em;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .tile-applications {
   color: var(--fs-text-subtle-color);
-  font-size: 0.5em;
+  font-size: 0.65em;
   font-style: italic;
   padding-top: 15px;
   border-top: 1px solid var(--fs-border);
@@ -450,7 +450,7 @@
 
 .fragment.select.visible.tile-description {
   background: none;
-  color: var(--fs-fragment-select-text-color);
+  /* color: var(--fs-fragment-select-text-color); */
 }
 
 .fragment.appear-table {
@@ -509,7 +509,7 @@
 }
 
 .reveal .slides section .fragment.select {
-  transition: 5s;
+  transition: 2s;
 }
 
 /*********************************************
@@ -526,7 +526,7 @@
   box-shadow: 0 4px 20px var(--fs-shadow-color-light);
   border: 1px solid var(--fs-border);
   font-family: var(--fs-main-font);
-  font-size: 0.85em;
+  font-size: 1.1em;
   max-width: 95%;
 }
 
@@ -535,7 +535,7 @@
   color: var(--fs-heading-color);
   font-family: var(--fs-heading-font);
   font-weight: 600;
-  font-size: 0.9em;
+  font-size: 1.0em;
   letter-spacing: 0.02em;
   text-align: left;
   padding: 12px 20px;
