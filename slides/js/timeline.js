@@ -49,19 +49,20 @@ class TimelineController {
             startYear: this.getCSSVariable(line, '--start-year') || null,
             endYear: this.getCSSVariable(line, '--end-year') || null,
             itemsInTimeline: this.countItemsInTimeline(line),
-            timelineContainer: line.closest('.timeline-container') || null
+            timeline: line.closest('.timeline') || null
         }));
         
         console.log(`Found ${this.lines.length} timeline lines:`, this.lines);
     }
     
     processLines() {
+        // Process each line to set initial coordinates based on year and timeline items
         for (const lineData of this.lines) {
-            const { element, id, year, startYear, endYear, itemsInTimeline, timelineContainer } = lineData;
+            const { element, id, year, startYear, endYear, itemsInTimeline, timeline } = lineData;
             
             let itemIndex = -1;
 
-            const timelineItems = timelineContainer.querySelectorAll('.timeline-item');
+            const timelineItems = timeline.querySelectorAll('.timeline-item');
             for (const timelineItem of timelineItems) {
                 if (this.getCSSVariable(timelineItem, '--year') === year) {
                     itemIndex = Array.from(timelineItems).indexOf(timelineItem);
@@ -74,11 +75,12 @@ class TimelineController {
                 continue;
             }
 
-            const x1 = (year - startYear) / (endYear - startYear) * (100 - 2.2) + 1.1;
+            const x1 = (year - startYear) / (endYear - startYear) * (100 - 1.4) + 0.7;
+
             this.setLineX1(id, `${x1}%`);
-            let x2 = (parseFloat(itemIndex) + 0.5) / itemsInTimeline * 100;
+            let x2 = (parseFloat(itemIndex) + 0.5) / (itemsInTimeline) * 100;
             this.setLineX2(id, `${x2}%`);
-            this.setLineY1(id, "20px");
+            this.setLineY1(id, "25px");
             this.setLineY2(id, "35px");
         }
     }
@@ -151,10 +153,10 @@ class TimelineController {
 
     countItemsInTimeline(line) {
         // Count timeline items associated with this line
-        const timelineContainer = line.closest('.timeline-container');
-        if (!timelineContainer) return 0;
+        const timeline = line.closest('.timeline');
+        if (!timeline) return 0;
         
-        const items = timelineContainer.querySelectorAll('.timeline-item');
+        const items = timeline.querySelectorAll('.timeline-item');
         return items.length;
     }
 

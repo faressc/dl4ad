@@ -17,6 +17,7 @@
   --fs-link-color-hover: #FE938C;
   --fs-fragment-select-color: rgb(110, 82, 82);
   --fs-fragment-select-light: #EDAF97;
+  --fs-fragment-select-color-1: #77af49;
 }
 
 [data-theme="light"] {
@@ -344,7 +345,7 @@
 }
 
 .reveal h2 {
-  margin: 24px 0 50px 0;
+  margin: 4px 0 50px 0;
   font-weight: 700;
   letter-spacing: 0.03em;
 }
@@ -628,7 +629,7 @@
 }
 
 .tile h3 {
-  font-size: 1.2rem;
+  font-size: 0.7em;
   color: var(--fs-text-color);
   margin-top: 5px;
   margin-bottom: 20px;
@@ -639,14 +640,14 @@
 .tile-description {
   color: var(--fs-text-muted-color);
   height: 150px;
-  font-size: 1rem;
+  font-size: 0.5em;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
 .tile-applications {
   color: var(--fs-text-subtle-color);
-  font-size: 0.9rem;
+  font-size: 0.9em;
   font-style: italic;
   padding-top: 15px;
   border-top: 1px solid var(--fs-border);
@@ -656,6 +657,19 @@
   font-weight: 600;
   color: var(--fs-text-muted-color);
   margin-bottom: 5px;
+}
+
+.tile.color-0 {
+  background: var(--fs-fragment-select-light);
+}
+
+.tile.color-1 {
+  background: var(--fs-link-color-light);
+}
+
+.tile.color-2 {
+  background: var(--fs-shadow-color-light);
+  color: var(--fs-highlight-color);
 }
 
 /*********************************************
@@ -677,6 +691,53 @@
 
 .fragment.appear-table.visible {
   display: table-row;
+}
+
+.fragment.appear-vanish {
+  display: none !important;
+}
+
+.fragment.appear-vanish.current-fragment {
+  display: block !important;
+}
+
+.fragment.appear-vanish:not(.current-fragment).visible {
+  display: none !important;
+}
+
+.fragment.appear-vanish.flex.current-fragment {
+  display: flex !important;
+}
+
+.fragment.vanish {
+  display: block;
+}
+
+.fragment.vanish.visible {
+  display: none !important;
+}
+
+.fragment.vanish.current-fragment {
+  display: none !important;
+}
+
+.fragment.vanish:not(.current-fragment).visible {
+  display: none !important;
+}
+
+.fragment.color-0.visible {
+  border-color: var(--fs-fragment-select-light);
+  color: var(--fs-fragment-select-light) !important;
+}
+
+.fragment.color-1.visible {
+  border-color: var(--fs-fragment-select-color-1);
+  color: var(--fs-fragment-select-color-1) !important;
+}
+
+.fragment.color-2.visible {
+  border-color: var(--fs-shadow-color);
+  color: var(--fs-shadow-color) !important;
 }
 
 .reveal .slides section .fragment.select {
@@ -875,14 +936,14 @@
     color: var(--fs-heading-color);
     font-family: var(--fs-heading-font);
     font-weight: 600;
-    font-size: 0.6em;
+    font-size: 0.8em;
     margin-bottom: 10px;
     text-align: center;
 }
 
 .timeline-text {
     color: var(--fs-text-muted-color);
-    font-size: 0.35em;
+    font-size: 0.5em;
     line-height: 1.4;
     text-align: left;
 }
@@ -908,7 +969,7 @@
 }
 
 .timeline-dot {
-    width: 2.2%;
+    width: 1.4%;
     aspect-ratio: 1 / 1;
     background: var(--fs-background-color);
     border: 3px solid var(--fs-link-color);
@@ -919,7 +980,7 @@
     top: -8px;
     z-index: 3;
     pointer-events: auto;
-    left: calc((var(--year) - var(--start-year)) / (var(--end-year) - var(--start-year)) * (100% - 2.2%) + 1.1%);
+    left: calc((var(--year) - var(--start-year)) / (var(--end-year) - var(--start-year)) * (100% - 1.4%) + 0.7%);
     top: 0px;
 }
 
@@ -930,7 +991,6 @@
     align-items: center;
     z-index: 2;
     flex: 1;
-    max-width: 300px;
     margin-top: 40px;
 }
 
@@ -940,20 +1000,20 @@
 }
 
 .timeline-year {
-    font-size: 0.45em;
+    font-size: 0.6em;
     font-weight: bold;
     color: var(--fs-link-color);
     margin-bottom: 2px;
 }
 
 .timeline-name {
-    font-size: 0.4em;
+    font-size: 0.5em;
     font-weight: 600;
     color: var(--fs-heading-color);
 }
 
 .timeline-author {
-    font-size: 0.3em;
+    font-size: 0.4em;
     color: var(--fs-text-muted-color);
 }
 
@@ -974,4 +1034,28 @@
   position: relative;
   stroke: var(--fs-shadow-color);
   stroke-width: 2px;
+}
+
+.timeline-purple .timeline-dot {
+  border-color: var(--fs-highlight-background);
+}
+
+.timeline-purple.timeline::before {
+  background: var(--fs-highlight-background);
+}
+
+.timeline-purple .timeline-year {
+  color: var(--fs-highlight-background);
+}
+
+.timeline-secondary .timeline-year {
+    font-size: 0.5em;
+    font-weight: 600;
+    margin-bottom: 0px;
+    line-height: 1em;
+}
+
+.timeline-secondary .timeline-name {
+    font-size: 0.4em;
+    font-weight: 400;
 }
