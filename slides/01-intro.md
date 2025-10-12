@@ -326,7 +326,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 <ul class="small">
     <li>README with clear, step-by-step instructions for running your code</li>
-    <li>Environment setup file (<code>requirements.txt</code>, <code>env.yml</code>, or <code>pyproject.toml</code>)</li>
+    <li>Environment setup file (<code>requirements.txt</code>)</li>
     <li>Well-commented source code</li>
 </ul>
 
