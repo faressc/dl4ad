@@ -133,8 +133,8 @@ Notes:
         </ul>
         <strong>Where?</strong>
         <ul>
-            <li>Resources: Slides and notebooks available on the course repository</li>
-            <li>Project selection: On ISIS</li>
+            <li>Learning resources: Slides, Jupyter notebooks and more available on the course repository</li>
+            <li>Project proposals/selection and organizational info: On ISIS</li>
         </ul>
     </div>
     <div style="flex: 0 0 450px;">
@@ -152,6 +152,25 @@ Notes:
 
 Note:
     - New branch at the end of the semester
+
+---
+
+## Prerequisites
+
+- Python Knowledge – [Python and Numpy Refresher](https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/python-colab.ipynb)
+- Linear Algebra – [Linear Algebra Review](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf) / [UDL Book Appendix B](https://github.com/udlbook/udlbook)
+- Calculus – [Calculus Review](https://people.uncw.edu/hermanr/pde1/pdebook/CalcRev.pdf) / [UDL Book Appendix B](https://github.com/udlbook/udlbook)
+- Probability Theory– [Probability Theory Review](https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
+- Statistics – [Statistics Cheat Sheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
+
+**Formal requirements:**
+
+<div class="highlight">
+    <p><em>Signale und Systeme</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40700">40700</a>, <em>Digitale Signalverarbeitung</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10002">10002</a>, or equivalent</p>
+    <p><em>Empirisch-wissenschaftliches Arbeiten</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10390">10390</a> or equivalent</p>
+</div>
+
+Note: If you don't know if your course counts, drop me an email.
 
 ---
 
@@ -196,6 +215,10 @@ Note:
         <tr>
             <td class="date">20.11.2025</td>
             <td>Autoencoders / Transformers</td>
+        </tr>
+        <tr class="fragment custom appear-table highlight">
+            <td class="date">23.11.2025</td>
+            <td>Project Proposal Deadline & Group Selection</td>
         </tr>
         <tr>
             <td class="date">27.11.2025</td>
@@ -281,17 +304,17 @@ Note:
             <li>Your matriculation number</li>
             <li>Course of Study</li>
             <li>University Email Address</li>
-            <li>Evidence of completion of the modules "Signale und Systeme" or "Digitale Signalverarbeitung" (e.g. excerpt from certificate of grades)</li>
+            <li>Evidence of completion of the formal requirements "Signale und Systeme" or "Digitale Signalverarbeitung" and "Empirisch-wissenschaftliches Arbeiten" (e.g., excerpt from certificate of grades) or equivalent</li>
         </ul>
     </div>
     <div>
-        <strong>Note:</strong> The course is limited to 16 participants (4 groups of 4). Selection will be based on a lottery. After receiving confirmation, enroll in MOSES until 6. November 2025.
+        <strong>Note:</strong> The course is limited to 16 participants. Selection will be based on a lottery. After receiving confirmation, enroll in MOSES until 6. November 2025.
     </div>
 </div>
 
 ---
 
-## Assessment – DL4AD
+## Graded Deliverables
 
 **Project Presentation** (1/3 Grade) – *Date:* 18.12.2025
 
@@ -316,7 +339,7 @@ Note:
 
 ---
 
-## Module Information
+## Overarching Module
 
 - This course is part of the module *Machine Learning and Big Data Processing with Audio and Music* [11005](https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/beschreibung/anzeigen.html?number=11005) (6 ECTS)
 - The module consists of:
@@ -324,29 +347,35 @@ Note:
     - *Deep Learning for Audio Data* [13575](https://moseskonto.tu-berlin.de/moses/veranstaltungen/lehrveranstaltungsvorlagen/anzeigen.html?veranstaltungsvorlage=13575)
 - AKT students can take this course as part of *Wahlpflichtbereich Vertiefung*
 
-### Grading
+**Grading:**
 
 - Project in Deep Learning for Audio Data (2/3 Grade)
 - Lecture excercises in Music Information Retrieval und Machine Learning für Audio (1/3 Grade)
 
 ---
 
-## Prerequisites
+## Projects
 
-- Python Knowledge – [Python and Numpy Refresher](https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/python-colab.ipynb)
-- Linear Algebra – [Linear Algebra Review](https://see.stanford.edu/materials/aimlcs229/cs229-linalg.pdf) / [UDL Book Appendix B](https://github.com/udlbook/udlbook)
-- Calculus – [Calculus Review](https://people.uncw.edu/hermanr/pde1/pdebook/CalcRev.pdf) / [UDL Book Appendix B](https://github.com/udlbook/udlbook)
-- Probability Theory– [Probability Theory Review](https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
-- Statistics – [Statistics Cheat Sheet](https://stanford.edu/~shervine/teaching/cme-106/cheatsheet-statistics) / [UDL Book Appendix C](https://github.com/udlbook/udlbook)
-
-**Formal requirements:**
-
-<div class="highlight">
-    <p><em>Signale und Systeme</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=40700">40700</a>, <em>Digitale Signalverarbeitung</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10002">10002</a>, or equivalent</p>
-    <p><em>Empirisch-wissenschaftliches Arbeiten</em> <a href="https://moseskonto.tu-berlin.de/moses/modultransfersystem/bolognamodule/ansehen.html?nummer=10390">10390</a> or equivalent</p>
+<div style="display: flex; flex-direction: column; gap: 20px; font-size: 0.9em;">
+    <div>
+        <strong>Project Proposal Process:</strong>
+        <ul>
+            <li>Submit your project proposal starting now</li>
+            <li>Receive feedback and incorporate it into your proposal</li>
+            <li><strong>Project proposal deadline:</strong> 23.11.2025</li>
+        </ul>
+    </div>
+    <div>
+        <strong>Group Formation & Registration:</strong>
+        <ul>
+            <li>4 groups of 4 students</li>
+            <li>After the proposal deadline, most appropriate proposals will be selected</li>
+            <li>Project proposers are guaranteed a spot in their proposed project group</li>
+            <li>Project group selection opens on ISIS after confirmation</li>
+            <li><em>First come, first served</em> basis for remaining spots</li>
+        </ul>
+    </div>
 </div>
-
-Note: If you don't know if your course counts, drop me an email.
 
 ---
 
