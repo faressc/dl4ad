@@ -788,7 +788,7 @@ Notes:
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="3"></div>
+<div class="fragment" data-fragment-index="4"></div>
 
 <div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 60px;">
     <h3>Neural Networks for Piano Transcription
