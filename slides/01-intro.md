@@ -406,70 +406,8 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Calculus & Linear Algebra</div>
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
-        <div class="timeline-dot fragment custom select" data-fragment-index="0" style="--year: 1676;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="0" style="--year: 1676;">
-            <div class="timeline-content">
-                <div class="timeline-year">1676</div>
-                <div class="timeline-name">Chain Rule</div>
-                <div class="timeline-author">Leibniz, G. W.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1676;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="3" style="--year: 1805;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="3" style="--year: 1805;">
-            <div class="timeline-content">
-                <div class="timeline-year">1805</div>
-                <div class="timeline-name">Least Squares</div>
-                <div class="timeline-author">Legendre, A. M.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1805;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="6" style="--year: 1809;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="6" style="--year: 1809;">
-            <div class="timeline-content">
-                <div class="timeline-year">1809</div>
-                <div class="timeline-name">Normal Equations</div>
-                <div class="timeline-author">Gauss, C. F.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1809;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="9" style="--year: 1847;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="9" style="--year: 1847;">
-            <div class="timeline-content">
-                <div class="timeline-year">1847</div>
-                <div class="timeline-name">Gradient Descent</div>
-                <div class="timeline-author">Cauchy, A. L.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1847;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="12" style="--year: 1858;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="12" style="--year: 1858;">
-            <div class="timeline-content">
-                <div class="timeline-year">1858</div>
-                <div class="timeline-name">Eigenvalue Theory</div>
-                <div class="timeline-author">Cayley & Hamilton</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1858;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="15" style="--year: 1901;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="15" style="--year: 1901;">
-            <div class="timeline-content">
-                <div class="timeline-year">1901</div>
-                <div class="timeline-name">PCA</div>
-                <div class="timeline-author">Pearson, K.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1901;"></div>
-        <div class="timeline-dot" style="--year: 1951;"></div>
-        <div class="timeline-item" style="--year: 1951;">
-            <div class="timeline-content">
-            <div class="timeline-year">1951</div>
-            <div class="timeline-name">Stochastic Gradient Descent</div>
-            <div class="timeline-author">Robbins & Monro</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1951;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:3,1809:6,1847:9,1858:12,1901:15">
+        {{TIMELINE:timeline_calculus_linear_algebra}}
     </div>
 </div>
 
@@ -478,52 +416,8 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
-        <div class="timeline-dot fragment custom select" data-fragment-index="18" style="--year: 1763;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="18" style="--year: 1763;">
-            <div class="timeline-content">
-                <div class="timeline-year">1763</div>
-                <div class="timeline-name">Bayes' Theorem</div>
-                <div class="timeline-author">Bayes, T.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1763;"></div>
-        <div class="timeline-dot" style="--year: 1812;"></div>
-        <div class="timeline-item" style="--year: 1812;">
-            <div class="timeline-content">
-                <div class="timeline-year">1812</div>
-                <div class="timeline-name">Bayesian Probability</div>
-                <div class="timeline-author">Laplace, P. S.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1812;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="21" style="--year: 1815;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="21" style="--year: 1815;">
-            <div class="timeline-content">
-                <div class="timeline-year">1815</div>
-                <div class="timeline-name">Gaussian Distribution</div>
-                <div class="timeline-author">Gauss, C. F.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1815;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="24" style="--year: 1830;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="24" style="--year: 1830;">
-            <div class="timeline-content">
-                <div class="timeline-year">1830</div>
-                <div class="timeline-name">Central Limit Theorem</div>
-                <div class="timeline-author">Various</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1830;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="27" style="--year: 1922;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="27" style="--year: 1922;">
-            <div class="timeline-content">
-                <div class="timeline-year">1922</div>
-                <div class="timeline-name">Maximum Likelihood</div>
-                <div class="timeline-author">Fisher, R.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1922;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:18,1815:21,1830:24,1922:27">
+        {{TIMELINE:timeline_probability_statistics}}
     </div>
 </div>
 
@@ -533,42 +427,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Foundations of algorithmic thinking and information theory</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
-        <div class="timeline-dot" style="--year: 1843;"></div>
-        <div class="timeline-item" style="--year: 1843;">
-            <div class="timeline-content">
-                <div class="timeline-year">1843</div>
-                <div class="timeline-name">First Computer Algorithm</div>
-                <div class="timeline-author">Lovelace, A.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1843;"></div>
-        <div class="timeline-dot" style="--year: 1936;"></div>
-        <div class="timeline-item" style="--year: 1936;">
-            <div class="timeline-content">
-                <div class="timeline-year">1936</div>
-                <div class="timeline-name">Turing Machine</div>
-                <div class="timeline-author">Turing, A.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1936;"></div>
-        <div class="timeline-dot" style="--year: 1947;"></div>
-        <div class="timeline-item" style="--year: 1947;">
-            <div class="timeline-content">
-                <div class="timeline-year">1947</div>
-                <div class="timeline-name">Linear Programming</div>
-                <div class="timeline-author">Dantzig, G.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1947;"></div>
-        <div class="timeline-dot" style="--year: 1948;"></div>
-        <div class="timeline-item" style="--year: 1948;">
-            <div class="timeline-content">
-                <div class="timeline-year">1948</div>
-                <div class="timeline-name">Information Theory</div>
-                <div class="timeline-author">Shannon, C.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1948;"></div>
+        {{TIMELINE:timeline_information_computation}}
     </div>
 </div>
 
@@ -708,79 +567,8 @@ Notes:
         <div class="timeline-title">Architectures & Layers</div>
         <div class="timeline-text">Evolution of network architectures and layer innovations</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
-        <div class="timeline-dot" style="--year: 1943;"></div>
-        <div class="timeline-item" style="--year: 1943;">
-            <div class="timeline-content">
-                <div class="timeline-year">1943</div>
-                <div class="timeline-name">Artificial Neurons</div>
-                <div class="timeline-author">McCulloch & Pitts</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1943;"></div>
-        <div class="timeline-dot" style="--year: 1957;"></div>
-        <div class="timeline-item" style="--year: 1957;">
-            <div class="timeline-content">
-                <div class="timeline-year">1957</div>
-                <div class="timeline-name">Perceptron</div>
-                <div class="timeline-author">Rosenblatt, F.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1957;"></div>
-        <div class="timeline-dot" style="--year: 1965;"></div>
-        <div class="timeline-item" style="--year: 1965;">
-            <div class="timeline-content">
-                <div class="timeline-year">1965</div>
-                <div class="timeline-name">Deep Networks</div>
-                <div class="timeline-author">Ivakhnenko & Lapa</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1965;"></div>
-        <div class="timeline-dot" style="--year: 1979;"></div>
-        <div class="timeline-item" style="--year: 1979;">
-            <div class="timeline-content">
-                <div class="timeline-year">1979</div>
-                <div class="timeline-name">Convolutional Networks</div>
-                <div class="timeline-author">Fukushima, K.</div>
-            </div>
-        </div> 
-        <div class="timeline-connector" style="--year: 1979;"></div>
-        <div class="timeline-dot" style="--year: 1982;"></div>
-        <div class="timeline-item" style="--year: 1982;">
-            <div class="timeline-content">
-                <div class="timeline-year">1982</div>
-                <div class="timeline-name">Recurrent Networks</div>
-                <div class="timeline-author">Hopfield</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1982;"></div>
-        <div class="timeline-dot" style="--year: 1989;"></div>
-        <div class="timeline-item" style="--year: 1989;">
-            <div class="timeline-content">
-                <div class="timeline-year">1989</div>
-                <div class="timeline-name">LSTM</div>
-                <div class="timeline-author">Hochreiter & Schmidhuber</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1989;"></div>
-        <div class="timeline-dot" style="--year: 2006;"></div>
-        <div class="timeline-item" style="--year: 2006;">
-            <div class="timeline-content">
-                <div class="timeline-year">2006</div>
-                <div class="timeline-name">Deep Belief Networks</div>
-                <div class="timeline-author">Hinton, G. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2006;"></div>
-        <div class="timeline-dot" style="--year: 2012;"></div>
-        <div class="timeline-item" style="--year: 2012;">
-            <div class="timeline-content">
-                <div class="timeline-year">2012</div>
-                <div class="timeline-name">AlexNet</div>
-                <div class="timeline-author">Krizhevsky et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2012;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1943:0,1957:1,1965:2,1979:3,1982:4,1989:5,2006:6,2012:7">
+        {{TIMELINE:timeline_early_nn_architectures}}
     </div>
 </div>
 
@@ -867,78 +655,7 @@ Notes:
         <div class="timeline-text">Evolution of network architectures and layer innovations</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
-        <div class="timeline-dot" style="--year: 1943;"></div>
-        <div class="timeline-item" style="--year: 1943;">
-            <div class="timeline-content">
-                <div class="timeline-year">1943</div>
-                <div class="timeline-name">Artificial Neurons</div>
-                <div class="timeline-author">McCulloch & Pitts</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1943;"></div>
-        <div class="timeline-dot" style="--year: 1957;"></div>
-        <div class="timeline-item" style="--year: 1957;">
-            <div class="timeline-content">
-                <div class="timeline-year">1957</div>
-                <div class="timeline-name">Perceptron</div>
-                <div class="timeline-author">Rosenblatt, F.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1957;"></div>
-        <div class="timeline-dot" style="--year: 1965;"></div>
-        <div class="timeline-item" style="--year: 1965;">
-            <div class="timeline-content">
-                <div class="timeline-year">1965</div>
-                <div class="timeline-name">Deep Networks</div>
-                <div class="timeline-author">Ivakhnenko & Lapa</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1965;"></div>
-        <div class="timeline-dot" style="--year: 1979;"></div>
-        <div class="timeline-item" style="--year: 1979;">
-            <div class="timeline-content">
-                <div class="timeline-year">1979</div>
-                <div class="timeline-name">Convolutional Networks</div>
-                <div class="timeline-author">Fukushima, K.</div>
-            </div>
-        </div> 
-        <div class="timeline-connector" style="--year: 1979;"></div>
-        <div class="timeline-dot" style="--year: 1982;"></div>
-        <div class="timeline-item" style="--year: 1982;">
-            <div class="timeline-content">
-                <div class="timeline-year">1982</div>
-                <div class="timeline-name">Recurrent Networks</div>
-                <div class="timeline-author">Hopfield</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1982;"></div>
-        <div class="timeline-dot" style="--year: 1989;"></div>
-        <div class="timeline-item" style="--year: 1989;">
-            <div class="timeline-content">
-                <div class="timeline-year">1989</div>
-                <div class="timeline-name">LSTM</div>
-                <div class="timeline-author">Hochreiter & Schmidhuber</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1989;"></div>
-        <div class="timeline-dot" style="--year: 2006;"></div>
-        <div class="timeline-item" style="--year: 2006;">
-            <div class="timeline-content">
-                <div class="timeline-year">2006</div>
-                <div class="timeline-name">Deep Belief Networks</div>
-                <div class="timeline-author">Hinton, G. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2006;"></div>
-        <div class="timeline-dot" style="--year: 2012;"></div>
-        <div class="timeline-item" style="--year: 2012;">
-            <div class="timeline-content">
-                <div class="timeline-year">2012</div>
-                <div class="timeline-name">AlexNet</div>
-                <div class="timeline-author">Krizhevsky et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2012;"></div>
+        {{TIMELINE:timeline_early_nn_architectures}}
     </div>
 </div>
 
@@ -947,70 +664,8 @@ Notes:
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Methods for efficient learning and gradient-based optimization</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
-        <div class="timeline-dot fragment custom select" data-fragment-index="0"  style="--year: 1967;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="0"  style="--year: 1967;">
-            <div class="timeline-content">
-                <div class="timeline-year">1967</div>
-                <div class="timeline-name">Stochastic Gradient Descent for NN</div>
-                <div class="timeline-author">Amari, S.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1967;"></div>
-        <div class="timeline-dot" style="--year: 1970;"></div>
-        <div class="timeline-item" style="--year: 1970;">
-            <div class="timeline-content">
-                <div class="timeline-year">1970</div>
-                <div class="timeline-name">Automatic Differentiation</div>
-                <div class="timeline-author">Linnainmaa, S.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1970;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="3" style="--year: 1986;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="3" style="--year: 1986;">
-            <div class="timeline-content">
-                <div class="timeline-year">1986</div>
-                <div class="timeline-name">Backpropagation for NN</div>
-                <div class="timeline-author">Hinton et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1986;"></div>
-        <div class="timeline-dot" style="--year: 1992;"></div>
-        <div class="timeline-item" style="--year: 1992;">
-            <div class="timeline-content">
-                <div class="timeline-year">1992</div>
-                <div class="timeline-name">Weight Decay</div>
-                <div class="timeline-author">Krogh & Hertz</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1992;"></div>
-        <div class="timeline-dot" style="--year: 2009;"></div>
-        <div class="timeline-item" style="--year: 2009;">
-            <div class="timeline-content">
-            <div class="timeline-year">2009</div>
-            <div class="timeline-name">Convolutional DBNs & Prob. Max Pooling</div>
-            <div class="timeline-author">Lee, H. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2009;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="6" style="--year: 2010;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="6" style="--year: 2010;">
-            <div class="timeline-content">
-                <div class="timeline-year">2010</div>
-                <div class="timeline-name">ReLU & Xavier Init</div>
-                <div class="timeline-author">Nair, Hinton & Glorot</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2010;"></div>
-        <div class="timeline-dot" style="--year: 2012;"></div>
-        <div class="timeline-item" style="--year: 2012;">
-            <div class="timeline-content">
-                <div class="timeline-year">2012</div>
-                <div class="timeline-name">Dropout</div>
-                <div class="timeline-author">Hinton, G. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2012;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1986:3,2010:6">
+        {{TIMELINE:timeline_early_nn_training}}
     </div>
 </div>
 
@@ -1019,61 +674,8 @@ Notes:
         <div class="timeline-title">Software & Datasets</div>
         <div class="timeline-text">Tools, platforms, and milestones that enabled practical deep learning</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
-        <div class="timeline-dot" style="--year: 1997;"></div>
-        <div class="timeline-item" style="--year: 1997;">
-            <div class="timeline-content">
-                <div class="timeline-year">1997</div>
-                <div class="timeline-name">Deep Blue</div>
-                <div class="timeline-author">IBM</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1997;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="9" style="--year: 1998;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="9" style="--year: 1998;">
-            <div class="timeline-content">
-                <div class="timeline-year">1998</div>
-                <div class="timeline-name">MNIST Dataset & LeNet 5</div>
-                <div class="timeline-author">LeCun, Y. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 1998;"></div>
-        <div class="timeline-dot" style="--year: 2002;"></div>
-        <div class="timeline-item" style="--year: 2002;">
-            <div class="timeline-content">
-                <div class="timeline-year">2002</div>
-                <div class="timeline-name">Torch Framework</div>
-                <div class="timeline-author">Torch Team</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2002;"></div>
-        <div class="timeline-dot" style="--year: 2007;"></div>
-        <div class="timeline-item" style="--year: 2007;">
-            <div class="timeline-content">
-                <div class="timeline-year">2007</div>
-                <div class="timeline-name">CUDA Platform</div>
-                <div class="timeline-author">NVIDIA</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2007;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="12" style="--year: 2009;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="12" style="--year: 2009;">
-            <div class="timeline-content">
-                <div class="timeline-year">2009</div>
-                <div class="timeline-name">ImageNet Dataset</div>
-                <div class="timeline-author">Deng, J. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2009;"></div>
-        <div class="timeline-dot" style="--year: 2011;"></div>
-        <div class="timeline-item" style="--year: 2011;">
-            <div class="timeline-content">
-                <div class="timeline-year">2011</div>
-                <div class="timeline-name">Siri</div>
-                <div class="timeline-author">Apple Inc.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2011;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1998:9,2009:12">
+        {{TIMELINE:timeline_early_nn_software}}
     </div>
 </div>
 
@@ -1156,119 +758,10 @@ Notes:
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; width: 80%; gap: 20px;">
             <div class="timeline timeline-secondary" style="width: 98%; --start-year: 1957; --end-year: 2012;">
-                <div class="timeline-dot" style="--year: 1957;"></div>
-                <div class="timeline-item" style="--year: 1957;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1957</div>
-                        <div class="timeline-name">Perceptron</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1957;"></div>
-                <div class="timeline-dot" style="--year: 1979;"></div>
-                <div class="timeline-item" style="--year: 1979;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1979</div>
-                        <div class="timeline-name">CNN</div>
-                    </div>
-                </div> 
-                <div class="timeline-connector" style="--year: 1979;"></div>
-                <div class="timeline-dot" style="--year: 1982;"></div>
-                <div class="timeline-item" style="--year: 1982;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1982</div>
-                        <div class="timeline-name">RNN</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1982;"></div>
-                <div class="timeline-dot" style="--year: 1986;"></div>
-                <div class="timeline-item" style="--year: 1986;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1986</div>
-                        <div class="timeline-name">Backpropagation</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1986;"></div>
-                <div class="timeline-dot" style="--year: 2006;"></div>
-                <div class="timeline-item" style="--year: 2006;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2006</div>
-                        <div class="timeline-name">Deep Belief Networks</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2006;"></div>
-                <div class="timeline-dot" style="--year: 2012;"></div>
-                <div class="timeline-item" style="--year: 2012;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2012</div>
-                        <div class="timeline-name">AlexNet</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2012;"></div>
+                {{TIMELINE:timeline_early_milestones}}
             </div>
-            <div class="timeline timeline-purple" style="width: 98%; --start-year: 1957; --end-year: 2012;">
-                <div class="timeline-dot" style="--year: 1960;"></div>
-                <div class="timeline-item" style="--year: 1960;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1960</div>
-                        <div class="timeline-name">LMS Filtering</div>
-                        <div class="timeline-author">Widrow & Hoff</div>
-                    </div>
-                </div> 
-                <div class="timeline-connector" style="--year: 1960;"></div>
-                <div class="timeline-dot" style="--year: 1987;"></div>
-                <div class="timeline-item" style="--year: 1987;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1987</div>
-                        <div class="timeline-name">NN for Phoneme Recognition</div>
-                        <div class="timeline-author">Waibel et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1987;"></div>
-                <div class="timeline-dot" style="--year: 1989;"></div>
-                <div class="timeline-item" style="--year: 1989;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1989</div>
-                        <div class="timeline-name">RNN for Symbolic Music Generation</div>
-                        <div class="timeline-author">Todd</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1989;"></div>
-                <div class="timeline-dot" style="--year: 1989.2;"></div>
-                <div class="timeline-item" style="--year: 1989.2;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1989</div>
-                        <div class="timeline-name">Gradient Descent for Musical DSP</div>
-                        <div class="timeline-author">Shynk & Moorer</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1989.2;"></div>
-                <div class="timeline-dot" style="--year: 1997;"></div>
-                <div class="timeline-item" style="--year: 1997;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1997</div>
-                        <div class="timeline-name">NN for Analog Effects Modeling</div>
-                        <div class="timeline-author">Zhang & Duhamel</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1997;"></div>
-                <div class="timeline-dot" style="--year: 1999;"></div>
-                <div class="timeline-item" style="--year: 1999;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1999</div>
-                        <div class="timeline-name">NN for Piano Transcription</div>
-                        <div class="timeline-author">Matija Marolt</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1999;"></div>
-                <div class="timeline-dot" style="--year: 2009;"></div>
-                <div class="timeline-item" style="--year: 2009;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2009</div>
-                        <div class="timeline-name">Audio features with DBN</div>
-                        <div class="timeline-author">Lee et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2009;"></div>
+            <div class="timeline timeline-purple" style="width: 98%; --start-year: 1957; --end-year: 2012;" data-timeline-fragments-select="1960:0,1989:2,1999:5,2009:6">
+                {{TIMELINE:timeline_early_audio_key_milestones}}
             </div>
         </div>
     </div>
@@ -1286,7 +779,7 @@ Notes:
 
 <div class="fragment" data-fragment-index="1"></div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; top: 100%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 100%;">
     <img src="assets/images/01-intro/rnn_symbolic_music_gen.png" alt="RNN for Symbolic Music Generation" style="width: 700px; height: auto;">
     <div class="reference" style="margin: 10px; text-align: center;">
         Todd, P. M. (1989). A Connectionist Approach to Algorithmic Composition. Computer Music Journal, 13(4), 27–43.
@@ -1295,7 +788,7 @@ Notes:
 
 <div class="fragment" data-fragment-index="3"></div>
 
-<div class="fragment appear-vanish" data-fragment-index="4" style="margin-top: 60px;">
+<div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 60px;">
     <h3>Neural Networks for Piano Transcription
     <br><span style="font-weight: normal;">(Matija Marolt)</span></h3>
     <ul>
@@ -1304,7 +797,7 @@ Notes:
     </ul>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px;">
+<div class="fragment appear-vanish" data-fragment-index="6" style="margin-top: 20px;">
     <h3>Unsupervised Audio Feature Learning with Deep Belief Networks<br>
     <span style="font-weight: normal;">(Lee et al.)</span></h3>
     <ul>
@@ -1339,119 +832,10 @@ Notes:
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; width: 80%; gap: 20px;">
             <div class="timeline timeline-secondary" style="width: 98%; --start-year: 1957; --end-year: 2012;">
-                <div class="timeline-dot" style="--year: 1957;"></div>
-                <div class="timeline-item" style="--year: 1957;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1957</div>
-                        <div class="timeline-name">Perceptron</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1957;"></div>
-                <div class="timeline-dot" style="--year: 1979;"></div>
-                <div class="timeline-item" style="--year: 1979;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1979</div>
-                        <div class="timeline-name">CNN</div>
-                    </div>
-                </div> 
-                <div class="timeline-connector" style="--year: 1979;"></div>
-                <div class="timeline-dot" style="--year: 1982;"></div>
-                <div class="timeline-item" style="--year: 1982;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1982</div>
-                        <div class="timeline-name">RNN</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1982;"></div>
-                <div class="timeline-dot" style="--year: 1986;"></div>
-                <div class="timeline-item" style="--year: 1986;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1986</div>
-                        <div class="timeline-name">Backpropagation</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1986;"></div>
-                <div class="timeline-dot" style="--year: 2006;"></div>
-                <div class="timeline-item" style="--year: 2006;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2006</div>
-                        <div class="timeline-name">Deep Belief Networks</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2006;"></div>
-                <div class="timeline-dot" style="--year: 2012;"></div>
-                <div class="timeline-item" style="--year: 2012;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2012</div>
-                        <div class="timeline-name">AlexNet</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2012;"></div>
+                {{TIMELINE:timeline_early_milestones}}
             </div>
-            <div class="timeline timeline-purple" style="width: 98%; --start-year: 1957; --end-year: 2012;">
-                <div class="timeline-dot fragment custom color-0" data-fragment-index="0" style="--year: 1960;"></div>
-                <div class="timeline-item" style="--year: 1960;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-0" data-fragment-index="0">1960</div>
-                        <div class="timeline-name">LMS Filtering</div>
-                        <div class="timeline-author">Widrow & Hoff</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1960;"></div>
-                <div class="timeline-dot fragment custom color-1" data-fragment-index="1" style="--year: 1987;"></div>
-                <div class="timeline-item" style="--year: 1987;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-1" data-fragment-index="1">1987</div>
-                        <div class="timeline-name">NN for Phoneme Recognition</div>
-                        <div class="timeline-author">Waibel et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1987;"></div>
-                <div class="timeline-dot fragment custom color-2" data-fragment-index="2" style="--year: 1989;"></div>
-                <div class="timeline-item" style="--year: 1989;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-2" data-fragment-index="2">1989</div>
-                        <div class="timeline-name">RNN for Symbolic Music Generation</div>
-                        <div class="timeline-author">Todd</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1989;"></div>
-                <div class="timeline-dot fragment custom color-0" data-fragment-index="0" style="--year: 1989.2;"></div>
-                <div class="timeline-item" style="--year: 1989.2;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-0" data-fragment-index="0">1989</div>
-                        <div class="timeline-name">Gradient Descent for Musical DSP</div>
-                        <div class="timeline-author">Shynk & Moorer</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1989.2;"></div>
-                <div class="timeline-dot fragment custom color-0" data-fragment-index="0" style="--year: 1997;"></div>
-                <div class="timeline-item" style="--year: 1997;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-0" data-fragment-index="0">1997</div>
-                        <div class="timeline-name">NN for Analog Effects Modeling</div>
-                        <div class="timeline-author">Zhang & Duhamel</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1997;"></div>
-                <div class="timeline-dot fragment custom color-1" data-fragment-index="1" style="--year: 1999;"></div>
-                <div class="timeline-item" style="--year: 1999;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-1" data-fragment-index="1">1999</div>
-                        <div class="timeline-name">NN for Piano Transcription</div>
-                        <div class="timeline-author">Matija Marolt</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 1999;"></div>
-                <div class="timeline-dot fragment custom color-1" data-fragment-index="1" style="--year: 2009;"></div>
-                <div class="timeline-item" style="--year: 2009;">
-                    <div class="timeline-content">
-                        <div class="timeline-year fragment custom color-1" data-fragment-index="1">2009</div>
-                        <div class="timeline-name">Audio features with DBN</div>
-                        <div class="timeline-author">Lee et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2009;"></div>
+            <div class="timeline timeline-purple" style="width: 98%; --start-year: 1957; --end-year: 2012;" data-timeline-fragments-color-0="1960:0,1989.2:0,1997:0" data-timeline-fragments-color-1="1987:1,1999:1,2009:1" data-timeline-fragments-color-2="1989:2">
+                {{TIMELINE:timeline_early_audio_key_milestones}}
             </div>
         </div>
     </div>
@@ -1500,79 +884,8 @@ Notes:
         <div class="timeline-title">Deep architectures</div>
         <div class="timeline-text">Deep architectures and generative models transforming AI capabilities</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
-        <div class="timeline-dot" style="--year: 2013;"></div>
-        <div class="timeline-item" style="--year: 2013;">
-            <div class="timeline-content">
-                <div class="timeline-year">2013</div>
-                <div class="timeline-name">Variational Autoencoders</div>
-                <div class="timeline-author">Kingma et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2013;"></div>
-        <div class="timeline-dot" style="--year: 2014;"></div>
-        <div class="timeline-item" style="--year: 2014;">
-            <div class="timeline-content">
-                <div class="timeline-year">2014</div>
-                <div class="timeline-name">Generative Adversarial Nets</div>
-                <div class="timeline-author">Goodfellow et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2014;"></div>
-        <div class="timeline-dot" style="--year: 2015;"></div>
-        <div class="timeline-item" style="--year: 2015;">
-            <div class="timeline-content">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-name">ResNet & Diffusion</div>
-                <div class="timeline-author">He et al. & Sohl-Dickstein et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2015;"></div>
-        <div class="timeline-dot" style="--year: 2016;"></div>
-        <div class="timeline-item" style="--year: 2016;">
-            <div class="timeline-content">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-name">Style Transfer & WaveNet</div>
-                <div class="timeline-author">Gatys & van den Oord</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2016;"></div>
-        <div class="timeline-dot" style="--year: 2017;"></div>
-        <div class="timeline-item" style="--year: 2017;">
-            <div class="timeline-content">
-                <div class="timeline-year">2017</div>
-                <div class="timeline-name">Transformers</div>
-                <div class="timeline-author">Vaswani et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2017;"></div>
-        <div class="timeline-dot" style="--year: 2021;"></div>
-        <div class="timeline-item" style="--year: 2021;">
-            <div class="timeline-content">
-                <div class="timeline-year">2021</div>
-                <div class="timeline-name">ViT & CLIP</div>
-                <div class="timeline-author">Dosovitskiy & Radford</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2021;"></div>
-        <div class="timeline-dot" style="--year: 2022;"></div>
-        <div class="timeline-item" style="--year: 2022;">
-            <div class="timeline-content">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-name">Diffusion Transformer</div>
-                <div class="timeline-author">Peebles & Xie</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2022;"></div>
-        <div class="timeline-dot" style="--year: 2023;"></div>
-        <div class="timeline-item" style="--year: 2023;">
-            <div class="timeline-content">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-name">Mamba</div>
-                <div class="timeline-author">Gu & Dao</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2023;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023; " data-timeline-fragments-select="2013:0,2014:1,2015:2,2017:4,2021:6,2022:8">
+        {{TIMELINE:timeline_deep_architectures}}
     </div>
 </div>
 
@@ -1597,21 +910,23 @@ Notes:
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 130%;">
+<div class="fragment" data-fragment-index="3"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 130%;">
     <img src="assets/images/01-intro/transformer.png" alt="Transformer" style="max-width: 550px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 130%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; top: 130%;">
     <img src="assets/images/01-intro/clip.png" alt="CLIP" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., ... & Sutskever, I. (2021). Learning transferable visual models from natural language supervision. In International conference on machine learning (pp. 8748-8763). PmLR.
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; top: 120%;">
+<div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; top: 120%;">
     <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
@@ -1649,78 +964,7 @@ Notes:
         <div class="timeline-text">Deep architectures and generative models transforming AI capabilities</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
-        <div class="timeline-dot" style="--year: 2013;"></div>
-        <div class="timeline-item" style="--year: 2013;">
-            <div class="timeline-content">
-                <div class="timeline-year">2013</div>
-                <div class="timeline-name">Variational Autoencoders</div>
-                <div class="timeline-author">Kingma et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2013;"></div>
-        <div class="timeline-dot" style="--year: 2014;"></div>
-        <div class="timeline-item" style="--year: 2014;">
-            <div class="timeline-content">
-                <div class="timeline-year">2014</div>
-                <div class="timeline-name">Generative Adversarial Nets</div>
-                <div class="timeline-author">Goodfellow et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2014;"></div>
-        <div class="timeline-dot" style="--year: 2015;"></div>
-        <div class="timeline-item" style="--year: 2015;">
-            <div class="timeline-content">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-name">ResNet & Diffusion</div>
-                <div class="timeline-author">He et al. & Sohl-Dickstein et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2015;"></div>
-        <div class="timeline-dot" style="--year: 2016;"></div>
-        <div class="timeline-item" style="--year: 2016;">
-            <div class="timeline-content">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-name">Style Transfer & WaveNet</div>
-                <div class="timeline-author">Gatys & van den Oord</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2016;"></div>
-        <div class="timeline-dot" style="--year: 2017;"></div>
-        <div class="timeline-item" style="--year: 2017;">
-            <div class="timeline-content">
-                <div class="timeline-year">2017</div>
-                <div class="timeline-name">Transformers</div>
-                <div class="timeline-author">Vaswani et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2017;"></div>
-        <div class="timeline-dot" style="--year: 2021;"></div>
-        <div class="timeline-item" style="--year: 2021;">
-            <div class="timeline-content">
-                <div class="timeline-year">2021</div>
-                <div class="timeline-name">ViT & CLIP</div>
-                <div class="timeline-author">Dosovitskiy & Radford</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2021;"></div>
-        <div class="timeline-dot" style="--year: 2022;"></div>
-        <div class="timeline-item" style="--year: 2022;">
-            <div class="timeline-content">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-name">Diffusion Transformer</div>
-                <div class="timeline-author">Peebles & Xie</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2022;"></div>
-        <div class="timeline-dot" style="--year: 2023;"></div>
-        <div class="timeline-item" style="--year: 2023;">
-            <div class="timeline-content">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-name">Mamba</div>
-                <div class="timeline-author">Gu & Dao</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2023;"></div>
+        {{TIMELINE:timeline_deep_architectures}}
     </div>
 </div>
 
@@ -1729,52 +973,8 @@ Notes:
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Advanced learning techniques and representation learning breakthroughs</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
-        <div class="timeline-dot fragment custom select" data-fragment-index="0" style="--year: 2013;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="0" style="--year: 2013;">
-            <div class="timeline-content">
-                <div class="timeline-year">2013</div>
-                <div class="timeline-name">Word2Vec</div>
-                <div class="timeline-author">Mikolov, T. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2013;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="3" style="--year: 2014;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="3" style="--year: 2014;">
-            <div class="timeline-content">
-                <div class="timeline-year">2014</div>
-                <div class="timeline-name">Attention Mechanism</div>
-                <div class="timeline-author">Bahdanau, D. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2014;"></div>
-        <div class="timeline-dot fragment custom select" data-fragment-index="6" style="--year: 2015;"></div>
-        <div class="timeline-item fragment custom select" data-fragment-index="6" style="--year: 2015;">
-            <div class="timeline-content">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-name">BatchNorm & Adam</div>
-                <div class="timeline-author">Ioffe & Kingma</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2015;"></div>
-        <div class="timeline-dot" style="--year: 2016;"></div>
-        <div class="timeline-item" style="--year: 2016;">
-            <div class="timeline-content">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-name">Layer Normalization</div>
-                <div class="timeline-author">Ba, J. L. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2016;"></div>
-        <div class="timeline-dot" style="--year: 2020;"></div>
-        <div class="timeline-item" style="--year: 2020;">
-            <div class="timeline-content">
-                <div class="timeline-year">2020</div>
-                <div class="timeline-name">DDPM</div>
-                <div class="timeline-author">Ho, J. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2020;"></div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2013:0,2014:3,2015:6">
+        {{TIMELINE:timeline_deep_training}}
     </div>
 </div>
 
@@ -1818,60 +1018,7 @@ Notes:
         <div class="timeline-text">Practical deployment and mainstream adoption of deep learning systems</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
-        <div class="timeline-dot" style="--year: 2016;"></div>
-        <div class="timeline-item" style="--year: 2016;">
-            <div class="timeline-content">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-name">AlphaGo</div>
-                <div class="timeline-author">Silver, D. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2016;"></div>
-        <div class="timeline-dot" style="--year: 2017;"></div>
-        <div class="timeline-item" style="--year: 2017;">
-            <div class="timeline-content">
-                <div class="timeline-year">2017</div>
-                <div class="timeline-name">PyTorch</div>
-                <div class="timeline-author">Paszke, A. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2017;"></div>
-        <div class="timeline-dot" style="--year: 2018;"></div>
-        <div class="timeline-item" style="--year: 2018;">
-            <div class="timeline-content">
-                <div class="timeline-year">2018</div>
-                <div class="timeline-name">GPT-1</div>
-                <div class="timeline-author">Radford & Devlin</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2018;"></div>
-        <div class="timeline-dot" style="--year: 2020;"></div>
-        <div class="timeline-item" style="--year: 2020;">
-            <div class="timeline-content">
-                <div class="timeline-year">2020</div>
-                <div class="timeline-name">GPT-3</div>
-                <div class="timeline-author">Brown, T. B. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2020;"></div>
-        <div class="timeline-dot" style="--year: 2022;"></div>
-        <div class="timeline-item" style="--year: 2022;">
-            <div class="timeline-content">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-name">ChatGPT & Stable Diffusion</div>
-                <div class="timeline-author">OpenAI & Stability AI</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2022;"></div>
-        <div class="timeline-dot" style="--year: 2023;"></div>
-        <div class="timeline-item" style="--year: 2023;">
-            <div class="timeline-content">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-name">LLaMA</div>
-                <div class="timeline-author">Touvron, H. et al.</div>
-            </div>
-        </div>
-        <div class="timeline-connector" style="--year: 2023;"></div>
+        {{TIMELINE:timeline_deep_software}}
     </div>
 </div>
 
@@ -1905,134 +1052,10 @@ Notes:
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; width: 80%; gap: 20px;">
             <div class="timeline timeline-secondary" style="width: 98%; --start-year: 2013; --end-year: 2024;">
-                <div class="timeline-dot" style="--year: 2013;"></div>
-                <div class="timeline-item" style="--year: 2013;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2013</div>
-                        <div class="timeline-name">VAE</div>
-                        <div class="timeline-author">Kingma & Welling</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2013;"></div>
-                <div class="timeline-dot" style="--year: 2014;"></div>
-                <div class="timeline-item" style="--year: 2014;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2014</div>
-                        <div class="timeline-name">GAN</div>
-                        <div class="timeline-author">Goodfellow et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2014;"></div>
-                <div class="timeline-dot" style="--year: 2015;"></div>
-                <div class="timeline-item" style="--year: 2015;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2015</div>
-                        <div class="timeline-name">Diffusion</div>
-                        <div class="timeline-author">Sohl-Dickstein et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2015;"></div>
-                <div class="timeline-dot" style="--year: 2017;"></div>
-                <div class="timeline-item" style="--year: 2017;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2017</div>
-                        <div class="timeline-name">Transformers</div>
-                        <div class="timeline-author">Vaswani et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2017;"></div>
-                <div class="timeline-dot" style="--year: 2021;"></div>
-                <div class="timeline-item" style="--year: 2021;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2021</div>
-                        <div class="timeline-name">CLIP</div>
-                        <div class="timeline-author">Dosovitskiy & Radford</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2021;"></div>
-                <div class="timeline-dot" style="--year: 2022;"></div>
-                <div class="timeline-item" style="--year: 2022;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2022</div>
-                        <div class="timeline-name">Diffusion Transformer</div>
-                        <div class="timeline-author">Peebles & Xie</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2022;"></div>
-                <div class="timeline-dot" style="--year: 2023;"></div>
-                <div class="timeline-item" style="--year: 2023;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2023</div>
-                        <div class="timeline-name">Mamba</div>
-                        <div class="timeline-author">Gu & Dao</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2023;"></div>
+                {{TIMELINE:timeline_deep_milestones}}
             </div>
-            <div class="timeline timeline-purple" style="width: 98%; --start-year: 2013; --end-year: 2024;">
-                <div class="timeline-dot" style="--year: 2016;"></div>
-                <div class="timeline-item" style="--year: 2016;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2016</div>
-                        <div class="timeline-name">WaveNet</div>
-                        <div class="timeline-author">Oord et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2016;"></div>
-                <div class="timeline-dot" style="--year: 2017;"></div>
-                <div class="timeline-item" style="--year: 2017;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2017</div>
-                        <div class="timeline-name">Neural Synthesis</div>
-                        <div class="timeline-author">Engel et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2017;"></div>
-                <div class="timeline-dot" style="--year: 2019;"></div>
-                <div class="timeline-item" style="--year: 2019;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2019</div>
-                        <div class="timeline-name">DDSP</div>
-                        <div class="timeline-author">Engel et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2019;"></div>
-                <div class="timeline-dot" style="--year: 2020;"></div>
-                <div class="timeline-item" style="--year: 2020;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2020</div>
-                        <div class="timeline-name">Automatic Mixing</div>
-                        <div class="timeline-author">Steinmetz et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2020;"></div>
-                <div class="timeline-dot" style="--year: 2021;"></div>
-                <div class="timeline-item" style="--year: 2021;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2021</div>
-                        <div class="timeline-name">RAVE</div>
-                        <div class="timeline-author">Caillon & Esling</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2021;"></div>
-                <div class="timeline-dot" style="--year: 2022;"></div>
-                <div class="timeline-item" style="--year: 2022;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2022</div>
-                        <div class="timeline-name">CLAP</div>
-                        <div class="timeline-author">Benjamin, et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2022;"></div>
-                <div class="timeline-dot" style="--year: 2024;"></div>
-                <div class="timeline-item" style="--year: 2024;">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2024</div>
-                        <div class="timeline-name">Stable Audio</div>
-                        <div class="timeline-author">Evans et al.</div>
-                    </div>
-                </div>
-                <div class="timeline-connector" style="--year: 2024;"></div>
+            <div class="timeline timeline-purple" style="width: 98%; --start-year: 2013; --end-year: 2024;" data-timeline-fragments-select="2016:1,2017:2,2019:3,2021:5,2022:6,2024:8">
+                {{TIMELINE:timeline_deep_audio_key_milestones}}
             </div>
         </div>
     </div>
@@ -2068,14 +1091,22 @@ Notes:
 
 <div class="fragment" data-fragment-index="4"></div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 110%;">
+
+<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; top: 100%;">
+    <img src="assets/images/01-intro/rave.png" alt="Neural Synthesis" style="width: 1300px; height: auto;">
+        <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+            Caillon, A., & Esling, P. (2021). RAVE: A variational autoencoder for fast and high-quality neural audio synthesis (No. arXiv:2111.05011). arXiv. http://arxiv.org/abs/2111.05011
+        </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; top: 110%;">
     <img src="assets/images/01-intro/clap.png" alt="CLAP" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Elizalde, B., Deshmukh, S., Al Ismail, M., & Wang, H. (2023, June). Clap learning audio concepts from natural language supervision. In ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (pp. 1-5). IEEE.
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; top: 120%;">
+<div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; top: 120%;">
     <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
