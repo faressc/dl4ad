@@ -350,7 +350,7 @@ Note: If you don't know if your course counts, drop me an email.
 **Grading:**
 
 - Project in Deep Learning for Audio Data (2/3 Grade)
-- Lecture excercises in Music Information Retrieval und Machine Learning für Audio (1/3 Grade)
+- Lecture exercises in Music Information Retrieval und Machine Learning für Audio (1/3 Grade)
 
 ---
 
@@ -407,8 +407,8 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
-        <div class="timeline-dot" style="--year: 1676;"></div>
-        <div class="timeline-item" style="--year: 1676;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="0" style="--year: 1676;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="0" style="--year: 1676;">
             <div class="timeline-content">
                 <div class="timeline-year">1676</div>
                 <div class="timeline-name">Chain Rule</div>
@@ -416,8 +416,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1676;"></div>
-        <div class="timeline-dot" style="--year: 1805;"></div>
-        <div class="timeline-item" style="--year: 1805;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="3" style="--year: 1805;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="3" style="--year: 1805;">
             <div class="timeline-content">
                 <div class="timeline-year">1805</div>
                 <div class="timeline-name">Least Squares</div>
@@ -425,8 +425,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1805;"></div>
-        <div class="timeline-dot" style="--year: 1809;"></div>
-        <div class="timeline-item" style="--year: 1809;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="6" style="--year: 1809;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="6" style="--year: 1809;">
             <div class="timeline-content">
                 <div class="timeline-year">1809</div>
                 <div class="timeline-name">Normal Equations</div>
@@ -434,8 +434,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1809;"></div>
-        <div class="timeline-dot" style="--year: 1847;"></div>
-        <div class="timeline-item" style="--year: 1847;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="9" style="--year: 1847;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="9" style="--year: 1847;">
             <div class="timeline-content">
                 <div class="timeline-year">1847</div>
                 <div class="timeline-name">Gradient Descent</div>
@@ -443,22 +443,24 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1847;"></div>
-        <div class="timeline-dot" style="--year: 1858;"></div>
-        <div class="timeline-item" style="--year: 1858;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="12" style="--year: 1858;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="12" style="--year: 1858;">
             <div class="timeline-content">
                 <div class="timeline-year">1858</div>
                 <div class="timeline-name">Eigenvalue Theory</div>
                 <div class="timeline-author">Cayley & Hamilton</div>
             </div>
         </div>
-        <div class="timeline-dot" style="--year: 1901;"></div>
-        <div class="timeline-item" style="--year: 1901;">
+        <div class="timeline-connector" style="--year: 1858;"></div>
+        <div class="timeline-dot fragment custom select" data-fragment-index="15" style="--year: 1901;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="15" style="--year: 1901;">
             <div class="timeline-content">
                 <div class="timeline-year">1901</div>
                 <div class="timeline-name">PCA</div>
                 <div class="timeline-author">Pearson, K.</div>
             </div>
         </div>
+        <div class="timeline-connector" style="--year: 1901;"></div>
         <div class="timeline-dot" style="--year: 1951;"></div>
         <div class="timeline-item" style="--year: 1951;">
             <div class="timeline-content">
@@ -477,8 +479,8 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
-        <div class="timeline-dot" style="--year: 1763;"></div>
-        <div class="timeline-item" style="--year: 1763;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="18" style="--year: 1763;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="18" style="--year: 1763;">
             <div class="timeline-content">
                 <div class="timeline-year">1763</div>
                 <div class="timeline-name">Bayes' Theorem</div>
@@ -495,8 +497,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1812;"></div>
-        <div class="timeline-dot" style="--year: 1815;"></div>
-        <div class="timeline-item" style="--year: 1815;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="21" style="--year: 1815;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="21" style="--year: 1815;">
             <div class="timeline-content">
                 <div class="timeline-year">1815</div>
                 <div class="timeline-name">Gaussian Distribution</div>
@@ -504,8 +506,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1815;"></div>
-        <div class="timeline-dot" style="--year: 1830;"></div>
-        <div class="timeline-item" style="--year: 1830;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="24" style="--year: 1830;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="24" style="--year: 1830;">
             <div class="timeline-content">
                 <div class="timeline-year">1830</div>
                 <div class="timeline-name">Central Limit Theorem</div>
@@ -513,8 +515,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1830;"></div>
-        <div class="timeline-dot" style="--year: 1922;"></div>
-        <div class="timeline-item" style="--year: 1922;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="27" style="--year: 1922;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="27" style="--year: 1922;">
             <div class="timeline-content">
                 <div class="timeline-year">1922</div>
                 <div class="timeline-name">Maximum Likelihood</div>
@@ -558,7 +560,7 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1947;"></div>
-        <div class="timeline-dot positioned" style="--year: 1948;"></div>
+        <div class="timeline-dot" style="--year: 1948;"></div>
         <div class="timeline-item" style="--year: 1948;">
             <div class="timeline-content">
                 <div class="timeline-year">1948</div>
@@ -568,6 +570,133 @@ Note: If you don't know if your course counts, drop me an email.
         </div>
         <div class="timeline-connector" style="--year: 1948;"></div>
     </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 60%;">
+<p><strong>Chain Rule:</strong> For composite functions $f(g(x))$, the derivative is:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\frac{df}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$$
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="2"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 60%;">
+<p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\min_{\boldsymbol{\beta}} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\beta}))^2$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\beta})$ are predicted values, and $\boldsymbol{\beta}$ are parameters
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="5"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
+<p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\beta}$ are the optimal parameters
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="8"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
+<p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} L(\boldsymbol{\theta}_t)$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} L$ is the gradient of the loss function
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="11"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="13" style="text-align: center; width: 60%;">
+<p><strong>Eigenvalue Theory:</strong> For a square matrix $\mathbf{A}$, eigenvalues $\lambda$ and eigenvectors $\mathbf{v}$ satisfy:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\mathbf{v} \neq \mathbf{0}$ is an eigenvector and $\lambda$ is the corresponding eigenvalue (scalar)
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="14"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="16" style="text-align: center; width: 60%;">
+<p><strong>Principal Component Analysis (PCA):</strong> Dimensionality reduction technique that finds orthogonal directions of maximum variance:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\mathbf{w}_1 = \arg\max_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \arg\max_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\mathbf{X}$ is the data matrix, $\mathbf{\Sigma}$ is the covariance matrix, and $\mathbf{w}$ are the principal components (eigenvectors)
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="17"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="19" style="text-align: center; width: 60%;">
+<p><strong>Bayes' Theorem:</strong> Relates conditional probabilities and forms the foundation of Bayesian inference:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $P(A|B)$ is the posterior probability, $P(B|A)$ is the likelihood, $P(A)$ is the prior, and $P(B)$ is the evidence
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="20"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="22" style="text-align: center; width: 60%;">
+<p><strong>Gaussian (Normal) Distribution:</strong> Continuous probability distribution characterized by mean $\mu$ and variance $\sigma^2$:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} = \mathcal{N}(\mu, \sigma^2)$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\mu$ is the mean (center) and $\sigma^2$ is the variance (spread) of the distribution
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="23"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="25" style="text-align: center; width: 60%;">
+<p><strong>Central Limit Theorem (CLT):</strong> The average of many independently sampled random variables approaches a normal distribution, <em>regardless of the original distribution</em>:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\bar{X} \xrightarrow{d} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \text{ as } n \to \infty$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$ is the sample mean, $\mu$ is the population mean, $\sigma^2$ is the population variance, and $n$ is the sample size
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="26"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="28" style="text-align: center; width: 60%;">
+<p><strong>Maximum Likelihood Estimation (MLE):</strong> Method to estimate parameters by maximizing the likelihood function:</p>
+<p style="text-align: center; margin: 20px 0;">
+    $$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta} | \mathbf{x}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^{n} P(x_i | \boldsymbol{\theta})$$
+</p>
+<p style="text-align: center; margin: 10px 0;">
+    where $\boldsymbol{\theta}$ are the parameters to estimate, $\mathcal{L}$ is the likelihood function, and $\mathbf{x}$ is the observed data
+</p>
+</div>
+
+<div class="fragment" data-fragment-index="29"></div>
+
+Notes:
+
+<div style="font-size: 0.85em;">
+
+- **Turing Machine (1936)**: Alan Turing's abstract computational model established theoretical limits of computation and introduced the concept of a universal machine capable of simulating any other computation
+- **Linear Programming (1947)**: George Dantzig's simplex algorithm enabled systematic optimization of linear objective functions under constraints, becoming foundational for operations research and constrained optimization in machine learning
+- **Information Theory (1948)**: Claude Shannon's mathematical framework quantified information and uncertainty through entropy ($H(X) = -\sum p(x) \log p(x)$), establishing fundamental limits for data compression and transmission that underpin modern loss functions and information measures in deep learning
+
 </div>
 
 ---
@@ -643,7 +772,165 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2006;"></div>
-        <div class="timeline-dot positioned" style="--year: 2012;"></div>
+        <div class="timeline-dot" style="--year: 2012;"></div>
+        <div class="timeline-item" style="--year: 2012;">
+            <div class="timeline-content">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-name">AlexNet</div>
+                <div class="timeline-author">Krizhevsky et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2012;"></div>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 60px;">
+    <img src="assets/images/01-intro/artificial_neurons.png" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        McCulloch, W. S., & Pitts, W. (1943). A logical calculus of the ideas immanent in nervous activity. The bulletin of mathematical biophysics, 5(4), 115-133.
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 60px;">
+    <img src="assets/images/01-intro/perceptron.svg" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; margin-top: 20px;">
+    <img src="assets/images/01-intro/feedforward_network.png" alt="Deep Learning Era Timeline" style="width: 500px; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        https://www.cudocompute.com/topics/neural-networks/introduction-to-recurrent-neural-networks-rnns
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center; margin-top: 20px;">
+    <img src="assets/images/01-intro/neocognition.png" alt="Deep Learning Era Timeline" style="max-width: 40%; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        Fukushima, K. (1980). Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position. Biological Cybernetics, 36(4), 193–202. https://doi.org/10.1007/BF00344251
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="4" style="text-align: center; margin-top: 20px;">
+    <img src="assets/images/01-intro/recurrent_network.png" alt="Deep Learning Era Timeline" style="width: 450px; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        https://www.cudocompute.com/topics/neural-networks/introduction-to-recurrent-neural-networks-rnns
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; margin-top: 20px;">
+    <img src="assets/images/01-intro/lstm_cell_illustration.png" alt="Deep Learning Era Timeline" style="width: 700px; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        https://www.mql5.com/de/articles/15182
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; margin-top: 20px;">
+    <img src="assets/images/01-intro/deep_believe_network.jpg" alt="Deep Learning Era Timeline" style="width: 600px; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        https://www.analyticsvidhya.com/blog/2022/03/an-overview-of-deep-belief-network-dbn-in-deep-learning/
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="7" style="text-align: center; margin-top: 60px;">
+    <img src="assets/images/01-intro/alexnet.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). Imagenet classification with deep convolutional neural networks. Advances in neural information processing systems, 25.
+    </div>
+</div>
+
+Notes:
+
+<div style="font-size: 0.85em;">
+
+- In 1943, McCulloch and Pitts created the first mathematical model of an artificial neuron
+- Demonstrated neurons could be modeled as binary threshold units performing logical operations (AND, OR, NOT)
+- Proved networks of artificial neurons could compute any logical or arithmetic function
+- Provided the first formal argument that the brain could be understood as a computing device
+- In 1957, the perceptron was introduced by Frank Rosenblatt
+- It was a simple model that could learn to classify inputs into different categories, by adjusting weights based on errors
+- These errors were calculated from prelabeled data, which is called supervised learning
+- Later, the multi-layer perceptron was developed, allowing for more complex representations of data
+- In 1979, convolutional neural networks were introduced - replacing the multiplications with convolution operations
+- And three years later - Hopfield networks were proposed, introducing recurrent connections - temporal dynamics
+- Then the backpropagation algorithm enabled training of multi-layer networks - efficiently computing gradients
+- Before the deep learning era, Deep Belief Networks were proposed as a way to pre-train deep networks layer by layer
+- Finally, in 2012, AlexNet demonstrated the power of large deep convolutional networks on image classification tasks - marking the beginning of the deep learning revolution
+
+</div>
+
+---
+
+## Early History of Neural Networks
+
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Architectures & Layers</div>
+        <div class="timeline-text">Evolution of network architectures and layer innovations</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
+        <div class="timeline-dot" style="--year: 1943;"></div>
+        <div class="timeline-item" style="--year: 1943;">
+            <div class="timeline-content">
+                <div class="timeline-year">1943</div>
+                <div class="timeline-name">Artificial Neurons</div>
+                <div class="timeline-author">McCulloch & Pitts</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1943;"></div>
+        <div class="timeline-dot" style="--year: 1957;"></div>
+        <div class="timeline-item" style="--year: 1957;">
+            <div class="timeline-content">
+                <div class="timeline-year">1957</div>
+                <div class="timeline-name">Perceptron</div>
+                <div class="timeline-author">Rosenblatt, F.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1957;"></div>
+        <div class="timeline-dot" style="--year: 1965;"></div>
+        <div class="timeline-item" style="--year: 1965;">
+            <div class="timeline-content">
+                <div class="timeline-year">1965</div>
+                <div class="timeline-name">Deep Networks</div>
+                <div class="timeline-author">Ivakhnenko & Lapa</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1965;"></div>
+        <div class="timeline-dot" style="--year: 1979;"></div>
+        <div class="timeline-item" style="--year: 1979;">
+            <div class="timeline-content">
+                <div class="timeline-year">1979</div>
+                <div class="timeline-name">Convolutional Networks</div>
+                <div class="timeline-author">Fukushima, K.</div>
+            </div>
+        </div> 
+        <div class="timeline-connector" style="--year: 1979;"></div>
+        <div class="timeline-dot" style="--year: 1982;"></div>
+        <div class="timeline-item" style="--year: 1982;">
+            <div class="timeline-content">
+                <div class="timeline-year">1982</div>
+                <div class="timeline-name">Recurrent Networks</div>
+                <div class="timeline-author">Hopfield</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1982;"></div>
+        <div class="timeline-dot" style="--year: 1989;"></div>
+        <div class="timeline-item" style="--year: 1989;">
+            <div class="timeline-content">
+                <div class="timeline-year">1989</div>
+                <div class="timeline-name">LSTM</div>
+                <div class="timeline-author">Hochreiter & Schmidhuber</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 1989;"></div>
+        <div class="timeline-dot" style="--year: 2006;"></div>
+        <div class="timeline-item" style="--year: 2006;">
+            <div class="timeline-content">
+                <div class="timeline-year">2006</div>
+                <div class="timeline-name">Deep Belief Networks</div>
+                <div class="timeline-author">Hinton, G. et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2006;"></div>
+        <div class="timeline-dot" style="--year: 2012;"></div>
         <div class="timeline-item" style="--year: 2012;">
             <div class="timeline-content">
                 <div class="timeline-year">2012</div>
@@ -661,8 +948,8 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-text">Methods for efficient learning and gradient-based optimization</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;">
-        <div class="timeline-dot" style="--year: 1967;"></div>
-        <div class="timeline-item" style="--year: 1967;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="0"  style="--year: 1967;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="0"  style="--year: 1967;">
             <div class="timeline-content">
                 <div class="timeline-year">1967</div>
                 <div class="timeline-name">Stochastic Gradient Descent for NN</div>
@@ -679,8 +966,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1970;"></div>
-        <div class="timeline-dot" style="--year: 1986;"></div>
-        <div class="timeline-item" style="--year: 1986;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="3" style="--year: 1986;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="3" style="--year: 1986;">
             <div class="timeline-content">
                 <div class="timeline-year">1986</div>
                 <div class="timeline-name">Backpropagation for NN</div>
@@ -706,8 +993,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2009;"></div>
-        <div class="timeline-dot" style="--year: 2010;"></div>
-        <div class="timeline-item" style="--year: 2010;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="6" style="--year: 2010;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="6" style="--year: 2010;">
             <div class="timeline-content">
                 <div class="timeline-year">2010</div>
                 <div class="timeline-name">ReLU & Xavier Init</div>
@@ -715,7 +1002,7 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2010;"></div>
-        <div class="timeline-dot positioned" style="--year: 2012;"></div>
+        <div class="timeline-dot" style="--year: 2012;"></div>
         <div class="timeline-item" style="--year: 2012;">
             <div class="timeline-content">
                 <div class="timeline-year">2012</div>
@@ -742,8 +1029,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 1997;"></div>
-        <div class="timeline-dot" style="--year: 1998;"></div>
-        <div class="timeline-item" style="--year: 1998;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="9" style="--year: 1998;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="9" style="--year: 1998;">
             <div class="timeline-content">
                 <div class="timeline-year">1998</div>
                 <div class="timeline-name">MNIST Dataset & LeNet 5</div>
@@ -769,8 +1056,8 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2007;"></div>
-        <div class="timeline-dot" style="--year: 2009;"></div>
-        <div class="timeline-item" style="--year: 2009;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="12" style="--year: 2009;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="12" style="--year: 2009;">
             <div class="timeline-content">
                 <div class="timeline-year">2009</div>
                 <div class="timeline-name">ImageNet Dataset</div>
@@ -778,7 +1065,7 @@ Note: If you don't know if your course counts, drop me an email.
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2009;"></div>
-        <div class="timeline-dot positioned" style="--year: 2011;"></div>
+        <div class="timeline-dot" style="--year: 2011;"></div>
         <div class="timeline-item" style="--year: 2011;">
             <div class="timeline-content">
                 <div class="timeline-year">2011</div>
@@ -790,68 +1077,72 @@ Note: If you don't know if your course counts, drop me an email.
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/perceptron.svg" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 60%;">
+
+```python
+# Initialize parameters
+θ = initialize_parameters()
+learning_rate = 0.01
+num_epochs = 100
+
+# Training loop
+for epoch in range(num_epochs):
+    # Shuffle training data
+    shuffle(training_data)
+    
+    # Iterate through each training example
+    for (x_i, y_i) in training_data:
+        # Compute gradient for single example
+        gradient = compute_gradient(loss(θ, x_i, y_i))
+        
+        # Update parameters
+        θ = θ - learning_rate * gradient
+```
+
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/feedforward_network.png" alt="Deep Learning Era Timeline" style="width: 500px; height: auto;">
-    <div class="reference" style="margin-top: 10px; text-align: center;">
-        https://www.cudocompute.com/topics/neural-networks/introduction-to-recurrent-neural-networks-rnns
-    </div>
-</div>
+<div class="fragment" data-fragment-index="2"></div>
 
-<div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/neocognition.png" alt="Deep Learning Era Timeline" style="max-width: 40%; height: auto;">
-    <div class="reference" style="margin-top: 10px; text-align: center;">
-        Fukushima, K. (1980). Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position. Biological Cybernetics, 36(4), 193–202. https://doi.org/10.1007/BF00344251
-    </div>
-</div>
-
-<div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/recurrent_network.png" alt="Deep Learning Era Timeline" style="width: 450px; height: auto;">
-    <div class="reference" style="margin-top: 10px; text-align: center;">
-        https://www.cudocompute.com/topics/neural-networks/introduction-to-recurrent-neural-networks-rnns
-    </div>
-</div>
-
-<div class="fragment appear-vanish" data-fragment-index="4" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/backprop.png" alt="Deep Learning Era Timeline" style="width: 900px; height: auto;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 60%;">
+    <img src="assets/images/01-intro/backprop.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://www.linkedin.com/pulse/backpropagation-neural-networks-brain-behind-deep-learning-ali-v8fsf
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/deep_believe_network.jpg" alt="Deep Learning Era Timeline" style="width: 600px; height: auto;">
+<div class="fragment" data-fragment-index="5"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
+    <img src="assets/images/01-intro/relu.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
-        https://www.analyticsvidhya.com/blog/2022/03/an-overview-of-deep-belief-network-dbn-in-deep-learning/
+        https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks/
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/alexnet.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
+<div class="fragment" data-fragment-index="8"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
+    <img src="assets/images/01-intro/mnist_dataset.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
-        Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). Imagenet classification with deep convolutional neural networks. Advances in neural information processing systems, 25.
+        https://de.wikipedia.org/wiki/MNIST-Datenbank#/media/Datei:MnistExamples.png
     </div>
 </div>
+
+<div class="fragment" data-fragment-index="11"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="13" style="text-align: center; width: 80%;">
+    <img src="assets/images/01-intro/imagenet.png" alt="Deep Learning Era Timeline" style="width: 1500px; height: auto;">
+    <div class="reference" style="margin-top: 10px; text-align: center;">
+        https://blog.roboflow.com/introduction-to-imagenet/
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="14"></div>
 
 Notes:
 
-<div style="font-size: 0.85em;">
-
-- To understand the evolution of neural music production, I want to look first at the early history of neural networks
-- In 1957, the perceptron was introduced by Frank Rosenblatt, marking the beginning of neural network research
-- It was a simple model that could learn to classify inputs into different categories, by adjusting weights based on errors
-- These errors were calculated from prelabeled data, which is called supervised learning
-- Later, the multi-layer perceptron was developed, allowing for more complex representations of data
-- In 1979, convolutional neural networks were introduced - replacing the multiplications with convolution operations
-- And three years later - Hopfield networks were proposed, introducing recurrent connections - temporal dynamics
-- Then the backpropagation algorithm enabled training of multi-layer networks - efficiently computing gradients
-- Before the deep learning era, Deep Belief Networks were proposed as a way to pre-train deep networks layer by layer
-- Finally, in 2012, AlexNet demonstrated the power of large deep convolutional networks on image classification tasks - marking the beginning of the deep learning revolution
-
-</div>
+- MNIST dataset of handwritten digits - 70,000 images
+- ImageNet over 14 million images with hand-annotated labels
 
 ---
 
@@ -905,7 +1196,7 @@ Notes:
                     </div>
                 </div>
                 <div class="timeline-connector" style="--year: 2006;"></div>
-                <div class="timeline-dot positioned" style="--year: 2012;"></div>
+                <div class="timeline-dot" style="--year: 2012;"></div>
                 <div class="timeline-item" style="--year: 2012;">
                     <div class="timeline-content">
                         <div class="timeline-year">2012</div>
@@ -1079,7 +1370,7 @@ Notes:
                     </div>
                 </div>
                 <div class="timeline-connector" style="--year: 2006;"></div>
-                <div class="timeline-dot positioned" style="--year: 2012;"></div>
+                <div class="timeline-dot" style="--year: 2012;"></div>
                 <div class="timeline-item" style="--year: 2012;">
                     <div class="timeline-content">
                         <div class="timeline-year">2012</div>
@@ -1209,7 +1500,7 @@ Notes:
                 <div class="timeline-author">Kingma et al.</div>
             </div>
         </div>
-        <div class="timeline-connector" style="--year: 2014;"></div>
+        <div class="timeline-connector" style="--year: 2013;"></div>
         <div class="timeline-dot" style="--year: 2014;"></div>
         <div class="timeline-item" style="--year: 2014;">
             <div class="timeline-content">
@@ -1264,7 +1555,155 @@ Notes:
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2022;"></div>
-        <div class="timeline-dot positioned" style="--year: 2023;"></div>
+        <div class="timeline-dot" style="--year: 2023;"></div>
+        <div class="timeline-item" style="--year: 2023;">
+            <div class="timeline-content">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-name">Mamba</div>
+                <div class="timeline-author">Gu & Dao</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2023;"></div>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 20px;">
+    <img src="assets/images/01-intro/vae.png" alt="Variational Autoencoder" style="max-width: 800px; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
+        https://theaisummer.com/Autoencoder/
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 60px;">
+    <img src="assets/images/01-intro/gan.png" alt="Variational Autoencoder" style="max-width: 1200px; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
+        https://www.linkedin.com/pulse/what-generative-adversarial-networks-gans-sushant-babbar-qpc9c
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; margin-top: 100px;">
+    <img src="assets/images/01-intro/diffusion_networks.png" alt="Diffusion Networks" style="width: 1200px; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
+        Ho, J., Jain, A., & Abbeel, P. (2020). Denoising diffusion probabilistic models. Advances in neural information processing systems, 33, 6840-6851.
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 130%;">
+    <img src="assets/images/01-intro/transformer.png" alt="Transformer" style="max-width: 550px; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+        Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 130%;">
+    <img src="assets/images/01-intro/clip.png" alt="CLIP" style="max-width: 1800px; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+        Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., ... & Sutskever, I. (2021). Learning transferable visual models from natural language supervision. In International conference on machine learning (pp. 8748-8763). PmLR.
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; top: 120%;">
+    <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+        https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="6"></div>
+
+Notes:
+
+<div style="font-size: 0.85em;">
+
+- Well, for neural audio synthesis we need the inventions of the deep learning era - first an overview of key milestones in deep learning in general
+- In 2013, Variational Autoencoders were introduced - ability to generate new data points by sampling from a learned distribution - the latent distribution
+- Learn in an unsupervised manner to encode input data into a compressed representation and then decode it back to the original input
+- In 2014, Generative Adversarial Networks were proposed - two neural networks competing against each other
+- In 2015, Diffusion models were introduced - iterative denoising process to generate high-quality samples
+- The year 2017 was the year Transformers revolutionized sequence modeling with self-attention mechanisms
+- In 2021, CLIP demonstrated the power of multi-modal learning by connecting images and text
+- Two encoders that map images and text into a shared latent space - by using contrastive learning the images and text are mapped close to each other in the latent space
+- It could for example classify images, without ever being trained on that specific task
+- In 2022, Diffusion Transformers combined the strengths of diffusion models and transformers
+- And finally in 2023, Mamba was introduced - a new architecture for sequence modeling
+
+</div>
+
+---
+
+## The Deep Learning Era
+
+<!-- Layers & Architectures Timeline -->
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Deep architectures</div>
+        <div class="timeline-text">Deep architectures and generative models transforming AI capabilities</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
+        <div class="timeline-dot" style="--year: 2013;"></div>
+        <div class="timeline-item" style="--year: 2013;">
+            <div class="timeline-content">
+                <div class="timeline-year">2013</div>
+                <div class="timeline-name">Variational Autoencoders</div>
+                <div class="timeline-author">Kingma et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2013;"></div>
+        <div class="timeline-dot" style="--year: 2014;"></div>
+        <div class="timeline-item" style="--year: 2014;">
+            <div class="timeline-content">
+                <div class="timeline-year">2014</div>
+                <div class="timeline-name">Generative Adversarial Nets</div>
+                <div class="timeline-author">Goodfellow et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2014;"></div>
+        <div class="timeline-dot" style="--year: 2015;"></div>
+        <div class="timeline-item" style="--year: 2015;">
+            <div class="timeline-content">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-name">ResNet & Diffusion</div>
+                <div class="timeline-author">He et al. & Sohl-Dickstein et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2015;"></div>
+        <div class="timeline-dot" style="--year: 2016;"></div>
+        <div class="timeline-item" style="--year: 2016;">
+            <div class="timeline-content">
+                <div class="timeline-year">2016</div>
+                <div class="timeline-name">Style Transfer & WaveNet</div>
+                <div class="timeline-author">Gatys & van den Oord</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2016;"></div>
+        <div class="timeline-dot" style="--year: 2017;"></div>
+        <div class="timeline-item" style="--year: 2017;">
+            <div class="timeline-content">
+                <div class="timeline-year">2017</div>
+                <div class="timeline-name">Transformers</div>
+                <div class="timeline-author">Vaswani et al.</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2017;"></div>
+        <div class="timeline-dot" style="--year: 2021;"></div>
+        <div class="timeline-item" style="--year: 2021;">
+            <div class="timeline-content">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-name">ViT & CLIP</div>
+                <div class="timeline-author">Dosovitskiy & Radford</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2021;"></div>
+        <div class="timeline-dot" style="--year: 2022;"></div>
+        <div class="timeline-item" style="--year: 2022;">
+            <div class="timeline-content">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-name">Diffusion Transformer</div>
+                <div class="timeline-author">Peebles & Xie</div>
+            </div>
+        </div>
+        <div class="timeline-connector" style="--year: 2022;"></div>
+        <div class="timeline-dot" style="--year: 2023;"></div>
         <div class="timeline-item" style="--year: 2023;">
             <div class="timeline-content">
                 <div class="timeline-year">2023</div>
@@ -1318,7 +1757,7 @@ Notes:
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2016;"></div>
-        <div class="timeline-dot positioned" style="--year: 2020;"></div>
+        <div class="timeline-dot" style="--year: 2020;"></div>
         <div class="timeline-item" style="--year: 2020;">
             <div class="timeline-content">
                 <div class="timeline-year">2020</div>
@@ -1381,7 +1820,7 @@ Notes:
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2022;"></div>
-        <div class="timeline-dot positioned" style="--year: 2023;"></div>
+        <div class="timeline-dot" style="--year: 2023;"></div>
         <div class="timeline-item" style="--year: 2023;">
             <div class="timeline-content">
                 <div class="timeline-year">2023</div>
@@ -1392,50 +1831,6 @@ Notes:
         <div class="timeline-connector" style="--year: 2023;"></div>
     </div>
 </div>
-
-<div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/vae.png" alt="Variational Autoencoder" style="max-width: 800px; height: auto;">
-    <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
-        https://theaisummer.com/Autoencoder/
-    </div>
-</div>
-
-<div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/gan.png" alt="Variational Autoencoder" style="max-width: 1200px; height: auto;">
-    <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
-        https://www.linkedin.com/pulse/what-generative-adversarial-networks-gans-sushant-babbar-qpc9c
-    </div>
-</div>
-
-<div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; margin-top: 100px;">
-    <img src="assets/images/01-intro/diffusion_networks.png" alt="Diffusion Networks" style="width: 1200px; height: auto;">
-    <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
-        Ho, J., Jain, A., & Abbeel, P. (2020). Denoising diffusion probabilistic models. Advances in neural information processing systems, 33, 6840-6851.
-    </div>
-</div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 130%;">
-    <img src="assets/images/01-intro/transformer.png" alt="Transformer" style="max-width: 550px; height: auto;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
-        Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
-    </div>
-</div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 130%;">
-    <img src="assets/images/01-intro/clip.png" alt="CLIP" style="max-width: 1800px; height: auto;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
-        Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., ... & Sutskever, I. (2021). Learning transferable visual models from natural language supervision. In International conference on machine learning (pp. 8748-8763). PmLR.
-    </div>
-</div>
-
-<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; top: 120%;">
-    <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
-        https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
-    </div>
-</div>
-
-<div class="fragment" data-fragment-index="6"></div>
 
 Notes:
 
