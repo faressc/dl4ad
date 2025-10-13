@@ -406,7 +406,78 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Calculus & Linear Algebra</div>
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:3,1809:6,1847:9,1858:12,1901:15">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:1,1809:2,1847:3,1858:4,1901:5">
+        {{TIMELINE:timeline_calculus_linear_algebra}}
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="0" style="margin-top: 20px;">
+    <p><strong>Chain Rule:</strong> For composite functions $f(g(x))$, the derivative is:</p>
+    <p style="text-align: center; margin: 20px 0;">
+        $$\frac{df}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$$
+    </p>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="1" style="margin-top: 20px;">
+    <p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
+    <p style="text-align: center; margin: 20px 0;">
+        $$\min_{\boldsymbol{\beta}} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\beta}))^2$$
+    </p>
+    <p style="text-align: center; margin: 10px 0;">
+        where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\beta})$ are predicted values, and $\boldsymbol{\beta}$ are parameters
+    </p>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="2" style="margin-top: 20px;">
+    <p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
+    <p style="text-align: center; margin: 20px 0;">
+        $$\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
+    </p>
+    <p style="text-align: center; margin: 10px 0;">
+        where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\beta}$ are the optimal parameters
+    </p>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="3" style="margin-top: 20px;">
+    <p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient:</p>
+    <p style="text-align: center; margin: 20px 0;">
+        $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} L(\boldsymbol{\theta}_t)$$
+    </p>
+    <p style="text-align: center; margin: 10px 0;">
+        where $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} L$ is the gradient of the loss function
+    </p>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="4" style="margin-top: 20px;">
+    <p><strong>Eigenvalue Theory:</strong> For a square matrix $\mathbf{A}$, eigenvalues $\lambda$ and eigenvectors $\mathbf{v}$ satisfy:</p>
+    <p style="text-align: center; margin: 20px 0;">
+        $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$$
+    </p>
+    <p style="text-align: center; margin: 10px 0;">
+        where $\mathbf{v} \neq \mathbf{0}$ is an eigenvector and $\lambda$ is the corresponding eigenvalue (scalar)
+    </p>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px;">
+    <p><strong>Principal Component Analysis (PCA):</strong> Dimensionality reduction technique that finds orthogonal directions of maximum variance:</p>
+    <p style="text-align: center; margin: 20px 0;">
+        $$\mathbf{w}_1 = \arg\max_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \arg\max_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}$$
+    </p>
+    <p style="text-align: center; margin: 10px 0;">
+        where $\mathbf{X}$ is the data matrix, $\mathbf{\Sigma}$ is the covariance matrix, and $\mathbf{w}$ are the principal components (eigenvectors)
+    </p>
+</div>
+
+---
+
+## Mathematical Foundations
+
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Calculus & Linear Algebra</div>
+        <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;">
         {{TIMELINE:timeline_calculus_linear_algebra}}
     </div>
 </div>
@@ -416,7 +487,7 @@ Note: If you don't know if your course counts, drop me an email.
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:18,1815:21,1830:24,1922:27">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:0,1815:3,1830:6,1922:9">
         {{TIMELINE:timeline_probability_statistics}}
     </div>
 </div>
@@ -432,75 +503,6 @@ Note: If you don't know if your course counts, drop me an email.
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 60%;">
-<p><strong>Chain Rule:</strong> For composite functions $f(g(x))$, the derivative is:</p>
-<p style="text-align: center; margin: 20px 0;">
-    $$\frac{df}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$$
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="2"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 60%;">
-<p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
-<p style="text-align: center; margin: 20px 0;">
-    $$\min_{\boldsymbol{\beta}} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\beta}))^2$$
-</p>
-<p style="text-align: center; margin: 10px 0;">
-    where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\beta})$ are predicted values, and $\boldsymbol{\beta}$ are parameters
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="5"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
-<p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
-<p style="text-align: center; margin: 20px 0;">
-    $$\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
-</p>
-<p style="text-align: center; margin: 10px 0;">
-    where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\beta}$ are the optimal parameters
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="8"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
-<p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient:</p>
-<p style="text-align: center; margin: 20px 0;">
-    $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} L(\boldsymbol{\theta}_t)$$
-</p>
-<p style="text-align: center; margin: 10px 0;">
-    where $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} L$ is the gradient of the loss function
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="11"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="13" style="text-align: center; width: 60%;">
-<p><strong>Eigenvalue Theory:</strong> For a square matrix $\mathbf{A}$, eigenvalues $\lambda$ and eigenvectors $\mathbf{v}$ satisfy:</p>
-<p style="text-align: center; margin: 20px 0;">
-    $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$$
-</p>
-<p style="text-align: center; margin: 10px 0;">
-    where $\mathbf{v} \neq \mathbf{0}$ is an eigenvector and $\lambda$ is the corresponding eigenvalue (scalar)
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="14"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="16" style="text-align: center; width: 60%;">
-<p><strong>Principal Component Analysis (PCA):</strong> Dimensionality reduction technique that finds orthogonal directions of maximum variance:</p>
-<p style="text-align: center; margin: 20px 0;">
-    $$\mathbf{w}_1 = \arg\max_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \arg\max_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}$$
-</p>
-<p style="text-align: center; margin: 10px 0;">
-    where $\mathbf{X}$ is the data matrix, $\mathbf{\Sigma}$ is the covariance matrix, and $\mathbf{w}$ are the principal components (eigenvectors)
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="17"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="19" style="text-align: center; width: 60%;">
 <p><strong>Bayes' Theorem:</strong> Relates conditional probabilities and forms the foundation of Bayesian inference:</p>
 <p style="text-align: center; margin: 20px 0;">
     $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
@@ -510,9 +512,9 @@ Note: If you don't know if your course counts, drop me an email.
 </p>
 </div>
 
-<div class="fragment" data-fragment-index="20"></div>
+<div class="fragment" data-fragment-index="2"></div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="22" style="text-align: center; width: 60%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 60%;">
 <p><strong>Gaussian (Normal) Distribution:</strong> Continuous probability distribution characterized by mean $\mu$ and variance $\sigma^2$:</p>
 <p style="text-align: center; margin: 20px 0;">
     $$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} = \mathcal{N}(\mu, \sigma^2)$$
@@ -522,9 +524,9 @@ Note: If you don't know if your course counts, drop me an email.
 </p>
 </div>
 
-<div class="fragment" data-fragment-index="23"></div>
+<div class="fragment" data-fragment-index="5"></div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="25" style="text-align: center; width: 60%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
 <p><strong>Central Limit Theorem (CLT):</strong> The average of many independently sampled random variables approaches a normal distribution, <em>regardless of the original distribution</em>:</p>
 <p style="text-align: center; margin: 20px 0;">
     $$\bar{X} \xrightarrow{d} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \text{ as } n \to \infty$$
@@ -534,9 +536,9 @@ Note: If you don't know if your course counts, drop me an email.
 </p>
 </div>
 
-<div class="fragment" data-fragment-index="26"></div>
+<div class="fragment" data-fragment-index="8"></div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="28" style="text-align: center; width: 60%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
 <p><strong>Maximum Likelihood Estimation (MLE):</strong> Method to estimate parameters by maximizing the likelihood function:</p>
 <p style="text-align: center; margin: 20px 0;">
     $$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta} | \mathbf{x}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^{n} P(x_i | \boldsymbol{\theta})$$
@@ -546,7 +548,7 @@ Note: If you don't know if your course counts, drop me an email.
 </p>
 </div>
 
-<div class="fragment" data-fragment-index="29"></div>
+<div class="fragment" data-fragment-index="11"></div>
 
 Notes:
 

@@ -464,8 +464,7 @@
 
 .fragment.select.visible.timeline-item .timeline-year {
   color: var(--fs-fragment-select-color);
-  font-size: 0.8em;
-  transition: font-size 2s, color 2s;
+  transition: color 1s;
 }
 
 .fragment.select:not(.current-fragment).visible {
