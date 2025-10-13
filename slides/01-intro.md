@@ -1295,7 +1295,16 @@ Notes:
 
 <div class="fragment" data-fragment-index="3"></div>
 
-<div class="fragment appear-vanish" data-fragment-index="4" style="margin-top: 20px;">
+<div class="fragment appear-vanish" data-fragment-index="4" style="margin-top: 60px;">
+    <h3>Neural Networks for Piano Transcription
+    <br><span style="font-weight: normal;">(Matija Marolt)</span></h3>
+    <ul>
+        <li>Division of audio signals into frequency bands</li>
+        <li>One Multilayer Perceptron (MLP) for each band</li>
+    </ul>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px;">
     <h3>Unsupervised Audio Feature Learning with Deep Belief Networks<br>
     <span style="font-weight: normal;">(Lee et al.)</span></h3>
     <ul>
@@ -1721,8 +1730,8 @@ Notes:
         <div class="timeline-text">Advanced learning techniques and representation learning breakthroughs</div>
     </div>
     <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
-        <div class="timeline-dot" style="--year: 2013;"></div>
-        <div class="timeline-item" style="--year: 2013;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="0" style="--year: 2013;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="0" style="--year: 2013;">
             <div class="timeline-content">
                 <div class="timeline-year">2013</div>
                 <div class="timeline-name">Word2Vec</div>
@@ -1730,8 +1739,8 @@ Notes:
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2013;"></div>
-        <div class="timeline-dot" style="--year: 2014;"></div>
-        <div class="timeline-item" style="--year: 2014;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="3" style="--year: 2014;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="3" style="--year: 2014;">
             <div class="timeline-content">
                 <div class="timeline-year">2014</div>
                 <div class="timeline-name">Attention Mechanism</div>
@@ -1739,8 +1748,8 @@ Notes:
             </div>
         </div>
         <div class="timeline-connector" style="--year: 2014;"></div>
-        <div class="timeline-dot" style="--year: 2015;"></div>
-        <div class="timeline-item" style="--year: 2015;">
+        <div class="timeline-dot fragment custom select" data-fragment-index="6" style="--year: 2015;"></div>
+        <div class="timeline-item fragment custom select" data-fragment-index="6" style="--year: 2015;">
             <div class="timeline-content">
                 <div class="timeline-year">2015</div>
                 <div class="timeline-name">BatchNorm & Adam</div>
@@ -1768,6 +1777,40 @@ Notes:
         <div class="timeline-connector" style="--year: 2020;"></div>
     </div>
 </div>
+
+<!-- Word2Vec Overlay -->
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 70%;">
+    <img src="assets/images/01-intro/word2vec.png" alt="Word2Vec" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+        Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S., & Dean, J. (2013). Distributed representations of words and phrases and their compositionality. Advances in neural information processing systems, 26.
+    </div>
+</div>
+<div class="fragment" data-fragment-index="2"></div>
+
+<!-- Attention Mechanism Overlay -->
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center;">
+    <img src="assets/images/01-intro/attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+        Bahdanau, D., Cho, K., & Bengio, Y. (2016). Neural Machine Translation by Jointly Learning to Align and Translate (No. arXiv:1409.0473). arXiv. https://doi.org/10.48550/arXiv.1409.0473
+    </div>
+</div>
+<div class="fragment" data-fragment-index="5"></div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="width: 80%;">
+    <div style="font-size: 0.85em; line-height: 1;">
+        <p style="margin-bottom: 15px;"><strong>Adaptive Moment Estimation</strong> - combines momentum and RMSprop:</p>
+        <p style="margin-bottom: 10px;"><strong>First moment (momentum):</strong></p>
+        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}L$$</p>
+        <p style="margin-bottom: 10px;"><strong>Second moment (RMSprop):</strong></p>
+        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}L)^2$$</p>
+        <p style="margin-bottom: 10px;"><strong>Bias correction:</strong></p>
+        <p style="text-align: center; margin-bottom: 15px;">$$\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1-\beta_1^t}, \quad \hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{1-\beta_2^t}$$</p>
+        <p style="margin-bottom: 10px;"><strong>Parameter update:</strong></p>
+        <p style="text-align: center;">$$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \alpha \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{v}}_t} + \epsilon}$$</p>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="8"></div>
 
 <div class="timeline-container" style="flex-direction: row;">
     <div style="width: 20%;">
