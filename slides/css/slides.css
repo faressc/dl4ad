@@ -472,14 +472,25 @@
   background: none;
 }
 
-.fragment.select:not(.current-fragment).fragment.select.visible.timeline-dot {
+.fragment.select:not(.current-fragment).visible.timeline-dot {
   background: var(--fs-background-color);
   border-color: var(--fs-link-color);
   box-shadow: none;
 }
 
-.fragment.select:not(.current-fragment).fragment.select.visible.timeline-item .timeline-year {
+.fragment.select:not(.current-fragment).visible.timeline-item .timeline-year {
   color: var(--fs-link-color);
+  font-size: 0.6em;
+}
+
+.timeline-purple .fragment.select:not(.current-fragment).visible.timeline-dot {
+  background: var(--fs-background-color);
+  border-color: var(--fs-highlight-background);
+  box-shadow: none;
+}
+
+.timeline-purple .fragment.select:not(.current-fragment).visible.timeline-item .timeline-year {
+  color: var(--fs-highlight-background);
   font-size: 0.6em;
 }
 

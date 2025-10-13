@@ -41,7 +41,7 @@ async function generateHTML(isDev = false) {
   if (slides.length === 1) {
     // Generate single index.html for the presentation
     const slide = slides[0];
-    const slidesContent = buildSlidesContent([slide]);
+    const slidesContent = await buildSlidesContent([slide]);
     const title = extractTitle(slide.content, slide.isHtml);
     
     let html = renderTemplate(slidesTemplate, {
@@ -55,7 +55,7 @@ async function generateHTML(isDev = false) {
   } else {
     // Generate a separate HTML file for each slide
     for (const slide of slides) {
-      const slidesContent = buildSlidesContent([slide]);
+      const slidesContent = await buildSlidesContent([slide]);
       const title = extractTitle(slide.content, slide.isHtml);
       
       let html = renderTemplate(slidesTemplate, {
@@ -113,7 +113,7 @@ async function generateIndexPage(presentationFiles, distDir, isDev) {
   console.log('✅ Generated index.html (landing page)');
 }
 
-function buildSlidesContent(slides) {
+async function buildSlidesContent(slides) {
   let slidesContent = '';
   let markdownContent = '';
   let isInMarkdownSection = false;
@@ -124,7 +124,7 @@ function buildSlidesContent(slides) {
     if (slide.isHtml) {
       // Close markdown section if we're in one
       if (isInMarkdownSection) {
-        slidesContent += createMarkdownSection(markdownContent);
+        slidesContent += await createMarkdownSection(markdownContent);
         markdownContent = '';
         isInMarkdownSection = false;
       }
@@ -139,20 +139,118 @@ function buildSlidesContent(slides) {
   
   // Close final markdown section if needed
   if (isInMarkdownSection) {
-    slidesContent += createMarkdownSection(markdownContent);
+    slidesContent += await createMarkdownSection(markdownContent);
   }
   
   return slidesContent;
 }
 
-function createMarkdownSection(markdownContent) {
-  const cleanContent = markdownContent.replace(/\n\n---\n\n$/, '');
+async function createMarkdownSection(markdownContent) {
+  // Process timeline imports before cleaning content
+  const processedContent = await processTimelineImports(markdownContent);
+  const cleanContent = processedContent.replace(/\n\n---\n\n$/, '');
   return `<section data-markdown data-separator="^---" data-separator-vertical="^--">
         <textarea data-template>
 ${cleanContent}
         </textarea>
       </section>
       `;
+}
+
+async function processTimelineImports(content) {
+  let processedContent = content;
+  
+  // Find all timeline divs with their placeholders
+  // Match: <div class="timeline" ... data-timeline-fragments-select="...">{{TIMELINE:filename}}</div>
+  const timelineDivPattern = /<div[^>]*class="[^"]*timeline[^"]*"[^>]*>(.*?\{\{TIMELINE:[^}]+\}\}.*?)<\/div>/gs;
+  const allTimelineDivs = [...content.matchAll(timelineDivPattern)];
+  
+  console.log(`Found ${allTimelineDivs.length} timeline div(s) in content`);
+  
+  for (const divMatch of allTimelineDivs) {
+    const fullDiv = divMatch[0];
+    const divInner = divMatch[1];
+    
+    // Extract the placeholder from within this div
+    const placeholderMatch = divInner.match(/\{\{TIMELINE:([^}]+)\}\}/);
+    if (!placeholderMatch) continue;
+    
+    const placeholder = placeholderMatch[0];
+    const filename = placeholderMatch[1].trim();
+    
+    try {
+      // Read the timeline HTML file
+      const timelinePath = path.join(__dirname, '../slides/templates/timelines', `${filename}.html`);
+      let timelineContent = await fs.readFile(timelinePath, 'utf-8');
+      
+      // Check for fragment attributes (select and color variants)
+      const fragmentTypes = [
+        { attr: 'data-timeline-fragments-select', className: 'select' },
+        { attr: 'data-timeline-fragments-color-0', className: 'color-0' },
+        { attr: 'data-timeline-fragments-color-1', className: 'color-1' },
+        { attr: 'data-timeline-fragments-color-2', className: 'color-2' }
+      ];
+      
+      let hasFragments = false;
+      
+      for (const { attr, className } of fragmentTypes) {
+        const fragmentsMatch = fullDiv.match(new RegExp(`${attr}="([^"]*)"`, 'i'));
+        
+        if (fragmentsMatch) {
+          hasFragments = true;
+          const fragmentsAttr = fragmentsMatch[1];
+          console.log(`📝 Processing timeline ${filename} with ${attr}: ${fragmentsAttr}`);
+          
+          // Parse the fragments attribute: "year:index,year:index,..."
+          const fragmentPairs = fragmentsAttr.split(',').map(s => s.trim());
+          
+          for (const pair of fragmentPairs) {
+            const [year, index] = pair.split(':').map(s => s.trim());
+            if (year && index) {
+              console.log(`  Year ${year} -> Index ${index} (${className})`);
+              
+              // Replace each element type that matches this year
+              timelineContent = timelineContent.replace(
+                new RegExp(`<div class="timeline-dot" style="--year: ${year};">`, 'g'),
+                `<div class="timeline-dot fragment custom ${className}" data-fragment-index="${index}" style="--year: ${year};">`
+              );
+              
+              timelineContent = timelineContent.replace(
+                new RegExp(`<div class="timeline-item" style="--year: ${year};">`, 'g'),
+                `<div class="timeline-item fragment custom ${className}" data-fragment-index="${index}" style="--year: ${year};">`
+              );
+
+              if (attr !== 'data-timeline-fragments-select') {
+                // Also apply to timeline-year within timeline-item
+                timelineContent = timelineContent.replace(
+                  new RegExp(`(<div class="timeline-item fragment custom ${className}" data-fragment-index="${index}" style="--year: ${year};">\\s*<div class="timeline-content">\\s*)<div class="timeline-year"`, 'g'),
+                  `$1<div class="timeline-year fragment custom ${className}" data-fragment-index="${index}"`
+                );
+              }
+            }
+          }
+          
+          console.log(`✅ Applied ${className} fragment classes for ${filename}`);
+        }
+      }
+      
+      if (!hasFragments) {
+        console.log(`📝 Processing timeline ${filename} (no fragments)`);
+      }
+      
+      // Replace THIS SPECIFIC placeholder with the processed content
+      // Use a more specific replacement that only targets this exact div
+      const newDiv = fullDiv.replace(placeholder, timelineContent.trim());
+      processedContent = processedContent.replace(fullDiv, newDiv);
+      
+      console.log(`✅ Imported timeline: ${filename}.html`);
+    } catch (error) {
+      console.error(`❌ Failed to import timeline ${filename}.html:`, error.message);
+      // Keep the placeholder if import fails
+    }
+  }
+  
+  return processedContent;
 }
 
 function renderTemplate(template, data) {
