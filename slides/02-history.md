@@ -1,4 +1,4 @@
-<h1>History of Neural Audio Systems</h1>
+<h1>History of<br>Neural Audio Systems</h1>
 
 ---
 
