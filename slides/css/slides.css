@@ -577,7 +577,55 @@
   font-weight: 500;
 }
 
-/* Code blocks */
+/*********************************************
+ * FORMULAS
+ *********************************************/
+
+.formula {
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-left: 4px solid var(--fs-link-color);
+  border-radius: 8px;
+  padding: 30px 40px;
+  margin: 25px auto;
+  text-align: center;
+  box-shadow: 0 4px 20px var(--fs-shadow-color-light);
+  font-size: 1.1em;
+  max-width: 90%;
+}
+
+.formula .MathJax {
+  color: var(--fs-text-color);
+  font-size: inherit;
+}
+
+/* Alternative formula styles */
+.formula.accent-purple {
+  border-left-color: var(--fs-highlight-background);
+}
+
+.formula.minimal {
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--fs-border-light);
+  border-bottom: 1px solid var(--fs-border-light);
+  box-shadow: none;
+  padding: 20px 0;
+}
+
+.formula.highlight {
+  background: var(--fs-highlight-background);
+  border-color: var(--fs-highlight-background);
+  color: var(--fs-highlight-color);
+}
+
+.formula.highlight .MathJax {
+  color: var(--fs-highlight-color);
+}
+
+/*********************************************
+ * CODE BLOCKS
+ *********************************************/
 .reveal pre {
   display: block;
   position: relative;

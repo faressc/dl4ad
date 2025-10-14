@@ -24,20 +24,20 @@
 <div class="fragment appear-vanish" data-fragment-index="1" style="margin-top: 20px;">
     <p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\min_{\boldsymbol{\beta}} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\beta}))^2$$
+        $$\min_{\boldsymbol{\theta}} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\theta}))^2$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
-        where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\beta})$ are predicted values, and $\boldsymbol{\beta}$ are parameters
+        where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\theta})$ are predicted values, and $\boldsymbol{\theta}$ are parameters
     </p>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="2" style="margin-top: 20px;">
     <p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\boldsymbol{\beta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
+        $$\boldsymbol{\theta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
-        where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\beta}$ are the optimal parameters
+        where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\theta}$ are the optimal parameters
     </p>
 </div>
 
@@ -583,6 +583,16 @@ Notes:
     </div>
 </div>
 
+<div class="timeline-container" style="flex-direction: row;">
+    <div style="width: 20%;">
+        <div class="timeline-title">Software & Applications</div>
+        <div class="timeline-text">Practical deployment and mainstream adoption of deep learning systems</div>
+    </div>
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
+        {{TIMELINE:timeline_deep_software}}
+    </div>
+</div>
+
 <!-- Word2Vec Overlay -->
 <div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 70%;">
     <img src="assets/images/01-intro/word2vec.png" alt="Word2Vec" style="max-width: 90%; max-height: 90%; object-fit: contain;">
@@ -616,16 +626,6 @@ Notes:
 </div>
 
 <div class="fragment" data-fragment-index="8"></div>
-
-<div class="timeline-container" style="flex-direction: row;">
-    <div style="width: 20%;">
-        <div class="timeline-title">Software & Applications</div>
-        <div class="timeline-text">Practical deployment and mainstream adoption of deep learning systems</div>
-    </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
-        {{TIMELINE:timeline_deep_software}}
-    </div>
-</div>
 
 Notes:
 
