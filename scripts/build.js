@@ -165,8 +165,6 @@ async function processTimelineImports(content) {
   const timelineDivPattern = /<div[^>]*class="[^"]*timeline[^"]*"[^>]*>(.*?\{\{TIMELINE:[^}]+\}\}.*?)<\/div>/gs;
   const allTimelineDivs = [...content.matchAll(timelineDivPattern)];
   
-  console.log(`Found ${allTimelineDivs.length} timeline div(s) in content`);
-  
   for (const divMatch of allTimelineDivs) {
     const fullDiv = divMatch[0];
     const divInner = divMatch[1];
@@ -199,16 +197,13 @@ async function processTimelineImports(content) {
         if (fragmentsMatch) {
           hasFragments = true;
           const fragmentsAttr = fragmentsMatch[1];
-          console.log(`📝 Processing timeline ${filename} with ${attr}: ${fragmentsAttr}`);
-          
+
           // Parse the fragments attribute: "year:index,year:index,..."
           const fragmentPairs = fragmentsAttr.split(',').map(s => s.trim());
           
           for (const pair of fragmentPairs) {
             const [year, index] = pair.split(':').map(s => s.trim());
             if (year && index) {
-              console.log(`  Year ${year} -> Index ${index} (${className})`);
-              
               // Replace each element type that matches this year
               timelineContent = timelineContent.replace(
                 new RegExp(`<div class="timeline-dot" style="--year: ${year};">`, 'g'),
@@ -229,21 +224,13 @@ async function processTimelineImports(content) {
               }
             }
           }
-          
-          console.log(`✅ Applied ${className} fragment classes for ${filename}`);
         }
-      }
-      
-      if (!hasFragments) {
-        console.log(`📝 Processing timeline ${filename} (no fragments)`);
       }
       
       // Replace THIS SPECIFIC placeholder with the processed content
       // Use a more specific replacement that only targets this exact div
       const newDiv = fullDiv.replace(placeholder, timelineContent.trim());
       processedContent = processedContent.replace(fullDiv, newDiv);
-      
-      console.log(`✅ Imported timeline: ${filename}.html`);
     } catch (error) {
       console.error(`❌ Failed to import timeline ${filename}.html:`, error.message);
       // Keep the placeholder if import fails
