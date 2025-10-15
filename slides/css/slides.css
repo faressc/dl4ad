@@ -79,16 +79,12 @@
 
 .reveal h1 {
   text-align: center;
-  margin-block: 0;
   line-height: 1.7em;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-size: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  margin-block: 20% 10%;
 }
 
 .reveal h2 {
@@ -454,8 +450,49 @@
 
 .fragment.select.visible.tile-description {
   background: none;
-  /* color: var(--fs-fragment-select-text-color); */
 }
+
+.fragment.select.visible.timeline-dot {
+  background: var(--fs-fragment-select-color);
+  border-color: var(--fs-background-color);
+  box-shadow: 0 0 10px var(--fs-fragment-select-color);
+}
+
+.fragment.select.visible.timeline-item {
+  background: none;
+}
+
+.fragment.select.visible.timeline-item .timeline-year {
+  color: var(--fs-fragment-select-color);
+  transition: color 1s;
+}
+
+.fragment.select:not(.current-fragment).visible {
+  background: none;
+}
+
+.fragment.select:not(.current-fragment).visible.timeline-dot {
+  background: var(--fs-background-color);
+  border-color: var(--fs-link-color);
+  box-shadow: none;
+}
+
+.fragment.select:not(.current-fragment).visible.timeline-item .timeline-year {
+  color: var(--fs-link-color);
+  font-size: 0.6em;
+}
+
+.timeline-purple .fragment.select:not(.current-fragment).visible.timeline-dot {
+  background: var(--fs-background-color);
+  border-color: var(--fs-highlight-background);
+  box-shadow: none;
+}
+
+.timeline-purple .fragment.select:not(.current-fragment).visible.timeline-item .timeline-year {
+  color: var(--fs-highlight-background);
+  font-size: 0.6em;
+}
+
 
 .fragment.appear-table {
   display: none;
@@ -485,6 +522,10 @@
   display: block;
 }
 
+.fragment.vanish.flex {
+  display: flex !important;
+}
+
 .fragment.vanish.visible {
   display: none !important;
 }
@@ -493,8 +534,12 @@
   display: none !important;
 }
 
-.fragment.vanish:not(.current-fragment).visible {
-  display: none !important;
+.fragment.vanish:not(.current-fragment) {
+  display: block !important;
+}
+
+.fragment.vanish:not(.current-fragment).flex {
+  display: flex !important;
 }
 
 .fragment.color-0.visible {
@@ -514,6 +559,203 @@
 
 .reveal .slides section .fragment.select {
   transition: 2s;
+}
+
+/*********************************************
+ * CODE BLOCKS AND INLINE CODE
+ *********************************************/
+
+/* Inline code */
+.reveal code {
+  font-family: var(--fs-code-font);
+  color: var(--fs-link-color);
+  background: var(--fs-surface);
+  padding: 0.15em 0.4em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+  border: 1px solid var(--fs-border-light);
+  font-weight: 500;
+}
+
+/*********************************************
+ * FORMULAS
+ *********************************************/
+
+.formula {
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-left: 4px solid var(--fs-link-color);
+  border-radius: 8px;
+  padding: 30px 40px;
+  margin: 25px auto;
+  text-align: center;
+  box-shadow: 0 4px 20px var(--fs-shadow-color-light);
+  font-size: 1.1em;
+  max-width: 90%;
+}
+
+.formula .MathJax {
+  color: var(--fs-text-color);
+  font-size: inherit;
+}
+
+/* Alternative formula styles */
+.formula.accent-purple {
+  border-left-color: var(--fs-highlight-background);
+}
+
+.formula.minimal {
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--fs-border-light);
+  border-bottom: 1px solid var(--fs-border-light);
+  box-shadow: none;
+  padding: 20px 0;
+}
+
+.formula.highlight {
+  background: var(--fs-highlight-background);
+  border-color: var(--fs-highlight-background);
+  color: var(--fs-highlight-color);
+}
+
+.formula.highlight .MathJax {
+  color: var(--fs-highlight-color);
+}
+
+/*********************************************
+ * CODE BLOCKS
+ *********************************************/
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 1.5em 0;
+  text-align: left;
+  font-size: 0.55em;
+  line-height: 1.5;
+  word-wrap: break-word;
+  box-shadow: 0 4px 20px var(--fs-shadow-color-light);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reveal pre code {
+  display: block;
+  padding: 1.5em;
+  overflow: auto;
+  max-height: 600px;
+  word-wrap: normal;
+  background: var(--fs-surface);
+  color: var(--fs-text-color);
+  border: 1px solid var(--fs-border);
+  border-radius: 8px;
+  font-weight: 400;
+}
+
+/* Code block with language label */
+.reveal pre[class*="language-"]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.3em 0.8em;
+  font-size: 0.75em;
+  font-family: var(--fs-heading-font);
+  background: var(--fs-surface-alt);
+  color: var(--fs-text-muted-color);
+  border-bottom-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+/* Syntax highlighting colors using your theme */
+.reveal pre code .keyword {
+  color: var(--fs-link-color-hover);
+  font-weight: 600;
+}
+
+.reveal pre code .string {
+  color: var(--fs-fragment-select-color-1);
+}
+
+.reveal pre code .comment {
+  color: var(--fs-text-subtle-color);
+  font-style: italic;
+}
+
+.reveal pre code .function {
+  color: var(--fs-link-color);
+  font-weight: 500;
+}
+
+.reveal pre code .number {
+  color: var(--fs-highlight-background);
+}
+
+.reveal pre code .operator {
+  color: var(--fs-text-muted-color);
+}
+
+.reveal pre code .class-name {
+  color: var(--fs-link-color-light);
+  font-weight: 600;
+}
+
+.reveal pre code .variable {
+  color: var(--fs-text-color);
+}
+
+/* Line highlighting in code blocks */
+.reveal pre code .highlight-line {
+  background: var(--fs-selection-background-color);
+  display: block;
+  margin: 0 -1.5em;
+  padding: 0 1.5em;
+  border-left: 3px solid var(--fs-highlight-background);
+}
+
+/* Alternative code block style - accent border */
+.reveal pre.accent {
+  border-left: 4px solid var(--fs-link-color);
+}
+
+.reveal pre.accent-purple {
+  border-left: 4px solid var(--fs-highlight-background);
+}
+
+/* Dark code blocks for light theme / light for dark theme */
+[data-theme="light"] .reveal pre code {
+  background: rgba(36, 37, 41, 0.05);
+  border-color: var(--fs-border);
+}
+
+[data-theme="dark"] .reveal pre code {
+  background: rgba(250, 250, 250, 0.03);
+  border-color: var(--fs-border);
+}
+
+/* Scrollbar styling for code blocks */
+.reveal pre code::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.reveal pre code::-webkit-scrollbar-track {
+  background: var(--fs-surface);
+  border-radius: 4px;
+}
+
+.reveal pre code::-webkit-scrollbar-thumb {
+  background: var(--fs-border);
+  border-radius: 4px;
+}
+
+.reveal pre code::-webkit-scrollbar-thumb:hover {
+  background: var(--fs-text-subtle-color);
 }
 
 /*********************************************
@@ -683,7 +925,7 @@
   background-color: var(--fs-overlay);
   border: 2px solid var(--fs-border);
   border-radius: 10px;
-  padding: 20px;
+  padding: 60px;
   box-shadow: 0 4px 8px var(--fs-shadow-color);
   color: var(--fs-text-color);
   z-index: 10;
@@ -831,3 +1073,4 @@
     font-size: 0.4em;
     font-weight: 400;
 }
+
