@@ -137,5 +137,22 @@ where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regressio
 
 ---
 
-## Supervised Machine Learning
+## Linear Regression Example
 
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-machine_learning_fundamentals/1080p60/LinearRegressionSimple.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Binary Classification Example
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-machine_learning_fundamentals/1080p60/BinaryClassificationSimple.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
