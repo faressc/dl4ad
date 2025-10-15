@@ -111,7 +111,7 @@
 
 ---
 
-## Supervised Machine Learning
+## Machine Learning
 
 <div style="font-size: 0.9em;">
 
@@ -134,15 +134,6 @@ $$
 where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regression, Hinge Loss for classification).
 
 </div>
-
----
-
-## Examples of Supervised Learning Tasks
-
-1. **Regression**: Predicting a continuous output (e.g., house prices, stock prices).
-2. **Binary Classification**: Classifying inputs into one of two categories (e.g., spam detection, disease diagnosis).
-3. **Multi-class Classification**: Classifying inputs into one of multiple categories (e.g., image recognition, sentiment analysis).
-4. **Sequence Prediction**: Predicting the next element in a sequence (e.g., language modeling, time series forecasting).
 
 ---
 
