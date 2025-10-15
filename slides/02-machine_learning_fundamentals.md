@@ -137,7 +137,7 @@ where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regressio
 
 ---
 
-## The Function Space
+## Defining the Function Space
 
 <div style="font-size: 0.9em;">
 
@@ -176,13 +176,50 @@ $$
 $$
 </div>
 
-The loss function $$\mathcal{L}$$ quantifies the difference between the predicted output $$f_{\boldsymbol{\theta}}(\mathbf{x}_i)$$ and the true label $$\mathbf{y}_i$$. **Examples of loss functions**:
+The loss function $$\mathcal{L}$$ quantifies the difference between the predicted output $$f_{\boldsymbol{\theta}}(\mathbf{x}_i) = \hat{\mathbf{y}}_i$$ and the true label $$\mathbf{y}_i$$. **Examples of loss functions**:
 
 <ul>
-    <li><strong>Mean Absolute Error (MAE) (L1 Loss)</strong>: $\mathcal{L}_{\text{MAE}} = \lVert f_{\boldsymbol{\theta}}(\mathbf{x}_i) - \mathbf{y}_i \rVert_1$</li>
-    <li><strong>Mean Squared Error (MSE) (L2 Loss)</strong>: $\mathcal{L}_{\text{MSE}} = \lVert f_{\boldsymbol{\theta}}(\mathbf{x}_i) - \mathbf{y}_i \rVert_2^2$</li>
-    <li><strong>Hinge Loss</strong>: $\mathcal{L}_{\text{Hinge}} = \max(0, 1 - y_i f_{\boldsymbol{\theta}}(\mathbf{x}_i))$ for binary labels $y_i \in \{-1, 1\}$</li>
+    <li><strong>Mean Absolute Error (MAE) (L1 Loss)</strong>: $\mathcal{L}_{\text{MAE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_1$</li>
+    <li><strong>Mean Squared Error (MSE) (L2 Loss)</strong>: $\mathcal{L}_{\text{MSE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_2^2$</li>
+    <li><strong>Hinge Loss</strong>: $\mathcal{L}_{\text{Hinge}} = \max(0, 1 - y_i \hat{y}_i)$ for binary labels $y_i \in \{-1, 1\}$</li>
 </ul>
+
+</div>
+
+---
+
+## The Key Components
+
+<div style="font-size: 0.9em;">
+
+<div class="grid" style="display: grid; grid-template-columns: auto 1fr; gap: 1em; align-items: start;">
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">0</div>
+<div>
+<strong>Dataset</strong> ($D$): A collection of input-output pairs $D = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace_{i=1}^{N}$. The dataset must be representative of the true underlying function $f^*: \mathcal{X} \to \mathcal{Y}$.
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">1</div>
+<div>
+<strong>Function or Model</strong> ($f_{\boldsymbol{\theta}}$): A parameterized function that maps inputs $\mathbf{x}_i$ to predicted outputs $\hat{\mathbf{y}}_i = f_{\boldsymbol{\theta}}(\mathbf{x}_i)$. The choice of function defines the function space $\mathcal{F}_{\Theta}$.
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">2</div>
+<div>
+<strong>Parameters</strong> ($\boldsymbol{\theta}$): The set of parameters that define the specific function within the function space. These parameters are adjusted during training to minimize the empirical risk.
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">3</div>
+<div>
+<strong>Loss Function</strong> ($\mathcal{L}$): A function that quantifies the difference between the predicted outputs $\hat{\mathbf{y}}_i$ and the true labels $\mathbf{y}_i$. The choice of loss function depends on the task (e.g., regression vs. classification).
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">4</div>
+<div>
+<strong>Optimization Algorithm</strong>: A method for adjusting the parameters $\boldsymbol{\theta}$ to minimize the empirical risk $R(\boldsymbol{\theta})$. Common algorithms include Gradient Descent and its variants.
+</div>
+
+</div>
 
 </div>
 

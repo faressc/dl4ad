@@ -45,7 +45,7 @@ class LinearRegressionSimple(Scene):
         definition = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_1", font_size=36)
         definition.to_edge(LEFT).shift(UP * 1.5)
         self.play(Write(definition))
-        equation = MathTex(r"y = \theta_0 + \theta_1 x", font_size=36)
+        equation = MathTex(r"\hat{y} = \theta_0 + \theta_1 x", font_size=36)
         equation.next_to(definition, DOWN, aligned_edge=LEFT)
         self.play(Write(equation))
         self.wait(1)
@@ -169,12 +169,12 @@ class BinaryClassificationSimple(Scene):
         definition = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_1^{(2)}", font_size=36)
         definition.to_edge(LEFT).shift(UP * 1.5)
         self.play(Write(definition))
-        equation = MathTex(r"y = \theta_0 + \theta_1 x_1 + \theta_2 x_2", font_size=36)
+        equation = MathTex(r"\hat{y} = \theta_0 + \theta_1 x_1 + \theta_2 x_2", font_size=36)
         equation.next_to(definition, DOWN, aligned_edge=LEFT)
         self.play(Write(equation))
         # Show classification rule
         classification = MathTex(
-            r"\text{Class } = \begin{cases} 0 & \text{if } y \leq 0 \\ 1 & \text{if } y > 0 \end{cases}",
+            r"\text{Class } = \begin{cases} 0 & \text{if } \hat{y} \leq 0 \\ 1 & \text{if } \hat{y} > 0 \end{cases}",
             font_size=36
         )
         classification.next_to(equation, DOWN*6, aligned_edge=LEFT)
