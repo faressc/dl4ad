@@ -1,6 +1,10 @@
 node_modules/
 dist/
-venv/
+**/venv/
+**/.venv/
 
 ./markdownlint.json
 .claude/
+
+**/media/
+**/__pycache__/
