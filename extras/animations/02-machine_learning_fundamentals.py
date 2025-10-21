@@ -397,10 +397,10 @@ class QuadraticRegressionOverUnderfit(Scene):
         
         # Create error comparison table
         error_labels = VGroup(
-            MathTex(r"\lVert\epsilon\rVert_2^2", font_size=28, color=YELLOW),
-            MathTex(r"\lVert r_{\text{underfit}}\rVert_2^2", font_size=28, color=RED),
-            MathTex(r"\lVert r_{\text{good fit}}\rVert_2^2", font_size=28, color=GREEN),
-            MathTex(r"\lVert r_{\text{overfit}}\rVert_2^2", font_size=28, color=ORANGE)
+            MathTex(r"\frac{1}{N}\|\boldsymbol{\epsilon}\|_2^2", font_size=28, color=YELLOW),
+            MathTex(r"\frac{1}{N}\|\mathbf{r}_{\text{underfit}}\|_2^2", font_size=28, color=RED),
+            MathTex(r"\frac{1}{N}\|\mathbf{r}_{\text{good fit}}\|_2^2", font_size=28, color=GREEN),
+            MathTex(r"\frac{1}{N}\|\mathbf{r}_{\text{overfit}}\|_2^2", font_size=28, color=ORANGE)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
         
         error_values = VGroup(
