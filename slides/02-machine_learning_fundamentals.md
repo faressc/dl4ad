@@ -125,11 +125,11 @@
 
 <div class="formula">
 $$
-R(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
+\hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
 $$
 </div>
 
-where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regression, Hinge Loss for classification).
+where $$\ell$$ is a single sample loss function (e.g., absolute loss for regression, hinge loss for classification).
 
 </div>
 
@@ -165,23 +165,33 @@ where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regressio
 ## Finding the Optimal Parameters
 
 <div style="font-size: 0.9em;">
-
-**Objective**: Find the optimal parameters $$\boldsymbol{\theta}^*$$ in the parameter space $\Theta$ from a function space $\mathcal{F}_{\Theta}$ that minimize the empirical risk:
-
+<strong>Objective</strong>: Find the optimal parameters $\boldsymbol{\theta}^*$ that minimize the empirical risk over the parametrized function family $\mathcal{F}_{\Theta} = \lbrace f_{\boldsymbol{\theta}} : \boldsymbol{\theta} \in \Theta\rbrace$:
 <div class="formula">
 $$
-\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} R(\boldsymbol{\theta}) = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
+\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta}) = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
 $$
 </div>
 
-The loss function $$\mathcal{L}$$ quantifies the difference between the predicted output $$f_{\boldsymbol{\theta}}(\mathbf{x}_i) = \hat{\mathbf{y}}_i$$ and the true label $$\mathbf{y}_i$$.
+The loss function $$\ell$$ quantifies the difference between the predicted output $$f_{\boldsymbol{\theta}}(\mathbf{x}_i) = \hat{\mathbf{y}}_i$$ and true label $$\mathbf{y}_i$$.
 
 **Examples of loss functions**:
 
 <ul>
-    <li><strong>Mean Absolute Error (L1 Loss)</strong>: $\mathcal{L}_{\text{MAE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_1$</li>
-    <li><strong>Mean Squared Error (L2 Loss)</strong>: $\mathcal{L}_{\text{MSE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_2^2$</li>
-    <li><strong>Hinge Loss</strong>: $\mathcal{L}_{\text{Hinge}} = \max(0, 1 - y_i \hat{y}_i)$ for binary labels $y_i \in \{-1, 1\}$</li>
+    <li><strong>L1 loss function</strong>: 
+        $$\ell_1(\hat{\mathbf{y}}_i, \mathbf{y}_i) = \lVert \hat{\mathbf{y}}_i - \mathbf{y}_i \rVert_1 
+        \quad \implies \quad 
+        \hat{R} = \mathcal{L}_{1} = \text{MAE} = \frac{1}{N} \sum_{i=1}^N \lVert \hat{\mathbf{y}}_i - \mathbf{y}_i \rVert_1$$
+    </li>
+    <li><strong>L2 loss function</strong>: 
+        $$\ell_2(\hat{\mathbf{y}}_i, \mathbf{y}_i) = \lVert \hat{\mathbf{y}}_i - \mathbf{y}_i \rVert_2^2 
+        \quad \implies \quad 
+        \hat{R} = \mathcal{L}_{2} = \text{MSE} = \frac{1}{N} \sum_{i=1}^N \lVert \hat{\mathbf{y}}_i - \mathbf{y}_i \rVert_2^2$$
+    </li>
+    <li><strong>Hinge loss function</strong>: 
+        $$\ell_{\text{hinge}}(\hat{y}_i, y_i) = \max(0, 1 - y_i \hat{y}_i)\\
+        \implies \hat{R} = \mathcal{L}_{\text{hinge}} = \frac{1}{N} \sum_{i=1}^N \max(0, 1 - y_i \hat{y}_i)$$
+        for $y_i \in \{-1, 1\}$
+    </li>
 </ul>
 
 </div>
@@ -222,13 +232,12 @@ $$
 </div>
 
 <div class="image-overlay fragment highlight" style="width: 70%">
-Even with the optimal parameters $\boldsymbol{\theta}^*$ and infinite training data, certain loss functions will not reach zero due to: (1) irreducible noise $\epsilon_i$ (always present), and (2) approximation error when $f^* \notin \mathcal{F}_{\Theta}$ (model class limitation).
+Even with the optimal parameters $\boldsymbol{\theta}^*$ and infinite training data, the residual errors $r_i$ may not reach zero due to: (1) irreducible noise $\epsilon_i$ (always present), and (2) approximation error when $f^* \notin \mathcal{F}_{\Theta}$ (model class limitation).
 </div>
+
 ---
 
 ## Over- and Underfitting
-
-<div style="font-size: 0.9em;">
 
 **Balancing Model Complexity**:
 
@@ -237,8 +246,6 @@ Even with the optimal parameters $\boldsymbol{\theta}^*$ and infinite training d
 - **Underfitting**: When $f^* \notin \mathcal{F}_{\Theta}$, the model class is too restrictive to capture the true data-generating process, leading to high approximation error on both training and new data.
 
 The goal is to select a function space $\mathcal{F}_{\Theta}$ that balances expressiveness with generalization capability.
-
-</div>
 
 ---
 
@@ -253,7 +260,7 @@ The goal is to select a function space $\mathcal{F}_{\Theta}$ that balances expr
 
 ---
 
-## How to test this?
+## Cross-validation
 
 ---
 
