@@ -78,7 +78,7 @@ class LinearRegressionSimple(Scene):
         )
         
         best_params = MathTex(
-            f"\\theta_0={theta_0_best:.2f}, \\theta_1={theta_1_best:.2f}",
+            f"\\theta_0^*={theta_0_best:.2f}, \\theta_1^*={theta_1_best:.2f}",
             font_size=36,
             color=GREEN
         )
@@ -91,6 +91,339 @@ class LinearRegressionSimple(Scene):
         self.play(Write(best_label))
         self.wait(1)
 
+        # Fade out everything
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait(1)
+
+
+class QuadraticRegressionOverUnderfit(Scene):
+    def construct(self):
+        # Create axes
+        axes = Axes(
+            x_range=[-3, 3, 1],
+            y_range=[-2, 8, 2],
+            x_length=7,
+            y_length=5,
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        
+        # Add labels
+        x_label = axes.get_x_axis_label("x", edge=RIGHT, direction=RIGHT)
+        y_label = axes.get_y_axis_label("y", edge=UP, direction=UP)
+        
+        axes_group = VGroup(axes, x_label, y_label)
+        axes_group.shift(RIGHT * 1.5)
+        axes_group.shift(DOWN * 1)
+        
+        
+        self.play(Create(axes), Write(x_label), Write(y_label))
+        self.wait(1)
+
+        # Generate sample data points (quadratic with noise)
+        np.random.seed(42)
+        x_data = np.array([-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5])
+        theta_true = np.array([1, 0, 0.5])
+        y_true = theta_true[0] + theta_true[1] * x_data + theta_true[2] * x_data**2  # True quadratic function
+        y_data = y_true + np.random.normal(0, 0.6, len(x_data))
+
+        # Draw the real distribution
+        real_distribution = axes.plot(
+            lambda x: theta_true[0] + theta_true[1] * x + theta_true[2] * x**2,
+            color=WHITE,
+            x_range=(-3, 3)
+        )
+
+        # 0. REAL DISTRIBUTION
+        real_label = Text("Real Distribution", font_size=28, color=WHITE)
+        real_label.to_edge(LEFT).shift(UP * 1.5)
+
+        definition_real = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_2", font_size=28)
+        definition_real.next_to(real_label, DOWN, aligned_edge=LEFT)
+
+        equation_real = MathTex(r"y = \theta_0 + \theta_1 x + \theta_2 x^2 + \epsilon", font_size=28)
+        equation_real.next_to(definition_real, DOWN, aligned_edge=LEFT)
+
+        self.play(Create(real_distribution), Write(real_label))
+        self.play(Write(definition_real), Write(equation_real))
+
+        # Create dots for data points
+        dots = VGroup()
+        for x, y in zip(x_data, y_data):
+            dot = Dot(axes.c2p(x, y), color=WHITE, radius=0.08)
+            dots.add(dot)
+        
+        # Animate data points appearing
+        self.play(LaggedStart(*[GrowFromCenter(dot) for dot in dots], lag_ratio=0.2))
+        self.wait(1)
+
+        # Draw Errors from Noise
+        error_lines = VGroup()
+        for x, y, y_t in zip(x_data, y_data, y_true):
+            # Draw vertical line from true value to observed value
+            start_point = axes.c2p(x, y_t)
+            end_point = axes.c2p(x, y)
+            error_line = Line(start_point, end_point, color=YELLOW, stroke_width=2)
+            error_lines.add(error_line)
+        
+        # Add label for errors
+        error_label = MathTex(r"\epsilon \sim \mathcal{N}(0, \sigma^2)", font_size=28, color=YELLOW)
+        error_label.next_to(equation_real, DOWN, aligned_edge=LEFT)
+        
+        self.play(LaggedStart(*[Create(line) for line in error_lines], lag_ratio=0.1))
+        self.play(Write(error_label))
+        self.wait(2)
+        
+        # Fade out error visualization
+        self.play(FadeOut(error_lines), FadeOut(error_label))
+        self.wait(0.5)
+        
+        # Title
+        title = Text("Underfitting vs Good Fit vs Overfitting", font_size=32)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(0.5)
+
+        self.play(FadeOut(real_distribution), FadeOut(real_label), FadeOut(definition_real), FadeOut(equation_real))
+
+        # 1. UNDERFITTING - Linear model (too simple)
+        underfit_label = Text("Underfitting (Too Simple)", font_size=28, color=RED)
+        underfit_label.to_edge(LEFT).shift(UP * 1.5)
+        
+        definition_underfit = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_1", font_size=32)
+        definition_underfit.next_to(underfit_label, DOWN, aligned_edge=LEFT)
+        
+        equation_underfit = MathTex(r"\hat{y} = \theta_0 + \theta_1 x", font_size=32)
+        equation_underfit.next_to(definition_underfit, DOWN, aligned_edge=LEFT)
+        
+        self.play(Write(underfit_label), Write(definition_underfit), Write(equation_underfit))
+        
+        # Fit a linear model (underfitting)
+        A_linear = np.vstack([np.ones(len(x_data)), x_data]).T
+        theta_linear = np.linalg.lstsq(A_linear, y_data, rcond=None)[0]
+        
+        underfit_line = axes.plot(
+            lambda x: theta_linear[0] + theta_linear[1] * x,
+            color=RED,
+            x_range=[-3, 3]
+        )
+        
+        params_underfit = MathTex(
+            f"\\theta_0^*={theta_linear[0]:.2f}, \\theta_1^*={theta_linear[1]:.2f}",
+            font_size=28,
+            color=RED
+        )
+        params_underfit.next_to(equation_underfit, DOWN, aligned_edge=LEFT)
+        
+        self.play(Create(underfit_line), Write(params_underfit))
+        self.wait(2)
+        
+        # Fade out underfitting
+        self.play(
+            FadeOut(underfit_line),
+            FadeOut(underfit_label),
+            FadeOut(definition_underfit),
+            FadeOut(equation_underfit),
+            FadeOut(params_underfit)
+        )
+        self.wait(0.5)
+        
+        # 2. GOOD FIT - Quadratic model (just right)
+        goodfit_label = Text("Good Fit (Just Right)", font_size=28, color=GREEN)
+        goodfit_label.to_edge(LEFT).shift(UP * 1.5)
+        
+        definition_goodfit = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_2", font_size=32)
+        definition_goodfit.next_to(goodfit_label, DOWN, aligned_edge=LEFT)
+        
+        equation_goodfit = MathTex(r"\hat{y} = \theta_0 + \theta_1 x + \theta_2 x^2", font_size=32)
+        equation_goodfit.next_to(definition_goodfit, DOWN, aligned_edge=LEFT)
+        
+        self.play(Write(goodfit_label), Write(definition_goodfit), Write(equation_goodfit))
+        
+        # Fit a quadratic model (good fit)
+        A_quad = np.vstack([np.ones(len(x_data)), x_data, x_data**2]).T
+        theta_quad = np.linalg.lstsq(A_quad, y_data, rcond=None)[0]
+        
+        goodfit_curve = axes.plot(
+            lambda x: theta_quad[0] + theta_quad[1] * x + theta_quad[2] * x**2,
+            color=GREEN,
+            x_range=[-3, 3]
+        )
+        
+        params_goodfit = MathTex(
+            f"\\theta_0^*={theta_quad[0]:.2f}, \\theta_1^*={theta_quad[1]:.2f}, \\theta_2^*={theta_quad[2]:.2f}",
+            font_size=28,
+            color=GREEN
+        )
+        params_goodfit.next_to(equation_goodfit, DOWN, aligned_edge=LEFT)
+        
+        self.play(Create(goodfit_curve), Write(params_goodfit))
+        self.wait(2)
+        
+        # Fade out good fit
+        self.play(
+            FadeOut(goodfit_curve),
+            FadeOut(goodfit_label),
+            FadeOut(definition_goodfit),
+            FadeOut(equation_goodfit),
+            FadeOut(params_goodfit)
+        )
+        self.wait(0.5)
+        
+        # 3. OVERFITTING - High degree polynomial (too complex)
+        overfit_label = Text("Overfitting (Too Complex)", font_size=28, color=ORANGE)
+        overfit_label.to_edge(LEFT).shift(UP * 2)
+        
+        definition_overfit = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_{10}", font_size=32)
+        definition_overfit.next_to(overfit_label, DOWN, aligned_edge=LEFT)
+        
+        equation_overfit = MathTex(
+            r"\hat{y} = \theta_0 + \theta_1 x + \cdots + \theta_{10} x^{10}",
+            font_size=32
+        )
+        equation_overfit.next_to(definition_overfit, DOWN, aligned_edge=LEFT)
+        
+        self.play(Write(overfit_label), Write(definition_overfit), Write(equation_overfit))
+        
+        # Fit a 10th degree polynomial (overfitting)
+        degree = 10
+        A_poly = np.vstack([x_data**i for i in range(degree + 1)]).T
+        theta_poly = np.linalg.lstsq(A_poly, y_data, rcond=None)[0]
+        
+        def poly_func(x):
+            return sum(theta_poly[i] * x**i for i in range(degree + 1))
+        
+        overfit_curve = axes.plot(
+            poly_func,
+            color=ORANGE,
+            x_range=[-2.5, 2.5],
+            use_smoothing=True
+        )
+        
+        self.play(Create(overfit_curve))
+        self.wait(2)
+        
+        # Show all three together for comparison
+        comparison_label = Text("Comparison", font_size=32, color=YELLOW)
+        comparison_label.next_to(title, DOWN)
+        
+        self.play(
+            FadeOut(overfit_label),
+            FadeOut(definition_overfit),
+            FadeOut(equation_overfit),
+            Write(comparison_label)
+        )
+        
+        # Recreate all three curves
+        underfit_line_final = axes.plot(
+            lambda x: theta_linear[0] + theta_linear[1] * x,
+            color=RED,
+            x_range=[-3, 3],
+            stroke_width=3
+        )
+        
+        goodfit_curve_final = axes.plot(
+            lambda x: theta_quad[0] + theta_quad[1] * x + theta_quad[2] * x**2,
+            color=GREEN,
+            x_range=[-3, 3],
+            stroke_width=3
+        )
+        
+        # Add the real distribution back
+        real_distribution_final = axes.plot(
+            lambda x: theta_true[0] + theta_true[1] * x + theta_true[2] * x**2,
+            color=WHITE,
+            x_range=[-3, 3],
+            stroke_width=4,
+            stroke_opacity=0.7
+        )
+        
+        self.play(
+            Create(underfit_line_final),
+            Create(goodfit_curve_final),
+            Create(real_distribution_final)
+        )
+        
+        # Add legend
+        legend_under = VGroup(
+            Line(ORIGIN, RIGHT * 0.5, color=RED, stroke_width=3),
+            Text("Underfit", font_size=20, color=RED)
+        ).arrange(RIGHT, buff=0.2)
+        
+        legend_good = VGroup(
+            Line(ORIGIN, RIGHT * 0.5, color=GREEN, stroke_width=3),
+            Text("Good Fit", font_size=20, color=GREEN)
+        ).arrange(RIGHT, buff=0.2)
+        
+        legend_over = VGroup(
+            Line(ORIGIN, RIGHT * 0.5, color=ORANGE, stroke_width=3),
+            Text("Overfit", font_size=20, color=ORANGE)
+        ).arrange(RIGHT, buff=0.2)
+        
+        legend_real = VGroup(
+            Line(ORIGIN, RIGHT * 0.5, color=WHITE, stroke_width=4, stroke_opacity=0.7),
+            Text("Real Distribution", font_size=20, color=WHITE)
+        ).arrange(RIGHT, buff=0.2)
+        
+        legend = VGroup(legend_real, legend_under, legend_good, legend_over).arrange(
+            DOWN, aligned_edge=LEFT, buff=0.2
+        )
+        legend.to_edge(LEFT).shift(DOWN * 1.5)
+        
+        self.play(FadeIn(legend))
+        self.wait(3)
+        
+        # Error Analysis Section
+        self.play(
+            FadeOut(comparison_label),
+            FadeOut(legend)
+        )
+        
+        error_title = Text("Error Analysis: Residuals vs Noise", font_size=32, color=YELLOW)
+        error_title.next_to(title, DOWN)
+        self.play(Write(error_title))
+        self.wait(1)
+        
+        # Calculate errors for each model
+        y_pred_linear = theta_linear[0] + theta_linear[1] * x_data
+        y_pred_quad = theta_quad[0] + theta_quad[1] * x_data + theta_quad[2] * x_data**2
+        y_pred_poly = np.array([poly_func(x) for x in x_data])
+        
+        # Calculate MSE for each model and noise
+        mse_noise = np.mean((y_data - y_true)**2)
+        mse_underfit = np.mean((y_data - y_pred_linear)**2)
+        mse_goodfit = np.mean((y_data - y_pred_quad)**2)
+        mse_overfit = np.mean((y_data - y_pred_poly)**2)
+        
+        # Create error comparison table
+        error_labels = VGroup(
+            MathTex(r"\lVert\epsilon\rVert_2^2", font_size=28, color=YELLOW),
+            MathTex(r"\lVert r_{\text{underfit}}\rVert_2^2", font_size=28, color=RED),
+            MathTex(r"\lVert r_{\text{good fit}}\rVert_2^2", font_size=28, color=GREEN),
+            MathTex(r"\lVert r_{\text{overfit}}\rVert_2^2", font_size=28, color=ORANGE)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
+        
+        error_values = VGroup(
+            MathTex(f" = {mse_noise:.3f}", font_size=28, color=YELLOW),
+            MathTex(f" = {mse_underfit:.3f}", font_size=28, color=RED),
+            MathTex(f" = {mse_goodfit:.3f}", font_size=28, color=GREEN),
+            MathTex(f" = {mse_overfit:.3f}", font_size=28, color=ORANGE)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
+        
+        # Align the values with their corresponding labels
+        for i, (label, value) in enumerate(zip(error_labels, error_values)):
+            value.align_to(label, UP)
+        
+        # Position labels and values
+        error_labels.to_edge(LEFT).shift(UP * 0.5)
+        error_values.next_to(error_labels, RIGHT, buff=0.5)
+        
+        self.play(
+            Write(error_labels),
+            Write(error_values)
+        )
+        self.wait(4)
+        
         # Fade out everything
         self.play(*[FadeOut(mob) for mob in self.mobjects])
         self.wait(1)
@@ -230,7 +563,7 @@ class BinaryClassificationSimple(Scene):
         )
         
         best_params = MathTex(
-            f"\\theta_0={theta_0_best:.1f}, \\theta_1={theta_1_best:.1f}, \\theta_2={theta_2_best:.1f}",
+            f"\\theta_0^*={theta_0_best:.1f}, \\theta_1^*={theta_1_best:.1f}, \\theta_2^*={theta_2_best:.1f}",
             font_size=32,
             color=GREEN
         )

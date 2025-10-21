@@ -137,7 +137,7 @@ where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regressio
 
 ## Defining the Function Space
 
-<div style="font-size: 0.9em;">
+<div style="font-size: 0.8em;">
 
 <ul>
     <li>$f_{\boldsymbol{\theta}} \in \mathcal{F}_{\Theta}$: A specific function parameterized by $\boldsymbol{\theta}$ belongs to the function space $\mathcal{F}_{\Theta}$.</li>
@@ -149,12 +149,14 @@ where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regressio
 
 <ul>
     <li>$\mathcal{F}$: All possible functions $\mathcal{X} \to \mathcal{Y}$ (infinite, intractable)</li>
-    <li>$\mathcal{F}_1$: Linear functions, $\Theta = \mathbb{R}^2$, e.g., $f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x$</li>
-    <li>$\mathcal{F}_d$: Polynomial functions of degree $d$, $\Theta = \mathbb{R}^{d+1}$, e.g., $f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x + \ldots + \theta_d x^d$</li>
-    <li>$\mathcal{F}_2^{(2)}$: Quadratic functions, $\Theta = \mathbb{R}^6$, e.g., $f_{\boldsymbol{\theta}}(\mathbf{x}) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_1^2 + \theta_4 x_2^2 + \theta_5 x_1 x_2$</li>
+    <li>$\mathcal{F}_1^{(1)}$: Linear functions in 1 variable, $\Theta = \mathbb{R}^2$, $f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x$</li>
+    <!-- <li>$\mathcal{F}_d^{(1)}$: Polynomial functions of degree $d$ in 1 variable, $\Theta = \mathbb{R}^{d+1}$, $f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x + \ldots + \theta_d x^d$</li> -->
+    <li>$\mathcal{F}_1^{(n)}$: Linear functions in $n$ variables, $\Theta = \mathbb{R}^{n+1}$, $f_{\boldsymbol{\theta}}(\mathbf{x}) = \theta_0 + \theta_1 x_1 + \ldots + \theta_n x_n$</li>
+    <li>$\mathcal{F}_{\text{logistic}}$: Logistic functions, $\Theta = \mathbb{R}^3$, $f_{\boldsymbol{\theta}}(x) = \frac{\theta_0}{1 + e^{-\theta_1(x - \theta_2)}}$ (S-shaped curves for growth/saturation)</li>
+    <li>$\mathcal{F}_d^{(n)}$ Polynomial functions of degree $d$ in $n$ input variables, $\Theta = \mathbb{R}^{\binom{n+d}{d}}$
 </ul>
 
-**Important**: $\mathcal{F}_1 \subset \mathcal{F}_2 \subset \mathcal{F}_d \subset \mathcal{F}$ — more complex models have larger function spaces and can represent more patterns, but require more data to learn effectively.
+**Important**: For a fixed dimension $n$, we have $\mathcal{F}_1^{(n)} \subset \mathcal{F}_2^{(n)} \subset \ldots \subset \mathcal{F}_d^{(n)} \subset \mathcal{F}$ — more complex models have larger function spaces and can represent more patterns, but require more data to learn effectively.
 
 </div>
 
@@ -164,9 +166,7 @@ where $$\mathcal{L}$$ is a loss function (e.g., Mean Squared Error for regressio
 
 <div style="font-size: 0.9em;">
 
-After defining the function space and loss function, we can try to find the optimal parameters $$\boldsymbol{\theta}^*$$ that minimize the empirical risk.
-
-**Objective**: Find the optimal parameters $$\boldsymbol{\theta}^*$$ that minimize the empirical risk:
+**Objective**: Find the optimal parameters $$\boldsymbol{\theta}^*$$ in the parameter space $\Theta$ from a function space $\mathcal{F}_{\Theta}$ that minimize the empirical risk:
 
 <div class="formula">
 $$
@@ -174,15 +174,86 @@ $$
 $$
 </div>
 
-The loss function $$\mathcal{L}$$ quantifies the difference between the predicted output $$f_{\boldsymbol{\theta}}(\mathbf{x}_i) = \hat{\mathbf{y}}_i$$ and the true label $$\mathbf{y}_i$$. **Examples of loss functions**:
+The loss function $$\mathcal{L}$$ quantifies the difference between the predicted output $$f_{\boldsymbol{\theta}}(\mathbf{x}_i) = \hat{\mathbf{y}}_i$$ and the true label $$\mathbf{y}_i$$.
+
+**Examples of loss functions**:
 
 <ul>
-    <li><strong>Mean Absolute Error (MAE) (L1 Loss)</strong>: $\mathcal{L}_{\text{MAE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_1$</li>
-    <li><strong>Mean Squared Error (MSE) (L2 Loss)</strong>: $\mathcal{L}_{\text{MSE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_2^2$</li>
+    <li><strong>Mean Absolute Error (L1 Loss)</strong>: $\mathcal{L}_{\text{MAE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_1$</li>
+    <li><strong>Mean Squared Error (L2 Loss)</strong>: $\mathcal{L}_{\text{MSE}} = \lVert \hat{\mathbf{y}} - \mathbf{y}_i \rVert_2^2$</li>
     <li><strong>Hinge Loss</strong>: $\mathcal{L}_{\text{Hinge}} = \max(0, 1 - y_i \hat{y}_i)$ for binary labels $y_i \in \{-1, 1\}$</li>
 </ul>
 
 </div>
+
+---
+
+## Residual Errors
+
+<div style="font-size: 0.85em;">
+
+- We assume the true dataset is distributed according to the function $f^*$ plus noise $\epsilon$
+
+<div class="formula">
+$$
+y_i = f^*(\mathbf{x}_i) + \epsilon_i\text{, }
+$$
+</div>
+
+where $\epsilon_i$ represents inherent noise or randomness in the data generation process. E.g., normal distribution:
+
+<div class="formula">
+$$
+\epsilon_i \sim \mathcal{N}(0, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{\epsilon_i^2}{2\sigma^2}}
+$$
+</div>
+
+- Residual errors measure the difference between predictions and observations:
+
+<div class="formula">
+$$
+\begin{aligned}
+r_i & = y_i - f_{\boldsymbol{\theta}}(\mathbf{x}_i)\\
+r_i & = \underbrace{[f^*(\mathbf{x}_i) - f_{\boldsymbol{\theta}}(\mathbf{x}_i)]}_{\text{approximation error}} + \underbrace{\epsilon_i}_{\text{irreducible noise}}
+\end{aligned}
+$$
+</div>
+
+</div>
+
+<div class="image-overlay fragment highlight" style="width: 70%">
+Even with the optimal parameters $\boldsymbol{\theta}^*$ and infinite training data, certain loss functions will not reach zero due to: (1) irreducible noise $\epsilon_i$ (always present), and (2) approximation error when $f^* \notin \mathcal{F}_{\Theta}$ (model class limitation).
+</div>
+---
+
+## Over- and Underfitting
+
+<div style="font-size: 0.9em;">
+
+**Balancing Model Complexity**:
+
+- **Overfitting**: Even when $f^* \in \mathcal{F}_{\Theta}$, using overly complex models (e.g., high-degree polynomials) can lead to fitting noise rather than the underlying pattern, resulting in poor generalization to new data.
+
+- **Underfitting**: When $f^* \notin \mathcal{F}_{\Theta}$, the model class is too restrictive to capture the true data-generating process, leading to high approximation error on both training and test data.
+
+The goal is to select a function space $\mathcal{F}_{\Theta}$ that balances expressiveness with generalization capability.
+
+</div>
+
+---
+
+## Over- and Underfitting
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/QuadraticRegressionOverUnderfit.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## How to test this?
 
 ---
 
@@ -223,33 +294,7 @@ The loss function $$\mathcal{L}$$ quantifies the difference between the predicte
 
 ---
 
-## Residual Errors
-
-- Data points are generated by a true function $f^*$ plus noise:
-
-<div class="formula">
-$$
-\mathbf{y}_i = f^*(\mathbf{x}_i) + \epsilon_i
-$$
-</div>
-
-where $\epsilon_i$ represents inherent noise or randomness in the data generation process.
-
-- Residual errors measure the difference between predictions and observations:
-
-<div class="formula">
-$$
-r_i = \mathbf{y}_i - f_{\boldsymbol{\theta}}(\mathbf{x}_i)
-$$
-</div>
-
-<div class="highlight" style="padding: 40px 40px">
-Errors persist due to: (1) inherent noise $\epsilon_i$, and (2) approximation error when $f^* \notin \mathcal{F}_{\Theta}$
-</div>
-
----
-
-## Example: Linear Regression
+## Example: Simple Linear Regression
 
 <div style="text-align: center;">
     <video width="70%" data-autoplay loop muted controls>
@@ -257,6 +302,23 @@ Errors persist due to: (1) inherent noise $\epsilon_i$, and (2) approximation er
         Your browser does not support the video tag.
     </video>
 </div>
+
+---
+
+## Simple Linear Regression Formulation
+
+- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R} \to \mathbb{R}$ defined as:
+
+<div class="formula">
+$$
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x
+$$
+</div>
+
+- **Parameter space**: $\Theta = \mathbb{R}^2$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1)$
+- **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
+- **Input space**: $\mathcal{X} = \mathbb{R}$
+- **Output space**: $\mathcal{Y} = \mathbb{R}$
 
 ---
 

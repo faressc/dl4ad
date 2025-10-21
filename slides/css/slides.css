@@ -367,8 +367,8 @@
 
  /* Highlighted emphasis */
 .highlight {
-  background: var(--fs-highlight-background);
-  color: var(--fs-highlight-color);
+  background: var(--fs-highlight-background) !important;
+  color: var(--fs-highlight-color) !important;
   padding: 0.1em 0 0.1em 0;
   border-radius: 0.2em;
   margin: 1em 0 1em 0;
