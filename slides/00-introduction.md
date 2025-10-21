@@ -11,7 +11,7 @@ Note:
 <div style="display: flex; align-items: center; gap: 40px;">
     <div style="flex: 0 0 600px;">
         <figure style="text-align: center;">
-            <img src="assets/images/01-intro/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 600px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
+            <img src="assets/images/00-introduction/profile_picture.jpg" alt="Fares Schulz" style="width: 100%; max-width: 600px; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 8px;">
             <figcaption>
                 <strong>Fares Schulz</strong><br>
                 <a href="mailto:fares.schulz@tu-berlin.de" class="small">fares.schulz@tu-berlin.de</a>
@@ -54,7 +54,7 @@ Note:
 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; font-size: 0.85em;">
     <div style="flex: 1; padding-right: 30px;">
         <div style="text-align: center;">
-            <img src="assets/images/01-intro/ai_vs_ml_vs_nn_vs_dl.svg" alt="AI vs ML vs NN vs DL" style="max-width: 80%; height: auto;">
+            <img src="assets/images/00-introduction/ai_vs_ml_vs_nn_vs_dl.svg" alt="AI vs ML vs NN vs DL" style="max-width: 80%; height: auto;">
         </div>
         <div style="margin-top: 15px; font-size: 0.8em; color: var(--fs-text-muted-color); font-style: italic; text-align: center;">
             <strong>Nested Relationship:</strong> AI ⊃ ML ⊃ NN ⊃ DL
@@ -141,9 +141,9 @@ Notes:
         <figure>
             <div style="text-align: center;">
                 <!-- Light theme QR code -->
-                <img src="assets/images/01-intro/repo_qr_code-light.png" alt="Course Repo QR (Light)" style="width: 360px;" class="picture-light">
+                <img src="assets/images/00-introduction/repo_qr_code-light.png" alt="Course Repo QR (Light)" style="width: 360px;" class="picture-light">
                 <!-- Dark theme QR code -->
-                <img src="assets/images/01-intro/repo_qr_code-dark.png" alt="Course Repo QR (Dark)" style="width: 360px;" class="picture-dark">
+                <img src="assets/images/00-introduction/repo_qr_code-light.png" alt="Course Repo QR (Dark)" style="width: 360px;" class="picture-dark">
                 <figcaption><a href="https://github.com/faressc/dl4ad" class="small">github.com/faressc/dl4ad</a></figcaption>
             </div>
         </figure>
