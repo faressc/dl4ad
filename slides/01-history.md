@@ -4,6 +4,7 @@ Notes:
 
 - Neural Audio Systems are computational systems that leverage neural networks to analyze, generate, or process audio signals.
 - Integrated architecture: Combine neural network components with audio processing pipelines, handling real-time constraints, state management, and interfacing with hardware or software environments.
+- Focus on neural audio systems for music generation, analysis, processing. Not that much on speech recognition/synthesis and environmental sounds.
 
 ---
 
