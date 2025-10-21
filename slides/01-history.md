@@ -1,5 +1,10 @@
 <h1>History of<br>Neural Audio Systems</h1>
 
+Notes:
+
+- Neural Audio Systems are computational systems that leverage neural networks to analyze, generate, or process audio signals.
+- Integrated architecture: Combine neural network components with audio processing pipelines, handling real-time constraints, state management, and interfacing with hardware or software environments.
+
 ---
 
 ## Mathematical Foundations
@@ -656,10 +661,10 @@ Notes:
             <div class="timeline-text">Significant developments in deep neural audio systems</div>
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; width: 80%; gap: 20px;">
-            <div class="timeline timeline-secondary" style="width: 98%; --start-year: 2013; --end-year: 2024;">
+            <div class="timeline timeline-secondary" style="width: 98%; --start-year: 2013; --end-year: 2025;">
                 {{TIMELINE:timeline_deep_milestones}}
             </div>
-            <div class="timeline timeline-purple" style="width: 98%; --start-year: 2013; --end-year: 2024;" data-timeline-fragments-select="2016:1,2017:2,2019:3,2021:5,2022:6,2024:8">
+            <div class="timeline timeline-purple" style="width: 98%; --start-year: 2013; --end-year: 2025;" data-timeline-fragments-select="2016:1,2017:2,2019:4,2019.1:6,2021:8,2022:10,2024:12,2025:13">
                 {{TIMELINE:timeline_deep_audio_key_milestones}}
             </div>
         </div>
@@ -687,35 +692,58 @@ Notes:
         </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center; top: 100%;">
-    <img src="assets/images/01-intro/ddsp.png" alt="Neural Synthesis" style="width: 1300px; height: auto;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
+    <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/0fjopD87pyw?si=DEiHCrcYEGiOPUWu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="4" style="text-align: center; top: 100%;">
+    <img src="assets/images/01-intro/guitar_emulation.png" alt="Neural Synthesis" style="width: 750px; height: auto;">
+        <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+            Wright, A., Damskägg, E.-P., Juvela, L., & Välimäki, V. (2020). Real-Time Guitar Amplifier Emulation with Deep Learning. Applied Sciences, 10(3), 766. https://doi.org/10.3390/app10030766
+        </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
+    <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/y4NZPIGZ_zU?si=Y2eG-g6ERZW4ZnbD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; top: 100%;">
+    <img src="assets/images/01-intro/ddsp.png" alt="Neural Synthesis" style="width: 1200px; height: auto;">
         <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
             Engel, J., Hantrakul, L. (Hanoi), Gu, C., & Roberts, A. (2019, September 25). DDSP: Differentiable Digital Signal Processing. International Conference on Learning Representations.
         </div>
 </div>
 
-<div class="fragment" data-fragment-index="4"></div>
+<div class="fragment" data-fragment-index="7"></div>
 
 
-<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; top: 100%;">
+<div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; top: 100%;">
     <img src="assets/images/01-intro/rave.png" alt="Neural Synthesis" style="width: 1300px; height: auto;">
         <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
             Caillon, A., & Esling, P. (2021). RAVE: A variational autoencoder for fast and high-quality neural audio synthesis (No. arXiv:2111.05011). arXiv. http://arxiv.org/abs/2111.05011
         </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; top: 110%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="9" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
+    <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/dMZs04TzxUI?si=Auk5DMJ4DWRVj7dH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="11" style="text-align: center; top: 110%;">
     <img src="assets/images/01-intro/clap.png" alt="CLAP" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Elizalde, B., Deshmukh, S., Al Ismail, M., & Wang, H. (2023, June). Clap learning audio concepts from natural language supervision. In ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (pp. 1-5). IEEE.
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; top: 120%;">
-    <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
+<div class="fragment appear-vanish" data-fragment-index="12" style="text-align: center; top: 120%;">
+    <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1000px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
     </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="14" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
+    <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/7UR00wokYzE?si=u6LdwjgCqxoIoQUQ&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 Notes:

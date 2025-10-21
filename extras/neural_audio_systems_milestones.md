@@ -102,7 +102,7 @@ III. Audio Processing & Effects
     2016: iZotope Ozone - AI-assisted mastering with Master Assistant.
     2018: Ramirez and Reiss - "End-to-End Equalization With Convolutional Neural Networks". CNNs for EQ matching.
     2019: Spleeter and Demucs - Deep learning for source separation. Real-time, high-quality stems from mixed audio.
-    2020: Real-Time Guitar Amplifier Emulation with Deep Learning (Alec Wright et al., 2020). Real-time amp modeling with low-latency neural networks.
+    2019: Real-Time Guitar Amplifier Emulation with Deep Learning (Alec Wright et al., 2020). Real-time amp modeling with low-latency neural networks.
     2020: Automatic multitrack mixing with a differentiable mixing console of neural audio effects (2020). End-to-end mixing with neural effects.
     2021: HT-Demucs - "Hybrid Transformer Demucs" (2021). State-of-the-art source separation with hybrid CNN-transformer architecture.
     2021: Steerable discovery of neural audio effects (2021). Steinmetz et al. - Creating neural audio effects with unseen new user controls and timbres.
