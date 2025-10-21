@@ -234,7 +234,7 @@ Even with the optimal parameters $\boldsymbol{\theta}^*$ and infinite training d
 
 - **Overfitting**: Even when $f^* \in \mathcal{F}_{\Theta}$, using overly complex models (e.g., high-degree polynomials) can lead to fitting noise rather than the underlying pattern, resulting in poor generalization to new data.
 
-- **Underfitting**: When $f^* \notin \mathcal{F}_{\Theta}$, the model class is too restrictive to capture the true data-generating process, leading to high approximation error on both training and test data.
+- **Underfitting**: When $f^* \notin \mathcal{F}_{\Theta}$, the model class is too restrictive to capture the true data-generating process, leading to high approximation error on both training and new data.
 
 The goal is to select a function space $\mathcal{F}_{\Theta}$ that balances expressiveness with generalization capability.
 
