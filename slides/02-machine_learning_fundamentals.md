@@ -260,7 +260,24 @@ The goal is to select a function space $\mathcal{F}_{\Theta}$ that balances expr
 
 ---
 
-## Cross-validation
+## Splitting Datasets
+
+The dataset $D$ is split into three disjoint subsets:
+
+<div class="formula">
+$$
+\begin{aligned}
+D &= D_{\text{train}} \cup D_{\text{val}} \cup D_{\text{test}}\\
+D_{\text{train}} \cap D_{\text{val}} &= D_{\text{train}} \cap D_{\text{test}} = D_{\text{val}} \cap D_{\text{test}} = \emptyset
+\end{aligned}
+$$
+</div>
+
+- **Training set** ($D_{\text{train}}$): Learn model parameters $\boldsymbol{\theta}$
+- **Validation set** ($D_{\text{val}}$): Model selection, hyperparameter tuning (e.g. choice of function space $\mathcal{F}_{\Theta}$) — cross-validation commonly used here
+- **Test set** ($D_{\text{test}}$): Final performance evaluation — **use only once** after model selection is complete — reported in research papers
+
+**Critical**: Never use test set during development!
 
 ---
 
