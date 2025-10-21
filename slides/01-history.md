@@ -184,53 +184,53 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/artificial_neurons.png" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
+    <img src="assets/images/01-history/artificial_neurons.png" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         McCulloch, W. S., & Pitts, W. (1943). A logical calculus of the ideas immanent in nervous activity. The bulletin of mathematical biophysics, 5(4), 115-133.
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/perceptron.svg" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
+    <img src="assets/images/01-history/perceptron.svg" alt="Deep Learning Era Timeline" style="max-width: 50%; height: auto;">
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/feedforward_network.png" alt="Deep Learning Era Timeline" style="width: 500px; height: auto;">
+    <img src="assets/images/01-history/feedforward_network.png" alt="Deep Learning Era Timeline" style="width: 500px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://www.cudocompute.com/topics/neural-networks/introduction-to-recurrent-neural-networks-rnns
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/neocognition.png" alt="Deep Learning Era Timeline" style="max-width: 40%; height: auto;">
+    <img src="assets/images/01-history/neocognition.png" alt="Deep Learning Era Timeline" style="max-width: 40%; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         Fukushima, K. (1980). Neocognitron: A self-organizing neural network model for a mechanism of pattern recognition unaffected by shift in position. Biological Cybernetics, 36(4), 193–202. https://doi.org/10.1007/BF00344251
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="4" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/recurrent_network.png" alt="Deep Learning Era Timeline" style="width: 450px; height: auto;">
+    <img src="assets/images/01-history/recurrent_network.png" alt="Deep Learning Era Timeline" style="width: 450px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://www.cudocompute.com/topics/neural-networks/introduction-to-recurrent-neural-networks-rnns
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/lstm_cell_illustration.png" alt="Deep Learning Era Timeline" style="width: 700px; height: auto;">
+    <img src="assets/images/01-history/lstm_cell_illustration.png" alt="Deep Learning Era Timeline" style="width: 700px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://www.mql5.com/de/articles/15182
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/deep_believe_network.jpg" alt="Deep Learning Era Timeline" style="width: 600px; height: auto;">
+    <img src="assets/images/01-history/deep_believe_network.jpg" alt="Deep Learning Era Timeline" style="width: 600px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://www.analyticsvidhya.com/blog/2022/03/an-overview-of-deep-belief-network-dbn-in-deep-learning/
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="7" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/alexnet.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/alexnet.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). Imagenet classification with deep convolutional neural networks. Advances in neural information processing systems, 25.
     </div>
@@ -317,7 +317,7 @@ for epoch in range(num_epochs):
 <div class="fragment" data-fragment-index="2"></div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 60%;">
-    <img src="assets/images/01-intro/backprop.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/backprop.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://www.linkedin.com/pulse/backpropagation-neural-networks-brain-behind-deep-learning-ali-v8fsf
     </div>
@@ -326,7 +326,7 @@ for epoch in range(num_epochs):
 <div class="fragment" data-fragment-index="5"></div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
-    <img src="assets/images/01-intro/relu.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/relu.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://machinelearningmastery.com/rectified-linear-activation-function-for-deep-learning-neural-networks/
     </div>
@@ -335,7 +335,7 @@ for epoch in range(num_epochs):
 <div class="fragment" data-fragment-index="8"></div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
-    <img src="assets/images/01-intro/mnist_dataset.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/mnist_dataset.png" alt="Deep Learning Era Timeline" style="width: 1200px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://de.wikipedia.org/wiki/MNIST-Datenbank#/media/Datei:MnistExamples.png
     </div>
@@ -344,7 +344,7 @@ for epoch in range(num_epochs):
 <div class="fragment" data-fragment-index="11"></div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="13" style="text-align: center; width: 80%;">
-    <img src="assets/images/01-intro/imagenet.png" alt="Deep Learning Era Timeline" style="width: 1500px; height: auto;">
+    <img src="assets/images/01-history/imagenet.png" alt="Deep Learning Era Timeline" style="width: 1500px; height: auto;">
     <div class="reference" style="margin-top: 10px; text-align: center;">
         https://blog.roboflow.com/introduction-to-imagenet/
     </div>
@@ -391,7 +391,7 @@ Notes:
 <div class="fragment" data-fragment-index="1"></div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 100%;">
-    <img src="assets/images/01-intro/rnn_symbolic_music_gen.png" alt="RNN for Symbolic Music Generation" style="width: 700px; height: auto;">
+    <img src="assets/images/01-history/rnn_symbolic_music_gen.png" alt="RNN for Symbolic Music Generation" style="width: 700px; height: auto;">
     <div class="reference" style="margin: 10px; text-align: center;">
         Todd, P. M. (1989). A Connectionist Approach to Algorithmic Composition. Computer Music Journal, 13(4), 27–43.
     </div>
@@ -501,21 +501,21 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/vae.png" alt="Variational Autoencoder" style="max-width: 800px; height: auto;">
+    <img src="assets/images/01-history/vae.png" alt="Variational Autoencoder" style="max-width: 800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
         https://theaisummer.com/Autoencoder/
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 60px;">
-    <img src="assets/images/01-intro/gan.png" alt="Variational Autoencoder" style="max-width: 1200px; height: auto;">
+    <img src="assets/images/01-history/gan.png" alt="Variational Autoencoder" style="max-width: 1200px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
         https://www.linkedin.com/pulse/what-generative-adversarial-networks-gans-sushant-babbar-qpc9c
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; margin-top: 100px;">
-    <img src="assets/images/01-intro/diffusion_networks.png" alt="Diffusion Networks" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/diffusion_networks.png" alt="Diffusion Networks" style="width: 1200px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
         Ho, J., Jain, A., & Abbeel, P. (2020). Denoising diffusion probabilistic models. Advances in neural information processing systems, 33, 6840-6851.
     </div>
@@ -524,21 +524,21 @@ Notes:
 <div class="fragment" data-fragment-index="3"></div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 130%;">
-    <img src="assets/images/01-intro/transformer.png" alt="Transformer" style="max-width: 550px; height: auto;">
+    <img src="assets/images/01-history/transformer.png" alt="Transformer" style="max-width: 550px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
     </div>
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; top: 130%;">
-    <img src="assets/images/01-intro/clip.png" alt="CLIP" style="max-width: 1800px; height: auto;">
+    <img src="assets/images/01-history/clip.png" alt="CLIP" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Radford, A., Kim, J. W., Hallacy, C., Ramesh, A., Goh, G., Agarwal, S., ... & Sutskever, I. (2021). Learning transferable visual models from natural language supervision. In International conference on machine learning (pp. 8748-8763). PmLR.
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; top: 120%;">
-    <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
+    <img src="assets/images/01-history/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
     </div>
@@ -601,7 +601,7 @@ Notes:
 
 <!-- Word2Vec Overlay -->
 <div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 70%;">
-    <img src="assets/images/01-intro/word2vec.png" alt="Word2Vec" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <img src="assets/images/01-history/word2vec.png" alt="Word2Vec" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S., & Dean, J. (2013). Distributed representations of words and phrases and their compositionality. Advances in neural information processing systems, 26.
     </div>
@@ -610,7 +610,7 @@ Notes:
 
 <!-- Attention Mechanism Overlay -->
 <div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center;">
-    <img src="assets/images/01-intro/attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <img src="assets/images/01-history/attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Bahdanau, D., Cho, K., & Bengio, Y. (2016). Neural Machine Translation by Jointly Learning to Align and Translate (No. arXiv:1409.0473). arXiv. https://doi.org/10.48550/arXiv.1409.0473
     </div>
@@ -673,21 +673,21 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/wavenet_before.png" alt="WaveNet Before" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/wavenet_before.png" alt="WaveNet Before" style="width: 1200px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
         Oord, A. van den, Dieleman, S., Zen, H., Simonyan, K., Vinyals, O., Graves, A., Kalchbrenner, N., Senior, A., & Kavukcuoglu, K. (2016). WaveNet: A Generative Model for Raw Audio (No. arXiv:1609.03499). https://doi.org/10.48550/arXiv.1609.03499
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; margin-top: 20px;">
-    <img src="assets/images/01-intro/wavenet_after.png" alt="WaveNet Before" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/wavenet_after.png" alt="WaveNet Before" style="width: 1200px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin-top: 10px; text-align: center;">
         Oord, A. van den, Dieleman, S., Zen, H., Simonyan, K., Vinyals, O., Graves, A., Kalchbrenner, N., Senior, A., & Kavukcuoglu, K. (2016). WaveNet: A Generative Model for Raw Audio (No. arXiv:1609.03499). https://doi.org/10.48550/arXiv.1609.03499
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; top: 100%;">
-    <img src="assets/images/01-intro/nsynth.png" alt="Neural Synthesis" style="width: 900px; height: auto;">
+    <img src="assets/images/01-history/nsynth.png" alt="Neural Synthesis" style="width: 900px; height: auto;">
         <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
             Engel, J., Resnick, C., Roberts, A., Dieleman, S., Norouzi, M., Eck, D., & Simonyan, K. (2017, July). Neural audio synthesis of musical notes with wavenet autoencoders. In International conference on machine learning (pp. 1068-1077). PMLR.
         </div>
@@ -698,7 +698,7 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="4" style="text-align: center; top: 100%;">
-    <img src="assets/images/01-intro/guitar_emulation.png" alt="Neural Synthesis" style="width: 750px; height: auto;">
+    <img src="assets/images/01-history/guitar_emulation.png" alt="Neural Synthesis" style="width: 750px; height: auto;">
         <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
             Wright, A., Damskägg, E.-P., Juvela, L., & Välimäki, V. (2020). Real-Time Guitar Amplifier Emulation with Deep Learning. Applied Sciences, 10(3), 766. https://doi.org/10.3390/app10030766
         </div>
@@ -709,7 +709,7 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; top: 100%;">
-    <img src="assets/images/01-intro/ddsp.png" alt="Neural Synthesis" style="width: 1200px; height: auto;">
+    <img src="assets/images/01-history/ddsp.png" alt="Neural Synthesis" style="width: 1200px; height: auto;">
         <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
             Engel, J., Hantrakul, L. (Hanoi), Gu, C., & Roberts, A. (2019, September 25). DDSP: Differentiable Digital Signal Processing. International Conference on Learning Representations.
         </div>
@@ -719,7 +719,7 @@ Notes:
 
 
 <div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; top: 100%;">
-    <img src="assets/images/01-intro/rave.png" alt="Neural Synthesis" style="width: 1300px; height: auto;">
+    <img src="assets/images/01-history/rave.png" alt="Neural Synthesis" style="width: 1300px; height: auto;">
         <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
             Caillon, A., & Esling, P. (2021). RAVE: A variational autoencoder for fast and high-quality neural audio synthesis (No. arXiv:2111.05011). arXiv. http://arxiv.org/abs/2111.05011
         </div>
@@ -730,14 +730,14 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="11" style="text-align: center; top: 110%;">
-    <img src="assets/images/01-intro/clap.png" alt="CLAP" style="max-width: 1800px; height: auto;">
+    <img src="assets/images/01-history/clap.png" alt="CLAP" style="max-width: 1800px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         Elizalde, B., Deshmukh, S., Al Ismail, M., & Wang, H. (2023, June). Clap learning audio concepts from natural language supervision. In ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) (pp. 1-5). IEEE.
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="12" style="text-align: center; top: 120%;">
-    <img src="assets/images/01-intro/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1000px; height: auto;">
+    <img src="assets/images/01-history/diffusion-transformer.png" alt="Diffusion Transformer" style="max-width: 1000px; height: auto;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
         https://digialps.com/stability-ais-new-open-source-ai-creation-stable-audio-2-0-takes-on-suno-ai/
     </div>
@@ -894,7 +894,7 @@ Notes:
 </div>
 
 <div class="image-overlay fragment appear-vanish" data-fragment-index="0" style="position: absolute; text-align: center; width: 62%; padding: 40px;">
-    <img src="assets/images/01-intro/neural_proxy_training.png" alt="Neural Proxy Training" style="width: 100%; height: auto;">
+    <img src="assets/images/01-history/neural_proxy_training.png" alt="Neural Proxy Training" style="width: 100%; height: auto;">
     <div style="color: var(--fs-text-muted-color); margin-top: 10px;">
         Training of a neural proxy to mimic the behavior of a<br>non-differentiable synthesizer
     </div>
@@ -903,7 +903,7 @@ Notes:
 <div class="fragment" data-fragment-index="1"></div>
 
 <div class="image-overlay fragment appear-vanish" data-fragment-index="2" style="position: absolute; width: 82%; text-align: center; padding: 40px;">
-    <img src="assets/images/01-intro/synth_sound_matching_training.png" alt="Synth Sound Matching Training" style="width: 100%; height: auto;">
+    <img src="assets/images/01-history/synth_sound_matching_training.png" alt="Synth Sound Matching Training" style="width: 100%; height: auto;">
     <div style="color: var(--fs-text-muted-color); margin-top: 10px;">
         Training of a synthesizer sound matching system using the neural proxy
     </div>
@@ -956,13 +956,13 @@ Notes:
 
 <!-- <div class="fragment appear-vanish flex" data-fragment-index="2" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-top: 0px;">
     <div style="flex: 1; text-align: center;">
-        <img src="assets/images/01-intro/pgesam_demo-qr.svg" alt="pGESAM Demo" style="max-width: 380px; height: auto;">
+        <img src="assets/images/01-history/pgesam_demo-qr.svg" alt="pGESAM Demo" style="max-width: 380px; height: auto;">
         <div style="color: var(--fs-text-muted-color); margin-top: 10px;">
             Web Demo:<br><a href="https://pgesam.faresschulz.com/">https://pgesam.faresschulz.com/</a>
         </div>
     </div>
     <div style="flex: 1; text-align: center;">
-        <img src="assets/images/01-intro/pgesam_paper-qr.svg" alt="pGESAM Paper" style="max-width: 380px; height: auto;">
+        <img src="assets/images/01-history/pgesam_paper-qr.svg" alt="pGESAM Paper" style="max-width: 380px; height: auto;">
         <div style="color: var(--fs-text-muted-color); margin-top: 10px;">
             Paper published at 28th International Conference on Digital Audio Effects (DAFx25)
         </div>
@@ -980,7 +980,7 @@ Notes:
 </div>
 
 <div class="image-overlay fragment appear-vanish" data-fragment-index="0" style="position: absolute; width: 82%; text-align: center;">
-    <img src="assets/images/01-intro/pgesam.svg" alt="pGESAM Framework" style="width: 200%; height: auto;">
+    <img src="assets/images/01-history/pgesam.svg" alt="pGESAM Framework" style="width: 200%; height: auto;">
 </div>
 
 <div class="fragment" data-fragment-index="1"></div>
