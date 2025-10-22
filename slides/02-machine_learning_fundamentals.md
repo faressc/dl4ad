@@ -431,13 +431,13 @@ where $\eta > 0$ is the learning rate and $T$ is the total number of iterations.
 <div style="font-size: 0.85em;">
 
 ```python
-def gradient_descent(theta_0, learning_rate, max_iterations, 
+def gradient_descent(theta_initial, learning_rate, max_iterations, 
                      compute_gradient, tolerance=1e-6):
     """
     Gradient Descent optimization algorithm.
     
     Args:
-        theta_0: Initial parameters (numpy array), typically sampled 
+        theta_initial: Initial parameters (numpy array), typically sampled 
                  from N(0, 0.1) for each parameter
         learning_rate: Learning rate η > 0
         max_iterations: Maximum number of iterations T
@@ -447,7 +447,7 @@ def gradient_descent(theta_0, learning_rate, max_iterations,
     Returns:
         theta_star: Optimized parameters θ*
     """
-    theta = theta_0.copy()
+    theta = theta_initial.copy()
     
     for t in range(max_iterations):
         # Compute gradient at current parameters
