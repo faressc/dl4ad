@@ -260,9 +260,11 @@ The goal is to select a function space $\mathcal{F}_{\Theta}$ that balances expr
 
 ---
 
-## Splitting Datasets
+## Datasets
 
-The dataset $D$ is split into three disjoint subsets:
+<div style="font-size: 0.9em;">
+
+The dataset $D$ is composed of three disjoint subsets:
 
 <div class="formula">
 $$
@@ -273,11 +275,123 @@ D_{\text{train}} \cap D_{\text{val}} &= D_{\text{train}} \cap D_{\text{test}} = 
 $$
 </div>
 
-- **Training set** ($D_{\text{train}}$): Learn model parameters $\boldsymbol{\theta}$
-- **Validation set** ($D_{\text{val}}$): Model selection, hyperparameter tuning (e.g. choice of function space $\mathcal{F}_{\Theta}$) — cross-validation commonly used here
-- **Test set** ($D_{\text{test}}$): Final performance evaluation — **use only once** after model selection is complete — reported in research papers
+- **Training set** $D_{\text{train}}$: Learn model parameters $\boldsymbol{\theta}$
+- **Validation set** $D_{\text{val}}$: Model selection, hyperparameter tuning (e.g. choice of function space $\mathcal{F}_{\Theta}$) — cross-validation commonly used here
+- **Test set** $D_{\text{test}}$: Final performance evaluation — **use only once** after model selection is complete — reported in research papers — ideally from a different distribution than training/validation to assess generalization
 
-**Critical**: Never use test set during development!
+<div class="highlight">
+<strong>Critical</strong>: Never use test set during development!
+</div>
+
+</div>
+
+---
+
+## Training vs. Validation Error
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/QuantileRegressionOverUnderfitWithValidation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Bias-Variance Tradeoff
+
+<div style="font-size: 0.83em;">
+
+**What's the reason for the mean square residual error mathematically?**
+
+Assuming an expected prediction squared error over different training sets $D$ and noise realizations $\epsilon$:
+
+<div class="formula">
+$$
+\mathbb{E}_{D,\epsilon} \left[ (y - \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}))^2 \right]
+$$
+</div>
+
+, where $y = f^*(\mathbf{x}) + \epsilon$, $\epsilon \sim \mathcal{N}(0, \sigma^2)$ and $\hat{f}_{\boldsymbol{\theta}}(\mathbf{x})$ model prediction with parameters $\boldsymbol{\theta}$ trained on dataset $D$.
+
+This can be decomposed into three components:
+
+<div class="formula">
+$$
+\underbrace{\left( \mathbb{E}_D \left[ \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}) \right] - f^*(\mathbf{x}) \right)^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_D \left[ \left( \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}) - \mathbb{E}_D \left[ \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}) \right] \right)^2 \right]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Irreducible noise}}
+$$
+</div>
+
+<span>Note:</span> Full derivation in the [extras section](https://faressc.github.io/dl4ad/extras/mathematical_derivations/02_machine_learning_fundamentals.md).
+
+---
+
+## Bias-Variance Tradeoff Visualization
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/BiasVarianceTradeoff.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+---
+
+## Bias-Variance Tradeoff Traditional Plot
+
+<div style="text-align: center;">
+    <img src="assets/images/02-machine_learning_fundamentals/bias_variance_traditional.png" alt="Bias-Variance Tradeoff Plot" style="width: 55%;">
+    <div class="reference">https://www.ibm.com/think/topics/bias-variance-tradeoff/</div>
+</div>
+
+---
+
+## Regularization
+
+<div style="font-size: 0.9em;">
+To prevent overfitting, we can add a regularization term to the empirical risk minimization objective:
+
+<div class="formula">
+$$
+\arg\min\limits_{\boldsymbol{\theta} \in \Theta} \left( \hat{R}(\boldsymbol{\theta}) + \lambda \mathcal{R}(\boldsymbol{\theta})\right)
+$$
+</div>
+
+where $\mathcal{R}(\boldsymbol{\theta})$ is the regularization term (e.g., L1 or L2 norm) and $\lambda$ is a hyperparameter that controls the strength of the regularization.
+
+**Common Regularization Terms**:
+<ul>
+    <li><strong>L2 Regularization (Ridge)</strong>: $\mathcal{R}(\boldsymbol{\theta}) = \lVert \boldsymbol{\theta} \rVert_2^2 = \sum_{j=1}^{p} \theta_j^2$, with $p$ denoting the number of parameters, encourages smaller parameter values, leading to smoother functions.</li>
+    <li><strong>L1 Regularization (Lasso)</strong>: $\mathcal{R}(\boldsymbol{\theta}) = \lVert \boldsymbol{\theta} \rVert_1 = \sum_{j=1}^{p} |\theta_j|$, encourages sparsity in the parameters, leading to simpler models.</li>
+</ul>
+
+</div>
+
+---
+
+## Modern Risk Curves
+
+<div style="text-align: center;">
+    <img src="assets/images/02-machine_learning_fundamentals/modern_risk_curves.png" alt="Modern Risk Curves" style="width: 100%; margin-top: 10%;">
+    <div class="reference">Belkin, M., Hsu, D., Ma, S., & Mandal, S. (2019). Reconciling modern machine-learning practice and the classical bias–variance trade-off. Proceedings of the National Academy of Sciences, 116(32), 15849–15854. https://doi.org/10.1073/pnas.1903070116</div>
+</div>
+
+---
+
+## Modern Risk Curves: Double Descent
+
+<div style="font-size: 0.85em !important;">
+
+**Phenomenon**: As model capacity increases, test risk first decreases, then spikes at the interpolation threshold, and finally decreases again in the overparameterized regime
+
+| Regime | Model Cap. | Generalization Behavior |
+|--------|---------|------------------------|
+| **Underparameterized** | < Data complexity | Classical U-curve: bias-variance tradeoff |
+| **Interpolation Threshold** | ≈ Training samples | **Peak risk!** Only one way to fit data → worst generalization |
+| **Overparameterized** | ≫ Training samples | Second descent: Many solutions → inductive bias picks the ones that generalize well |
+
+**Bottom Line**: Modern deep learning challenges classical understanding — overparameterized models can generalize well despite fitting training data perfectly — e.g. optimization algorithms implicitly regularize by finding simple solutions among many possible interpolations
+
+</div>
 
 ---
 
@@ -309,7 +423,7 @@ $$
 
 <div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">4</div>
 <div>
-<strong>Optimization Algorithm</strong>: A method for adjusting the parameters $\boldsymbol{\theta}$ to minimize the empirical risk $R(\boldsymbol{\theta})$. Common algorithms include Gradient Descent and its variants.
+<strong>Optimization Algorithm</strong>: A method for adjusting the parameters $\boldsymbol{\theta}$ to minimize the empirical risk $\hat{R}(\boldsymbol{\theta})$. Common algorithms include Gradient Descent and its variants.
 </div>
 
 </div>
