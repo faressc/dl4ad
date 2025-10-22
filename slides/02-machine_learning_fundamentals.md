@@ -9,7 +9,7 @@
         <div class="timeline-title">Calculus & Linear Algebra</div>
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:0,1847:0,1951:0">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:0,1809:0,1847:0,1951:0">
         {{TIMELINE:timeline_calculus_linear_algebra}}
     </div>
 </div>
@@ -168,7 +168,7 @@ where $$\ell$$ is a single sample loss function (e.g., absolute loss for regress
 <strong>Objective</strong>: Find the optimal parameters $\boldsymbol{\theta}^*$ that minimize the empirical risk over the parametrized function family $\mathcal{F}_{\Theta} = \lbrace f_{\boldsymbol{\theta}} : \boldsymbol{\theta} \in \Theta\rbrace$:
 <div class="formula">
 $$
-\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta}) = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
+\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta}) = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
 $$
 </div>
 
@@ -354,7 +354,7 @@ To prevent overfitting, we can add a regularization term to the empirical risk m
 
 <div class="formula">
 $$
-\arg\min\limits_{\boldsymbol{\theta} \in \Theta} \left( \hat{R}(\boldsymbol{\theta}) + \lambda \mathcal{R}(\boldsymbol{\theta})\right)
+\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \left( \hat{R}(\boldsymbol{\theta}) + \lambda \mathcal{R}(\boldsymbol{\theta})\right)
 $$
 </div>
 
@@ -405,7 +405,7 @@ where $\mathcal{R}(\boldsymbol{\theta})$ is the regularization term (e.g., L1 or
 
 <div class="formula">
 $$
-\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta})
+\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta})
 $$
 </div>
 
