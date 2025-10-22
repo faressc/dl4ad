@@ -1142,5 +1142,254 @@ class BinaryClassificationSimple(Scene):
         self.play(*[FadeOut(mob) for mob in self.mobjects])
         self.wait(1)
 
+class LossLandscapeVisualization(ThreeDScene):
+    def construct(self):
+        
+        # Create 3D axes for loss landscape
+        axes = ThreeDAxes(
+            x_range=[-3, 3, 1],
+            y_range=[-3, 3, 1],
+            z_range=[0, 10, 2],
+            x_length=6,
+            y_length=6,
+            z_length=4,
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        
+        # Labels for parameters
+        theta_0_label = MathTex(r"\theta_0", font_size=28)
+        theta_1_label = MathTex(r"\theta_1", font_size=28)
+        loss_label = MathTex(r"\hat{R}(\boldsymbol{\theta})", font_size=28)
+        
+        # Position labels (will be updated with camera)
+        theta_0_label.next_to(axes.x_axis, RIGHT)
+        theta_1_label.next_to(axes.y_axis, UP)
+        loss_label.next_to(axes.z_axis, OUT)
 
+        axes_group = VGroup(axes, theta_0_label, theta_1_label, loss_label)
+        
+        # Define loss landscape (quadratic bowl)
+        def loss_function(theta_0, theta_1):
+            return 0.3 * theta_0**2 + 0.5 * theta_1**2 + 0.2 * theta_0 * theta_1 + 1.0
+        
+        # Create surface
+        surface = Surface(
+            lambda u, v: axes.c2p(u, v, loss_function(u, v)),
+            u_range=[-3, 3],
+            v_range=[-3, 3],
+            resolution=(30, 30),
+            fill_opacity=0.4,
+            checkerboard_colors=[GRAY_A, GRAY_B]
+        )
+        
+        # Show the 3D setup
+        self.play(Create(axes_group))
+        self.wait(1)
 
+        
+        self.play(
+            self.camera.animate.set_euler_angles(theta=-30 * DEGREES, phi=60 * DEGREES, gamma=0).scale(1.5),
+            Create(surface),
+            run_time=3
+        )
+        
+        self.begin_ambient_camera_rotation(rate=0.05)  # Slower rotation
+        self.wait(1)
+        
+        # Equation display
+        equation = MathTex(
+            r"\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}_t)",
+            font_size=32
+        )
+        equation.to_edge(DOWN).shift(UP * 0.5)
+        equation.fix_in_frame()
+        self.play(Write(equation))
+        self.wait(1)
+        
+        # Test different learning rates
+        learning_rates = [
+            {"eta": 0.1, "color": RED, "name": "Too Small (η=0.1)"},
+            {"eta": 0.5, "color": GREEN, "name": "Good (η=0.5)"},
+            {"eta": 1.5, "color": ORANGE, "name": "Too Large (η=1.5)"},
+        ]
+        
+        for lr_config in learning_rates:
+            eta = lr_config["eta"]
+            color = lr_config["color"]
+            name = lr_config["name"]
+            
+            # Learning rate label
+            lr_label = Text(f"Learning Rate: {name}", font_size=28, color=color)
+            lr_label.to_edge(LEFT).shift(UP * 2.5)
+            lr_label.fix_in_frame()
+            self.play(Write(lr_label))
+            
+            # Starting point
+            theta_0_init = 2.5
+            theta_1_init = 2.5
+            
+            # Gradient descent iterations
+            theta_0 = theta_0_init
+            theta_1 = theta_1_init
+            path_points = [(theta_0, theta_1)]
+            
+            # Compute gradient function
+            def gradient(t0, t1):
+                # Analytical gradient of our loss function
+                grad_t0 = 0.6 * t0 + 0.2 * t1
+                grad_t1 = 1.0 * t1 + 0.2 * t0
+                return grad_t0, grad_t1
+
+            print(f"Starting gradient descent with eta={eta}")
+            
+            # Run gradient descent
+            max_iterations = 3
+            for _ in range(max_iterations):
+                grad_t0, grad_t1 = gradient(theta_0, theta_1)
+                theta_0 = theta_0 - eta * grad_t0
+                theta_1 = theta_1 - eta * grad_t1
+                path_points.append((theta_0, theta_1))
+                
+                # Stop if converged or diverging
+                if np.sqrt(grad_t0**2 + grad_t1**2) < 0.01:
+                    break
+                if abs(theta_0) > 10 or abs(theta_1) > 10:
+                    break
+
+                print(f"Iteration {_}: theta_0={theta_0:.4f}, theta_1={theta_1:.4f}")
+
+            print(f"Finished gradient descent with eta={eta}")
+
+            # Create path visualization
+            path_3d = VGroup()
+            dots_3d = VGroup()
+            
+            for i in range(len(path_points) - 1):
+                t0_start, t1_start = path_points[i]
+                t0_end, t1_end = path_points[i + 1]
+                
+                # Path segment
+                start_point = axes.c2p(t0_start, t1_start, loss_function(t0_start, t1_start))
+                end_point = axes.c2p(t0_end, t1_end, loss_function(t0_end, t1_end))
+                
+                line = Line(start_point, end_point, color=color, stroke_width=4)
+                path_3d.add(line)
+                
+                # Add dot at each point
+                if i == 0:
+                    dot = Sphere(radius=0.1, color=WHITE).move_to(start_point)
+                    dots_3d.add(dot)
+                dot = Sphere(radius=0.08, color=color).move_to(end_point)
+                dots_3d.add(dot)
+
+                print(f"Path point {i}: t0={t0_end:.4f}, t1={t1_end:.4f}")
+            
+            # Animate the path
+            if len(path_points) > 1:
+                # Show starting point
+                self.play(Create(dots_3d[0]))
+                self.wait(0.5)
+                
+                # Animate gradient descent steps
+                for i, (line, dot) in enumerate(zip(path_3d, dots_3d[1:])):
+                    if i < 10 or i % 3 == 0:  # Show first 10 steps, then every 3rd
+                        self.play(
+                            Create(line),
+                            Create(dot),
+                            run_time=0.2 if eta != 1.5 else 0.1
+                        )
+                    else:
+                        self.add(line, dot)
+                
+                self.wait(1)
+                
+                # Check convergence
+                final_t0, final_t1 = path_points[-1]
+                if abs(final_t0) < 5 and abs(final_t1) < 5:
+                    converged_text = Text("Converged!", font_size=24, color=color)
+                    converged_text.next_to(lr_label, DOWN, aligned_edge=LEFT)
+                    converged_text.fix_in_frame()
+                    self.play(Write(converged_text))
+                    self.wait(1)
+                    self.play(FadeOut(converged_text))
+                else:
+                    diverged_text = Text("Diverged!", font_size=24, color=color)
+                    diverged_text.next_to(lr_label, DOWN, aligned_edge=LEFT)
+                    diverged_text.fix_in_frame()
+                    self.play(Write(diverged_text))
+                    self.wait(1)
+                    self.play(FadeOut(diverged_text))
+            
+            # Clean up for next learning rate
+            self.wait(1)
+            self.play(
+                FadeOut(path_3d),
+                FadeOut(dots_3d),
+                FadeOut(lr_label)
+            )
+            self.wait(0.5)
+        
+        # Final comparison: show all paths together
+        comparison_title = Text("Comparison", font_size=32, color=YELLOW)
+        comparison_title.to_edge(LEFT).shift(UP * 2.5)
+        comparison_title.fix_in_frame()
+        self.play(Write(comparison_title))
+        
+        # Recreate all paths (simplified - just final paths)
+        for lr_config in learning_rates:
+            eta = lr_config["eta"]
+            color = lr_config["color"]
+            
+            theta_0 = theta_0_init
+            theta_1 = theta_1_init
+            path_points = [(theta_0, theta_1)]
+            
+            for _ in range(50):
+                grad_t0, grad_t1 = gradient(theta_0, theta_1)
+                theta_0 = theta_0 - eta * grad_t0
+                theta_1 = theta_1 - eta * grad_t1
+                path_points.append((theta_0, theta_1))
+                
+                if np.sqrt(grad_t0**2 + grad_t1**2) < 0.01:
+                    break
+                if abs(theta_0) > 10 or abs(theta_1) > 10:
+                    break
+            
+            # Create simplified path
+            path_3d = VGroup()
+            for i in range(len(path_points) - 1):
+                t0_start, t1_start = path_points[i]
+                t0_end, t1_end = path_points[i + 1]
+                start_point = axes.c2p(t0_start, t1_start, loss_function(t0_start, t1_start))
+                end_point = axes.c2p(t0_end, t1_end, loss_function(t0_end, t1_end))
+                line = Line(start_point, end_point, color=color, stroke_width=3)
+                path_3d.add(line)
+            
+            self.play(Create(path_3d), run_time=0.5)
+        
+        # Add legend
+        legend = VGroup()
+        for lr_config in learning_rates:
+            legend_item = VGroup(
+                Line(ORIGIN, RIGHT * 0.5, color=lr_config["color"], stroke_width=3),
+                Text(lr_config["name"], font_size=18, color=lr_config["color"])
+            ).arrange(RIGHT, buff=0.2)
+            legend.add(legend_item)
+        
+        legend.arrange(DOWN, aligned_edge=LEFT, buff=0.2)
+        legend.to_edge(LEFT).shift(DOWN * 1.5)
+        legend.fix_in_frame()
+        self.play(FadeIn(legend))
+        
+        # Continue gentle camera rotation for final view
+        self.wait(3)
+        
+        # Stop rotation
+        self.stop_ambient_camera_rotation()
+        self.wait(1)
+        
+        # Fade out everything
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait(1)
+    
