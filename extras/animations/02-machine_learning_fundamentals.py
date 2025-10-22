@@ -428,6 +428,566 @@ class QuadraticRegressionOverUnderfit(Scene):
         self.play(*[FadeOut(mob) for mob in self.mobjects])
         self.wait(1)
 
+class QuantileRegressionOverUnderfitWithValidation(Scene):
+    def construct(self):
+        # Create axes
+        axes = Axes(
+            x_range=[-3, 3, 1],
+            y_range=[-2, 8, 2],
+            x_length=7,
+            y_length=5,
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        
+        # Add labels
+        x_label = axes.get_x_axis_label("x", edge=RIGHT, direction=RIGHT)
+        y_label = axes.get_y_axis_label("y", edge=UP, direction=UP)
+        
+        axes_group = VGroup(axes, x_label, y_label)
+        axes_group.shift(RIGHT * 1.5)
+        axes_group.shift(DOWN * 1)
+        
+        self.play(Create(axes), Write(x_label), Write(y_label))
+        self.wait(1)
+
+        # Generate sample data points (quadratic with noise)
+        np.random.seed(42)
+        x_data_all = np.array([-2.5, -2, -1.5, -1, -0.5, 0, 0.5, 1, 1.5, 2, 2.5])
+        theta_true = np.array([1, 0, 0.5])
+        y_true_all = theta_true[0] + theta_true[1] * x_data_all + theta_true[2] * x_data_all**2
+        y_data_all = y_true_all + np.random.normal(0, 0.6, len(x_data_all))
+
+        # Draw the real distribution
+        real_distribution = axes.plot(
+            lambda x: theta_true[0] + theta_true[1] * x + theta_true[2] * x**2,
+            color=WHITE,
+            x_range=(-3, 3),
+            stroke_width=2,
+            stroke_opacity=0.5
+        )
+
+        # Show real distribution
+        real_label = Text("Real Distribution", font_size=24, color=WHITE)
+        real_label.to_edge(LEFT).shift(UP * 2.5)
+
+        definition_real = MathTex(r"f_{\boldsymbol{\theta}} \in \mathcal{F}_2", font_size=24)
+        definition_real.next_to(real_label, DOWN, aligned_edge=LEFT)
+
+        equation_real = MathTex(r"y = \theta_0 + \theta_1 x + \theta_2 x^2 + \epsilon", font_size=24)
+        equation_real.next_to(definition_real, DOWN, aligned_edge=LEFT)
+
+        self.play(Create(real_distribution), Write(real_label))
+        self.play(Write(definition_real), Write(equation_real))
+        self.wait(1)
+
+        # Split into training and validation sets (60-40 split)
+        train_indices = [0, 1, 3, 5, 7, 9, 10]  # 7 points
+        val_indices = [2, 4, 6, 8]  # 4 points
+        
+        x_train = x_data_all[train_indices]
+        y_train = y_data_all[train_indices]
+        x_val = x_data_all[val_indices]
+        y_val = y_data_all[val_indices]
+
+        # Title
+        title = Text("Train vs Validation Error Analysis", font_size=32)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(0.5)
+
+        # Create dots for training data (BLUE)
+        dots_train = VGroup()
+        for x, y in zip(x_train, y_train):
+            dot = Dot(axes.c2p(x, y), color=BLUE, radius=0.10)
+            dots_train.add(dot)
+        
+        # Create dots for validation data (YELLOW)
+        dots_val = VGroup()
+        for x, y in zip(x_val, y_val):
+            dot = Dot(axes.c2p(x, y), color=YELLOW, radius=0.10)
+            dots_val.add(dot)
+        
+        # Fade out real distribution info
+        self.play(FadeOut(real_label), FadeOut(definition_real), FadeOut(equation_real))
+        
+        # Show data split
+        split_label = Text("Data Split", font_size=28, color=WHITE)
+        split_label.to_edge(LEFT).shift(UP * 2)
+        
+        # Animate training points first
+        train_label = VGroup(
+            Dot(color=BLUE, radius=0.08),
+            Text("Training Data", font_size=20, color=BLUE)
+        ).arrange(RIGHT, buff=0.2)
+        train_label.next_to(split_label, DOWN, aligned_edge=LEFT)
+        
+        self.play(Write(split_label), FadeIn(train_label))
+        self.play(LaggedStart(*[GrowFromCenter(dot) for dot in dots_train], lag_ratio=0.2))
+        self.wait(1)
+        
+        # Animate validation points
+        val_label = VGroup(
+            Dot(color=YELLOW, radius=0.08),
+            Text("Validation Data", font_size=20, color=YELLOW)
+        ).arrange(RIGHT, buff=0.2)
+        val_label.next_to(train_label, DOWN, aligned_edge=LEFT)
+        
+        self.play(FadeIn(val_label))
+        self.play(LaggedStart(*[GrowFromCenter(dot) for dot in dots_val], lag_ratio=0.2))
+        self.wait(2)
+        
+        # Fade out split labels
+        self.play(FadeOut(split_label), FadeOut(train_label), FadeOut(val_label))
+        self.wait(0.5)
+
+        # Test different model complexities
+        models = [
+            {
+                'name': 'Underfitting',
+                'degree': 1,
+                'color': RED,
+                'label': r'\mathcal{F}_1: \hat{y} = \theta_0 + \theta_1 x'
+            },
+            {
+                'name': 'Good Fit',
+                'degree': 2,
+                'color': GREEN,
+                'label': r'\mathcal{F}_2: \hat{y} = \theta_0 + \theta_1 x + \theta_2 x^2'
+            },
+            {
+                'name': 'Overfitting',
+                'degree': 6,
+                'color': ORANGE,
+                'label': r'\mathcal{F}_6: \hat{y} = \theta_0 + \cdots + \theta_6 x^6'
+            }
+        ]
+
+        all_train_errors = []
+        all_val_errors = []
+        all_curves = []
+
+        for model in models:
+            degree = model['degree']
+            color = model['color']
+            name = model['name']
+            
+            # Model label
+            model_label = Text(f"{name}", font_size=28, color=color)
+            model_label.to_edge(LEFT).shift(UP * 2)
+            
+            equation = MathTex(model['label'], font_size=28, color=color)
+            equation.next_to(model_label, DOWN, aligned_edge=LEFT)
+            
+            self.play(Write(model_label), Write(equation))
+            
+            # Fit model on training data
+            A_train = np.vstack([x_train**i for i in range(degree + 1)]).T
+            theta = np.linalg.lstsq(A_train, y_train, rcond=None)[0]
+            
+            def poly_func(x):
+                return sum(theta[i] * x**i for i in range(degree + 1))
+            
+            # Create the fitted curve
+            curve = axes.plot(
+                poly_func,
+                color=color,
+                x_range=[-2.5, 2.5],
+                use_smoothing=True,
+                stroke_width=3
+            )
+            
+            self.play(Create(curve))
+            self.wait(1)
+            
+            # Calculate training error
+            y_pred_train = np.array([poly_func(x) for x in x_train])
+            train_error = np.mean((y_train - y_pred_train)**2)
+            
+            # Calculate validation error
+            y_pred_val = np.array([poly_func(x) for x in x_val])
+            val_error = np.mean((y_val - y_pred_val)**2)
+            
+            # Store errors
+            all_train_errors.append(train_error)
+            all_val_errors.append(val_error)
+            all_curves.append(curve)
+            
+            self.wait(1)
+            
+            # Fade out for next model
+            self.play(
+                FadeOut(curve),
+                FadeOut(model_label),
+                FadeOut(equation)
+            )
+            self.wait(0.5)
+        
+        # Comparison: Show all models together
+        comparison_title = Text("Model Comparison", font_size=32, color=WHITE)
+        comparison_title.next_to(title, DOWN)
+        self.play(Write(comparison_title))
+        
+        # Show real distribution again
+        self.play(real_distribution.animate.set_stroke(opacity=0.7, width=4))
+        
+        # Show all curves
+        for i, model in enumerate(models):
+            degree = model['degree']
+            color = model['color']
+            
+            A_train = np.vstack([x_train**i for i in range(degree + 1)]).T
+            theta = np.linalg.lstsq(A_train, y_train, rcond=None)[0]
+            
+            def poly_func(x, t=theta, d=degree):
+                return sum(t[j] * x**j for j in range(d + 1))
+            
+            curve = axes.plot(
+                poly_func,
+                color=color,
+                x_range=[-2.5, 2.5],
+                use_smoothing=True,
+                stroke_width=3
+            )
+            
+            self.play(Create(curve))
+        
+        self.wait(2)
+        
+        # Create error comparison chart
+        chart_title = Text("Error Comparison: Key Insight", font_size=28, color=WHITE)
+        chart_title.to_edge(LEFT).shift(UP * 2)
+        
+        error_table = VGroup()
+        headers = VGroup(
+            Text("Model", font_size=20),
+            MathTex(r"\frac{1}{N}\|\mathbf{r}_{\text{train}}\|_2^2", font_size=18, color=BLUE),
+            MathTex(r"\frac{1}{N}\|\mathbf{r}_{\text{val}}\|_2^2", font_size=18, color=YELLOW)
+        ).arrange(RIGHT, buff=0.6)
+        error_table.add(headers)
+        
+        for i, model in enumerate(models):
+            row = VGroup(
+                Text(model['name'][:8], font_size=18, color=model['color']),
+                Text(f"{all_train_errors[i]:.3f}", font_size=18, color=BLUE),
+                Text(f"{all_val_errors[i]:.3f}", font_size=18, color=YELLOW)
+            ).arrange(RIGHT, buff=0.6)
+            # Align with headers
+            for j, cell in enumerate(row):
+                cell.align_to(headers[j], LEFT)
+            error_table.add(row)
+        
+        error_table.arrange(DOWN, aligned_edge=LEFT, buff=0.2)
+        error_table.next_to(chart_title, DOWN, aligned_edge=LEFT)
+        
+        self.play(FadeOut(comparison_title))
+        self.play(Write(chart_title), Write(error_table))
+        self.wait(4)
+        # Fade out everything
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait(1)
+
+class BiasVarianceTradeoff(Scene):
+    def construct(self):
+        # Title
+        title = Text("Bias-Variance Tradeoff", font_size=36)
+        title.to_edge(UP)
+        self.play(Write(title))
+        self.wait(1)
+        
+        # Create axes
+        axes = Axes(
+            x_range=[-3, 3, 1],
+            y_range=[-2, 8, 2],
+            x_length=7,
+            y_length=5,
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        
+        # Add labels
+        x_label = axes.get_x_axis_label("x", edge=RIGHT, direction=RIGHT)
+        y_label = axes.get_y_axis_label("y", edge=UP, direction=UP)
+        
+        axes_group = VGroup(axes, x_label, y_label)
+        axes_group.shift(RIGHT * 1.5 + DOWN * 0.5)
+        
+        self.play(Create(axes), Write(x_label), Write(y_label))
+        self.wait(1)
+
+        # True function (quadratic)
+        theta_true = np.array([1, 0, 0.5])
+        
+        # Draw the true distribution
+        true_func = axes.plot(
+            lambda x: theta_true[0] + theta_true[1] * x + theta_true[2] * x**2,
+            color=WHITE,
+            x_range=(-3, 3),
+            stroke_width=4,
+            stroke_opacity=0.8
+        )
+        
+        true_label = Text("True Function f(x)", font_size=24, color=WHITE)
+        true_label.to_edge(LEFT).shift(UP * 1.5)
+        
+        self.play(Create(true_func), Write(true_label))
+        self.wait(1)
+        
+        # Generate multiple datasets with different x values
+        np.random.seed(43)
+        n_datasets = 5
+        n_points = 24
+        
+        datasets = []
+        for i in range(n_datasets):
+            # Each dataset has slightly different x sampling points
+            x_sample = np.sort(np.random.uniform(-2.5, 2.5, n_points))
+            y_true = theta_true[0] + theta_true[1] * x_sample + theta_true[2] * x_sample**2
+            y_noisy = y_true + np.random.normal(0, 0.8, len(x_sample))
+            datasets.append((x_sample, y_noisy))
+        
+        # Show concept: multiple datasets
+        concept_text = Text("Multiple Training Sets from Same Distribution", font_size=18)
+        concept_text.next_to(true_label, DOWN, aligned_edge=LEFT)
+        self.play(Write(concept_text))
+        self.wait(1)
+        
+        # Show all datasets with dots
+        all_dataset_dots = VGroup()
+        colors = [BLUE, GREEN, RED, PURPLE, YELLOW]
+        
+        for dataset_idx, (x_data, y_data) in enumerate(datasets):
+            dataset_dots = VGroup()
+            for x, y in zip(x_data, y_data):
+                dot = Dot(axes.c2p(x, y), color=colors[dataset_idx], radius=0.06)
+                dataset_dots.add(dot)
+            all_dataset_dots.add(dataset_dots)
+        
+        # Animate all datasets appearing
+        for dataset_dots in all_dataset_dots:
+            self.play(LaggedStart(*[GrowFromCenter(dot) for dot in dataset_dots], lag_ratio=0.05))
+        
+        self.wait(2)
+        self.play(FadeOut(all_dataset_dots), FadeOut(concept_text))
+        self.play(FadeOut(true_label))
+        self.wait(0.5)
+        
+        # Test three model complexities
+        models = [
+            {
+                'name': 'High Bias (Underfit)',
+                'degree': 1,
+                'color': RED,
+                'short_name': 'underfit'
+            },
+            {
+                'name': 'Balanced',
+                'degree': 2,
+                'color': GREEN,
+                'short_name': 'balanced'
+            },
+            {
+                'name': 'High Variance (Overfit)',
+                'degree': 6,
+                'color': ORANGE,
+                'short_name': 'overfit'
+            }
+        ]
+        
+        # For each model type, fit on all datasets and visualize
+        for model_idx, model in enumerate(models):
+            degree = model['degree']
+            color = model['color']
+            name = model['name']
+            
+            # Clear previous
+            if model_idx > 0:
+                self.wait(0.5)
+            
+            # Model info
+            model_label = Text(name, font_size=28, color=color)
+            model_label.to_edge(LEFT).shift(UP * 1.5)
+            
+            if degree == 1:
+                eq_text = r"\mathcal{F}_1: \hat{y} = \theta_0 + \theta_1 x"
+            elif degree == 2:
+                eq_text = r"\mathcal{F}_2: \hat{y} = \theta_0 + \theta_1 x + \theta_2 x^2"
+            else:
+                eq_text = r"\mathcal{F}_6: \hat{y} = \theta_0 + \cdots + \theta_6 x^6"
+            
+            equation = MathTex(eq_text, font_size=24, color=color)
+            equation.next_to(model_label, DOWN, aligned_edge=LEFT)
+            
+            self.play(Write(model_label), Write(equation))
+            self.wait(0.5)
+            
+            # Fit model on each dataset and plot
+            fitted_curves = VGroup()
+            # Use a common grid for evaluation
+            x_eval = np.linspace(-2.5, 2.5, 50)
+            all_predictions = []
+            
+            for dataset_idx, (x_data, y_data) in enumerate(datasets):
+                # Fit model
+                A = np.vstack([x_data**i for i in range(degree + 1)]).T
+                theta = np.linalg.lstsq(A, y_data, rcond=None)[0]
+                
+                def poly_func(x, t=theta.copy(), d=degree):
+                    return sum(t[j] * x**j for j in range(d + 1))
+                
+                # Create curve
+                curve = axes.plot(
+                    poly_func,
+                    color=color,
+                    x_range=[-2.5, 2.5],
+                    use_smoothing=True,
+                    stroke_width=2,
+                    stroke_opacity=0.4
+                )
+                fitted_curves.add(curve)
+                
+                # Store predictions on common grid
+                predictions = np.array([poly_func(x) for x in x_eval])
+                all_predictions.append(predictions)
+            
+            # Animate all fitted curves appearing
+            self.play(LaggedStart(*[Create(curve) for curve in fitted_curves], lag_ratio=0.2))
+            self.wait(1)
+            
+            # Calculate average prediction across all models
+            all_predictions = np.array(all_predictions)
+            avg_predictions = np.mean(all_predictions, axis=0)
+            
+            # Interpolate average prediction curve
+            from scipy.interpolate import interp1d
+            avg_func_interp = interp1d(x_eval, avg_predictions, kind='cubic', fill_value='extrapolate')
+            
+            avg_curve = axes.plot(
+                avg_func_interp,
+                color=color,
+                x_range=[-2.5, 2.5],
+                stroke_width=4
+            )
+            
+            avg_label = Text("Average Model", font_size=20, color=color)
+            avg_label.next_to(equation, DOWN, aligned_edge=LEFT)
+            
+            self.play(Create(avg_curve), Write(avg_label))
+            self.wait(1)
+            
+            # Calculate bias and variance on evaluation grid
+            # Bias: difference between average prediction and true function
+            true_vals = theta_true[0] + theta_true[1] * x_eval + theta_true[2] * x_eval**2
+            bias_squared = np.mean((avg_predictions - true_vals)**2)
+            
+            # Variance: average squared deviation of predictions from their mean
+            variance = np.mean(np.var(all_predictions, axis=0))
+            
+            # Show metrics
+            bias_text = MathTex(
+                f"\\text{{Bias}}^2 = {bias_squared:.3f}",
+                font_size=24,
+                color=color
+            )
+            bias_text.next_to(avg_label, DOWN, aligned_edge=LEFT)
+            
+            var_text = MathTex(
+                f"\\text{{Variance}} = {variance:.3f}",
+                font_size=24,
+                color=color
+            )
+            var_text.next_to(bias_text, DOWN, aligned_edge=LEFT)
+            
+            total_error = bias_squared + variance
+            total_text = MathTex(
+                f"\\text{{Total}} = {total_error:.3f}",
+                font_size=24,
+                color=YELLOW
+            )
+            total_text.next_to(var_text, DOWN, aligned_edge=LEFT)
+            
+            self.play(Write(bias_text), Write(var_text))
+            self.wait(0.5)
+            self.play(Write(total_text))
+            self.wait(2)
+            
+            # Fade out everything except axes and true function
+            self.play(
+                *[FadeOut(curve) for curve in fitted_curves],
+                FadeOut(avg_curve),
+                FadeOut(model_label),
+                FadeOut(equation),
+                FadeOut(avg_label),
+                FadeOut(bias_text),
+                FadeOut(var_text),
+                FadeOut(total_text)
+            )
+        
+        # Summary comparison
+        summary_title = Text("Summary: The Tradeoff", font_size=28, color=YELLOW)
+        summary_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(summary_title))
+        
+        # Create summary table
+        summary_table = VGroup()
+        
+        headers = VGroup(
+            Text("Model", font_size=20),
+            MathTex(r"\text{Bias}^2", font_size=20),
+            MathTex(r"\text{Variance}", font_size=20),
+            MathTex(r"\text{Total}", font_size=20, color=YELLOW)
+        ).arrange(RIGHT, buff=0.5)
+        summary_table.add(headers)
+        
+        # Recalculate for summary
+        summary_data = []
+        x_eval = np.linspace(-2.5, 2.5, 50)
+        
+        for model in models:
+            degree = model['degree']
+            color = model['color']
+            
+            all_predictions = []
+            
+            for x_data, y_data in datasets:
+                A = np.vstack([x_data**i for i in range(degree + 1)]).T
+                theta = np.linalg.lstsq(A, y_data, rcond=None)[0]
+                
+                predictions = np.array([sum(theta[j] * x**j for j in range(degree + 1)) for x in x_eval])
+                all_predictions.append(predictions)
+            
+            all_predictions = np.array(all_predictions)
+            avg_predictions = np.mean(all_predictions, axis=0)
+            true_vals = theta_true[0] + theta_true[1] * x_eval + theta_true[2] * x_eval**2
+            
+            bias_sq = np.mean((avg_predictions - true_vals)**2)
+            variance = np.mean(np.var(all_predictions, axis=0))
+            total = bias_sq + variance
+            
+            summary_data.append((model['short_name'].capitalize(), bias_sq, variance, total, color))
+        
+        for name, bias_sq, var, total, color in summary_data:
+            row = VGroup(
+                Text(name[:8], font_size=18, color=color),
+                Text(f"{bias_sq:.3f}", font_size=18),
+                Text(f"{var:.3f}", font_size=18),
+                Text(f"{total:.3f}", font_size=18, color=YELLOW)
+            ).arrange(RIGHT, buff=0.5)
+            
+            for j, cell in enumerate(row):
+                cell.align_to(headers[j], LEFT)
+            summary_table.add(row)
+        
+        summary_table.arrange(DOWN, aligned_edge=LEFT, buff=0.2)
+        summary_table.next_to(summary_title, DOWN, aligned_edge=LEFT)
+        
+        self.play(Write(summary_table))
+        self.wait(4)
+        
+        # Fade out everything
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait(1)
+
 
 class BinaryClassificationSimple(Scene):
     def construct(self):
