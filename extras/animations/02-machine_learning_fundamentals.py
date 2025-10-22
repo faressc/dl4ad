@@ -1149,10 +1149,10 @@ class LossLandscapeVisualization(ThreeDScene):
         axes = ThreeDAxes(
             x_range=[-3, 3, 1],
             y_range=[-3, 3, 1],
-            z_range=[0, 10, 2],
+            z_range=[0, 20, 4],
             x_length=6,
             y_length=6,
-            z_length=4,
+            z_length=3,
             axis_config={"color": WHITE},
             tips=False
         )
@@ -1171,7 +1171,8 @@ class LossLandscapeVisualization(ThreeDScene):
         
         # Define loss landscape (quadratic bowl)
         def loss_function(theta_0, theta_1):
-            return 0.3 * theta_0**2 + 0.5 * theta_1**2 + 0.2 * theta_0 * theta_1 + 1.0
+            # Minimum at (0.5, -1)
+            return 1. * (theta_0 - 0.5)**2 + 1.6 * (theta_1 + 1)**2 - 1.5
         
         # Create surface
         surface = Surface(
@@ -1194,8 +1195,7 @@ class LossLandscapeVisualization(ThreeDScene):
             run_time=3
         )
         
-        self.begin_ambient_camera_rotation(rate=0.05)  # Slower rotation
-        self.wait(1)
+        self.begin_ambient_camera_rotation(rate=0.05)
         
         # Equation display
         equation = MathTex(
@@ -1209,10 +1209,12 @@ class LossLandscapeVisualization(ThreeDScene):
         
         # Test different learning rates
         learning_rates = [
-            {"eta": 0.1, "color": RED, "name": "Too Small (η=0.1)"},
-            {"eta": 0.5, "color": GREEN, "name": "Good (η=0.5)"},
-            {"eta": 1.5, "color": ORANGE, "name": "Too Large (η=1.5)"},
+            {"eta": 0.008, "color": RED, "name": "Too Small (η=0.008)"},
+            {"eta": 0.06, "color": GREEN, "name": "Good (η=0.06)"},
+            {"eta": 0.7, "color": ORANGE, "name": "Too Large (η=0.7)"},
         ]
+
+        self.interactive_embed()  # For debugging and interaction
         
         for lr_config in learning_rates:
             eta = lr_config["eta"]
@@ -1226,8 +1228,8 @@ class LossLandscapeVisualization(ThreeDScene):
             self.play(Write(lr_label))
             
             # Starting point
-            theta_0_init = 2.5
-            theta_1_init = 2.5
+            theta_0_init = 1.5
+            theta_1_init = 1.5
             
             # Gradient descent iterations
             theta_0 = theta_0_init
@@ -1237,14 +1239,14 @@ class LossLandscapeVisualization(ThreeDScene):
             # Compute gradient function
             def gradient(t0, t1):
                 # Analytical gradient of our loss function
-                grad_t0 = 0.6 * t0 + 0.2 * t1
-                grad_t1 = 1.0 * t1 + 0.2 * t0
+                grad_t0 = 2 * (t0 - 0.5)
+                grad_t1 = 3.2 * (t1 + 1)
                 return grad_t0, grad_t1
-
+            
             print(f"Starting gradient descent with eta={eta}")
             
             # Run gradient descent
-            max_iterations = 3
+            max_iterations = 50
             for _ in range(max_iterations):
                 grad_t0, grad_t1 = gradient(theta_0, theta_1)
                 theta_0 = theta_0 - eta * grad_t0
@@ -1272,15 +1274,15 @@ class LossLandscapeVisualization(ThreeDScene):
                 # Path segment
                 start_point = axes.c2p(t0_start, t1_start, loss_function(t0_start, t1_start))
                 end_point = axes.c2p(t0_end, t1_end, loss_function(t0_end, t1_end))
-                
-                line = Line(start_point, end_point, color=color, stroke_width=4)
+
+                line = Line(start_point, end_point, color=color, stroke_width=10)
                 path_3d.add(line)
                 
                 # Add dot at each point
                 if i == 0:
-                    dot = Sphere(radius=0.1, color=WHITE).move_to(start_point)
+                    dot = Dot3D(radius=0.1, color=WHITE).move_to(start_point)
                     dots_3d.add(dot)
-                dot = Sphere(radius=0.08, color=color).move_to(end_point)
+                dot = Dot3D(radius=0.08, color=WHITE).move_to(end_point)
                 dots_3d.add(dot)
 
                 print(f"Path point {i}: t0={t0_end:.4f}, t1={t1_end:.4f}")
@@ -1306,7 +1308,7 @@ class LossLandscapeVisualization(ThreeDScene):
                 
                 # Check convergence
                 final_t0, final_t1 = path_points[-1]
-                if abs(final_t0) < 5 and abs(final_t1) < 5:
+                if abs(final_t0 - 0.5) < 5 and abs(final_t1 + 1) < 5:
                     converged_text = Text("Converged!", font_size=24, color=color)
                     converged_text.next_to(lr_label, DOWN, aligned_edge=LEFT)
                     converged_text.fix_in_frame()
@@ -1320,12 +1322,14 @@ class LossLandscapeVisualization(ThreeDScene):
                     self.play(Write(diverged_text))
                     self.wait(1)
                     self.play(FadeOut(diverged_text))
+
+            self.interactive_embed()  # For debugging and interaction
             
             # Clean up for next learning rate
             self.wait(1)
+            self.remove(dots_3d)
             self.play(
                 FadeOut(path_3d),
-                FadeOut(dots_3d),
                 FadeOut(lr_label)
             )
             self.wait(0.5)
@@ -1335,6 +1339,8 @@ class LossLandscapeVisualization(ThreeDScene):
         comparison_title.to_edge(LEFT).shift(UP * 2.5)
         comparison_title.fix_in_frame()
         self.play(Write(comparison_title))
+
+        paths = VGroup()
         
         # Recreate all paths (simplified - just final paths)
         for lr_config in learning_rates:
@@ -1363,8 +1369,10 @@ class LossLandscapeVisualization(ThreeDScene):
                 t0_end, t1_end = path_points[i + 1]
                 start_point = axes.c2p(t0_start, t1_start, loss_function(t0_start, t1_start))
                 end_point = axes.c2p(t0_end, t1_end, loss_function(t0_end, t1_end))
-                line = Line(start_point, end_point, color=color, stroke_width=3)
+                line = Line(start_point, end_point, color=color, stroke_width=10)
                 path_3d.add(line)
+
+            paths.add(path_3d)
             
             self.play(Create(path_3d), run_time=0.5)
         
@@ -1389,7 +1397,14 @@ class LossLandscapeVisualization(ThreeDScene):
         self.stop_ambient_camera_rotation()
         self.wait(1)
         
-        # Fade out everything
-        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        # Fade out everything that is not a dot_3d (render errors...)
+        self.play(
+            FadeOut(axes_group),
+            FadeOut(equation),
+            FadeOut(comparison_title),
+            FadeOut(legend),
+            *[FadeOut(path) for path in paths]
+        )
+        self.remove(surface)
         self.wait(1)
     
