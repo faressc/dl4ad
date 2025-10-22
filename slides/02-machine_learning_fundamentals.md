@@ -164,7 +164,7 @@ where $$\ell$$ is a single sample loss function (e.g., absolute loss for regress
 
 ## Finding the Optimal Parameters
 
-<div style="font-size: 0.9em;">
+<div style="font-size: 0.85em;">
 <strong>Objective</strong>: Find the optimal parameters $\boldsymbol{\theta}^*$ that minimize the empirical risk over the parametrized function family $\mathcal{F}_{\Theta} = \lbrace f_{\boldsymbol{\theta}} : \boldsymbol{\theta} \in \Theta\rbrace$:
 <div class="formula">
 $$
@@ -187,10 +187,12 @@ The loss function $$\ell$$ quantifies the difference between the predicted outpu
         \quad \implies \quad 
         \hat{R} = \mathcal{L}_{2} = \text{MSE} = \frac{1}{N} \sum_{i=1}^N \lVert \hat{\mathbf{y}}_i - \mathbf{y}_i \rVert_2^2$$
     </li>
-    <li><strong>Hinge loss function</strong>: 
-        $$\ell_{\text{hinge}}(\hat{y}_i, y_i) = \max(0, 1 - y_i \hat{y}_i)\\
-        \implies \hat{R} = \mathcal{L}_{\text{hinge}} = \frac{1}{N} \sum_{i=1}^N \max(0, 1 - y_i \hat{y}_i)$$
-        for $y_i \in \{-1, 1\}$
+    <li><strong>Hinge loss function</strong>: $\ell_{\text{hinge}}(\hat{y}_i^{\text{pre-}\sigma}, y_i)$
+        $$
+        \begin{aligned}
+         = \max(0, 1 - y_i \hat{y}_i^{\text{pre-}\sigma}) \implies \hat{R} = \mathcal{L}_{\text{hinge}} = \frac{1}{N} \sum_{i=1}^N \max(0, 1 - y_i \hat{y}_i^{\text{pre-}\sigma}) \text{ for } y_i \in \{-1, 1\}
+        \end{aligned}
+        $$
     </li>
 </ul>
 
@@ -395,43 +397,6 @@ where $\mathcal{R}(\boldsymbol{\theta})$ is the regularization term (e.g., L1 or
 
 ---
 
-## The Key Components
-
-<div style="font-size: 0.9em;">
-
-<div class="grid" style="display: grid; grid-template-columns: auto 1fr; gap: 1em; align-items: start;">
-
-<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">0</div>
-<div>
-<strong>Dataset</strong> ($D$): A collection of input-output pairs $D = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace_{i=1}^{N}$. The dataset must be representative of the true underlying function $f^*: \mathcal{X} \to \mathcal{Y}$.
-</div>
-
-<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">1</div>
-<div>
-<strong>Function or Model</strong> ($f_{\boldsymbol{\theta}}$): A parameterized function that maps inputs $\mathbf{x}_i$ to predicted outputs $\hat{\mathbf{y}}_i = f_{\boldsymbol{\theta}}(\mathbf{x}_i)$. The choice of function defines the function space $\mathcal{F}_{\Theta}$.
-</div>
-
-<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">2</div>
-<div>
-<strong>Parameters</strong> ($\boldsymbol{\theta}$): The set of parameters that define the specific function within the function space. These parameters are adjusted during training to minimize the empirical risk.
-</div>
-
-<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">3</div>
-<div>
-<strong>Loss Function</strong> ($\mathcal{L}$): A function that quantifies the difference between the predicted outputs $\hat{\mathbf{y}}_i$ and the true labels $\mathbf{y}_i$. The choice of loss function depends on the task (e.g., regression vs. classification).
-</div>
-
-<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">4</div>
-<div>
-<strong>Optimization Algorithm</strong>: A method for adjusting the parameters $\boldsymbol{\theta}$ to minimize the empirical risk $\hat{R}(\boldsymbol{\theta})$. Common algorithms include Gradient Descent and its variants.
-</div>
-
-</div>
-
-</div>
-
----
-
 ## Gradient Descent
 
 <div style="font-size: 0.83em;">
@@ -504,7 +469,109 @@ def gradient_descent(theta_0, learning_rate, max_iterations,
 
 ---
 
+## Gradient Descent Visualization
 
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/LossLandscapeVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Variants of Optimization Algorithms
+
+<div style="font-size: 0.85em;">
+
+**Gradient Descent (GD)**: Full-batch updates using entire dataset to compute gradients
+
+<div class="formula">
+$$
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}_t) = \boldsymbol{\theta}_t - \frac{\eta}{N} \sum_{i=1}^{N} \nabla_{\boldsymbol{\theta}} \ell(f_{\boldsymbol{\theta}_t}(\mathbf{x}_i), \mathbf{y}_i)
+$$
+</div>
+
+**Stochastic Gradient Descent (SGD)**: Updates parameters using gradient from a single randomly selected sample per iteration
+
+<div class="formula">
+$$
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \ell(f_{\boldsymbol{\theta}_t}(\mathbf{x}_{i_t}), \mathbf{y}_{i_t}), \quad \text{where } i_t \sim \text{Uniform}(\{1, \ldots, N\})
+$$
+</div>
+
+**Mini-batch Gradient Descent**: Updates parameters using gradients from a small random subset (mini-batch)
+
+<div class="formula">
+$$
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \frac{\eta}{|B_t|} \sum_{i \in B_t} \nabla_{\boldsymbol{\theta}} \ell(f_{\boldsymbol{\theta}_t}(\mathbf{x}_i), \mathbf{y}_i), \quad \text{where } B_t \subset \{1, \ldots, N\}, |B_t| = b
+$$
+</div>
+
+**Other Variants**: Momentum, AdaGrad, RMSProp, Adam — adapt learning rates and incorporate momentum
+
+</div>
+
+---
+
+## The Key Components
+
+<div style="font-size: 0.9em;">
+
+<div class="grid" style="display: grid; grid-template-columns: auto 1fr; gap: 1em; align-items: start;">
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">0</div>
+<div>
+<strong>Dataset</strong> ($D$): A collection of input-output pairs $D = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace_{i=1}^{N}$. The dataset must be representative of the true underlying function $f^*: \mathcal{X} \to \mathcal{Y}$.
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">1</div>
+<div>
+<strong>Function or Model</strong> ($f_{\boldsymbol{\theta}}$): A parameterized function that maps inputs $\mathbf{x}_i$ to predicted outputs $\hat{\mathbf{y}}_i = f_{\boldsymbol{\theta}}(\mathbf{x}_i)$. The choice of function defines the function space $\mathcal{F}_{\Theta}$.
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">2</div>
+<div>
+<strong>Parameters</strong> ($\boldsymbol{\theta}$): The set of parameters that define the specific function within the function space. These parameters are adjusted during training to minimize the empirical risk.
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">3</div>
+<div>
+<strong>Loss Function</strong> ($\mathcal{L}$): A function that quantifies the difference between the predicted outputs $\hat{\mathbf{y}}_i$ and the true labels $\mathbf{y}_i$. The choice of loss function depends on the task (e.g., regression vs. classification).
+</div>
+
+<div style="text-align: center; font-size: 1.5em; font-weight: bold; color: var(--fs-highlight-background)">4</div>
+<div>
+<strong>Optimization Algorithm</strong>: A method for adjusting the parameters $\boldsymbol{\theta}$ to minimize the empirical risk $\hat{R}(\boldsymbol{\theta})$. Common algorithms include Gradient Descent and its variants.
+</div>
+
+</div>
+
+</div>
+
+---
+
+## Example: Simple Linear Regression (Formulation)
+
+- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R} \to \mathbb{R}$ defined as:
+
+<div class="formula">
+$$
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x
+$$
+</div>
+
+- **Parameter space**: $\Theta = \mathbb{R}^2$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1)$
+- **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
+- **Input space**: $\mathcal{X} = \mathbb{R}$
+- **Output space**: $\mathcal{Y} = \mathbb{R}$
+- **Loss function**: L2 loss (Mean Squared Error):
+
+<div class="formula">
+$$
+\mathcal{L}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^{N} (y_i - f_{\boldsymbol{\theta}}(x_i))^2
+$$
+</div>
 
 ---
 
@@ -519,20 +586,27 @@ def gradient_descent(theta_0, learning_rate, max_iterations,
 
 ---
 
-## Simple Linear Regression Formulation
+## Example: Binary Classification (Formulation)
 
 - **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R} \to \mathbb{R}$ defined as:
 
 <div class="formula">
 $$
-f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x\text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(x))
 $$
 </div>
 
 - **Parameter space**: $\Theta = \mathbb{R}^2$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1)$
 - **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
 - **Input space**: $\mathcal{X} = \mathbb{R}$
-- **Output space**: $\mathcal{Y} = \mathbb{R}$
+- **Output space**: $\mathcal{Y} = \lbrace -1, +1 \rbrace$ (binary labels)
+- **Loss function**: Hinge loss:
+
+<div class="formula">
+$$
+\mathcal{L}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^{N} \max(0, 1 - y_i f_{\boldsymbol{\theta}}(x_i))
+$$
+</div>
 
 ---
 
@@ -544,3 +618,7 @@ $$
         Your browser does not support the video tag.
     </video>
 </div>
+
+---
+
+# Python Implementation
