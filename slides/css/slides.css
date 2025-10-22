@@ -631,7 +631,7 @@
   width: 100%;
   margin: 1.5em 0;
   text-align: left;
-  font-size: 0.55em;
+  font-size: 0.8em;
   line-height: 1.5;
   word-wrap: break-word;
   box-shadow: 0 4px 20px var(--fs-shadow-color-light);
@@ -672,23 +672,47 @@
 }
 
 /* Syntax highlighting colors using your theme */
-.reveal pre code .keyword {
+.reveal pre code .hljs-keyword,
+.reveal pre code .hljs-built_in {
   color: var(--fs-link-color-hover);
   font-weight: 600;
 }
 
-.reveal pre code .string {
+.reveal pre code .hljs-string {
   color: var(--fs-fragment-select-color-1);
 }
 
-.reveal pre code .comment {
+.reveal pre code .hljs-comment,
+.reveal pre code .hljs-doctag {
   color: var(--fs-text-subtle-color);
   font-style: italic;
 }
 
-.reveal pre code .function {
+.reveal pre code .hljs-function,
+.reveal pre code .hljs-title {
   color: var(--fs-link-color);
   font-weight: 500;
+}
+
+.reveal pre code .hljs-number,
+.reveal pre code .hljs-literal {
+  color: var(--fs-highlight-background);
+}
+
+.reveal pre code .hljs-operator,
+.reveal pre code .hljs-punctuation {
+  color: var(--fs-text-muted-color);
+}
+
+.reveal pre code .hljs-class .hljs-title,
+.reveal pre code .hljs-type {
+  color: var(--fs-link-color-light);
+  font-weight: 600;
+}
+
+.reveal pre code .hljs-variable,
+.reveal pre code .hljs-params {
+  color: var(--fs-text-color);
 }
 
 .reveal pre code .number {

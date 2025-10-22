@@ -432,6 +432,82 @@ where $\mathcal{R}(\boldsymbol{\theta})$ is the regularization term (e.g., L1 or
 
 ---
 
+## Gradient Descent
+
+<div style="font-size: 0.83em;">
+
+**Goal**: Find parameters that minimize the empirical risk:
+
+<div class="formula">
+$$
+\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta})
+$$
+</div>
+
+**Gradient descent iteratively updates**:
+<div class="formula">
+$$
+\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}_t), \text{ for } t = 0, 1, 2, \ldots, T
+$$
+</div>
+
+where $\eta > 0$ is the learning rate and $T$ is the total number of iterations.
+
+- **Convergence**: Steepest descent → critical point where $\nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}^*) = 0$
+- **Critical points**: Local minima (stable, target) / Maxima (unstable, avoided) / Saddle points (unstable, avoided)
+- **Note**: GD with appropriate $\eta$ converges to local minima or saddle points, not maxima (SGD adds noise that helps escape saddle points)
+
+</div>
+
+---
+
+## Gradient Descent Algorithm
+
+<div style="font-size: 0.85em;">
+
+```python
+def gradient_descent(theta_0, learning_rate, max_iterations, 
+                     compute_gradient, tolerance=1e-6):
+    """
+    Gradient Descent optimization algorithm.
+    
+    Args:
+        theta_0: Initial parameters (numpy array), typically sampled 
+                 from N(0, 0.1) for each parameter
+        learning_rate: Learning rate η > 0
+        max_iterations: Maximum number of iterations T
+        compute_gradient: Function that computes ∇_θ R̂(θ)
+        tolerance: Convergence tolerance δ (optional)
+    
+    Returns:
+        theta_star: Optimized parameters θ*
+    """
+    theta = theta_0.copy()
+    
+    for t in range(max_iterations):
+        # Compute gradient at current parameters
+        g = compute_gradient(theta)
+        
+        # Update parameters
+        theta = theta - learning_rate * g
+        
+        # Check convergence criterion
+        if np.linalg.norm(g) < tolerance:
+            break
+    
+    return theta
+```
+
+**Key considerations**: Learning rate $\eta$ controls step size — too large may overshoot, too small may converge slowly
+
+</div>
+
+---
+
+
+
+---
+
 ## Example: Simple Linear Regression
 
 <div style="text-align: center;">
