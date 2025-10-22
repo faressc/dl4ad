@@ -30,7 +30,7 @@ Notes:
 <div class="fragment appear-vanish" data-fragment-index="1" style="margin-top: 20px;">
     <p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\min_{\boldsymbol{\theta}} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\theta}))^2$$
+        $$\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\theta}))^2 \text{,}$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
         where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\theta})$ are predicted values, and $\boldsymbol{\theta}$ are parameters
@@ -40,27 +40,27 @@ Notes:
 <div class="fragment appear-vanish" data-fragment-index="2" style="margin-top: 20px;">
     <p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\boldsymbol{\theta} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
+        $$\boldsymbol{\theta}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} \text{,}$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
-        where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\theta}$ are the optimal parameters
+        where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\theta}^*$ are the optimal parameters
     </p>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="3" style="margin-top: 20px;">
     <p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} L(\boldsymbol{\theta}_t)$$
+        $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}_t) \text{, with } t = 0, 1, 2, \ldots, T$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
-        where $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} L$ is the gradient of the loss function
+        $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}_t)$ is the gradient of the loss function at iteration $t$
     </p>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="4" style="margin-top: 20px;">
     <p><strong>Eigenvalue Theory:</strong> For a square matrix $\mathbf{A}$, eigenvalues $\lambda$ and eigenvectors $\mathbf{v}$ satisfy:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v}$$
+        $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v} \text{,}$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
         where $\mathbf{v} \neq \mathbf{0}$ is an eigenvector and $\lambda$ is the corresponding eigenvalue (scalar)
@@ -70,7 +70,7 @@ Notes:
 <div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px;">
     <p><strong>Principal Component Analysis (PCA):</strong> Dimensionality reduction technique that finds orthogonal directions of maximum variance:</p>
     <p style="text-align: center; margin: 20px 0;">
-        $$\mathbf{w}_1 = \arg\max_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \arg\max_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w}$$
+        $$\mathbf{w}_1 = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w} \text{,}$$
     </p>
     <p style="text-align: center; margin: 10px 0;">
         where $\mathbf{X}$ is the data matrix, $\mathbf{\Sigma}$ is the covariance matrix, and $\mathbf{w}$ are the principal components (eigenvectors)
@@ -150,10 +150,10 @@ Notes:
 <div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
 <p><strong>Maximum Likelihood Estimation (MLE):</strong> Method to estimate parameters by maximizing the likelihood function:</p>
 <p style="text-align: center; margin: 20px 0;">
-    $$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta} | \mathbf{x}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^{n} P(x_i | \boldsymbol{\theta})$$
+    $$\boldsymbol{\theta}^*_{\text{MLE}} = \argmax\limits_{\boldsymbol{\theta}\in\Theta} L(\boldsymbol{\theta} | \mathbf{x}) = \argmax\limits_{\boldsymbol{\theta}\in\Theta} \prod_{i=1}^{n} P(x_i | \boldsymbol{\theta})$$
 </p>
 <p style="text-align: center; margin: 10px 0;">
-    where $\boldsymbol{\theta}$ are the parameters to estimate, $\mathcal{L}$ is the likelihood function, and $\mathbf{x}$ is the observed data
+    where $\boldsymbol{\theta}$ are the parameters to estimate, $L$ is the likelihood function, and $\mathbf{x}$ is the observed data
 </p>
 </div>
 
@@ -290,7 +290,7 @@ Notes:
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 60%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 70%;">
 
 ```python
 # Initialize parameters
@@ -621,9 +621,9 @@ Notes:
     <div style="font-size: 0.85em; line-height: 1;">
         <p style="margin-bottom: 15px;"><strong>Adaptive Moment Estimation</strong> - combines momentum and RMSprop:</p>
         <p style="margin-bottom: 10px;"><strong>First moment (momentum):</strong></p>
-        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}L$$</p>
+        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t)$$</p>
         <p style="margin-bottom: 10px;"><strong>Second moment (RMSprop):</strong></p>
-        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}L)^2$$</p>
+        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t))^2$$</p>
         <p style="margin-bottom: 10px;"><strong>Bias correction:</strong></p>
         <p style="text-align: center; margin-bottom: 15px;">$$\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1-\beta_1^t}, \quad \hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{1-\beta_2^t}$$</p>
         <p style="margin-bottom: 10px;"><strong>Parameter update:</strong></p>

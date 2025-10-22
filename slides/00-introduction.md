@@ -206,7 +206,7 @@ Note: If you don't know if your course counts, drop me an email.
         </tr>
         <tr>
             <td class="date">06.11.2025</td>
-            <td>Multi-layer Perceptrons</td>
+            <td>Perceptrons</td>
         </tr>
         <tr>
             <td class="date">13.11.2025</td>
