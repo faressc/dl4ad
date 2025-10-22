@@ -565,7 +565,7 @@ $$
 - **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
 - **Input space**: $\mathcal{X} = \mathbb{R}$
 - **Output space**: $\mathcal{Y} = \mathbb{R}$
-- **Loss function**: L2 loss (Mean Squared Error):
+- **Loss function**: Mean Squared Error (MSE):
 
 <div class="formula">
 $$
@@ -588,19 +588,19 @@ $$
 
 ## Example: Binary Classification (Formulation)
 
-- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R} \to \mathbb{R}$ defined as:
+- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R}^2 \to \mathbb{R}$ defined as:
 
 <div class="formula">
 $$
-f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x\text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(x))
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(x))
 $$
 </div>
 
-- **Parameter space**: $\Theta = \mathbb{R}^2$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1)$
+- **Parameter space**: $\Theta = \mathbb{R}^3$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1, \theta_2)$
 - **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
-- **Input space**: $\mathcal{X} = \mathbb{R}$
+- **Input space**: $\mathcal{X} = \mathbb{R}^2$
 - **Output space**: $\mathcal{Y} = \lbrace -1, +1 \rbrace$ (binary labels)
-- **Loss function**: Hinge loss:
+- **Loss function**: Mean hinge loss:
 
 <div class="formula">
 $$
