@@ -621,4 +621,32 @@ $$
 
 ---
 
+## Bonus: Normal Equations for Linear Regression
+
+<div style="font-size: 0.8em;">
+
+**Closed-form solution**: Instead of iterative optimization, directly compute optimal parameters $\boldsymbol{\theta}^*$
+
+**Derivation**: Set gradient of MSE to zero and solve for $\boldsymbol{\theta}$
+
+
+<div class="formula" style="font-size: 0.9em;">
+$$
+\begin{aligned}
+\mathbf{\hat{y}} & = \mathbf{X} \boldsymbol{\theta}\\
+\hat{R}(\boldsymbol{\theta}) & = \frac{1}{N} \lVert \mathbf{y} - \mathbf{X} \boldsymbol{\theta} \rVert_2^2 = \frac{1}{N} (\mathbf{y} - \mathbf{X} \boldsymbol{\theta})^T (\mathbf{y} - \mathbf{X} \boldsymbol{\theta})\\
+\nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}^*) & = -\frac{2}{N} \mathbf{X}^T (\mathbf{y} - \mathbf{X} \boldsymbol{\theta}^*) = 0\\
+\mathbf{X}^T \mathbf{y} & = \mathbf{X}^T \mathbf{X} \boldsymbol{\theta}^*\\
+\boldsymbol{\theta}^* & = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+\end{aligned}
+$$
+</div>
+
+Where:
+
+- $\mathbf{X}$ is the design matrix (including a column of ones for the bias term)
+- $\mathbf{y}$ is the vector of target values
+
+---
+
 # Python Implementation
