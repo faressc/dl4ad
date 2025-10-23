@@ -15,23 +15,23 @@ Notes:
         <div class="timeline-title">Calculus & Linear Algebra</div>
         <div class="timeline-text">Basis for optimization algorithms and machine learning model operations</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:1,1809:2,1847:3,1858:4,1901:5">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1676:0,1805:1,1809:2,1847:3,1858:4,1901:5,1951:6">
         {{TIMELINE:timeline_calculus_linear_algebra}}
     </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="0" style="margin-top: 20px;">
     <p><strong>Chain Rule:</strong> For composite functions $f(g(x))$, the derivative is:</p>
-    <p style="text-align: center; margin: 20px 0;">
+    <div class="formula">
         $$\frac{df}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$$
-    </p>
+    </div>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="1" style="margin-top: 20px;">
     <p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
-    <p style="text-align: center; margin: 20px 0;">
+    <div class="formula">
         $$\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\theta}))^2 \text{,}$$
-    </p>
+    </div>
     <p style="text-align: center; margin: 10px 0;">
         where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\theta})$ are predicted values, and $\boldsymbol{\theta}$ are parameters
     </p>
@@ -39,9 +39,9 @@ Notes:
 
 <div class="fragment appear-vanish" data-fragment-index="2" style="margin-top: 20px;">
     <p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
-    <p style="text-align: center; margin: 20px 0;">
+    <div class="formula">
         $$\boldsymbol{\theta}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} \text{,}$$
-    </p>
+    </div>
     <p style="text-align: center; margin: 10px 0;">
         where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\theta}^*$ are the optimal parameters
     </p>
@@ -49,9 +49,9 @@ Notes:
 
 <div class="fragment appear-vanish" data-fragment-index="3" style="margin-top: 20px;">
     <p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient:</p>
-    <p style="text-align: center; margin: 20px 0;">
+    <div class="formula">
         $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}_t) \text{, with } t = 0, 1, 2, \ldots, T$$
-    </p>
+    </div>
     <p style="text-align: center; margin: 10px 0;">
         $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}_t)$ is the gradient of the loss function at iteration $t$
     </p>
@@ -59,9 +59,9 @@ Notes:
 
 <div class="fragment appear-vanish" data-fragment-index="4" style="margin-top: 20px;">
     <p><strong>Eigenvalue Theory:</strong> For a square matrix $\mathbf{A}$, eigenvalues $\lambda$ and eigenvectors $\mathbf{v}$ satisfy:</p>
-    <p style="text-align: center; margin: 20px 0;">
+    <div class="formula">
         $$\mathbf{A}\mathbf{v} = \lambda \mathbf{v} \text{,}$$
-    </p>
+    </div>
     <p style="text-align: center; margin: 10px 0;">
         where $\mathbf{v} \neq \mathbf{0}$ is an eigenvector and $\lambda$ is the corresponding eigenvalue (scalar)
     </p>
@@ -69,12 +69,26 @@ Notes:
 
 <div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px;">
     <p><strong>Principal Component Analysis (PCA):</strong> Dimensionality reduction technique that finds orthogonal directions of maximum variance:</p>
-    <p style="text-align: center; margin: 20px 0;">
-        $$\mathbf{w}_1 = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w} \text{,}$$
-    </p>
+    <div class="formula">
+        $$
+        \begin{aligned}
+        \mathbf{w}_1 & = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \frac{1}{N} (\mathbf{X}\mathbf{w})^T (\mathbf{X}\mathbf{w})\\
+        & = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{X}^T \mathbf{X} \mathbf{w} = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w} \text{,}
+        \end{aligned}
+        $$
+    </div>
     <p style="text-align: center; margin: 10px 0;">
         where $\mathbf{X}$ is the data matrix, $\mathbf{\Sigma}$ is the covariance matrix, and $\mathbf{w}$ are the principal components (eigenvectors)
     </p>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="6" style="margin-top: 20px;">
+    <p><strong>Stochastic Gradient Descent (SGD):</strong> Variant of gradient descent that updates parameters using a single randomly selected data point at each iteration:</p>
+    <div class="formula">
+    $$
+        \boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \ell(f_{\boldsymbol{\theta}_t}(\mathbf{x}_{i_t}), \mathbf{y}_{i_t}), \quad \text{where } i_t \sim \text{Uniform}(\{1, \ldots, N\})
+    $$
+    </div>
 </div>
 
 ---
@@ -113,9 +127,9 @@ Notes:
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 60%;">
 <p><strong>Bayes' Theorem:</strong> Relates conditional probabilities and forms the foundation of Bayesian inference:</p>
-<p style="text-align: center; margin: 20px 0;">
+<div class="formula">
     $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
-</p>
+</div>
 <p style="text-align: center; margin: 10px 0;">
     where $P(A|B)$ is the posterior probability, $P(B|A)$ is the likelihood, $P(A)$ is the prior, and $P(B)$ is the evidence
 </p>
@@ -125,9 +139,9 @@ Notes:
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 60%;">
 <p><strong>Gaussian (Normal) Distribution:</strong> Continuous probability distribution characterized by mean $\mu$ and variance $\sigma^2$:</p>
-<p style="text-align: center; margin: 20px 0;">
+<div class="formula">
     $$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} = \mathcal{N}(\mu, \sigma^2)$$
-</p>
+</div>
 <p style="text-align: center; margin: 10px 0;">
     where $\mu$ is the mean (center) and $\sigma^2$ is the variance (spread) of the distribution
 </p>
@@ -137,9 +151,9 @@ Notes:
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
 <p><strong>Central Limit Theorem (CLT):</strong> The average of many independently sampled random variables approaches a normal distribution, <em>regardless of the original distribution</em>:</p>
-<p style="text-align: center; margin: 20px 0;">
+<div class="formula">
     $$\bar{X} \xrightarrow{d} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \text{ as } n \to \infty$$
-</p>
+</div>
 <p style="text-align: center; margin: 10px 0;">
     where $\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$ is the sample mean, $\mu$ is the population mean, $\sigma^2$ is the population variance, and $n$ is the sample size
 </p>
@@ -149,9 +163,9 @@ Notes:
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
 <p><strong>Maximum Likelihood Estimation (MLE):</strong> Method to estimate parameters by maximizing the likelihood function:</p>
-<p style="text-align: center; margin: 20px 0;">
+<div class="formula">
     $$\boldsymbol{\theta}^*_{\text{MLE}} = \argmax\limits_{\boldsymbol{\theta}\in\Theta} L(\boldsymbol{\theta} | \mathbf{x}) = \argmax\limits_{\boldsymbol{\theta}\in\Theta} \prod_{i=1}^{n} P(x_i | \boldsymbol{\theta})$$
-</p>
+</div>
 <p style="text-align: center; margin: 10px 0;">
     where $\boldsymbol{\theta}$ are the parameters to estimate, $L$ is the likelihood function, and $\mathbf{x}$ is the observed data
 </p>
@@ -621,13 +635,13 @@ Notes:
     <div style="font-size: 0.85em; line-height: 1;">
         <p style="margin-bottom: 15px;"><strong>Adaptive Moment Estimation</strong> - combines momentum and RMSprop:</p>
         <p style="margin-bottom: 10px;"><strong>First moment (momentum):</strong></p>
-        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t)$$</p>
+        <div class="formula">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t)$$</div>
         <p style="margin-bottom: 10px;"><strong>Second moment (RMSprop):</strong></p>
-        <p style="text-align: center; margin-bottom: 15px;">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t))^2$$</p>
+        <div class="formula">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t))^2$$</div>
         <p style="margin-bottom: 10px;"><strong>Bias correction:</strong></p>
-        <p style="text-align: center; margin-bottom: 15px;">$$\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1-\beta_1^t}, \quad \hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{1-\beta_2^t}$$</p>
+        <div class="formula">$$\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1-\beta_1^t}, \quad \hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{1-\beta_2^t}$$</div>
         <p style="margin-bottom: 10px;"><strong>Parameter update:</strong></p>
-        <p style="text-align: center;">$$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \alpha \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{v}}_t} + \epsilon}$$</p>
+        <div class="formula">$$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \alpha \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{v}}_t} + \epsilon}$$</div>
     </div>
 </div>
 
@@ -744,6 +758,13 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="14" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
+    <img src="assets/images/01-history/lyria_2.png" alt="Lyria 2" style="max-width: 100%; height: auto;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+        Lyria Team (2025). Live Music Models (No. arXiv:2508.04651). arXiv. https://doi.org/10.48550/arXiv.2508.04651
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="15" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
     <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/7UR00wokYzE?si=u6LdwjgCqxoIoQUQ&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
@@ -762,7 +783,12 @@ Notes:
 - In 2020, Steinmetz et al. proposed an approach for automatic mixing based on differentiable effects
 - In 2021, Caillon and Esling introduced RAVE - a real-time audio synthesis model using variational autoencoders
 - What works for images and text, should also work for audio - in 2022, CLAP was introduced - a model that learns audio concepts from natural language supervision
-- And finally in 2024, Stable Audio Open was released - a model based on diffusion transformers for high-quality text-to-audio generation
+- Then in 2024, Stable Audio Open was released - a model based on diffusion transformers for high-quality text-to-audio generation
+- Finally, in January 2025, Google's Lyria 2 was released - introducing real-time music generation with continuous user control
+- Lyria 2 generates an uninterrupted stream of music in two-second chunks using a three-component pipeline:
+    1. MusicCoCa style embedding model to capture musical style from text and audio prompts
+    2. SpectroStream audio codec for efficient audio representation
+    3. Encoder-decoder language model that generates new audio tokens conditioned on style embeddings and 10 seconds of past audio context
 
 ---
 
