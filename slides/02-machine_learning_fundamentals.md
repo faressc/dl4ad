@@ -156,7 +156,7 @@ where $$\ell$$ is a single sample loss function (e.g., absolute loss for regress
     <li>$\mathcal{F}_d^{(n)}$ Polynomial functions of degree $d$ in $n$ input variables, $\Theta = \mathbb{R}^{\binom{n+d}{d}}$
 </ul>
 
-**Important**: For a fixed dimension $n$, we have $\mathcal{F}_1^{(n)} \subset \mathcal{F}_2^{(n)} \subset \ldots \subset \mathcal{F}_d^{(n)} \subset \mathcal{F}$ — more complex models have larger function spaces and can represent more patterns, but require more data to learn effectively.
+**Important**: For a fixed number of variables $n$, we have $\mathcal{F}_1^{(n)} \subset \mathcal{F}_2^{(n)} \subset \ldots \subset \mathcal{F}_d^{(n)} \subset \mathcal{F}$ — more complex models have larger function spaces and can represent more patterns, but require more data to learn effectively.
 
 </div>
 
@@ -310,17 +310,17 @@ Assuming an expected prediction squared error over different training sets $D$ a
 
 <div class="formula">
 $$
-\mathbb{E}_{D,\epsilon} \left[ (y - \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}))^2 \right]
+\mathbb{E}_{D,\epsilon} \left[ (y - f_{D,\boldsymbol{\theta}}(\mathbf{x}))^2 \right]
 $$
 </div>
 
-, where $y = f^*(\mathbf{x}) + \epsilon$, $\epsilon \sim \mathcal{N}(0, \sigma^2)$ and $\hat{f}_{\boldsymbol{\theta}}(\mathbf{x})$ model prediction with parameters $\boldsymbol{\theta}$ trained on dataset $D$.
+, where $y = f^*(\mathbf{x}) + \epsilon$, $\epsilon \sim \mathcal{N}(0, \sigma^2)$ and $f_{D,\boldsymbol{\theta}}(\mathbf{x})$ model prediction with parameters $\boldsymbol{\theta}$ trained on dataset $D$.
 
 This can be decomposed into three components:
 
 <div class="formula">
 $$
-\underbrace{\left( \mathbb{E}_D \left[ \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}) \right] - f^*(\mathbf{x}) \right)^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_D \left[ \left( \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}) - \mathbb{E}_D \left[ \hat{f}_{\boldsymbol{\theta}}(\mathbf{x}) \right] \right)^2 \right]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Irreducible noise}}
+\underbrace{\left( \mathbb{E}_D \left[ f_{D,\boldsymbol{\theta}}(\mathbf{x}) \right] - f^*(\mathbf{x}) \right)^2}_{\text{Bias}^2} + \underbrace{\mathbb{E}_D \left[ \left( f_{D,\boldsymbol{\theta}}(\mathbf{x}) - \mathbb{E}_D \left[ f_{D,\boldsymbol{\theta}}(\mathbf{x}) \right] \right)^2 \right]}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Irreducible noise}}
 $$
 </div>
 
@@ -592,7 +592,7 @@ $$
 
 <div class="formula">
 $$
-f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(x))
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 \text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(x))
 $$
 </div>
 
