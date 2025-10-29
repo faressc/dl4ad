@@ -1142,6 +1142,277 @@ class BinaryClassificationSimple(Scene):
         self.play(*[FadeOut(mob) for mob in self.mobjects])
         self.wait(1)
 
+class EmpiricalRiskMinimization(Scene):
+    def construct(self):
+        # Create axes for data visualization
+        axes = Axes(
+            x_range=[0, 10, 1],
+            y_range=[0, 25, 5],
+            x_length=6,
+            y_length=4,
+            axis_config={"color": WHITE},
+            tips=False
+        )
+        
+        # Add labels
+        x_label = MathTex(r"\mathbf{x} \in \mathcal{X}", font_size=24)
+        y_label = MathTex(r"\mathbf{y} \in \mathcal{Y}", font_size=24)
+        x_label.next_to(axes.x_axis, DOWN)
+        y_label.next_to(axes.y_axis, LEFT)
+        
+        axes_group = VGroup(axes, x_label, y_label)
+        axes_group.shift(RIGHT * 2)
+        
+        self.play(Create(axes), Write(x_label), Write(y_label))
+        self.wait(1)
+        
+        # Step 1: Show the dataset
+        dataset_title = Text("I: Dataset", font_size=28, color=BLUE)
+        dataset_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(dataset_title))
+        
+        # Dataset notation
+        dataset_notation = MathTex(
+            r"D = \{(\mathbf{x}_i, \mathbf{y}_i)\}_{i=1}^N",
+            font_size=28
+        )
+        dataset_notation.next_to(dataset_title, DOWN, aligned_edge=LEFT)
+        self.play(Write(dataset_notation))
+        
+        # Generate sample data points
+        np.random.seed(42)
+        x_data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+        y_true = 2 * x_data + 3
+        y_data = y_true + np.random.normal(0, 1.5, len(x_data))
+        N = len(x_data)
+        
+        # Create dots for data points
+        dots = VGroup()
+        for x, y in zip(x_data, y_data):
+            dot = Dot(axes.c2p(x, y), color=BLUE, radius=0.08)
+            dots.add(dot)
+        
+        # Animate data points appearing
+        self.play(LaggedStart(*[GrowFromCenter(dot) for dot in dots], lag_ratio=0.2))
+        
+        # Show N (number of samples)
+        n_label = MathTex(f"N = {N}", font_size=24, color=BLUE)
+        n_label.next_to(dataset_notation, DOWN, aligned_edge=LEFT)
+        self.play(Write(n_label))
+        self.wait(2)
+        
+        # Step 2: Function family
+        self.play(
+            FadeOut(dataset_title),
+            FadeOut(dataset_notation),
+            FadeOut(n_label)
+        )
+
+        function_title = Text("II: Function Family", font_size=28, color=GREEN)
+        function_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(function_title))
+        
+        # Function notation
+        function_notation = MathTex(
+            r"f_{\boldsymbol{\theta}}: \mathcal{X} \to \mathcal{Y}",
+            font_size=28
+        )
+        function_notation.next_to(function_title, DOWN, aligned_edge=LEFT)
+        self.play(Write(function_notation))
+        
+        # Example: linear function
+        example_func = MathTex(
+            r"\hat{y} = \theta_0 + \theta_1 x",
+            font_size=28,
+            color=GREEN
+        )
+        example_func.next_to(function_notation, DOWN, aligned_edge=LEFT)
+        self.play(Write(example_func))
+        
+        # Show a candidate function
+        theta_0_candidate = 5
+        theta_1_candidate = 1.5
+        candidate_line = axes.plot(
+            lambda x: theta_0_candidate + theta_1_candidate * x,
+            color=GREEN,
+            x_range=[0, 10]
+        )
+        self.play(Create(candidate_line))
+        self.wait(2)
+        
+        # Step 3: Loss function
+        self.play(
+            FadeOut(function_title),
+            FadeOut(function_notation),
+            FadeOut(example_func)
+        )
+
+        loss_title = Text("III: Loss Function", font_size=28, color=YELLOW)
+        loss_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(loss_title))
+        
+        # Loss notation
+        loss_notation = MathTex(
+            r"\ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)",
+            font_size=28
+        )
+        loss_notation.next_to(loss_title, DOWN, aligned_edge=LEFT)
+        self.play(Write(loss_notation))
+        
+        # Show errors as vertical lines
+        error_lines = VGroup()
+        for x, y in zip(x_data, y_data):
+            y_pred = theta_0_candidate + theta_1_candidate * x
+            start_point = axes.c2p(x, y)
+            end_point = axes.c2p(x, y_pred)
+            error_line = Line(start_point, end_point, color=YELLOW, stroke_width=3)
+            error_lines.add(error_line)
+        
+        self.play(LaggedStart(*[Create(line) for line in error_lines], lag_ratio=0.1))
+        self.wait(2)
+        
+        # Step 4: Empirical Risk
+        self.play(
+            FadeOut(loss_title),
+            FadeOut(loss_notation),
+            FadeOut(error_lines)
+        )
+
+        risk_title = Text("IV: Empirical Risk", font_size=28, color=ORANGE)
+        risk_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(risk_title))
+        
+        # Empirical risk formula
+        risk_formula = MathTex(
+            r"\hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)",
+            font_size=26
+        )
+        risk_formula.next_to(risk_title, DOWN, aligned_edge=LEFT)
+        self.play(Write(risk_formula))
+        
+        # Calculate current risk
+        y_pred_candidate = theta_0_candidate + theta_1_candidate * x_data
+        current_risk = np.mean((y_data - y_pred_candidate)**2)
+        
+        risk_value = MathTex(
+            f"\\hat{{R}}(\\boldsymbol{{\\theta}}) = {current_risk:.3f}",
+            font_size=24,
+            color=ORANGE
+        )
+        risk_value.next_to(risk_formula, DOWN, aligned_edge=LEFT)
+        self.play(Write(risk_value))
+        self.wait(2)
+        
+        # Step 5: Minimize to find optimal parameters
+        self.play(
+            FadeOut(risk_title),
+            FadeOut(risk_formula),
+            FadeOut(risk_value),
+            FadeOut(candidate_line)
+        )
+
+        minimize_title = Text("V: Minimize Empirical Risk", font_size=28, color=RED)
+        minimize_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(minimize_title))
+        
+        self.interactive_embed()
+
+        # Minimization goal
+        minimize_goal = MathTex(
+            r"\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta})",
+            font_size=26
+        )
+        minimize_goal.next_to(minimize_title, DOWN, aligned_edge=LEFT)
+        self.play(Write(minimize_goal))
+        
+        # Try several candidates
+        candidates = [
+            (8, 1.0, PURPLE),
+            (3, 2.5, ORANGE),
+        ]
+        
+        for theta_0, theta_1, color in candidates:
+            line = axes.plot(lambda x: theta_0 + theta_1 * x, color=color, x_range=[0, 10])
+            y_pred = theta_0 + theta_1 * x_data
+            risk = np.mean((y_data - y_pred)**2)
+            
+            risk_text = MathTex(
+                f"\\hat{{R}} = {risk:.3f}",
+                font_size=24,
+                color=color
+            )
+            risk_text.next_to(minimize_goal, DOWN, aligned_edge=LEFT)
+            
+            self.play(Create(line), Write(risk_text))
+            self.wait(0.8)
+            self.play(FadeOut(line), FadeOut(risk_text))
+        
+        # Calculate and show optimal fit
+        A = np.vstack([np.ones(len(x_data)), x_data]).T
+        theta_0_best, theta_1_best = np.linalg.lstsq(A, y_data, rcond=None)[0]
+        
+        best_fit_line = axes.plot(
+            lambda x: theta_0_best + theta_1_best * x,
+            color=GREEN,
+            x_range=[0, 10],
+            stroke_width=4
+        )
+        
+        y_pred_best = theta_0_best + theta_1_best * x_data
+        best_risk = np.mean((y_data - y_pred_best)**2)
+        
+        best_params = MathTex(
+            f"\\boldsymbol{{\\theta}}^* = ({theta_0_best:.2f}, {theta_1_best:.2f})",
+            font_size=26,
+            color=GREEN
+        )
+        best_params.next_to(minimize_goal, DOWN, aligned_edge=LEFT)
+        
+        best_risk_text = MathTex(
+            f"\\hat{{R}}(\\boldsymbol{{\\theta}}^*) = {best_risk:.3f}",
+            font_size=24,
+            color=GREEN
+        )
+        best_risk_text.next_to(best_params, DOWN, aligned_edge=LEFT)
+        
+        optimal_label = Text("Optimal Solution!", font_size=28, color=GREEN)
+        optimal_label.next_to(best_risk_text, DOWN, aligned_edge=LEFT)
+        
+        self.play(Create(best_fit_line))
+        self.play(Write(best_params), Write(best_risk_text))
+        self.play(Write(optimal_label))
+        self.wait(2)
+        
+        # Final summary
+        self.play(
+            FadeOut(minimize_title),
+            FadeOut(minimize_goal),
+            FadeOut(best_params),
+            FadeOut(best_risk_text),
+            FadeOut(optimal_label)
+        )
+        
+        summary_title = Text("Summary: Machine Learning", font_size=28, color=WHITE)
+        summary_title.to_edge(LEFT).shift(UP * 2.5)
+        self.play(Write(summary_title))
+        
+        summary_points = VGroup(
+            MathTex(r"\text{I. Dataset: } D = \{(\mathbf{x}_i, \mathbf{y}_i)\}_{i=1}^N", font_size=20),
+            MathTex(r"\text{II. Function: } f_{\boldsymbol{\theta}}: \mathcal{X} \to \mathcal{Y}", font_size=20),
+            MathTex(r"\text{III. Loss: } \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)", font_size=20),
+            MathTex(r"\text{IV. Empirical Risk: } \hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(\cdot)", font_size=20),
+            MathTex(r"\text{V. Goal: } \boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta})", font_size=20)
+        ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
+        summary_points.next_to(summary_title, DOWN, aligned_edge=LEFT)
+        
+        self.play(Write(summary_points))
+        self.wait(4)
+        
+        # Fade out everything
+        self.play(*[FadeOut(mob) for mob in self.mobjects])
+        self.wait(1)
+
+
 class LossLandscapeVisualization(ThreeDScene):
     def construct(self):
         
