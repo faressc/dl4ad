@@ -109,7 +109,7 @@
 
 ---
 
-## Machine Learning
+## Machine Learning Definition
 
 <div style="font-size: 0.9em;">
 
@@ -131,6 +131,17 @@ $$
 
 where $$\ell$$ is a single sample loss function (e.g., absolute loss for regression, hinge loss for classification).
 
+</div>
+
+---
+
+## Machine Learning Definition
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/EmpiricalRiskMinimization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 
 ---
