@@ -645,10 +645,10 @@ $$
 $$
 \begin{aligned}
 \mathbf{\hat{y}} & = \mathbf{X} \boldsymbol{\theta}\\
-\hat{R}(\boldsymbol{\theta}) & = \frac{1}{N} \lVert \mathbf{y} - \mathbf{X} \boldsymbol{\theta} \rVert_2^2 = \frac{1}{N} (\mathbf{y} - \mathbf{X} \boldsymbol{\theta})^T (\mathbf{y} - \mathbf{X} \boldsymbol{\theta})\\
-\nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}^*) & = -\frac{2}{N} \mathbf{X}^T (\mathbf{y} - \mathbf{X} \boldsymbol{\theta}^*) = 0\\
-\mathbf{X}^T \mathbf{y} & = \mathbf{X}^T \mathbf{X} \boldsymbol{\theta}^*\\
-\boldsymbol{\theta}^* & = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+\hat{R}(\boldsymbol{\theta}) & = \frac{1}{N} \lVert \mathbf{y} - \mathbf{X} \boldsymbol{\theta} \rVert_2^2 = \frac{1}{N} (\mathbf{y} - \mathbf{X} \boldsymbol{\theta})^\top (\mathbf{y} - \mathbf{X} \boldsymbol{\theta})\\
+\nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}^*) & = -\frac{2}{N} \mathbf{X}^\top (\mathbf{y} - \mathbf{X} \boldsymbol{\theta}^*) = 0\\
+\mathbf{X}^\top \mathbf{y} & = \mathbf{X}^\top \mathbf{X} \boldsymbol{\theta}^*\\
+\boldsymbol{\theta}^* & = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}
 \end{aligned}
 $$
 </div>

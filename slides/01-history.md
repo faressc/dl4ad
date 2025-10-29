@@ -40,7 +40,7 @@ Notes:
 <div class="fragment appear-vanish" data-fragment-index="2" style="margin-top: 20px;">
     <p><strong>Normal Equations:</strong> Closed-form solution for linear regression by setting the gradient to zero:</p>
     <div class="formula">
-        $$\boldsymbol{\theta}^* = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} \text{,}$$
+        $$\boldsymbol{\theta}^* = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y} \text{,}$$
     </div>
     <p style="text-align: center; margin: 10px 0;">
         where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\theta}^*$ are the optimal parameters
@@ -72,8 +72,8 @@ Notes:
     <div class="formula">
         $$
         \begin{aligned}
-        \mathbf{w}_1 & = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \frac{1}{N} (\mathbf{X}\mathbf{w})^T (\mathbf{X}\mathbf{w})\\
-        & = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{X}^T \mathbf{X} \mathbf{w} = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^T \mathbf{\Sigma} \mathbf{w} \text{,}
+        \mathbf{w}_1 & = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \frac{1}{N} (\mathbf{X}\mathbf{w})^\top (\mathbf{X}\mathbf{w})\\
+        & = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^\top \mathbf{\Sigma} \mathbf{w} \text{,}
         \end{aligned}
         $$
     </div>

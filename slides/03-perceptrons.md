@@ -109,9 +109,110 @@
 
 ---
 
+## McCulloch-Pitts Neuron (1943)
+
+<div style="text-align: center; margin-top: 80px;">
+    <img src="assets/images/03-perceptrons/perceptron-neuroscience.png" alt="Neuroscience Inspirations" style="width: 1200px;">
+    <div class="reference">https://github.com/acids-ircam/creative_ml</div>
+</div>
+
+---
+
+## McCulloch-Pitts Neuron (1943)
+
+<div style="display: flex; align-items: center; gap: 40px; margin-top: 80px;">
+    <div style="flex: 1;">
+        <img src="assets/images/03-perceptrons/perceptron-neuroscience.png" alt="Neuroscience Inspirations" style="width: 80%;">
+        <div class="reference" style="text-align: center;">https://github.com/acids-ircam/creative_ml</div>
+    </div>
+    <div style="flex: 1;">
+        Neuron is the weighted $w_i$ sum of its inputs $x_i$ and fires if the sum exceeds a threshold $T$:
+        <div class="formula" style="margin-top: 60px;">
+            $$
+                y = 
+                \begin{cases} 
+                    1 & \text{if } \sum_{i=1}^{N} w_i x_i \geq T \\ 
+                    0 & \text{otherwise}
+                \end{cases}
+            $$
+        </div>
+    </div>
+</div>
+<div class="formula fragment" data-fragment-index="1", style="font-size: 0.8em; margin-top: 80px; text-align: center;">
+$$
+    y = 
+    \begin{cases} 
+        1 & \text{if } \sum_{i=1}^{N} w_i x_i \geq T \\ 
+        0 & \text{otherwise}
+    \end{cases}
+    \quad\to\quad
+    y = \phi\left( \sum_{i=1}^{N} w_i x_i - T \right)\text{ where } \phi(z) = 
+    \begin{cases} 
+        1 & \text{if } z \geq 0 \\
+        0 & \text{otherwise}
+    \end{cases}
+$$
+</div>
+
+---
+
 ## Frank Rosenblatt's Perceptron (1958)
 
 <div style="text-align: center; margin-top: 80px;">
     <img src="assets/images/01-history/perceptron.svg" alt="Frank Rosenblatt" style="width: 1400px;">
     <p style="font-size: 0.9em; color: var(--fs-text-color-muted); margin-top: 5px;">The Perceptron Model</p>
 </div>
+
+<div class="image-overlay fragment">
+What are the learnable parameters in this model?
+</div>
+
+---
+
+## Frank Rosenblatt's Perceptron (1958)
+
+<div style="text-align: center; margin-top: 80px;">
+    <img src="assets/images/03-perceptrons/perceptron_learnable_params.svg" alt="Frank Rosenblatt" style="width: 1400px;">
+    <p style="font-size: 0.9em; color: var(--fs-text-color-muted); margin-top: 5px;">The Perceptron Model</p>
+</div>
+
+---
+
+## Frank Rosenblatt's Perceptron (1958)
+
+<div style="display: flex; align-items: center; gap: 40px; margin-top: 80px;">
+    <div style="flex: 1;">
+        <img src="assets/images/01-history/perceptron.svg" alt="Frank Rosenblatt" style="width: 80%;">
+    </div>
+    <div style="flex: 1;">
+        The perceptron introduces a bias term $b$ to shift the activation threshold:
+        <div class="formula" style="margin-top: 60px;">
+            $$
+                y = \phi\left( \sum_{i=1}^{N} w_i x_i + b \right) \\
+                \text{where } \phi(z) = 
+                \begin{cases} 
+                    1 & \text{if } z \geq 0 \\
+                    0 & \text{otherwise}
+                \end{cases}
+            $$
+        </div>
+    </div>
+</div>
+<div class="fragment appear-vanish" data-fragment-index="1", style="display:flex; font-size: 0.8em; margin-top: 80px; text-align: left; align-items: center; gap: 20px;">
+    <div style="flex: 1;">
+        In vector notation, this can be expressed as:
+    </div>
+    <div class="formula" style="flex: 1;">
+    $$
+        y = \phi\left( \mathbf{w}^\top \mathbf{x} + b \right)
+    $$
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="2", style="display:flex; font-size: 0.8em; margin-top: 80px; text-align: left; align-items: center; gap: 20px;">
+    <div style="flex: 1;">
+        Or if $\mathbf{x}$ includes a bias input $x_0 = 1$, we can fold $b$ into the weights:
+    </div>
+</div>
+
+---
