@@ -346,6 +346,7 @@ $$
         <source src="assets/videos/02-machine_learning_fundamentals/1080p60/BiasVarianceTradeoff.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
+</div>
 
 ---
 
@@ -562,7 +563,7 @@ $$
 
 ---
 
-## Example: Simple Linear Regression (Formulation)
+## Example: Simple Linear Regression
 
 - **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R} \to \mathbb{R}$ defined as:
 
@@ -597,7 +598,7 @@ $$
 
 ---
 
-## Example: Binary Classification (Formulation)
+## Example: Binary Classification
 
 - **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R}^2 \to \mathbb{R}$ defined as:
 
@@ -621,7 +622,7 @@ $$
 
 ---
 
-## Binary Classification
+## Example: Binary Classification
 
 <div style="text-align: center;">
     <video width="70%" data-autoplay loop muted controls>
