@@ -129,7 +129,7 @@
         Neuron is the weighted $w_i$ sum of its inputs $x_i$ and fires if the sum exceeds a threshold $T$:
         <div class="formula" style="margin-top: 60px;">
             $$
-                y = 
+                \hat{y} = 
                 \begin{cases} 
                     1 & \text{if } \sum_{i=1}^{N} w_i x_i \geq T \\ 
                     0 & \text{otherwise}
@@ -140,13 +140,13 @@
 </div>
 <div class="formula fragment" data-fragment-index="1", style="font-size: 0.8em; margin-top: 80px; text-align: center;">
 $$
-    y = 
+    \hat{y} = 
     \begin{cases} 
         1 & \text{if } \sum_{i=1}^{N} w_i x_i \geq T \\ 
         0 & \text{otherwise}
     \end{cases}
     \quad\to\quad
-    y = \phi\left( \sum_{i=1}^{N} w_i x_i - T \right)\text{ where } \phi(z) = 
+    \hat{y} = \phi\left( \sum_{i=1}^{N} w_i x_i - T \right)\text{ where } \phi(z) = 
     \begin{cases} 
         1 & \text{if } z \geq 0 \\
         0 & \text{otherwise}
@@ -188,7 +188,7 @@ What are the learnable parameters in this model?
         The perceptron introduces a bias term $b$ to shift the activation threshold:
         <div class="formula" style="margin-top: 60px;">
             $$
-                y = \phi\left( \sum_{i=1}^{N} w_i x_i + b \right) \\
+                \hat{y} = \phi\left( \sum_{i=1}^{N} w_i x_i + b \right) \\
                 \text{where } \phi(z) = 
                 \begin{cases} 
                     1 & \text{if } z \geq 0 \\
@@ -204,7 +204,7 @@ What are the learnable parameters in this model?
     </div>
     <div class="formula" style="flex: 1;">
     $$
-        y = \phi\left( \mathbf{w}^\top \mathbf{x} + b \right)
+        \hat{y} = \phi\left( \mathbf{w}^\top \mathbf{x} + b \right)
     $$
     </div>
 </div>
@@ -215,7 +215,7 @@ What are the learnable parameters in this model?
     </div>
     <div class="formula" style="flex: 1;">
     $$
-        y = \phi\left( \mathbf{w}^\top \mathbf{x} \right) \text{ where }  \mathbf{x} = [1, x_1, x_2, \ldots, x_N]^\top \text{ and } \mathbf{w} = [b, w_1, w_2, \ldots, w_N]^\top
+        \hat{y} = \phi\left( \mathbf{w}^\top \mathbf{x} \right) \text{ where }  \mathbf{x} = [1, x_1, x_2, \ldots, x_N]^\top \text{ and } \mathbf{w} = [b, w_1, w_2, \ldots, w_N]^\top
     $$
 </div>
 
@@ -608,7 +608,7 @@ where:
 
 <div class="fragment" data-fragment-index="4" style="font-size: 0.75em; margin-top: 40px; padding: 20px; background: rgba(100, 100, 255, 0.1); border-left: 4px solid #6666ff;">
 
-**Chain Rule Reminder**: If $y = f(g(x))$, then $\frac{dy}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$
+**Chain Rule Reminder**: If $\hat{y} = f(g(x))$, then $\frac{dy}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$
 
 For neural networks: $\mathcal{L} = f(\mathbf{h}^{(L)}(\mathbf{h}^{(L-1)}(...\mathbf{h}^{(1)}(\mathbf{x}))))$
 
