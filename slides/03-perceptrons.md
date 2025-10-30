@@ -211,8 +211,244 @@ What are the learnable parameters in this model?
 
 <div class="fragment appear-vanish" data-fragment-index="2", style="display:flex; font-size: 0.8em; margin-top: 80px; text-align: left; align-items: center; gap: 20px;">
     <div style="flex: 1;">
-        Or if $\mathbf{x}$ includes a bias input $x_0 = 1$, we can fold $b$ into the weights:
+        Or if $\mathbf{x}$ includes a bias input $x_{0} = 1$, we can fold $b$ into the weights:
     </div>
+    <div class="formula" style="flex: 1;">
+    $$
+        y = \phi\left( \mathbf{w}^\top \mathbf{x} \right) \text{ where }  \mathbf{x} = [1, x_1, x_2, \ldots, x_N]^\top \text{ and } \mathbf{w} = [b, w_1, w_2, \ldots, w_N]^\top
+    $$
 </div>
 
 ---
+
+## Recall: Simple Linear Regression
+
+- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R} \to \mathbb{R}$ defined as:
+
+<div class="formula">
+$$
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x
+$$
+</div>
+
+- **Parameter space**: $\Theta = \mathbb{R}^2$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1)$
+- **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
+- **Input space**: $\mathcal{X} = \mathbb{R}$
+- **Output space**: $\mathcal{Y} = \mathbb{R}$
+- **Loss function**: Mean Squared Error (MSE):
+
+<div class="formula">
+$$
+\mathcal{L}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^{N} (y_i - f_{\boldsymbol{\theta}}(x_i))^2
+$$
+</div>
+
+---
+
+## Example: Simple Linear Regression
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/LinearRegressionSimple.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Comparison to Linear Regression
+
+<div style="font-size: 0.9em;">
+
+<div class="formula">
+$$
+\begin{aligned}
+\text{Perceptron: } & \quad f_{\mathbf{w}}(\mathbf{x}) = \phi\left( \mathbf{w}^\top \mathbf{x} \right), \quad \phi(z) = \begin{cases} 1 & \text{if } z \geq 0 \\ 0 & \text{otherwise} \end{cases}\\
+\text{Linear Regression: } & \quad f_{\boldsymbol{\theta}}(\mathbf{x}) = \boldsymbol{\theta}^\top \mathbf{x} \text{, with } \mathbf{x} = [1, x_1, x_2, \ldots, x_N]^\top
+\end{aligned}
+$$
+</div>
+
+**Key Differences**:
+
+- **Output space**: Perceptron outputs binary labels $\mathcal{Y} = \{0, 1\}$; Linear regression outputs continuous values $\mathcal{Y} = \mathbb{R}$
+- **Function space**: Both belong to $\mathcal{F}_1^{(n)}$ **before** activation — perceptron adds non-linearity via $\phi$
+
+</div>
+
+---
+
+## Example: Binary Classification
+
+- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R}^2 \to \mathbb{R}$ defined as:
+
+<div class="formula">
+$$
+f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 \text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(x))
+$$
+</div>
+
+- **Parameter space**: $\Theta = \mathbb{R}^3$ with parameters $\boldsymbol{\theta} = (\theta_0, \theta_1, \theta_2)$
+- **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
+- **Input space**: $\mathcal{X} = \mathbb{R}^2$
+- **Output space**: $\mathcal{Y} = \lbrace -1, +1 \rbrace$ (binary labels)
+- **Loss function**: Mean hinge loss:
+
+<div class="formula">
+$$
+\mathcal{L}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^{N} \max(0, 1 - y_i f_{\boldsymbol{\theta}}(x_i))
+$$
+</div>
+
+---
+
+## Binary Classification
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/BinaryClassificationSimple.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Comparison to Binary Classification
+
+<div style="font-size: 0.9em;">
+
+Both the perceptron and linear binary classifiers perform **binary classification** using linear decision boundaries:
+
+<div class="formula" style="margin-top: 40px;">
+$$
+\begin{aligned}
+\text{Perceptron: } & \quad f_{\mathbf{w}}(\mathbf{x}) = \phi\left( \mathbf{w}^\top \mathbf{x} \right), \quad \phi(z) = \begin{cases} 1 & \text{if } z \geq 0 \\ 0 & \text{otherwise} \end{cases}\\
+\text{Linear Classifier: } & \quad f_{\boldsymbol{\theta}}(\mathbf{x}) = \boldsymbol{\theta}^\top \mathbf{x} \text{, with } \hat{y} = \text{sign}(f_{\boldsymbol{\theta}}(\mathbf{x})) = \begin{cases} +1 & \text{if } f_{\boldsymbol{\theta}}(\mathbf{x}) \geq 0 \\ -1 & \text{otherwise} \end{cases}
+\end{aligned}
+$$
+</div>
+
+**Key Similarities**:
+
+- **Decision boundary**: Both use a linear hyperplane to separate classes
+- **Function space**: Both belong to $\mathcal{F}_1^{(n)}$ before applying the output function
+
+</div>
+
+<div class="fragment highlight image-overlay">
+If we change the perceptron activation to a sign function, both models become equivalent!
+
+→ This means we can use the same training algorithm for both models!
+</div>
+
+---
+
+## Differentiable Activation Functions
+
+To enable gradient flow through the activation as well, we can use differentiable alternatives such as:
+
+<div style="margin-top: 40px; font-size: 0.85em;">
+
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>Function</th>
+<th>Derivative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Sigmoid</strong></td>
+<td>$\sigma(z) = \frac{1}{1 + e^{-z}}$</td>
+<td>$\frac{d\sigma}{dz} = \sigma(z)(1 - \sigma(z))$</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Tanh</strong></td>
+<td>$\tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}$</td>
+<td>$\frac{d\tanh}{dz} = 1 - \tanh^2(z)$</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>ReLU</strong></td>
+<td>$\text{ReLU}(z) = \max(0, z)$</td>
+<td>$\frac{d\text{ReLU}}{dz} = \begin{cases} 1 & \text{if } z > 0 \\ 0 & \text{otherwise} \end{cases}$</td>
+</tr>
+<tr class="fragment" data-fragment-index="7">
+<td><strong>Leaky ReLU</strong></td>
+<td>$\text{LeakyReLU}(z) = \max(\alpha z, z)$</td>
+<td>$\frac{d\text{LeakyReLU}}{dz} = \begin{cases} 1 & \text{if } z > 0 \\ \alpha & \text{otherwise} \end{cases}$</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/SigmoidActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/TanhActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/ReLUActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="8" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/LeakyReLUActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment" data-fragment-index="9"></div>
+
+<div class="fragment image-overlay highlight" data-fragment-index="10">
+Our gradients can now flow through the activation function!<br>
+→ We can use loss functions that depend on the final output of the perceptron!<br>
+→ We can chain multiple perceptrons together to form multi-layer perceptrons (MLPs)!
+</div>
+
+---
+
+## Example: Binary Classification with Sigmoid
+
+- **Function**: $f_{\boldsymbol{\theta}}(x): \mathbb{R}^2 \to (0, 1)$ defined as:
+
+<div class="formula">
+$$
+f_{\boldsymbol{\theta}}(x) = \sigma(w_0 + w_1 x_1 + w_2 x_2) \text{, with } \sigma(z) = \frac{1}{1 + e^{-z}}
+$$
+</div>
+
+- **Parameter space**: $\Theta = \mathbb{R}^3$ with parameters $\boldsymbol{\theta} = (w_0, w_1, w_2)$
+- **Dataset**: $D = \lbrace(x_i, y_i)\rbrace$ for $i = 1, \ldots, N$
+- **Input space**: $\mathcal{X} = \mathbb{R}^2$
+- **Output space**: $\mathcal{Y} = (0, 1)$ (probabilistic outputs)
+- **Loss function**: Binary cross-entropy loss:
+
+<div class="formula">
+$$
+\mathcal{L}(\boldsymbol{\theta}) = -\frac{1}{N} \sum_{i=1}^{N} \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right]
+$$
+</div>
+
+<div class="fragment appear-vanish image-overlay" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/CrossEntropyLossVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
