@@ -940,3 +940,15 @@ where $\mathbf{W} = \mathbf{W}^{(2)} \mathbf{W}^{(1)}$ and $\mathbf{b} = \mathbf
 
 </div>
 
+---
+
+## Neural Network as Space Transformer
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/XORTanhTransformation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
