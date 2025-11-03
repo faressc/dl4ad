@@ -264,7 +264,7 @@ $$
 $$
 \begin{aligned}
 \text{Perceptron: } & \quad f_{\mathbf{w}}(\mathbf{x}) = \phi\left( \mathbf{w}^\top \mathbf{x} \right), \quad \phi(z) = \begin{cases} 1 & \text{if } z \geq 0 \\ 0 & \text{otherwise} \end{cases}\\
-\text{Linear Regression: } & \quad f_{\boldsymbol{\theta}}(\mathbf{x}) = \boldsymbol{\theta}^\top \mathbf{x} \text{, with } \mathbf{x} = [1, x_1, x_2, \ldots, x_N]^\top
+\text{Linear Regression: } & \quad f_{\boldsymbol{\theta}}(\mathbf{x}) = \boldsymbol{\theta}^\top \mathbf{x}
 \end{aligned}
 $$
 </div>
@@ -335,7 +335,7 @@ $$
 
 </div>
 
-<div class="fragment highlight image-overlay">
+<div class="fragment highlight image-overlay" style="text-align: left;">
 If we change the perceptron activation to a sign function, both models become equivalent!
 
 → This means we can use the same training algorithm for both models!
@@ -413,7 +413,7 @@ To enable gradient flow through the activation as well, we can use differentiabl
 
 <div class="fragment" data-fragment-index="9"></div>
 
-<div class="fragment image-overlay highlight" data-fragment-index="10">
+<div class="fragment image-overlay highlight" data-fragment-index="10" style="text-align: left;">
 Our gradients can now flow through the activation function!<br>
 → We can use loss functions that depend on the final output of the perceptron!<br>
 → We can chain multiple perceptrons together to form multi-layer perceptrons (MLPs)!
@@ -881,7 +881,7 @@ This recursive structure enables efficient gradient computation through the chai
 
 ---
 
-## Is an activation function really necessary?
+## Is an Activation Function Really Necessary?
 
 <div style="font-size: 0.70em; margin-top: 50px;">
 
@@ -942,6 +942,24 @@ where $\mathbf{W} = \mathbf{W}^{(2)} \mathbf{W}^{(1)}$ and $\mathbf{b} = \mathbf
 
 ---
 
+## Multilayer Perceptrons
+
+<div style="text-align: center;">
+    <img src="assets/images/03-perceptrons/different_space_regions.png" alt="Different Space Regions" style="width: 70%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+</div>
+
+---
+
+## Multilayer Perceptrons
+
+<div style="text-align: center;">
+    <img src="assets/images/03-perceptrons/different_space_regions_selected.png" alt="Different Space Regions" style="width: 70%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+</div>
+
+---
+
 ## Neural Network as Space Transformer
 
 <div style="text-align: center;">
@@ -952,3 +970,108 @@ where $\mathbf{W} = \mathbf{W}^{(2)} \mathbf{W}^{(1)}$ and $\mathbf{b} = \mathbf
 </div>
 
 ---
+
+## Regularization Techniques
+
+To prevent overfitting in multilayer perceptrons, we can use various regularization techniques:
+
+<div style="font-size: 0.90em;">
+
+<div class="fragment" data-fragment-index="1">
+
+- **L1 or L2 Regularization (Weight Decay)**: Adds a penalty term to the loss function proportional to the magnitude of the weights.
+
+</div>
+<div class="formula fragment appear-vanish" data-fragment-index="1">
+$$
+\begin{aligned}
+\mathcal{L}_{reg} & = \mathcal{L} + \mathcal{R} \\
+\mathcal{R}_1 & = \lambda \sum_{l} \sum_{i,j} |W_{ij}^{(l)}| \quad \text{(L1 Regularization)} \\
+\mathcal{R}_2 & = \lambda \sum_{l} \sum_{i,j} (W_{ij}^{(l)})^2 \quad \text{(L2 Regularization)}
+\end{aligned}
+$$
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+- **Batch Normalization**: Normalizes the inputs of each layer to have zero mean and unit variance, improving training stability.
+
+</div>
+<div class="formula fragment appear-vanish" data-fragment-index="2">
+$$
+\begin{aligned}
+\mu_B & = \frac{1}{m} \sum_{i=1}^{m} z_i \\
+\sigma_B^2 & = \frac{1}{m} \sum_{i=1}^{m} (z_i - \mu_B)^2\\
+\hat{z}_i & = \frac{z_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}
+\end{aligned}
+$$
+</div>
+
+<div class="fragment" data-fragment-index="3">
+
+- **Dropout**: Randomly sets a fraction of the neurons to zero during training to prevent co-adaptation.
+
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center;">
+
+<img src="assets/images/03-perceptrons/dropout.webp" alt="Dropout Illustration" style="width: 30%; margin-top: 20px;">
+<div class="reference" style="text-align: center; margin-top: 10px;">Source: https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="4">
+
+- **Early Stopping**: Monitors validation loss during training and stops when it starts to increase.
+
+</div>
+
+</div>
+
+---
+
+## Weight Initialization Strategies
+
+<div class="fragment appear-vanish" data-fragment-index="1">
+
+**Why is proper initialization important?**<br>
+
+- **Worst-case**: Initializing all weights to zero leads to identical gradients and no learning.<br>
+- **Random initialization**: Helps break symmetry, but naive methods can lead to vanishing/exploding gradients.
+
+</div>
+
+<div style="font-size: 0.85em;">
+
+<div class="fragment" data-fragment-index="2" style="margin-top: 40px;">
+
+**Xavier/Glorot Initialization** (for sigmoid/tanh):
+
+<div class="formula" style="margin-top: 20px;">
+$$
+W_{ij} \sim \mathcal{N}\left(0, \frac{2}{n_{in} + n_{out}}\right) \quad \text{or} \quad W_{ij} \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right)
+$$
+</div>
+
+→ Sigmoid/tanh derivatives: $\sigma'(z) \approx 0.25$ and $\tanh'(z) \approx 1$ (scale gradients uniformly)<br>
+→ Must balance variance for **both** forward ($n_{in}$) **and** backward ($n_{out}$) passes equally
+
+</div>
+
+<div class="fragment" data-fragment-index="3" style="margin-top: 40px;">
+
+**He Initialization** (for ReLU):
+
+<div class="formula" style="margin-top: 20px;">
+$$
+W_{ij} \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right) \quad \text{or} \quad W_{ij} \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in}}}, \sqrt{\frac{6}{n_{in}}}\right)
+$$
+</div>
+
+→ ReLU derivative: $\frac{d\text{ReLU}}{dz} = \begin{cases} 1 & \text{if } z > 0 \\ 0 & \text{otherwise} \end{cases}$ (either passes gradient or blocks it)<br>
+→ Backward pass **inherits** the sparsity pattern from forward pass (same neurons are dead)<br>
+→ Only need to preserve variance in forward pass; backward naturally follows with variance $\frac{2}{n_{in}}$
+
+</div>
+
+</div>
