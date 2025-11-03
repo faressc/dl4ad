@@ -576,43 +576,98 @@ where:
 
 ---
 
-## Backpropagation: The Chain Rule
+## Backpropagation
 
-<div style="text-align: center; margin-top: 40px;">
-    <img src="assets/images/03-perceptrons/simple_mlp_backprop.svg" alt="Simple MLP for Backpropagation" style="width: 800px;">
+<div class="highlight" style="margin-top: 150px; text-align: center;">
+How do we train a multilayer perceptron with many layers?
 </div>
 
-<div style="font-size: 0.8em; margin-top: 40px;">
+<div class="fragment">
+Compute gradients of the loss $\mathcal{L}$ for <strong>each layer</strong> $l$ to update parameters using gradient descent or its variants:
 
-**The Challenge**: How do we train a multilayer perceptron with potentially many layers?
+<div class="formula" style="margin-top: 40px;">
+$$
+\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{(l)}} \quad \text{and} \quad \frac{\partial \mathcal{L}}{\partial \mathbf{b}^{(l)}}
+$$
+</div>
+
+</div>
+
+---
+
+## Backpropagation
+
+The loss $\mathcal{L}$ has a **deep dependency chain**:
+
+<div style="margin-top: 40px; text-align: center;">
+
+$\mathcal{L}$ depends on $\hat{\mathbf{y}}$
 
 <div class="fragment" data-fragment-index="1">
 
-**Goal**: Compute gradients $\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{(l)}}$ and $\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{(l)}}$ for **each layer** $l$ to update parameters using gradient descent.
+↓ which depends on $\mathbf{W}^{(L)}$ and $\mathbf{b}^{(L)}$
 
 </div>
 
 <div class="fragment" data-fragment-index="2">
 
-**The Problem**: The loss $\mathcal{L}$ depends on the output $\hat{\mathbf{y}}$, which depends on the last layer's weights $\mathbf{W}^{(L)}$, which depends on the previous layer's output $\mathbf{h}^{(L-1)}$, which depends on $\mathbf{W}^{(L-1)}$, and so on...
+↓ which depends on $\mathbf{h}^{(L-1)}$
 
 </div>
 
 <div class="fragment" data-fragment-index="3">
 
-**The Solution**: **Backpropagation** - an efficient algorithm that uses the **chain rule** to compute gradients by propagating errors backwards through the network.
+↓ which depends on $\mathbf{W}^{(L-1)}$ and $\mathbf{b}^{(L-1)}$
+
+</div>
+
+<div class="fragment" data-fragment-index="4">
+
+↓ and so on...
 
 </div>
 
 </div>
 
-<div class="fragment" data-fragment-index="4" style="font-size: 0.75em; margin-top: 40px; padding: 20px; background: rgba(100, 100, 255, 0.1); border-left: 4px solid #6666ff;">
+<div class="fragment highlight image-overlay" data-fragment-index="5" style="margin-top: 60px; text-align: center; padding: 50px;">
+Backpropagation is an efficient algorithm to compute these gradients using the chain rule!
+</div>
 
-**Chain Rule Reminder**: If $\hat{y} = f(g(x))$, then $\frac{dy}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx}$
+---
 
-For neural networks: $\mathcal{L} = f(\mathbf{h}^{(L)}(\mathbf{h}^{(L-1)}(...\mathbf{h}^{(1)}(\mathbf{x}))))$
+## Backpropagation: Output Layer
 
-We apply the chain rule **recursively** to compute how the loss changes with respect to parameters in **any layer**.
+<div style="font-size: 0.80em;">
+
+<div><strong>MSE Loss</strong>: $\mathcal{L} = \frac{1}{N}\sum_{i=1}^{N}\Vert\mathbf{y}_i - \hat{\mathbf{y}}_i\Vert^2 = \frac{1}{N}\sum_{i=1}^{N}\sum_{j}(y_{ij} - \hat{y}_{ij})^2$
+
+**Step 1**: Compute gradient w.r.t. output layer pre-activation $\mathbf{z}_i^{(L)}$ for each sample $i$
+
+<div class="fragment" data-fragment-index="1">
+
+Apply the **chain rule**: $\mathcal{L}_i$ depends on $\mathbf{z}_i^{(L)}$ through $\hat{\mathbf{y}}_i$. For each sample $i$ and output neuron $j$:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(L)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial \hat{y}_{ij}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial \hat{y}_{ij}}{\partial z_{ij}^{(L)}}} \color{black}{=} \color{#FF6B6B}{\frac{2}{N}(\hat{y}_{ij} - y_{ij})} \color{black}{\cdot} \color{#4ECDC4}{\sigma'(z_{ij}^{(L)})}
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+In vector form for sample $i$, this gives us the **error term**:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\boldsymbol{\delta}_i^{(L)} = \frac{2}{N}(\hat{\mathbf{y}}_i - \mathbf{y}_i) \odot \sigma'(\mathbf{z}_i^{(L)})
+$$
+</div>
+
+where $\odot$ is element-wise multiplication.
+
+</div>
 
 </div>
 
@@ -620,89 +675,37 @@ We apply the chain rule **recursively** to compute how the loss changes with res
 
 ## Backpropagation: Output Layer
 
-<div style="font-size: 0.75em; margin-top: 30px;">
+<div style="font-size: 0.80em;">
 
-For a **regression task** with MSE loss: $\mathcal{L} = \frac{1}{2}\|\mathbf{y} - \hat{\mathbf{y}}\|^2$
+**Step 2**: Compute gradients w.r.t. weights and biases for sample $i$
 
-**Step 1**: Compute gradient with respect to output layer pre-activation $\mathbf{z}^{(L)}$
+<div>
+Given $\boldsymbol{\delta}_i^{(L)} = \frac{\partial \mathcal{L}_i}{\partial \mathbf{z}_i^{(L)}}$ for sample $i$ and forward pass $z_{ij}^{(L)} = \sum_{k=1}^{M^{(L-1)}} W_{jk}^{(L)} h_{ik}^{(L-1)} + b_j^{(L)}$:
+</div>
 
 <div class="fragment" data-fragment-index="1">
 
-We need to apply the **chain rule** since $\mathcal{L}$ depends on $\mathbf{z}^{(L)}$ through $\hat{\mathbf{y}}$:
+**Weight gradients**: Apply chain rule to $W_{jk}^{(L)}$ (weight connecting neuron $k$ in layer $L-1$ to neuron $j$ in layer $L$)
 
-<div class="formula">
+<div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(L)}} = \frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}} \odot \frac{\partial \hat{\mathbf{y}}}{\partial \mathbf{z}^{(L)}}
+\frac{\partial \mathcal{L}_i}{\partial W_{jk}^{(L)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(L)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(L)}}{\partial W_{jk}^{(L)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(L)}} \color{black}{\cdot} \color{#4ECDC4}{h_{ik}^{(L-1)}}
 $$
 </div>
 
-where $\odot$ denotes element-wise multiplication (Hadamard product).
+In matrix form: $\frac{\partial \mathcal{L}_i}{\partial \mathbf{W}^{(L)}} = \boldsymbol{\delta}_i^{(L)} (\mathbf{h}_i^{(L-1)})^\top$
 
 </div>
 
 <div class="fragment" data-fragment-index="2">
 
-**Computing each term**:
-- Loss gradient: $\frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}} = \frac{\partial}{\partial \hat{\mathbf{y}}} \left[\frac{1}{2}\|\mathbf{y} - \hat{\mathbf{y}}\|^2\right] = -(\mathbf{y} - \hat{\mathbf{y}})$ (prediction error)
-- Activation derivative: $\frac{\partial \hat{\mathbf{y}}}{\partial \mathbf{z}^{(L)}} = \sigma'(\mathbf{z}^{(L)})$ (how sensitive the activation is)
+**Bias gradients**: Apply chain rule to $b_j^{(L)}$ (bias for neuron $j$ in layer $L$)
 
-</div>
-
-<div class="fragment" data-fragment-index="3">
-
-Combining these gives us the **error term** $\boldsymbol{\delta}^{(L)}$:
-
-<div class="formula">
+<div class="formula" style="margin-top: 20px;">
 $$
-\boldsymbol{\delta}^{(L)} = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(L)}} = -(\mathbf{y} - \hat{\mathbf{y}}) \odot \sigma'(\mathbf{z}^{(L)})
+\frac{\partial \mathcal{L}_i}{\partial b_j^{(L)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(L)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(L)}}{\partial b_j^{(L)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(L)}} \color{black}{\cdot} \color{#4ECDC4}{1} \color{black}{=} \delta_{ij}^{(L)}
 $$
 </div>
-
-$\boldsymbol{\delta}^{(L)}$ tells us **how much each output neuron's pre-activation should change** to reduce the loss.
-
-</div>
-
-</div>
-
----
-
-## Backpropagation: Output Layer (cont.)
-
-<div style="font-size: 0.75em; margin-top: 30px;">
-
-**Step 2**: Compute gradients with respect to weights and biases
-
-Now that we have $\boldsymbol{\delta}^{(L)} = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(L)}}$, we can find how the loss changes with respect to the parameters.
-
-<div class="fragment" data-fragment-index="1">
-
-**Recall the forward pass**: $\mathbf{z}^{(L)} = \mathbf{W}^{(L)} \mathbf{h}^{(L-1)} + \mathbf{b}^{(L)}$
-
-Applying the chain rule again:
-
-<div class="formula">
-$$
-\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{(L)}} = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(L)}} \frac{\partial \mathbf{z}^{(L)}}{\partial \mathbf{W}^{(L)}} = \boldsymbol{\delta}^{(L)} (\mathbf{h}^{(L-1)})^\top
-$$
-</div>
-
-**Interpretation**: The gradient for weight $W_{ji}^{(L)}$ is proportional to:
-- How much neuron $j$ needs to change ($\delta_j^{(L)}$)
-- How active the input from neuron $i$ was ($h_i^{(L-1)}$)
-
-</div>
-
-<div class="fragment" data-fragment-index="2">
-
-For the bias term:
-
-<div class="formula">
-$$
-\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{(L)}} = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(L)}} \frac{\partial \mathbf{z}^{(L)}}{\partial \mathbf{b}^{(L)}} = \boldsymbol{\delta}^{(L)}
-$$
-</div>
-
-**Interpretation**: Bias gradient equals the error term directly (since $\frac{\partial \mathbf{z}^{(L)}}{\partial \mathbf{b}^{(L)}} = \mathbf{I}$)
 
 </div>
 
@@ -712,34 +715,75 @@ $$
 
 ## Backpropagation: Hidden Layers
 
-<div style="font-size: 0.8em; margin-top: 40px;">
+<div style="font-size: 0.80em;">
 
-**Step 3**: Propagate error backwards to hidden layer $l$:
+**Step 3**: Propagate error backwards to hidden layer $l$ for sample $i$
 
-<div class="formula">
+<div class="fragment" data-fragment-index="1">
+To compute $\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}}$, we use the chain rule through layer $l+1$, as $\mathcal{L}_i$ depends on $z_{ij}^{(l)}$ via all neurons in layer $l+1$:
+
+<div class="formula" style="margin-top: 20px;">
 $$
-\begin{aligned}
-\frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(l)}} & = \frac{\partial \mathcal{L}}{\partial \mathbf{h}^{(l)}} \odot \frac{\partial \mathbf{h}^{(l)}}{\partial \mathbf{z}^{(l)}} \\
-& = \frac{\partial \mathcal{L}}{\partial \mathbf{z}^{(l+1)}} \frac{\partial \mathbf{z}^{(l+1)}}{\partial \mathbf{h}^{(l)}} \odot \sigma'(\mathbf{z}^{(l)}) \\
-& = \left[(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}^{(l+1)}\right] \odot \sigma'(\mathbf{z}^{(l)}) \\
-& = \boldsymbol{\delta}^{(l)}
-\end{aligned}
+\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}} = \sum_{m=1}^{M^{(l+1)}} \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{im}^{(l+1)}}} \color{black}{\cdot} \color{#95E1D3}{\frac{\partial z_{im}^{(l+1)}}{\partial h_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial h_{ij}^{(l)}}{\partial z_{ij}^{(l)}}}
 $$
+</div>
+
+where $\color{#FF6B6B}{\delta_{im}^{(l+1)}}$ = error next layer, $\color{#95E1D3}{\frac{\partial z_{im}^{(l+1)}}{\partial h_{ij}^{(l)}} = W_{mj}^{(l+1)}}$ = weight connecting layers and $\color{#4ECDC4}{\frac{\partial h_{ij}^{(l)}}{\partial z_{ij}^{(l)}} = \sigma'(z_{ij}^{(l)})}$.
+
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+This gives us the **error term** for hidden layer $l$:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\delta_{ij}^{(l)} = \left(\sum_{m=1}^{M^{(l+1)}} W_{mj}^{(l+1)} \delta_{im}^{(l+1)}\right) \sigma'(z_{ij}^{(l)})
+$$
+</div>
+
+In vector form: $\boldsymbol{\delta}_i^{(l)} = \left[(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}_i^{(l+1)}\right] \odot \sigma'(\mathbf{z}_i^{(l)})$
+
 </div>
 
 </div>
 
-<div class="fragment" data-fragment-index="1" style="font-size: 0.8em; margin-top: 40px;">
+---
 
-**Step 4**: Compute gradients with respect to weights and biases:
+## Backpropagation: Hidden Layers
 
-<div class="formula">
+<div style="font-size: 0.80em;">
+
+**Step 4**: Compute gradients w.r.t. weights and biases for sample $i$ (same as output layer!)
+
+<div>
+Given $\boldsymbol{\delta}_i^{(l)} = \frac{\partial \mathcal{L}_i}{\partial \mathbf{z}_i^{(l)}}$ for sample $i$ and forward pass $z_{ij}^{(l)} = \sum_{k=1}^{M^{(l-1)}} W_{jk}^{(l)} h_{ik}^{(l-1)} + b_j^{(l)}$:
+</div>
+
+<div class="fragment" data-fragment-index="1">
+
+**Weight gradients**: Apply chain rule to $W_{jk}^{(l)}$ (weight connecting neuron $k$ in layer $l-1$ to neuron $j$ in layer $l$)
+
+<div class="formula" style="margin-top: 20px;">
 $$
-\begin{aligned}
-\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{(l)}} & = \boldsymbol{\delta}^{(l)} (\mathbf{h}^{(l-1)})^\top \\
-\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{(l)}} & = \boldsymbol{\delta}^{(l)}
-\end{aligned}
+\frac{\partial \mathcal{L}_i}{\partial W_{jk}^{(l)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(l)}}{\partial W_{jk}^{(l)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(l)}} \color{black}{\cdot} \color{#4ECDC4}{h_{ik}^{(l-1)}}
 $$
+</div>
+
+In matrix form: $\frac{\partial \mathcal{L}_i}{\partial \mathbf{W}^{(l)}} = \boldsymbol{\delta}_i^{(l)} (\mathbf{h}_i^{(l-1)})^\top$
+
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+**Bias gradients**: Apply chain rule to $b_j^{(l)}$ (bias for neuron $j$ in layer $l$)
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\frac{\partial \mathcal{L}_i}{\partial b_j^{(l)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(l)}}{\partial b_j^{(l)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(l)}} \color{black}{\cdot} \color{#4ECDC4}{1} \color{black}{=} \delta_{ij}^{(l)}
+$$
+</div>
+
 </div>
 
 </div>
@@ -748,7 +792,7 @@ $$
 
 ## Backpropagation: Algorithm Summary
 
-<div style="font-size: 0.75em; margin-top: 40px;">
+<div style="font-size: 0.70em;">
 
 <div style="display: flex; gap: 40px;">
 
@@ -780,7 +824,7 @@ $$
 
 </div>
 
-<div class="fragment" data-fragment-index="1" style="font-size: 0.75em; margin-top: 40px;">
+<div class="fragment" data-fragment-index="1" style="font-size: 0.75em;">
 
 **Weight Update** (Gradient Descent):
 
@@ -825,16 +869,74 @@ $$
 
 </div>
 
-<div class="fragment image-overlay highlight" style="width: 80%;">
+<div class="fragment image-overlay highlight" style="width: 80%; text-align: left;">
+
 **Key Insight**: Each neuron's error $\delta_j^{(l)}$ depends on:
 1. The weighted sum of errors from neurons in the next layer
 2. The derivative of its own activation function
 
 This recursive structure enables efficient gradient computation through the chain rule!
+
 </div>
 
 ---
 
-## Backpropagation & Weight Updates
+## Is an activation function really necessary?
 
+<div style="font-size: 0.70em; margin-top: 50px;">
+
+Consider a 2-layer network **without** activation functions:
+
+<div class="fragment" data-fragment-index="1">
+
+<div class="formula" style="margin-top: 30px;">
+$$
+\begin{aligned}
+\mathbf{h}^{(1)} &= \mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)} \\
+\hat{\mathbf{y}} &= \mathbf{W}^{(2)} \mathbf{h}^{(1)} + \mathbf{b}^{(2)}
+\end{aligned}
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+Substituting the first equation into the second:
+
+<div class="formula" style="margin-top: 30px;">
+$$
+\begin{aligned}
+\hat{\mathbf{y}} &= \mathbf{W}^{(2)} (\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}) + \mathbf{b}^{(2)} \\
+&= \mathbf{W}^{(2)} \mathbf{W}^{(1)} \mathbf{x} + \mathbf{W}^{(2)} \mathbf{b}^{(1)} + \mathbf{b}^{(2)}
+\end{aligned}
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="3">
+
+This is equivalent to a **single linear layer**:
+
+<div class="formula" style="margin-top: 30px;">
+$$
+\hat{\mathbf{y}} = \mathbf{W} \mathbf{x} + \mathbf{b}
+$$
+</div>
+
+where $\mathbf{W} = \mathbf{W}^{(2)} \mathbf{W}^{(1)}$ and $\mathbf{b} = \mathbf{W}^{(2)} \mathbf{b}^{(1)} + \mathbf{b}^{(2)}$
+
+</div>
+
+</div>
+
+<div class="fragment image-overlay highlight" data-fragment-index="4" style="width: 80%; text-align: left;">
+
+**Key Insight**: Without non-linear activation functions, stacking multiple layers is equivalent to a single linear transformation!
+
+→ The network cannot learn non-linear decision boundaries<br>
+→ Activation functions are **essential** for deep learning
+
+</div>
 
