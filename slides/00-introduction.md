@@ -316,7 +316,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 ## Graded Deliverables
 
-**Project Presentation** (1/3 Grade) – *Date:* 18.12.2025
+**Project Presentation** (1/3 Grade) – *Date:* 12.02.2026
 
 <ul class="small">
     <li>10-minute presentation per group and 5-minute Q&A session</li>
@@ -326,7 +326,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 <ul class="small">
     <li>README with clear, step-by-step instructions for running your code</li>
-    <li>Environment setup file (<code>requirements.txt</code>)</li>
+    <li>Environment setup file (e.g., <code>requirements.txt</code>, <code>pyproject.toml</code>)</li>
     <li>Well-commented source code</li>
 </ul>
 

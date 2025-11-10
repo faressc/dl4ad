@@ -271,7 +271,7 @@ $$
 
 **Key Differences**:
 
-- **Output space**: Perceptron outputs binary labels $\mathcal{Y} = \{0, 1\}$; Linear regression outputs continuous values $\mathcal{Y} = \mathbb{R}$
+- **Output space**: Perceptron outputs binary labels $\mathcal{Y} = \lbrace 0, 1\rbrace$; Linear regression outputs continuous values $\mathcal{Y} = \mathbb{R}$
 - **Function space**: Both belong to $\mathcal{F}_1^{(n)}$ **before** activation — perceptron adds non-linearity via $\phi$
 
 </div>
@@ -339,6 +339,67 @@ $$
 If we change the perceptron activation to a sign function, both models become equivalent!
 
 → This means we can use the same training algorithm for both models!
+</div>
+
+---
+
+## Is an Activation Function Really Necessary?
+
+<div style="font-size: 0.70em; margin-top: 50px;">
+
+Consider a 2-layer network **without** activation functions:
+
+<div class="fragment" data-fragment-index="1">
+
+<div class="formula" style="margin-top: 30px;">
+$$
+\begin{aligned}
+\mathbf{h}^{(1)} &= \mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)} \\
+\hat{\mathbf{y}} &= \mathbf{W}^{(2)} \mathbf{h}^{(1)} + \mathbf{b}^{(2)}
+\end{aligned}
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+Substituting the first equation into the second:
+
+<div class="formula" style="margin-top: 30px;">
+$$
+\begin{aligned}
+\hat{\mathbf{y}} &= \mathbf{W}^{(2)} (\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}) + \mathbf{b}^{(2)} \\
+&= \mathbf{W}^{(2)} \mathbf{W}^{(1)} \mathbf{x} + \mathbf{W}^{(2)} \mathbf{b}^{(1)} + \mathbf{b}^{(2)}
+\end{aligned}
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="3">
+
+This is equivalent to a **single linear layer**:
+
+<div class="formula" style="margin-top: 30px;">
+$$
+\hat{\mathbf{y}} = \mathbf{W} \mathbf{x} + \mathbf{b}
+$$
+</div>
+
+where $\mathbf{W} = \mathbf{W}^{(2)} \mathbf{W}^{(1)}$ and $\mathbf{b} = \mathbf{W}^{(2)} \mathbf{b}^{(1)} + \mathbf{b}^{(2)}$
+
+</div>
+
+</div>
+
+<div class="fragment image-overlay highlight" data-fragment-index="4" style="width: 80%; text-align: left;">
+
+**Key Insight**: Without non-linear activation functions, stacking multiple layers is equivalent to a single linear transformation!
+
+→ The network cannot learn non-linear decision boundaries<br>
+→ Activation functions are **essential** for deep learning
+
 </div>
 
 ---
@@ -876,67 +937,6 @@ $$
 2. The derivative of its own activation function
 
 This recursive structure enables efficient gradient computation through the chain rule!
-
-</div>
-
----
-
-## Is an Activation Function Really Necessary?
-
-<div style="font-size: 0.70em; margin-top: 50px;">
-
-Consider a 2-layer network **without** activation functions:
-
-<div class="fragment" data-fragment-index="1">
-
-<div class="formula" style="margin-top: 30px;">
-$$
-\begin{aligned}
-\mathbf{h}^{(1)} &= \mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)} \\
-\hat{\mathbf{y}} &= \mathbf{W}^{(2)} \mathbf{h}^{(1)} + \mathbf{b}^{(2)}
-\end{aligned}
-$$
-</div>
-
-</div>
-
-<div class="fragment" data-fragment-index="2">
-
-Substituting the first equation into the second:
-
-<div class="formula" style="margin-top: 30px;">
-$$
-\begin{aligned}
-\hat{\mathbf{y}} &= \mathbf{W}^{(2)} (\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}) + \mathbf{b}^{(2)} \\
-&= \mathbf{W}^{(2)} \mathbf{W}^{(1)} \mathbf{x} + \mathbf{W}^{(2)} \mathbf{b}^{(1)} + \mathbf{b}^{(2)}
-\end{aligned}
-$$
-</div>
-
-</div>
-
-<div class="fragment" data-fragment-index="3">
-
-This is equivalent to a **single linear layer**:
-
-<div class="formula" style="margin-top: 30px;">
-$$
-\hat{\mathbf{y}} = \mathbf{W} \mathbf{x} + \mathbf{b}
-$$
-</div>
-
-where $\mathbf{W} = \mathbf{W}^{(2)} \mathbf{W}^{(1)}$ and $\mathbf{b} = \mathbf{W}^{(2)} \mathbf{b}^{(1)} + \mathbf{b}^{(2)}$
-
-</div>
-
-</div>
-
-<div class="fragment image-overlay highlight" data-fragment-index="4" style="width: 80%; text-align: left;">
-
-**Key Insight**: Without non-linear activation functions, stacking multiple layers is equivalent to a single linear transformation!
-
-→ The network cannot learn non-linear decision boundaries<br>
-→ Activation functions are **essential** for deep learning
 
 </div>
 
