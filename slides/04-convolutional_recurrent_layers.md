@@ -167,3 +167,42 @@ Linear layers are not able to capture temporal dependencies in data, which is cr
 
 ---
 
+## Finite Impulse Response (FIR) Filters
+
+- Digital filters implemented by convolving the input signal with a finite impulse response
+
+<div style="font-size: 0.85em;">
+
+**Time domain:**
+
+<div class="formula">
+$$
+y[n] = \sum_{k=0}^{M-1} h[k] x[n-k]
+$$
+</div>
+
+where $y[n]$ is the output, $x[n]$ is the input, $h[k]$ is the impulse response, and $M$ is the filter order.
+
+**Frequency domain (via DFT):**
+
+<div class="formula">
+$$
+\begin{aligned}
+H(e^{j\omega}) & = \sum_{k=0}^{M-1} h[k] e^{-j\omega k} \\
+Y(e^{j\omega}) & = H(e^{j\omega}) X(e^{j\omega})
+\end{aligned}
+$$
+</div>
+
+</div>
+
+<div class="image-overlay fragment highlight" style="width: 78%;">
+
+FIR filters are inherently stable, meaning they do not produce unbounded output for a bounded input.
+
+</div>
+
+---
+
+## FIR Filters Animation
+

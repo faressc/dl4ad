@@ -2,7 +2,6 @@ from manim import *
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
 import numpy as np
 
-
 class SigmoidActivationVisualization(Scene):
     def construct(self):
         # Create axes
