@@ -55,7 +55,7 @@
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Methods for efficient learning and gradient-based optimization</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1970:0,1986:0">
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1970:0">
         {{TIMELINE:timeline_early_nn_training}}
     </div>
 </div>

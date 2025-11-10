@@ -55,7 +55,7 @@
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Methods for efficient learning and gradient-based optimization</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1970:0,1986:0,1992:1,2010:1">
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1970:0,1986:1,1992:1,2010:1,2012:1">
         {{TIMELINE:timeline_early_nn_training}}
     </div>
 </div>
@@ -65,12 +65,12 @@
         <div class="timeline-title">Software & Datasets</div>
         <div class="timeline-text">Tools, platforms, and milestones that enabled practical deep learning</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1998:1,2002:1">
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="2002:1">
         {{TIMELINE:timeline_early_nn_software}}
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="1"></div>
+<div class="fragment" data-fragment-index="2"></div>
 
 ---
 
@@ -979,7 +979,7 @@ To prevent overfitting in multilayer perceptrons, we can use various regularizat
 
 <div class="fragment" data-fragment-index="1">
 
-- **L1 or L2 Regularization (Weight Decay)**: Adds a penalty term to the loss function proportional to the magnitude of the weights.
+- **L1 or L2 Regularization (Weight Decay for SGD)**: Adds a penalty term to the loss function proportional to the magnitude of the weights.
 
 </div>
 <div class="formula fragment appear-vanish" data-fragment-index="1">
