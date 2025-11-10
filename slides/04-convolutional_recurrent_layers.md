@@ -159,9 +159,13 @@
 
 </div>
 
-<div class="image-overlay fragment highlight" style="width: 78%;">
+<div class="image-overlay fragment highlight" style="width: 78%; text-align: left;">
 
-Linear layers are not able to capture temporal dependencies in data, which is crucial for tasks involving audio data.
+Can linear layers retain temporal information?
+
+- Yes, but limited: Linear layers learn position-specific patterns (e.g., "value at t=5 relates to value at t=8")
+- No translation invariance—same pattern at different positions must be learned separately
+- Fixed input length, parameters scale poorly with sequence length (O(n²))
 
 </div>
 
