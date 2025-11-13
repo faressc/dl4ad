@@ -146,6 +146,7 @@
 <div style="flex: 1;">
 
 **Backward Pass**:
+
 1. Output layer: $\boldsymbol{\delta}^{(L)} = \frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}} \odot \sigma'(\mathbf{z}^{(L)})$
 2. For $l = L-1, \ldots, 1$:
    - $\boldsymbol{\delta}^{(l)} = [(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}^{(l+1)}] \odot \sigma'(\mathbf{z}^{(l)})$
@@ -165,7 +166,7 @@ Can linear layers retain temporal information?
 
 - Yes, but limited: Linear layers learn position-specific patterns (e.g., "value at t=5 relates to value at t=8")
 - No translation invariance—same pattern at different positions must be learned separately
-- Fixed input length, parameters scale poorly with sequence length (O(n²))
+- Fixed input length, parameters scale poorly with sequence length
 
 </div>
 
@@ -548,76 +549,122 @@ $$
 
 ---
 
-## Differentiating Convolutional Layers
+## Recall: Backpropagation in MLPs
+
+<div style="font-size: 0.70em;">
+
+<div style="display: flex; gap: 40px;">
+
+<div style="flex: 1;">
+
+**Forward Pass**:
+1. Input: $\mathbf{h}^{(0)} = \mathbf{x}$
+2. For $l = 1, \ldots, L$:
+   - $\mathbf{z}^{(l)} = \mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)}$
+   - $\mathbf{h}^{(l)} = \sigma(\mathbf{z}^{(l)})$
+3. Output: $\hat{\mathbf{y}} = \mathbf{h}^{(L)}$
+4. Loss: $\mathcal{L}(\mathbf{y}, \hat{\mathbf{y}})$
+
+</div>
+
+<div style="flex: 1;">
+
+**Backward Pass**:
+1. Output layer: $\boldsymbol{\delta}^{(L)} = \frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}} \odot \sigma'(\mathbf{z}^{(L)})$
+2. For $l = L-1, \ldots, 1$:
+   - $\boldsymbol{\delta}^{(l)} = [(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}^{(l+1)}] \odot \sigma'(\mathbf{z}^{(l)})$
+3. Gradients for all layers:
+   - $\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{(l)}} = \boldsymbol{\delta}^{(l)} (\mathbf{h}^{(l-1)})^\top$
+   - $\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{(l)}} = \boldsymbol{\delta}^{(l)}$
+
+</div>
+
+</div>
+
+---
+
+## Backpropagation in Convolutional Layers
 
 <div class="highlight" style="margin-top: 150px; text-align: center;">
-How do we compute gradients for convolutional layers during backpropagation?
+How do we compute gradients for convolutional layers?
 </div>
 
 <div class="fragment">
-Need to compute gradients of the loss $\mathcal{L}$ with respect to:
+Like MLPs, we need to compute gradients of the loss $\mathcal{L}$ for <strong>each layer</strong> $l$ to update parameters:
 
 <div class="formula" style="margin-top: 40px;">
 $$
-\frac{\partial \mathcal{L}}{\partial \mathbf{w}} \quad \text{and} \quad \frac{\partial \mathcal{L}}{\partial b} \quad \text{and} \quad \frac{\partial \mathcal{L}}{\partial \mathbf{x}}
+\frac{\partial \mathcal{L}}{\partial \mathbf{w}^{(l)}} \quad \text{and} \quad \frac{\partial \mathcal{L}}{\partial b^{(l)}}
 $$
 </div>
 
-where $\mathbf{x}$ is the input (needed for backpropagating to previous layers).
+where $\mathbf{w}^{(l)}$ is the convolutional kernel and $b^{(l)}$ is the bias for layer $l$.
 
 </div>
 
 ---
 
-## Forward Pass: 1D Convolution
+## Forward Propagation in Conv Layers
 
-<div style="font-size: 0.85em;">
+<div style="font-size: 0.70em;">
 
-Recall the forward pass for a 1D convolutional layer:
+For layer $l$ in a **single-channel 1D convolution** the forward pass computes:
 
 <div class="formula" style="margin-top: 40px;">
 $$
-y[n] = \sum_{k=0}^{M-1} w[k] x[n-k] + b
+\begin{aligned}
+z^{(l)}[n] & = \sum_{k=0}^{M-1} w^{(l)}[k] \cdot h^{(l-1)}[n-k] + b^{(l)} \\
+h^{(l)}[n] & = \sigma(z^{(l)}[n])
+\end{aligned}
 $$
 </div>
 
-<div class="fragment" data-fragment-index="1">
+where:
+- $h^{(l-1)}[n]$ is the input from the previous layer
+- $w^{(l)}[k]$ is the learnable kernel of size $M$
+- $b^{(l)}$ is the learnable bias
+- $\sigma(\cdot)$ is the activation function
+- Output length: $L_{out} = L_{in} - M + 1$
 
-Or in vector form, for all output positions:
+</div>
 
-<div class="formula" style="margin-top: 20px;">
+<div class="fragment image-overlay" style="margin-top: 60px; font-size: 0.85em;">
+
+**In vector notation** (treating convolution as matrix multiplication):
+
+<div class="formula">
 $$
-\mathbf{y} = \mathbf{w} \ast \mathbf{x} + b
+\mathbf{z}^{(l)} = \mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + b^{(l)} \mathbf{1}
 $$
 </div>
 
-where $\ast$ denotes the convolution operation.
+where $\mathbf{W}^{(l)}$ is a Toeplitz matrix representing the convolution operation.
 
 </div>
 
-<div class="fragment" data-fragment-index="2" style="margin-top: 40px;">
-
-**Key observation**: Each output $y[n]$ depends on a **local window** of inputs $x[n], x[n-1], \ldots, x[n-M+1]$.
-
-</div>
-
+<div class="fragment image-overlay">
+<img src="assets/images/04-convolutional_layers/convolution-toeplitz.png" style="width: 100%;" alt="Convolution as Matrix Multiplication">
+<div class="reference" style="margin-top: 10px; text-align: center;">
+    Source: <a href="https://stackoverflow.com/questions/34536264/how-can-i-generate-a-toeplitz-matrix-in-the-correct-form-for-performing-discrete">https://stackoverflow.com/questions/34536264/how-can-i-generate-a-toeplitz-matrix-in-the-correct-form-for-performing-discrete</a>
 </div>
 
 ---
 
-## Backward Pass: Gradient w.r.t. Bias
+## Backpropagation: Output Layer
 
 <div style="font-size: 0.80em;">
 
-**Step 1**: Compute gradient w.r.t. bias $b$
+<div><strong>MSE Loss</strong>: $\mathcal{L} = \frac{1}{N}\sum_{i=1}^{N}\sum_{n}(y_i[n] - \hat{y}_i[n])^2$
+
+**Step 1**: Compute gradient w.r.t. output layer pre-activation $z_i^{(L)}[n]$ for each sample $i$
 
 <div class="fragment" data-fragment-index="1">
 
-Assume we have the gradient from the next layer: $\frac{\partial \mathcal{L}}{\partial y[n]}$ for each output position $n$.
+Apply the **chain rule**: $\mathcal{L}_i$ depends on $z_i^{(L)}[n]$ through $\hat{y}_i[n]$. For each sample $i$ and time step $n$:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial b} = \sum_{n} \color{#FF6B6B}{\frac{\partial \mathcal{L}}{\partial y[n]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial y[n]}{\partial b}}
+\frac{\partial \mathcal{L}_i}{\partial z_i^{(L)}[n]} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial \hat{y}_i[n]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial \hat{y}_i[n]}{\partial z_i^{(L)}[n]}} \color{black}{=} \color{#FF6B6B}{\frac{2}{N}(\hat{y}_i[n] - y_i[n])} \color{black}{\cdot} \color{#4ECDC4}{\sigma'(z_i^{(L)}[n])}
 $$
 </div>
 
@@ -625,19 +672,15 @@ $$
 
 <div class="fragment" data-fragment-index="2">
 
-Since $y[n] = \sum_{k=0}^{M-1} w[k] x[n-k] + b$, we have $\color{#4ECDC4}{\frac{\partial y[n]}{\partial b} = 1}$.
+This gives us the **error term** for each time step:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial b} = \sum_{n} \frac{\partial \mathcal{L}}{\partial y[n]}
+\delta_i^{(L)}[n] = \frac{2}{N}(\hat{y}_i[n] - y_i[n]) \cdot \sigma'(z_i^{(L)}[n])
 $$
 </div>
 
-</div>
-
-<div class="fragment image-overlay highlight" data-fragment-index="3" style="width: 80%; text-align: left;">
-
-**Key Insight**: The bias gradient is simply the **sum** of all output gradients, since the bias contributes equally to every output position.
+In vector form: $\boldsymbol{\delta}_i^{(L)} = \frac{2}{N}(\hat{\mathbf{y}}_i - \mathbf{y}_i) \odot \sigma'(\mathbf{z}_i^{(L)})$
 
 </div>
 
@@ -645,53 +688,45 @@ $$
 
 ---
 
-## Backward Pass: Gradient w.r.t. Weights
+## Backpropagation: Output Layer Gradients
 
-<div style="font-size: 0.75em;">
+<div style="font-size: 0.80em;">
 
-**Step 2**: Compute gradient w.r.t. weight $w[k]$ for each kernel position $k$
+**Step 2**: Compute gradients w.r.t. kernel weights and bias for sample $i$
+
+<div>
+Given $\delta_i^{(L)}[n]$ and forward pass $z_i^{(L)}[n] = \sum_{k=0}^{M-1} w^{(L)}[k] \cdot h_i^{(L-1)}[n-k] + b^{(L)}$:
+</div>
 
 <div class="fragment" data-fragment-index="1">
 
-Apply the chain rule:
+**Kernel weight gradients**: Apply chain rule to $w^{(L)}[k]$ (weight at position $k$ in the kernel)
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial w[k]} = \sum_{n} \color{#FF6B6B}{\frac{\partial \mathcal{L}}{\partial y[n]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial y[n]}{\partial w[k]}}
+\frac{\partial \mathcal{L}_i}{\partial w^{(L)}[k]} = \sum_{n} \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_i^{(L)}[n]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_i^{(L)}[n]}{\partial w^{(L)}[k]}} \color{black}{=} \sum_{n} \color{#FF6B6B}{\delta_i^{(L)}[n]} \color{black}{\cdot} \color{#4ECDC4}{h_i^{(L-1)}[n-k]}
 $$
+</div>
+
+<div style="margin-top: 20px;">
+
+This is a **convolution** of the error signal with the input!
+
 </div>
 
 </div>
 
 <div class="fragment" data-fragment-index="2">
 
-Since $y[n] = \sum_{k'=0}^{M-1} w[k'] x[n-k'] + b$, we have:
+**Bias gradient**: Apply chain rule to $b^{(L)}$
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\color{#4ECDC4}{\frac{\partial y[n]}{\partial w[k]} = x[n-k]}
+\frac{\partial \mathcal{L}_i}{\partial b^{(L)}} = \sum_{n} \color{#FF6B6B}{\delta_i^{(L)}[n]} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_i^{(L)}[n]}{\partial b^{(L)}}} \color{black}{=} \sum_{n} \delta_i^{(L)}[n]
 $$
 </div>
 
-</div>
-
-<div class="fragment" data-fragment-index="3">
-
-Therefore:
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\frac{\partial \mathcal{L}}{\partial w[k]} = \sum_{n} \frac{\partial \mathcal{L}}{\partial y[n]} \cdot x[n-k]
-$$
-</div>
-
-</div>
-
-<div class="fragment image-overlay highlight" data-fragment-index="4" style="width: 80%; text-align: left;">
-
-**Key Insight**: The gradient w.r.t. $w[k]$ is a **convolution** between the output gradient and the input!
-
-$$\frac{\partial \mathcal{L}}{\partial \mathbf{w}} = \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \ast \mathbf{x}$$
+The bias gradient is simply the **sum** of all error terms!
 
 </div>
 
@@ -699,19 +734,18 @@ $$\frac{\partial \mathcal{L}}{\partial \mathbf{w}} = \frac{\partial \mathcal{L}}
 
 ---
 
-## Backward Pass: Gradient w.r.t. Input
+## Backpropagation: Hidden Layers
 
 <div style="font-size: 0.75em;">
 
-**Step 3**: Compute gradient w.r.t. input $x[m]$ for each input position $m$
+**Step 3**: Propagate error backwards to hidden layer $l$ for sample $i$
 
 <div class="fragment" data-fragment-index="1">
-
-Apply the chain rule. Each $x[m]$ contributes to multiple outputs:
+In $\frac{\partial \mathcal{L}_i}{\partial h_i^{(l)}[n]}$, the loss depends on $h_i^{(l)}[n]$ through all positions in layer $l+1$ where this activation is used:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial x[m]} = \sum_{n} \color{#FF6B6B}{\frac{\partial \mathcal{L}}{\partial y[n]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial y[n]}{\partial x[m]}}
+\frac{\partial \mathcal{L}_i}{\partial h_i^{(l)}[n]} = \sum_{m} \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_i^{(l+1)}[m]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_i^{(l+1)}[m]}{\partial h_i^{(l)}[n]}}
 $$
 </div>
 
@@ -719,11 +753,50 @@ $$
 
 <div class="fragment" data-fragment-index="2">
 
-Since $y[n] = \sum_{k=0}^{M-1} w[k] x[n-k] + b$, we have $\color{#4ECDC4}{\frac{\partial y[n]}{\partial x[m]} = w[k]}$ when $m = n - k$ (i.e., $k = n - m$), and $0$ otherwise.
+Since $z_i^{(l+1)}[m] = \sum_{k=0}^{M-1} w^{(l+1)}[k] \cdot h_i^{(l)}[m-k] + b^{(l+1)}$, we have:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial x[m]} = \sum_{n} \frac{\partial \mathcal{L}}{\partial y[n]} \cdot w[n-m]
+\begin{aligned}
+\frac{\partial z_i^{(l+1)}[m]}{\partial h_i^{(l)}[n]} &= \begin{cases} w^{(l+1)}[m-n] & \text{if } 0 \leq m-n < M \\ 0 & \text{otherwise} \end{cases}\\
+\rightarrow \frac{\partial \mathcal{L}_i}{\partial h_i^{(l)}[n]} &= \sum_{k=0}^{M-1} \delta_i^{(l+1)}[n+k] \cdot w^{(l+1)}[k]
+\end{aligned}
+$$
+</div>
+
+This is a **full convolution** (with flipped kernel) of the error with the weights!
+
+</div>
+
+</div>
+
+---
+
+## Backpropagation: Hidden Layer Gradients
+
+<div style="font-size: 0.80em;">
+
+**Step 4**: Compute error term and gradients for hidden layer $l$
+
+<div class="fragment" data-fragment-index="1">
+
+First, compute the error term by applying the activation derivative:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\delta_i^{(l)}[n] = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial h_i^{(l)}[n]}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial h_i^{(l)}[n]}{\partial z_i^{(l)}[n]}} \color{black}{=} \left(\sum_{k=0}^{M-1} \delta_i^{(l+1)}[n+k] \cdot w^{(l+1)}[k]\right) \cdot \sigma'(z_i^{(l)}[n])
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+**Kernel weight gradients**: Same as output layer!
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\frac{\partial \mathcal{L}_i}{\partial w^{(l)}[k]} = \sum_{n} \delta_i^{(l)}[n] \cdot h_i^{(l-1)}[n-k]
 $$
 </div>
 
@@ -731,21 +804,13 @@ $$
 
 <div class="fragment" data-fragment-index="3">
 
-Reindexing with $k = n - m$:
+**Bias gradient**: Same as output layer!
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}}{\partial x[m]} = \sum_{k} \frac{\partial \mathcal{L}}{\partial y[m+k]} \cdot w[k]
+\frac{\partial \mathcal{L}_i}{\partial b^{(l)}} = \sum_{n} \delta_i^{(l)}[n]
 $$
 </div>
-
-</div>
-
-<div class="fragment image-overlay highlight" data-fragment-index="4" style="width: 80%; text-align: left;">
-
-**Key Insight**: The gradient w.r.t. input is a **convolution** with the **flipped kernel**!
-
-$$\frac{\partial \mathcal{L}}{\partial \mathbf{x}} = \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \ast \text{flip}(\mathbf{w})$$
 
 </div>
 
@@ -762,40 +827,24 @@ $$\frac{\partial \mathcal{L}}{\partial \mathbf{x}} = \frac{\partial \mathcal{L}}
 <div style="flex: 1;">
 
 **Forward Pass**:
-
-<div class="formula" style="margin-top: 20px;">
-$$
-y[n] = \sum_{k=0}^{M-1} w[k] x[n-k] + b
-$$
-</div>
-
-Or in vector form:
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\mathbf{y} = \mathbf{w} \ast \mathbf{x} + b
-$$
-</div>
+1. Input: $\mathbf{h}^{(0)} = \mathbf{x}$
+2. For $l = 1, \ldots, L$:
+   - $z^{(l)}[n] = \sum_{k=0}^{M-1} w^{(l)}[k] h^{(l-1)}[n-k] + b^{(l)}$
+   - $h^{(l)}[n] = \sigma(z^{(l)}[n])$
+3. Output: $\hat{\mathbf{y}} = \mathbf{h}^{(L)}$
+4. Loss: $\mathcal{L}(\mathbf{y}, \hat{\mathbf{y}})$
 
 </div>
 
 <div style="flex: 1;">
 
 **Backward Pass**:
-
-Given $\frac{\partial \mathcal{L}}{\partial \mathbf{y}}$, compute:
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\begin{aligned}
-\frac{\partial \mathcal{L}}{\partial b} & = \sum_{n} \frac{\partial \mathcal{L}}{\partial y[n]} \\
-\\
-\frac{\partial \mathcal{L}}{\partial w[k]} & = \sum_{n} \frac{\partial \mathcal{L}}{\partial y[n]} \cdot x[n-k] \\
-\\
-\frac{\partial \mathcal{L}}{\partial x[m]} & = \sum_{k} \frac{\partial \mathcal{L}}{\partial y[m+k]} \cdot w[k]
-\end{aligned}
-$$
-</div>
+1. Output layer: $\delta^{(L)}[n] = \frac{\partial \mathcal{L}}{\partial \hat{y}[n]} \cdot \sigma'(z^{(L)}[n])$
+2. For $l = L-1, \ldots, 1$:
+   - $\delta^{(l)}[n] = \left[\sum_{k=0}^{M-1} \delta^{(l+1)}[n+k] w^{(l+1)}[k]\right] \sigma'(z^{(l)}[n])$
+3. Gradients for all layers:
+   - $\frac{\partial \mathcal{L}}{\partial w^{(l)}[k]} = \sum_{n} \delta^{(l)}[n] h^{(l-1)}[n-k]$
+   - $\frac{\partial \mathcal{L}}{\partial b^{(l)}} = \sum_{n} \delta^{(l)}[n]$
 
 </div>
 
@@ -805,147 +854,274 @@ $$
 
 <div class="fragment" data-fragment-index="1" style="font-size: 0.75em; margin-top: 40px;">
 
-**In compact notation**:
+**Weight Update** (Gradient Descent):
 
 <div class="formula">
 $$
 \begin{aligned}
-\frac{\partial \mathcal{L}}{\partial b} & = \mathbf{1}^\top \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \\
-\frac{\partial \mathcal{L}}{\partial \mathbf{w}} & = \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \ast \mathbf{x} \\
-\frac{\partial \mathcal{L}}{\partial \mathbf{x}} & = \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \ast \text{flip}(\mathbf{w})
+w^{(l)}[k] & \leftarrow w^{(l)}[k] - \eta \frac{\partial \mathcal{L}}{\partial w^{(l)}[k]} \\
+b^{(l)} & \leftarrow b^{(l)} - \eta \frac{\partial \mathcal{L}}{\partial b^{(l)}}
 \end{aligned}
 $$
 </div>
 
-</div>
-
-<div class="fragment image-overlay highlight" data-fragment-index="2" style="width: 80%; text-align: left;">
-
-**Key Takeaway**: Backpropagation through convolution is also a convolution!
-- Weight gradient: convolve output gradient with input
-- Input gradient: convolve output gradient with flipped kernel
+where $\eta$ is the learning rate.
 
 </div>
 
 ---
 
-## Multi-Channel Convolution: Forward Pass
+## Key Differences: Conv vs MLP Backprop
 
-<div style="font-size: 0.80em;">
+<table style="margin-top: 40px; font-size: 0.85em; width: 100%;">
+<thead>
+<tr>
+<th><strong>Aspect</strong></th>
+<th><strong>MLP</strong></th>
+<th><strong>Convolutional Layer</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Weight Gradients</strong></td>
+<td>Outer product: $\boldsymbol{\delta}^{(l)} (\mathbf{h}^{(l-1)})^\top$</td>
+<td>Convolution: $\sum_{n} \delta^{(l)}[n] h^{(l-1)}[n-k]$</td>
+</tr>
+<tr class="fragment" data-fragment-index="2">
+<td><strong>Error Propagation</strong></td>
+<td>Matrix-vector: $(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}^{(l+1)}$</td>
+<td>Full convolution:<br>$\sum_{k} \delta^{(l+1)}[n+k] w^{(l+1)}[k]$</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Bias Gradients</strong></td>
+<td>Direct error: $\boldsymbol{\delta}^{(l)}$</td>
+<td>Sum of errors: $\sum_{n} \delta^{(l)}[n]$</td>
+</tr>
+<tr class="fragment" data-fragment-index="4">
+<td><strong>Parameter Sharing</strong></td>
+<td>Each weight unique to one connection</td>
+<td>Same kernel weights reused across input</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>Computational Cost</strong></td>
+<td>$\sim O(M \times M')$ per layer</td>
+<td>$\sim O(L \times M)$ per layer<br>
+(Much smaller with big input lengths!)</td>
+</tr>
+</tbody>
+</table>
 
-For multi-channel inputs and outputs (recall multi-head convolutions):
+<div class="fragment image-overlay highlight" data-fragment-index="6" style="width: 80%; text-align: left;">
 
-<div class="formula" style="margin-top: 40px;">
-$$
-y_j[n] = \sum_{i=0}^{C_{in}-1} \sum_{k=0}^{M-1} w_{i,j}[k] x_i[n-k] + b_j
-$$
-</div>
+**Key Insight**: Convolution in the forward pass becomes convolution in the backward pass!
 
-where:
-- $C_{in}$ is the number of input channels
-- $C_{out}$ is the number of output channels
-- $x_i[n]$ is the input from channel $i$
-- $y_j[n]$ is the output for channel $j$
-- $w_{i,j}[k]$ are the weights connecting input channel $i$ to output channel $j$
-- $b_j$ is the bias for output channel $j$
-
-<div class="fragment" style="margin-top: 40px;">
-
-In tensor notation:
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\mathbf{Y} = \mathbf{W} \ast \mathbf{X} + \mathbf{b}
-$$
-</div>
-
-where $\mathbf{X} \in \mathbb{R}^{C_{in} \times L_{in}}$, $\mathbf{W} \in \mathbb{R}^{C_{out} \times C_{in} \times M}$, $\mathbf{Y} \in \mathbb{R}^{C_{out} \times L_{out}}$.
-
-</div>
-
-</div>
-
----
-
-## Multi-Channel Convolution: Backward Pass
-
-<div style="font-size: 0.75em;">
-
-Given $\frac{\partial \mathcal{L}}{\partial \mathbf{Y}} \in \mathbb{R}^{C_{out} \times L_{out}}$, compute gradients:
-
-<div class="fragment" data-fragment-index="1">
-
-**Bias gradient** (for each output channel $j$):
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\frac{\partial \mathcal{L}}{\partial b_j} = \sum_{n} \frac{\partial \mathcal{L}}{\partial y_j[n]}
-$$
-</div>
-
-</div>
-
-<div class="fragment" data-fragment-index="2">
-
-**Weight gradient** (for each input-output channel pair $(i,j)$ and kernel position $k$):
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\frac{\partial \mathcal{L}}{\partial w_{i,j}[k]} = \sum_{n} \frac{\partial \mathcal{L}}{\partial y_j[n]} \cdot x_i[n-k]
-$$
-</div>
-
-Or in compact form: $\frac{\partial \mathcal{L}}{\partial \mathbf{W}_{:,i,j}} = \frac{\partial \mathcal{L}}{\partial \mathbf{y}_j} \ast \mathbf{x}_i$
-
-</div>
-
-<div class="fragment" data-fragment-index="3">
-
-**Input gradient** (for each input channel $i$ and position $m$):
-
-<div class="formula" style="margin-top: 20px;">
-$$
-\frac{\partial \mathcal{L}}{\partial x_i[m]} = \sum_{j=0}^{C_{out}-1} \sum_{k} \frac{\partial \mathcal{L}}{\partial y_j[m+k]} \cdot w_{i,j}[k]
-$$
-</div>
-
-Or in compact form: $\frac{\partial \mathcal{L}}{\partial \mathbf{x}_i} = \sum_{j=0}^{C_{out}-1} \frac{\partial \mathcal{L}}{\partial \mathbf{y}_j} \ast \text{flip}(\mathbf{w}_{i,j})$
-
-</div>
+→ Weight gradients: convolve error with input<br>
+→ Error propagation: full convolution of error with flipped kernel<br>
+→ Parameter sharing means fewer gradients to compute for the same number of connections
 
 </div>
 
 ---
 
-## Convolutional vs. Fully Connected Gradients
+## Multi-Channel Backpropagation
 
-<div style="font-size: 0.85em;">
+<div style="font-size: 0.65em;">
 
-**Fully Connected Layer**:
-- Weight gradient: $\frac{\partial \mathcal{L}}{\partial \mathbf{W}} = \boldsymbol{\delta} \mathbf{h}^\top$ (outer product)
-- Each weight connects to **all** inputs and outputs
-- Gradient computation: $O(M \times N)$ for $M$ outputs and $N$ inputs
+**Forward pass** for multi-channel convolution:
+
+<div class="formula">
+$$
+z_j^{(l)}[n] = \sum_{i=0}^{C_{in}-1} \sum_{k=0}^{M-1} w_{i,j}^{(l)}[k] h_i^{(l-1)}[n-k] + b_j^{(l)}
+$$
+</div>
+
+where $i$ indexes input channels and $j$ indexes output channels (heads).
 
 <div class="fragment" data-fragment-index="1" style="margin-top: 40px;">
 
-**Convolutional Layer**:
-- Weight gradient: $\frac{\partial \mathcal{L}}{\partial \mathbf{w}} = \frac{\partial \mathcal{L}}{\partial \mathbf{y}} \ast \mathbf{x}$ (convolution)
-- Each weight connects to **local** windows only
-- Gradient computation: $O(L \times M)$ for length $L$ and kernel size $M$
+**Gradients w.r.t. kernel weights**:
+
+<div class="formula">
+$$
+\frac{\partial \mathcal{L}}{\partial w_{i,j}^{(l)}[k]} = \sum_{n} \delta_j^{(l)}[n] \cdot h_i^{(l-1)}[n-k]
+$$
+</div>
+
+Compute separately for each input channel $i$ and output channel $j$ combination.
 
 </div>
 
+<div class="fragment" data-fragment-index="2" style="margin-top: 40px;">
+
+**Error propagation to previous layer**:
+
+<div class="formula">
+$$
+\frac{\partial \mathcal{L}}{\partial h_i^{(l-1)}[n]} = \sum_{j=0}^{C_{out}-1} \sum_{k=0}^{M-1} \delta_j^{(l)}[n+k] \cdot w_{i,j}^{(l)}[k]
+$$
 </div>
 
-<div class="fragment image-overlay highlight" data-fragment-index="2" style="width: 80%; text-align: left;">
+Sum contributions from all output channels $j$ that use input channel $i$.
 
-**Key Advantage**: Convolutional layers have **significantly fewer parameters** and **cheaper gradient computation** compared to fully connected layers!
-
-- Parameters: $M \times C_{in} \times C_{out}$ vs. $L_{in} \times L_{out}$
-- Shared weights across positions enable translation invariance
-- Backpropagation remains efficient through convolution operations
+</div>
 
 </div>
 
 ---
 
+## Backpropagation with Stride
+
+<div style="font-size: 0.80em;">
+
+**Stride $s > 1$**: Complicates gradient computation
+
+Forward pass with stride:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+z^{(l)}[n] = \sum_{k=0}^{M-1} w^{(l)}[k] \cdot h^{(l-1)}[n \cdot s - k] + b^{(l)}
+$$
+</div>
+
+Gradient w.r.t. input becomes **sparse**—only every $s$-th position receives gradients:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\frac{\partial \mathcal{L}}{\partial h^{(l-1)}[m]} = \begin{cases}
+\sum_{k} \delta^{(l)}[n] \cdot w^{(l)}[k] & \text{if } m = n \cdot s - k \\
+0 & \text{otherwise}
+\end{cases}
+$$
+</div>
+
+</div>
+
+---
+
+## Backpropagation Through Pooling Layers
+
+<div style="font-size: 0.80em;">
+
+**Max Pooling** forward pass:
+
+<div class="formula">
+$$
+y[n] = \max\limits_{0 \leq k < M} x[n \cdot s + k]
+$$
+</div>
+
+<div class="fragment" data-fragment-index="1" style="margin-top: 40px;">
+
+**Backward pass**: Gradient flows only to the **maximum element**
+
+<div class="formula">
+$$
+\frac{\partial \mathcal{L}}{\partial x[m]} = \begin{cases}
+\frac{\partial \mathcal{L}}{\partial y[n]} & \text{if } x[m] = y[n] \text{ and } m = n \cdot s + k^* \\
+0 & \text{otherwise}
+\end{cases}
+$$
+</div>
+
+where $k^* = \arg\max\limits_{k} x[n \cdot s + k]$
+
+**Routing gradients**: Must track which positions were selected during forward pass!
+
+</div>
+
+</div>
+
+---
+
+## Transposed Convolution Backpropagation
+
+<div style="font-size: 0.80em;">
+
+**Forward pass** (transposed convolution):
+
+<div class="formula">
+$$
+y[n] = \sum_{k=0}^{M-1} w[k] \cdot x'[n+k] + b
+$$
+</div>
+
+where $x'$ is input with padding $p = M - 1$ at edges.
+
+<div class="fragment" data-fragment-index="1" style="margin-top: 40px;">
+
+**Backward pass**: The gradient w.r.t. input becomes a **standard convolution**!
+
+<div class="formula">
+$$
+\frac{\partial \mathcal{L}}{\partial x[m]} = \sum_{k=0}^{M-1} \delta[m-k] \cdot w[k]
+$$
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="2" style="margin-top: 40px;">
+
+**Weight gradients**: Convolution of error with padded input
+
+<div class="formula">
+$$
+\frac{\partial \mathcal{L}}{\partial w[k]} = \sum_{n} \delta[n] \cdot x'[n+k]
+$$
+</div>
+
+</div>
+
+<div class="fragment image-overlay highlight" data-fragment-index="3" style="width: 80%; text-align: left;">
+
+**Key Insight**: Transposed convolution and standard convolution are **transpose operations** of each other!
+
+→ Forward transposed conv = Backward standard conv<br>
+→ Backward transposed conv = Forward standard conv
+
+</div>
+
+</div>
+
+---
+
+## Computational Graph Perspective
+
+<div style="text-align: center;">
+
+<div class="fragment" data-fragment-index="1" style="margin-top: 80px;">
+
+Each output node $z[n]$ depends on:
+
+↓
+
+**Local input window**: $h[n-k]$ for $k = 0, \ldots, M-1$
+
+↓
+
+**Shared weights**: $w[k]$ for $k = 0, \ldots, M-1$
+
+↓
+
+**Shared bias**: $b$
+
+</div>
+
+<div class="fragment image-overlay highlight" data-fragment-index="2" style="width: 80%; text-align: left;">
+
+**Gradient accumulation**: Since each weight is used multiple times (weight sharing), we must **sum** gradients from all positions:
+
+<div class="formula">
+$$
+\frac{\partial \mathcal{L}}{\partial w[k]} = \sum_{n} \frac{\partial \mathcal{L}}{\partial z[n]} \cdot \frac{\partial z[n]}{\partial w[k]} = \sum_{n} \delta[n] \cdot h[n-k]
+$$
+</div>
+
+This is why weight gradients are computed via convolution!
+
+</div>
+
+</div>
+
+---
+
+# Python Implementation

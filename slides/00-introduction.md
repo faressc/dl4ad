@@ -210,7 +210,7 @@ Note: If you don't know if your course counts, drop me an email.
         </tr>
         <tr>
             <td class="date">13.11.2025</td>
-            <td>Convolutional and Recurrent Layers</td>
+            <td>Convolutional Layers</td>
         </tr>
         <tr>
             <td class="date">20.11.2025</td>
