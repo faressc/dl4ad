@@ -591,6 +591,7 @@
   text-align: center;
   box-shadow: 0 4px 20px var(--fs-shadow-color-light);
   max-width: 90%;
+    color: var(--fs-text-color);
 }
 
 .formula .MathJax {
