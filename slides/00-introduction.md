@@ -214,7 +214,7 @@ Note: If you don't know if your course counts, drop me an email.
         </tr>
         <tr>
             <td class="date">20.11.2025</td>
-            <td>Preprocessing / Training Deep Architectures</td>
+            <td>Recurrent Layers</td>
         </tr>
         <tr class="fragment custom appear-table highlight">
             <td class="date">23.11.2025</td>
@@ -226,7 +226,7 @@ Note: If you don't know if your course counts, drop me an email.
         </tr>
         <tr>
             <td class="date">04.12.2025</td>
-            <td>Tricks of the Trade</td>
+            <td>Tricks of the Trade / Preprocessing / Training Deep Architectures</td>
         </tr>
     </tbody>
 </table>
