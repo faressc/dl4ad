@@ -290,6 +290,20 @@ $$
 $$
 </div>
 
+<div class="fragment" data-fragment-index="2" style="font-size: 0.85em; margin-top: 40px;">
+
+**Alternative formulation**: The computation can be expressed as concatenation followed by a single linear transformation:
+
+<div class="formula" style="margin-top: 20px;">
+$$
+\mathbf{h}_t = \sigma(\mathbf{W} [\mathbf{x}_t; \mathbf{h}_{t-1}] + \mathbf{b})
+$$
+</div>
+<div>
+where $[\mathbf{x}_t; \mathbf{h}_{t-1}]$ denotes concatenation and $\mathbf{W} = [\mathbf{W}_{xh} \mid \mathbf{W}_{hh}]$. This is mathematically equivalent but often more efficient to implement.
+</div>
+</div>
+
 ---
 
 ## Vanilla Recurrent Layer - Forward Propagation
@@ -778,7 +792,7 @@ where $\mathbf{g}$ is the gradient vector and $\theta$ is the clipping threshold
 
 ---
 
-## Long Short-Term Memory (LSTM) Networks
+## Long Short-Term Memory (LSTM) Layers
 
 <div style="font-size: 0.9em;">
 
@@ -805,7 +819,7 @@ where $\mathbf{f}_t$ is the forget gate vector (values between 0 and 1).
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/rnn_to_lstm.png" alt="Different Space Regions" style="width: 87%; margin-top: 40px;">
+    <img src="assets/images/05-recurrent_layers/lstm_forget_gate.png" alt="Different Space Regions" style="width: 35%; margin-top: 40px;">
     <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
 </div>
 
@@ -825,7 +839,7 @@ where $\mathbf{i}_t$ is the input gate vector (values between 0 and 1) and $\til
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/rnn_to_lstm.png" alt="Different Space Regions" style="width: 87%; margin-top: 40px;">
+    <img src="assets/images/05-recurrent_layers/lstm-input-gate.png" alt="Different Space Regions" style="width: 35%; margin-top: 40px;">
     <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
 </div>
 
@@ -842,7 +856,7 @@ where $\odot$ denotes element-wise multiplication.
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/rnn_to_lstm.png" alt="Different Space Regions" style="width: 87%; margin-top: 40px;">
+    <img src="assets/images/05-recurrent_layers/lstm-cell-state.png" alt="Different Space Regions" style="width: 35%; margin-top: 40px;">
     <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
 </div>
 
@@ -862,7 +876,7 @@ where $\mathbf{o}_t$ is the output gate vector (values between 0 and 1).
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/rnn_to_lstm.png" alt="Different Space Regions" style="width: 87%; margin-top: 40px;">
+    <img src="assets/images/05-recurrent_layers/lstm-output-gate-hidden-state.png" alt="Different Space Regions" style="width: 35%; margin-top: 40px;">
     <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
 </div>
 
@@ -900,15 +914,15 @@ $$\begin{aligned}
 - GRUs have two gates: reset gate and update gate, making them computationally more efficient
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/gru_architecture.png" alt="GRU Architecture" style="width: 87%; margin-top: 40px;">
-    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+    <img src="assets/images/05-recurrent_layers/gru.png" alt="GRU Architecture" style="width: 35%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://www.researchgate.net/figure/Gated-Recurrent-Unit-GRU_fig4_328462205</div>
 </div>
 
 </div>
 
 ---
 
-## GRU: Forward Propagation - Reset Gate
+## GRU: Reset Gate
 
 <div style="font-size: 0.85em;">
 <strong>Reset Gate</strong>: Controls how much of the previous hidden state $\mathbf{h}_{t-1}$ should be forgotten when computing the candidate hidden state.
@@ -919,13 +933,13 @@ where $\mathbf{r}_t$ is the reset gate vector (values between 0 and 1).
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/gru_architecture.png" alt="GRU Architecture" style="width: 87%; margin-top: 40px;">
-    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+    <img src="assets/images/05-recurrent_layers/gru.png" alt="GRU Architecture" style="width: 35%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://www.researchgate.net/figure/Gated-Recurrent-Unit-GRU_fig4_328462205</div>
 </div>
 
 ---
 
-## GRU: Forward Propagation - Update Gate
+## GRU: Update Gate
 
 <div style="font-size: 0.85em;">
 <strong>Update Gate</strong>: Controls how much of the previous hidden state $\mathbf{h}_{t-1}$ to keep and how much of the candidate hidden state $\tilde{\mathbf{h}}_t$ to add.
@@ -936,13 +950,13 @@ where $\mathbf{z}_t$ is the update gate vector (values between 0 and 1).
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/gru_architecture.png" alt="GRU Architecture" style="width: 87%; margin-top: 40px;">
-    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+    <img src="assets/images/05-recurrent_layers/gru.png" alt="GRU Architecture" style="width: 35%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://www.researchgate.net/figure/Gated-Recurrent-Unit-GRU_fig4_328462205</div>
 </div>
 
 ---
 
-## GRU: Forward Propagation - Candidate Hidden State
+## GRU: Candidate Hidden State
 
 <div style="font-size: 0.85em;">
 <strong>Candidate Hidden State</strong>: Computes new information that could be added to the hidden state, using the reset gate to selectively forget parts of $\mathbf{h}_{t-1}$.
@@ -953,27 +967,25 @@ where $\tilde{\mathbf{h}}_t$ is the candidate hidden state and $\mathbf{r}_t \od
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/gru_architecture.png" alt="GRU Architecture" style="width: 87%; margin-top: 40px;">
-    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+    <img src="assets/images/05-recurrent_layers/gru.png" alt="GRU Architecture" style="width: 35%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://www.researchgate.net/figure/Gated-Recurrent-Unit-GRU_fig4_328462205</div>
 </div>
 
 ---
 
-## GRU: Forward Propagation - Hidden State Update
+## GRU: Hidden State Update
 
 <div style="font-size: 0.85em;">
 <strong>Hidden State Update</strong>: Combines the previous hidden state $\mathbf{h}_{t-1}$ and candidate hidden state $\tilde{\mathbf{h}}_t$ using the update gate $\mathbf{z}_t$.
 <div class="formula" style="margin-top: 20px;">
 $$\mathbf{h}_t = (1 - \mathbf{z}_t) \odot \mathbf{h}_{t-1} + \mathbf{z}_t \odot \tilde{\mathbf{h}}_t$$
 </div>
-where:
-- $(1 - \mathbf{z}_t) \odot \mathbf{h}_{t-1}$ keeps parts of the old hidden state
-- $\mathbf{z}_t \odot \tilde{\mathbf{h}}_t$ adds parts of the new candidate hidden state
+where: $(1 - \mathbf{z}_t) \odot \mathbf{h}_{t-1}$ keeps parts of the old hidden state, $\mathbf{z}_t \odot \tilde{\mathbf{h}}_t$ adds parts of the new candidate hidden state
 </div>
 
 <div style="text-align: center;">
-    <img src="assets/images/05-recurrent_layers/gru_architecture.png" alt="GRU Architecture" style="width: 87%; margin-top: 40px;">
-    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://github.com/acids-ircam/creative_ml</div>
+    <img src="assets/images/05-recurrent_layers/gru.png" alt="GRU Architecture" style="width: 35%; margin-top: 40px;">
+    <div class="reference" style="text-align: center; margin-top: 10px;">Source: https://www.researchgate.net/figure/Gated-Recurrent-Unit-GRU_fig4_328462205</div>
 </div>
 
 ---
@@ -998,6 +1010,7 @@ $$\begin{aligned}
 <div class="fragment" data-fragment-index="1" style="margin-top: 40px;">
 
 **Key differences from LSTM**:
+
 - No separate cell state — hidden state serves both roles
 - Fewer parameters: 3 weight matrices per gate vs. 4 in LSTM
 - Update gate implicitly combines forget and input gates: $(1 - \mathbf{z}_t)$ forgets, $\mathbf{z}_t$ adds new info
@@ -1017,4 +1030,3 @@ $$\begin{aligned}
 ---
 
 # Python Implementation
-
