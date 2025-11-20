@@ -700,7 +700,7 @@ Backpropagation is an efficient algorithm to compute these gradients using the c
 
 <div style="font-size: 0.80em;">
 
-<div><strong>MSE Loss</strong>: $\mathcal{L} = \frac{1}{N}\sum_{i=1}^{N}\Vert\mathbf{y}_i - \hat{\mathbf{y}}_i\Vert^2 = \frac{1}{N}\sum_{i=1}^{N}\sum_{j}(y_{ij} - \hat{y}_{ij})^2$
+<div><strong>MSE Loss</strong>: $\mathcal{L} = \frac{1}{N}\sum_{i=1}^{N}\Vert\mathbf{y}_i - \hat{\mathbf{y}}_i\Vert^2 = \frac{1}{N}\sum_{i=1}^{N}\sum_{j}(y_{ij} - \hat{y}_{ij})^2$</div>
 
 **Step 1**: Compute gradient w.r.t. output layer pre-activation $\mathbf{z}_i^{(L)}$ for each sample $i$
 

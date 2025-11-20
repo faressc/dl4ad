@@ -65,7 +65,7 @@
         <div class="timeline-title">Software & Datasets</div>
         <div class="timeline-text">Tools, platforms, and milestones that enabled practical deep learning</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="2002:0">
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="2002:0,2007:1">
         {{TIMELINE:timeline_early_nn_software}}
     </div>
 </div>
