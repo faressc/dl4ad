@@ -140,7 +140,7 @@
 
 </div>
 
-<div class="fragment image-overlay highlight" data-fragment-index="3" style="text-align: left; width: 70%;">
+<div class="fragment image-overlay highlight" data-fragment-index="3" style="text-align: left; width: 70%; font-size: 1.25em;">
 
 Limitations of Recurrent Layers:
 <ul>
@@ -154,17 +154,170 @@ Limitations of Recurrent Layers:
 
 ## Attention Mechanism
 
-- Introduced to address limitations of recurrent layers by allowing direct connections between all time steps
-- Computes a weighted sum of all input representations, where weights are determined by a compatibility function (attention scores)
-- Enables modeling of long-range dependencies and parallel processing
+- Addresses limitations of recurrent layers by allowing direct connections between all time steps
+- Computes queries and keys to determine relevance between different positions in the sequence
+- Enriches value representations by aggregating information from relevant time steps
+- Enables modeling of long-range dependencies and parallel processing at once
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center;">
-    <img src="assets/images/01-history/attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/causal_self_attention.webp" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
     <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
-        Bahdanau, D., Cho, K., & Bengio, Y. (2016). Neural Machine Translation by Jointly Learning to Align and Translate (No. arXiv:1409.0473). arXiv. https://doi.org/10.48550/arXiv.1409.0473
+    Source: <a href="https://medium.com/@AIExplainedML/how-does-the-attention-mechanism-in-gpt-models-work-5f489a59346b" target="_blank">How does the Attention Mechanism in GPT Models Work?</a>
     </div>
 </div>
 
 ---
+
+## Attention is All You Need (2017)
+
+- Introduced the Transformer architecture, which relies solely on attention mechanisms, eliminating the need for recurrent or convolutional layers
+- Utilizes multi-head self-attention to capture different aspects of relationships between tokens in a sequence
+- Employs positional encoding to retain the order of tokens in the input sequence
+- Achieved state-of-the-art results in machine translation tasks, significantly outperforming previous models
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 75%;">
+    <img src="assets/images/06-attention_transformer/transformer_raw.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+---
+
+## Embedding Layers
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 65%;">
+    <img src="assets/images/06-attention_transformer/transformer_embedding.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+    <div class="reference" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
+
+- Convert discrete tokens (words, subwords, characters, midi notes) into continuous vector representations
+- Capture semantic relationships and contextual information
+- Learned during training to optimize task performance
+- Similar to a lookup table where each token maps to a dense vector
+- Linear layer without bias and with one-hot encoded inputs
+
+<div class="formula">
+$$
+\begin{aligned}
+\mathtt{nn.Embedding}(i = \text{token index}) &= \mathbf{e}_{i}^{\top} \mathbf{W} \\
+&= \begin{bmatrix}0 & \cdots & 1 & \cdots & 0\end{bmatrix} \mathbf{W} \\
+&= \mathbf{W}_{i, :}
+\end{aligned}
+$$
+</div>
+
+where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the embedding matrix, $V$ is the vocabulary size, and $D$ is the embedding dimension.
+
+</div>
+
+---
+
+## Output Projection
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 65%;">
+    <img src="assets/images/06-attention_transformer/transformer_final_projection.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+    <div class="reference" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
+
+- Maps the decoder's output back to the vocabulary space for token prediction
+- Typically implemented as a linear layer followed by a softmax activation
+- Shares weights with the embedding layer to reduce the number of parameters and improve performance (Press & Wolf, 2017)
+- Converts the decoder's continuous representations into logits for each token in the vocabulary
+
+<div class="formula">
+$$
+\begin{aligned}
+\mathtt{nn.Linear}(\mathbf{h}_t) &= \mathbf{h}_t \mathbf{W}^{\top} + \mathbf{b} \\
+&= \mathbf{h}_t \mathbf{W}^{\top} \quad \text{(if weights are shared, } \mathbf{b} = 0\text{)}\\
+\mathbf{p}_t &= \mathrm{softmax}(\mathbf{h}_t \mathbf{W}^{\top}) = \frac{\exp(\mathbf{h}_t \mathbf{W}^{\top})}{\sum_{j=1}^{V} \exp((\mathbf{h}_t \mathbf{W}^{\top})_j)}
+\end{aligned}
+$$
+</div>
+
+where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the shared weight matrix from the embedding layer, $V$ is the vocabulary size, and $D$ is the model dimension.
+
+---
+
+## Positional Encoding
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 65%;">
+    <img src="assets/images/06-attention_transformer/transformer_positional_encoding.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+    <div class="reference" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
+
+- Since Transformers do not have inherent sequential processing, positional encodings are added to input embeddings to provide information about the order of tokens
+- Can be implemented using fixed sinusoidal functions or learned embeddings
+- Enables the model to capture the relative and absolute positions of tokens in the sequence
+- **Vanilla sinusoidal positional encoding formula:**
+
+<div class="formula">
+$$
+\begin{aligned}
+\mathrm{PE}(pos, 2i) &= \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right) \\
+\mathrm{PE}(pos, 2i+1) &= \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
+\end{aligned}
+$$
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 65%; width: 100%;">
+    <img src="assets/images/06-attention_transformer/positional_encoding.png" alt="Transformer Architecture" style="max-width: 100%;">
+</div>
+
+---
+
+## Self-Attention Mechanism
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 65%;">
+    <img src="assets/images/06-attention_transformer/transformer_self_attention.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+    <div class="reference" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
+
+Self-attention allows each token in the input sequence to attend to all other tokens, capturing dependencies regardless of their distance
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/causal_self_attention.webp" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://medium.com/@AIExplainedML/how-does-the-attention-mechanism-in-gpt-models-work-5f489a59346b" target="_blank">How does the Attention Mechanism in GPT Models Work?</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="4" style="font-size: 0.9em;">
+
+1. **Compute Queries, Keys, and Values**:<br>
+For each token, compute query ($\mathbf{Q}$), key ($\mathbf{K}$), and value ($\mathbf{V}$) vectors using learned linear projections.
+
+<div class="formula">
+$$
+\mathbf{Q} = \mathbf{X} \mathbf{W}_Q, \quad \mathbf{K} = \mathbf{X} \mathbf{W}_K, \quad \mathbf{V} = \mathbf{X} \mathbf{W}_V
+$$
+</div>
+
+where $\mathbf{X} \in \mathbb{R}^{T \times D}$ is the input sequence matrix, and $\mathbf{W}_Q \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_K \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_V \in \mathbb{R}^{D \times D_v}$ are learned weight matrices. Each token has dimension $D$, and the sequence length is $T$.
+
+</div>
+
+</div>
+
+---
+
 
 # Python Implementation
