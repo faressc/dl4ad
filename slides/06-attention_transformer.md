@@ -289,20 +289,36 @@ $$
 
 <div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
 
-Self-attention allows each token in the input sequence to attend to all other tokens, capturing dependencies regardless of their distance
+Self-attention allows each token in the input sequence to attend to all other tokens, enabling the model to capture dependencies regardless of their distance in the sequence
 
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 80%;">
-    <img src="assets/images/06-attention_transformer/causal_self_attention.webp" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
-    Source: <a href="https://medium.com/@AIExplainedML/how-does-the-attention-mechanism-in-gpt-models-work-5f489a59346b" target="_blank">How does the Attention Mechanism in GPT Models Work?</a>
-    </div>
+    <img src="assets/images/06-attention_transformer/self_attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
 </div>
 
 <div class="fragment" data-fragment-index="4" style="font-size: 0.9em;">
 
 1. **Compute Queries, Keys, and Values**:<br>
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_qkv_compute.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="7" style="font-size: 0.9em;">
+
 For each token, compute query ($\mathbf{Q}$), key ($\mathbf{K}$), and value ($\mathbf{V}$) vectors using learned linear projections.
 
 <div class="formula">
@@ -315,6 +331,76 @@ where $\mathbf{X} \in \mathbb{R}^{T \times D}$ is the input sequence matrix, and
 
 </div>
 
+</div>
+
+</div>
+
+---
+
+## Scaled Dot-Product Attention
+
+2. **Compute Attention Scores**:<br>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_scaled_dot_product.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_raw.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_attention_weights.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="4" style="font-size: 0.9em;">
+Calculate attention scores using the scaled dot-product of queries and keys:
+<div class="formula">
+$$
+\mathrm{Attention}(\mathbf{Q}, \mathbf{K}) = \mathrm{softmax}\left(\frac{\mathbf{Q} \mathbf{K}^{\top}}{\sqrt{d_k}}\right)
+$$
+</div>
+
+where $d_k$ is the dimension of the key vectors, used for scaling to prevent large dot-product values that could lead to small gradients. $\mathrm{Attention} \in \mathbb{R}^{T \times T}$ contains the attention weights for each token pair in the sequence.
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/self_attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+</div>
+
+<div class="fragment" data-fragment-index="6">
+
+3. **Compute Weighted Sum of Values**:<br>
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; top: 80%;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_value_matmul.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="8" style="font-size: 0.9em;">
+Finally, compute the output as a weighted sum of the value vectors:
+<div class="formula">
+$$
+\mathrm{Output} = \mathrm{Attention}(\mathbf{Q}, \mathbf{K}) \mathbf{V}
+$$
+</div>
+
+This output captures information from all tokens in the sequence, weighted by their relevance to the query token.
+</div>
 </div>
 
 ---
