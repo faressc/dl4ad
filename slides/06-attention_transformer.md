@@ -111,8 +111,6 @@
 
 ## Recurrent Layers: Recap
 
-<div style="font-size: 0.8em;">
-
 **Vanilla RNN**:
 
 <ul>
@@ -360,8 +358,6 @@ where $\mathbf{X} \in \mathbb{R}^{T \times D}$ is the input sequence matrix, and
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="4" style="font-size: 0.8em;">
-Calculate attention scores using the scaled dot-product of queries and keys:
 <div class="formula">
 $$
 \mathbf{A} = \mathrm{softmax}\left(\frac{\mathbf{Q} \mathbf{K}^{\top}}{\sqrt{D_k}}\right)
@@ -388,8 +384,6 @@ where $d_k$ is the dimension of the key vectors, used for scaling to prevent lar
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="8" style="font-size: 0.8em;">
-Finally, compute the output as a weighted sum of the value vectors:
 <div class="formula">
 $$
 \mathbf{Z} = \mathbf{A} \mathbf{V}
@@ -504,8 +498,6 @@ $$
 
 **Step 1: Project inputs to multiple heads**
 
-<div style="font-size: 0.8em;">
-
 For each head $i$, compute separate Q, K, V projections:
 
 <div class="formula">
@@ -533,8 +525,6 @@ where $\mathbf{W}_Q^i \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_K^i \in \mathb
 
 **Step 2: Compute attention for each head**
 
-<div style="font-size: 0.8em;">
-
 <div class="formula">
 $$
 \begin{aligned}
@@ -560,8 +550,6 @@ where $\mathbf{A}_i$ are the attention weights for head $i$, and $\mathbf{Z}_i$ 
 <div class="fragment" data-fragment-index="3">
 
 **Step 3: Concatenate heads and project**
-
-<div style="font-size: 0.8em;">
 
 <div class="formula">
 $$
@@ -678,22 +666,248 @@ where $\mu$ and $\sigma$ are the mean and standard deviation of the features in 
 - Applied independently to each position in the sequence, allowing for non-linear transformations of the token representations
 - Consists of two linear layers with a ReLU activation in between, enabling the model to learn complex feature interactions
 
-</div>
-
-<div class="fragment" data-fragment-index="2" style="font-size: 0.8em;">
 <div class="formula">
 $$
 \mathbf{y}(\mathbf{x}) = \mathrm{ReLU}(\mathbf{x} \mathbf{W}_1 + \mathbf{b}_1) \mathbf{W}_2 + \mathbf{b}_2
 $$
 </div>
+where $\mathbf{W}_1 \in \mathbb{R}^{D \times D_{ff}}$, $\mathbf{W}_2 \in \mathbb{R}^{D_{ff} \times D}$ are weight matrices, and $\mathbf{b}_1 \in \mathbb{R}^{D_{ff}}$, $\mathbf{b}_2 \in \mathbb{R}^{D}$ are bias vectors. $D_{ff}$ is the dimension of the feedforward layer, typically larger than the model dimension $D$.
 </div>
 
 ---
 
-## Summary of Transformers
+## Key Components of Original Transformer
 
-- Parallelizable architecture is so important for training on large datasets
-- Pretraining on large corpora followed by fine-tuning for specific tasks
+<div style="display: flex; align-items: flex-start; gap: 2rem; height: 80vh;">
+
+<div style="flex: 1; font-size: 0.65em;">
+
+<ul>
+<li class="fragment" data-fragment-index="1"><strong>Embedding layers</strong> convert discrete tokens to continuous vector representations</li>
+<li class="fragment" data-fragment-index="2"><strong>Output projection</strong> maps decoder outputs back to vocabulary space for token prediction</li>
+<li class="fragment" data-fragment-index="3"><strong>Positional encodings</strong> (sinusoidal or learned) provide sequence order information</li>
+<li class="fragment" data-fragment-index="4"><strong>Multi-head self-attention</strong> captures dependencies between all tokens in parallel</li>
+<li class="fragment" data-fragment-index="5"><strong>Masked multi-head self-attention</strong> prevents future token leakage in autoregressive generation</li>
+<li class="fragment" data-fragment-index="6"><strong>Multi-head cross-attention</strong> (encoder-decoder) enables decoder to attend to encoder outputs</li>
+<li class="fragment" data-fragment-index="7"><strong>Residual connections</strong> enable deep network training by providing direct gradient paths</li>
+<li class="fragment" data-fragment-index="8"><strong>Layer normalization</strong> stabilizes training and reduces sensitivity to initialization</li>
+<li class="fragment" data-fragment-index="9"><strong>Position-wise feedforward networks</strong> apply non-linear transformations to each token</li>
+</ul>
+
+</div>
+
+<div style="flex: 1; position: relative; display: flex; align-items: center; justify-content: center;">
+
+<div class="fragment appear-vanish" data-fragment-index="0" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_raw.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="1" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_embedding.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="2" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_final_projection.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_positional_encoding.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="4" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_self_attention.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="5" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_masked_self_attention.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="6" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_cross_attention.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="7" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_feedforward_residual_norm.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="8" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_feedforward_residual_norm.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="9" style="text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_feedforward.png" alt="Attention Mechanism" style="max-height: 70vh; width: auto;">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+---
+
+## Summary of Original Transformer
+
+**Key Advantages**
+
+- **Parallelizable architecture** enables efficient training on large datasets by processing all tokens simultaneously
+- **Long-range dependencies** captured through direct attention connections between any token pair
+- **Scalability** to billions of parameters, forming the foundation for modern LLMs (BERT, GPT, LLaMA)
+
+**Applications**
+
+- **Transfer learning** through pretraining on large corpora followed by fine-tuning for specific tasks
+- **Versatile across domains** including NLP, computer vision, and audio processing
+
+---
+
+## Decoder Only Example: GPT
+
+<div class="fragment appear-vanish" data-fragment-index="0">
+
+- The GPT architecture is a decoder-only Transformer model that utilizes masked self-attention to generate text autoregressively
+- Consists of multiple layers of masked multi-head self-attention followed by position-wise feedforward networks, with residual connections and layer normalization applied throughout
+- GPT models are pretrained on large text corpora using a language modeling objective, learning to predict the next token in a sequence given the previous tokens
+
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="1" style="position: absolute; text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_example_gpt.png" alt="GPT Architecture">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="2" style="font-size: 0.9em;">
+
+**GPT-3 Architecture** (2020): 175 billion parameters total
+
+<table style="font-size: 0.8em; width: 100%;">
+<thead>
+<tr>
+<th>Component</th>
+<th>Parameters per Layer</th>
+<th>Total Parameters</th>
+<th>Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Embedding</strong></td>
+<td>6.4B</td>
+<td>6.4B</td>
+<td>$V \times D = 50{,}257 \times 12{,}288$</td>
+</tr>
+<tr>
+<td><strong>Multi-Head Attention</strong></td>
+<td>603M</td>
+<td>57.9B</td>
+<td>$4 \times D^2 = 4 \times 12{,}288^2$<br>(4, split into Q, K, V, and O per layer × 96 layers)</td>
+</tr>
+<tr>
+<td><strong>Layer Normalization</strong></td>
+<td>24K</td>
+<td>4.7M</td>
+<td>$2 \times D = 2 \times 12{,}288$<br>(2 per layer × 96 layers)</td>
+</tr>
+<tr>
+<td><strong>Feedforward Network</strong></td>
+<td>1.2B</td>
+<td>115.3B</td>
+<td>$2 \times D \times D_{\text{ff}} = 2 \times 12{,}288 \times 49{,}152$<br>(2 per layer × 96 layers)</td>
+</tr>
+<tr>
+<td><strong>Output Projection</strong></td>
+<td>—</td>
+<td>(shared)</td>
+<td>Shares weights with embedding layer</td>
+</tr>
+</tbody>
+</table>
+
+Where: $D = 12{,}288$ (model dimension), $D_{\text{ff}} = 4D = 49{,}152$ (feedforward dimension), $V = 50{,}257$ (vocabulary size), 96 layers, 96 attention heads
+
+</div>
+
+</div>
+
+---
+
+## Encoder Only Example: BERT
+
+- The BERT architecture is an encoder-only Transformer model that utilizes bidirectional self-attention to generate contextualized token representations
+- Consists of multiple layers of multi-head self-attention followed by position-wise feedforward networks, with residual connections and layer normalization applied throughout
+- BERT models are pretrained on large text corpora using a masked language modeling objective, learning to predict randomly masked tokens in a sequence based on their surrounding context
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_example_bert_pretrain.png" alt="Attention Mechanism">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+- Then they are fine-tuned for specific downstream tasks such as text classification or named entity recognition
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_example_bert_finetune_a.png" alt="Attention Mechanism">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_example_bert_finetune_b.png" alt="Attention Mechanism">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+---
+
+## Encoder-Decoder Example: Original Transformer
+
+- The original Transformer architecture consists of an encoder-decoder structure where the encoder processes the input sequence and the decoder generates the output sequence
+- The encoder is composed of multiple layers of multi-head self-attention and position-wise feedforward networks, while the decoder includes masked multi-head self-attention, cross-attention to the encoder outputs, and position-wise feedforward networks
+- This architecture is particularly effective for sequence-to-sequence tasks such as machine translation
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 60%;">
+    <img src="assets/images/06-attention_transformer/transformer_example_enc_dec.png" alt="Attention Mechanism">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
 
 ---
 
