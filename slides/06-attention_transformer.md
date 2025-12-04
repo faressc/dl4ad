@@ -159,8 +159,8 @@ Limitations of Recurrent Layers:
 - Enriches value representations by aggregating information from relevant time steps
 - Enables modeling of long-range dependencies and parallel processing at once
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 80%;">
-    <img src="assets/images/06-attention_transformer/self_attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 90%; object-fit: contain;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/self_attention.png" alt="Transformer Architecture">
 </div>
 
 ---
@@ -173,9 +173,9 @@ Limitations of Recurrent Layers:
 - Achieved state-of-the-art results in machine translation tasks, significantly outperforming previous models
 - Large language models like BERT, GPT, LLaMA, and others are based on the Transformer architecture
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/transformer_raw.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_raw.png" alt="Transformer Architecture">
+    <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -184,9 +184,9 @@ Limitations of Recurrent Layers:
 
 ## Embedding Layers
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 50%;">
-    <img src="assets/images/06-attention_transformer/transformer_embedding.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_embedding.png" alt="Transformer Architecture">
+    <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -217,9 +217,9 @@ where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the embedding matrix, $V$ is t
 
 ## Output Projection
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 50%;">
-    <img src="assets/images/06-attention_transformer/transformer_final_projection.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_final_projection.png" alt="Transformer Architecture">
+    <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -247,9 +247,9 @@ where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the shared weight matrix from 
 
 ## Positional Encoding
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 65%;">
-    <img src="assets/images/06-attention_transformer/transformer_positional_encoding.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_positional_encoding.png" alt="Transformer Architecture">
+    <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -278,14 +278,21 @@ $$
 
 ## Self-Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/transformer_self_attention.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_self_attention.png" alt="Transformer Architecture">
+    <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="3" style="font-size: 0.9em;">
 
 Self-attention allows each token in the input sequence to attend to all other tokens, enabling the model to capture dependencies regardless of their distance in the sequence
 
@@ -297,21 +304,14 @@ Self-attention allows each token in the input sequence to attend to all other to
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/single_head_attention_qkv_compute.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_qkv_compute.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
-    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
-    </div>
-</div>
-
-<div class="fragment" data-fragment-index="7" style="font-size: 0.9em;">
+<div class="fragment" data-fragment-index="6" style="font-size: 0.9em;">
 
 For each token, compute query ($\mathbf{Q}$), key ($\mathbf{K}$), and value ($\mathbf{V}$) vectors using learned linear projections.
 
@@ -339,23 +339,23 @@ where $\mathbf{X} \in \mathbb{R}^{T \times D}$ is the input sequence matrix, and
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 40%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_scaled_dot_product.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/signle_head_attention_scaled_dot_product.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; top: 40%;">
-    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_raw.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_raw.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 40%;">
-    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_attention_weights.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_attention_weights.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -371,8 +371,8 @@ $$
 where $d_k$ is the dimension of the key vectors, used for scaling to prevent large dot-product values that could lead to small gradients. $\mathbf{A} \in \mathbb{R}^{T \times T}$ contains the attention weights for each token pair in the sequence.
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="text-align: center; top: 40%;">
-    <img src="assets/images/06-attention_transformer/self_attention.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/self_attention.png" alt="Transformer Architecture">
 </div>
 
 <div class="fragment" data-fragment-index="6" style="font-size: 0.9em;">
@@ -381,9 +381,9 @@ where $d_k$ is the dimension of the key vectors, used for scaling to prevent lar
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; top: 40%;">
-    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_value_matmul.png" alt="Attention Mechanism" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_value_matmul.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -407,9 +407,9 @@ $\mathbf{Z} \in \mathbb{R}^{T \times D_v}$ captures information from all tokens 
 
 **Step 4: Final Linear Projection**<br>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 80%;">
-    <img src="assets/images/06-attention_transformer/output_projection.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/single_head_attention_output_projection.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -428,11 +428,11 @@ $$
 
 ---
 
-## Causal Self-Attention
+## Masked / Causal Self-Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/transformer_masked_self_attention.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_masked_self_attention.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -444,9 +444,9 @@ $$
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_masked.png" alt="Causal Attention Mask" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" data-fragment-index="1" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_masked.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
@@ -465,48 +465,46 @@ $$
 $$
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/self_attention_causal.png" alt="Causal Self-Attention" style="max-width: 90%; max-height: 80%; object-fit: contain;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/self_attention_causal.png" alt="Attention Mechanism">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
 </div>
 
 </div>
 
 ---
 
-## Multi-Head Attention
+## Multi-Head Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; top: 60%;">
-    <img src="assets/images/06-attention_transformer/transformer_multihead_attention.png" alt="Transformer Architecture" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
-    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
-    </div>
-</div>
-
-<div class="fragment" data-fragment-index="2" style="font-size: 0.9em;">
+<div style="font-size: 0.9em;">
 
 - Instead of performing a single attention function, multi-head attention runs multiple attention operations in parallel
-- Each "head" learns different attention patterns, allowing the model to capture various aspects of relationships
+- Each "head" learns different attention patterns, allowing the model to capture various aspects of relationships (e.g., syntactic, semantic) between tokens
 - Enables the model to jointly attend to information from different representation subspaces
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 50%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Multi-Head Attention" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; top: 50%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_qkv_compute.png" alt="Multi-Head Attention QKV" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_qkv_compute.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="5" style="font-size: 0.8em;">
+<div class="fragment" data-fragment-index="3">
 
 **Step 1: Project inputs to multiple heads**
+
+<div style="font-size: 0.8em;">
 
 For each head $i$, compute separate Q, K, V projections:
 
@@ -520,16 +518,22 @@ where $\mathbf{W}_Q^i \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_K^i \in \mathb
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="text-align: center; top: 50%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_scaled_dot_product.png" alt="Multi-Head Attention Computation" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+---
+
+## Multi-Head Attention Mechanism
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/multihead_attention_scaled_dot_product.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="7" style="font-size: 0.8em;">
+<div class="fragment" data-fragment-index="1">
 
 **Step 2: Compute attention for each head**
+
+<div style="font-size: 0.8em;">
 
 <div class="formula">
 $$
@@ -540,18 +544,24 @@ $$
 $$
 </div>
 
+where $\mathbf{A}_i$ are the attention weights for head $i$, and $\mathbf{Z}_i$ is the output of head $i$
+
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="8" style="text-align: center; top: 50%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_concatenate.png" alt="Multi-Head Attention Concatenation" style="max-width: 90%; max-height: 80%; object-fit: contain;">
-    <div class="reference" style="margin: 10px; text-align: center;">
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/multi_head_attention_output_projection.png" alt="Attention Mechanism">
+    <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="9" style="font-size: 0.8em;">
+<div class="fragment" data-fragment-index="3">
 
 **Step 3: Concatenate heads and project**
+
+<div style="font-size: 0.8em;">
 
 <div class="formula">
 $$
@@ -565,6 +575,125 @@ $$
 where $h$ is the number of heads, and $\mathbf{W}_O \in \mathbb{R}^{h \cdot D_v \times D}$ projects the concatenated outputs back to the model dimension
 
 </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/self_attention_multiple_heads.png" alt="Attention Mechanism">
+    </div>
+</div>
+
+---
+
+## Cross-Attention Mechanism
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_cross_attention.png" alt="Attention Mechanism">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="1" style="font-size: 0.9em;">
+
+- Cross-attention allows to attend to a different sequence (e.g., encoder outputs) rather than the same sequence (as in self-attention)
+- Is used to integrate information from the encoder into the decoder in sequence-to-sequence tasks like machine translation, but can also be used in other contexts where two different sequences need to interact
+
+In the original transformer cross-attention computes queries from the decoder inputs and keys/values from the encoder outputs:
+
+<div class="formula">
+$$
+\begin{aligned}
+\mathbf{Q} &= \mathbf{X}_{\text{decoder}} \mathbf{W}_Q \\
+\mathbf{K} &= \mathbf{X}_{\text{encoder}} \mathbf{W}_K \\
+\mathbf{V} &= \mathbf{X}_{\text{encoder}} \mathbf{W}_V
+\end{aligned}
+$$
+</div>
+</div>
+
+---
+
+## Residual Connections
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_feedforward_residual_norm.png" alt="Attention Mechanism">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="1" style="font-size: 0.9em;">
+
+- Solve vanishing gradients with direct gradient path to earlier layers, enabling training of very deep networks
+- Network learns small adjustments instead of full transformations which simplifies optimization
+- Preserves information since layers can pass data unchanged or refine it without information loss
+
+<div class="formula">
+$$
+\mathbf{y} = \mathbf{x} + \mathrm{Sublayer}(\mathbf{x})
+$$
+</div>
+
+</div>
+
+---
+
+## Layer Normalization
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_feedforward_residual_norm.png" alt="Attention Mechanism">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="1" style="font-size: 0.9em;">
+
+- Stabilizes and accelerates training by normalizing inputs across features for each data point
+- Reduces internal covariate shift, making training less sensitive to initialization and learning rates
+
+<div class="formula">
+$$
+\mathrm{LayerNorm}(\mathbf{x}) = \frac{\mathbf{x} - \mu}{\sigma} \odot \boldsymbol{\gamma} + \boldsymbol{\beta}
+$$
+</div>
+
+where $\mu$ and $\sigma$ are the mean and standard deviation of the features in $\mathbf{x}$, and $\boldsymbol{\gamma} \in \mathbb{R}^D$, $\boldsymbol{\beta} \in \mathbb{R}^D$ are learnable parameters for scaling and shifting.
+
+</div>
+
+---
+
+## Position-wise Feedforward Networks
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <img src="assets/images/06-attention_transformer/transformer_feedforward.png" alt="Attention Mechanism">
+    <div class="reference">
+    Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="1" style="font-size: 0.9em;">
+
+- Applied independently to each position in the sequence, allowing for non-linear transformations of the token representations
+- Consists of two linear layers with a ReLU activation in between, enabling the model to learn complex feature interactions
+
+</div>
+
+<div class="fragment" data-fragment-index="2" style="font-size: 0.8em;">
+<div class="formula">
+$$
+\mathbf{y}(\mathbf{x}) = \mathrm{ReLU}(\mathbf{x} \mathbf{W}_1 + \mathbf{b}_1) \mathbf{W}_2 + \mathbf{b}_2
+$$
+</div>
+</div>
+
+---
+
+## Summary of Transformers
+
+- Parallelizable architecture is so important for training on large datasets
+- Pretraining on large corpora followed by fine-tuning for specific tasks
 
 ---
 
