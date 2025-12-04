@@ -151,7 +151,7 @@
 
 </div>
 
-<div class="fragment image-overlay highlight" data-fragment-index="3" style="text-align: left; width: 70%; font-size: 1.25em;">
+<div class="fragment image-overlay highlight" data-fragment-index="3" style="text-align: left; width: 70%;">
 
 Limitations of Recurrent Layers:
 <ul>
@@ -184,7 +184,7 @@ Limitations of Recurrent Layers:
 - Achieved state-of-the-art results in machine translation tasks, significantly outperforming previous models
 - Large language models like BERT, GPT, LLaMA, and others are based on the Transformer architecture
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_raw.png" alt="Transformer Architecture">
     <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -195,7 +195,7 @@ Limitations of Recurrent Layers:
 
 ## Embedding Layers
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_embedding.png" alt="Transformer Architecture">
     <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -213,7 +213,7 @@ Limitations of Recurrent Layers:
 <div class="formula">
 $$
 \begin{aligned}
-\mathtt{nn.Embedding}(i = \text{token index}) &= \mathbf{e}_{i}^{\top} \mathbf{W} \\
+\mathbf{y}(i = \text{token index}) &= \mathbf{e}_{i}^{\top} \mathbf{W} \\
 &= \begin{bmatrix}0 & \cdots & 1 & \cdots & 0\end{bmatrix} \mathbf{W} \\
 &= \mathbf{W}_{i, :}
 \end{aligned}
@@ -228,7 +228,7 @@ where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the embedding matrix, $V$ is t
 
 ## Output Projection
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_final_projection.png" alt="Transformer Architecture">
     <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -245,9 +245,9 @@ where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the embedding matrix, $V$ is t
 <div class="formula">
 $$
 \begin{aligned}
-\mathtt{nn.Linear}(\mathbf{h}_t) &= \mathbf{h}_t \mathbf{W}^{\top} + \mathbf{b} \\
+\mathbf{y}(\mathbf{h}_t) &= \mathbf{h}_t \mathbf{W}^{\top} + \mathbf{b} \\
 &= \mathbf{h}_t \mathbf{W}^{\top} \quad \text{(if weights are shared, } \mathbf{b} = 0\text{)}\\
-\mathbf{p}_t &= \mathrm{softmax}(\mathbf{h}_t \mathbf{W}^{\top}) = \frac{\exp(\mathbf{h}_t \mathbf{W}^{\top})}{\sum_{j=1}^{V} \exp((\mathbf{h}_t \mathbf{W}^{\top})_j)}
+\mathbf{p}_t(\mathbf{h}_t) &= \mathrm{softmax}(\mathbf{y}) \quad \text{where} \quad [\mathbf{p}_t]_i = \frac{\exp(y_i)}{\sum_{j=1}^{V} \exp(y_j)}
 \end{aligned}
 $$
 </div>
@@ -258,7 +258,7 @@ where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the shared weight matrix from 
 
 ## Positional Encoding
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_positional_encoding.png" alt="Transformer Architecture">
     <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -270,18 +270,21 @@ where $\mathbf{W} \in \mathbb{R}^{V \times D}$ is the shared weight matrix from 
 - Since Transformers do not have inherent sequential processing, positional encodings are added to input embeddings to provide information about the order of tokens
 - Can be implemented using fixed sinusoidal functions or learned embeddings
 - Enables the model to capture the relative and absolute positions of tokens in the sequence
-- **Vanilla sinusoidal positional encoding formula:**
+
+**Vanilla sinusoidal positional encoding formula:**
 
 <div class="formula">
 $$
 \begin{aligned}
-\mathrm{PE}(pos, 2i) &= \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right) \\
-\mathrm{PE}(pos, 2i+1) &= \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
+\mathrm{PE}(t, 2i) &= \sin\left(\frac{t}{10000^{2i/d_{\text{model}}}}\right) \\
+\mathrm{PE}(t, 2i+1) &= \cos\left(\frac{t}{10000^{2i/d_{\text{model}}}}\right)
 \end{aligned}
 $$
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="text-align: center; top: 65%; width: 100%;">
+where $t$ is the token position, $i$ is the dimension index, and $d_{\text{model}}$ is the model dimension.
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
     <img src="assets/images/06-attention_transformer/positional_encoding.png" alt="Transformer Architecture" style="max-width: 100%;">
 </div>
 
@@ -289,14 +292,14 @@ $$
 
 ## Self-Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_self_attention.png" alt="Transformer Architecture">
     <div class="reference" style="text-align: center;">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -315,7 +318,7 @@ Self-attention allows each token in the input sequence to attend to all other to
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="5" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/single_head_attention_qkv_compute.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -336,10 +339,6 @@ where $\mathbf{X} \in \mathbb{R}^{T \times D}$ is the input sequence matrix, and
 
 </div>
 
-</div>
-
-</div>
-
 ---
 
 ## Scaled Dot-Product Attention
@@ -350,26 +349,28 @@ where $\mathbf{X} \in \mathbb{R}^{T \times D}$ is the input sequence matrix, and
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/signle_head_attention_scaled_dot_product.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 20%;">
     <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_raw.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 20%;">
     <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_attention_weights.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
+
+<div class="fragment" data-fragment-index="4" style="font-size: 0.8em;">
 
 <div class="formula">
 $$
@@ -390,12 +391,14 @@ where $d_k$ is the dimension of the key vectors, used for scaling to prevent lar
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 20%;">
     <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_value_matmul.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
+
+<div class="fragment" data-fragment-index="8" style="font-size: 0.9em;">
 
 <div class="formula">
 $$
@@ -406,7 +409,6 @@ $$
 $\mathbf{Z} \in \mathbb{R}^{T \times D_v}$ captures information from all tokens in the sequence, weighted by their relevance to the query token
 
 </div>
-</div>
 
 ---
 
@@ -414,7 +416,7 @@ $\mathbf{Z} \in \mathbb{R}^{T \times D_v}$ captures information from all tokens 
 
 **Step 4: Final Linear Projection**<br>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/single_head_attention_output_projection.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -437,7 +439,7 @@ $$
 
 ## Masked / Causal Self-Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_masked_self_attention.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -451,7 +453,7 @@ $$
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 20%;">
     <img src="assets/images/06-attention_transformer/scaled_dot_product_attention_masked.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -493,14 +495,14 @@ $$
 
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/multihead_attention_qkv_compute.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -510,6 +512,8 @@ $$
 <div class="fragment" data-fragment-index="3">
 
 **Step 1: Project inputs to multiple heads**
+
+<div style="font-size: 0.9em;">
 
 For each head $i$, compute separate Q, K, V projections:
 
@@ -522,21 +526,26 @@ $$
 where $\mathbf{W}_Q^i \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_K^i \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_V^i \in \mathbb{R}^{D \times D_v}$ are unique weight matrices for head $i$
 
 </div>
+</div>
 
 ---
 
 ## Multi-Head Self-Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment" data-fragment-index="0">
+
+**Step 2: Compute attention for each head**
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/multihead_attention_scaled_dot_product.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="1">
-
-**Step 2: Compute attention for each head**
+<div class="fragment" data-fragment-index="2" style="font-size: 0.8em;">
 
 <div class="formula">
 $$
@@ -551,18 +560,20 @@ where $\mathbf{A}_i$ are the attention weights for head $i$, and $\mathbf{Z}_i$ 
 
 </div>
 
+<div class="fragment" data-fragment-index="3">
+
+**Step 3: Concatenate heads and project**
+
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
     <img src="assets/images/06-attention_transformer/multi_head_attention_output_projection.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="3">
-
-**Step 3: Concatenate heads and project**
+<div class="fragment" data-fragment-index="5" style="font-size: 0.8em;">
 
 <div class="formula">
 $$
@@ -576,9 +587,8 @@ $$
 where $h$ is the number of heads, and $\mathbf{W}_O \in \mathbb{R}^{h \cdot D_v \times D}$ projects the concatenated outputs back to the model dimension
 
 </div>
-</div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
     <img src="assets/images/06-attention_transformer/self_attention_multiple_heads.png" alt="Attention Mechanism">
     </div>
 </div>
@@ -587,19 +597,25 @@ where $h$ is the number of heads, and $\mathbf{W}_O \in \mathbb{R}^{h \cdot D_v 
 
 ## Cross-Attention Mechanism
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_cross_attention.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
 </div>
 
-<div class="fragment" data-fragment-index="1" style="font-size: 0.9em;">
+<div class="fragment" data-fragment-index="1">
+
+<div style="font-size: 0.9em;">
 
 - Cross-attention allows to attend to a different sequence (e.g., encoder outputs) rather than the same sequence (as in self-attention)
 - Is used to integrate information from the encoder into the decoder in sequence-to-sequence tasks like machine translation, but can also be used in other contexts where two different sequences need to interact
 
-In the original transformer cross-attention computes queries from the decoder inputs and keys/values from the encoder outputs:
+</div>
+
+**Cross-attention formula:**
+
+<div style="font-size: 0.85em;">
 
 <div class="formula">
 $$
@@ -616,12 +632,13 @@ where $\mathbf{X}_{\text{decoder}} \in \mathbb{R}^{T_{\text{decoder}} \times D}$
 </div>
 
 </div>
+</div>
 
 ---
 
 ## Residual Connections
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_feedforward_residual_norm.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -646,7 +663,7 @@ $$
 
 ## Layer Normalization
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_feedforward_residual_norm.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -660,7 +677,7 @@ $$
 
 <div class="formula">
 $$
-\mathrm{LayerNorm}(\mathbf{x}) = \frac{\mathbf{x} - \mu}{\sigma} \odot \boldsymbol{\gamma} + \boldsymbol{\beta}
+\mathbf{y}(\mathbf{x}) = \frac{\mathbf{x} - \mu}{\sigma} \odot \boldsymbol{\gamma} + \boldsymbol{\beta}
 $$
 </div>
 
@@ -672,7 +689,7 @@ where $\mu$ and $\sigma$ are the mean and standard deviation of the features in 
 
 ## Position-wise Feedforward Networks
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center; height: 900px;">
     <img src="assets/images/06-attention_transformer/transformer_feedforward.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
@@ -796,14 +813,22 @@ where $\mathbf{W}_1 \in \mathbb{R}^{D \times D_{ff}}$, $\mathbf{W}_2 \in \mathbb
 
 **Key Advantages**
 
+<div style="font-size: 0.9em;">
+
 - **Parallelizable architecture** enables efficient training on large datasets by processing all tokens simultaneously
 - **Long-range dependencies** captured through direct attention connections between any token pair
 - **Scalability** to billions of parameters, forming the foundation for modern LLMs (BERT, GPT, LLaMA)
 
+</div>
+
 **Applications**
+
+<div style="font-size: 0.9em;">
 
 - **Transfer learning** through pretraining on large corpora followed by fine-tuning for specific tasks
 - **Versatile across domains** including NLP, computer vision, and audio processing
+
+</div>
 
 ---
 
@@ -826,8 +851,6 @@ where $\mathbf{W}_1 \in \mathbb{R}^{D \times D_{ff}}$, $\mathbf{W}_2 \in \mathbb
 
 <div class="fragment appear-vanish" data-fragment-index="2" style="font-size: 0.9em;">
 
-**GPT-3 Architecture** (2020): 175 billion parameters total
-
 <table style="font-size: 0.8em; width: 100%;">
 <thead>
 <tr>
@@ -848,7 +871,7 @@ where $\mathbf{W}_1 \in \mathbb{R}^{D \times D_{ff}}$, $\mathbf{W}_2 \in \mathbb
 <td><strong>Multi-Head Attention</strong></td>
 <td>603M</td>
 <td>57.9B</td>
-<td>$4 \times D^2 = 4 \times 12{,}288^2$<br>(4, split into Q, K, V, and O per layer × 96 layers)</td>
+<td>$4 \times D^2 = 4 \times 12{,}288^2$<br>(split into 96 heads with Q, K, V, and O per layer × 96 layers)</td>
 </tr>
 <tr>
 <td><strong>Layer Normalization</strong></td>
@@ -868,8 +891,15 @@ where $\mathbf{W}_1 \in \mathbb{R}^{D \times D_{ff}}$, $\mathbf{W}_2 \in \mathbb
 <td>(shared)</td>
 <td>Shares weights with embedding layer</td>
 </tr>
+<tr style="border-top: 2px solid #666;">
+<td colspan="2"><strong>Total</strong></td>
+<td><strong>≈175B</strong></td>
+<td>6.4B + 57.9B + 4.7M + 115.3B ≈ 179.6B</td>
+</tr>
 </tbody>
 </table>
+
+<div style="font-size: 0.8em; margin-top: 1rem;">
 
 Where: $D = 12{,}288$ (model dimension), $D_{\text{ff}} = 4D = 49{,}152$ (feedforward dimension), $V = 50{,}257$ (vocabulary size), 96 layers, 96 attention heads
 
