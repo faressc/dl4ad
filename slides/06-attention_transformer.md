@@ -111,7 +111,10 @@
 
 ## Recurrent Layers: Recap
 
+
 **Vanilla RNN**:
+
+<div style="font-size: 0.8em;">
 
 <ul>
 <li>Maintains hidden state across time steps to capture temporal dependencies</li>
@@ -119,9 +122,13 @@
 <li>Formula: $\mathbf{h}_t = \sigma\left(\mathbf{W}_{xh} \mathbf{x}_t + \mathbf{W}_{hh} \mathbf{h}_{t-1} + \mathbf{b}\right)$</li>
 </ul>
 
+</div>
+
 <div class="fragment" data-fragment-index="1">
 
 **LSTM (Long Short-Term Memory)**:
+
+<div style="font-size: 0.8em;">
 
 - Uses gating mechanisms (forget, input, output gates) and separate cell state
 - Better at capturing long-term dependencies, mitigates vanishing gradients
@@ -129,12 +136,18 @@
 
 </div>
 
+</div>
+
 <div class="fragment" data-fragment-index="2">
 
 **GRU (Gated Recurrent Unit)**:
 
+<div style="font-size: 0.8em;">
+
 - Simplified variant with reset and update gates (no separate cell state)
 - Fewer parameters and computational cost than LSTM while maintaining comparable performance
+
+</div>
 
 </div>
 
@@ -470,7 +483,7 @@ $$
 
 ---
 
-## Multi-Head Attention Mechanism
+## Multi-Head Self-Attention Mechanism
 
 <div style="font-size: 0.9em;">
 
@@ -512,7 +525,7 @@ where $\mathbf{W}_Q^i \in \mathbb{R}^{D \times D_k}$, $\mathbf{W}_K^i \in \mathb
 
 ---
 
-## Multi-Head Attention Mechanism
+## Multi-Head Self-Attention Mechanism
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="position: absolute; left: 960px; top: 540px; text-align: center;">
     <img src="assets/images/06-attention_transformer/multihead_attention_scaled_dot_product.png" alt="Attention Mechanism">
@@ -597,6 +610,11 @@ $$
 \end{aligned}
 $$
 </div>
+
+<div>
+where $\mathbf{X}_{\text{decoder}} \in \mathbb{R}^{T_{\text{decoder}} \times D}$ are the decoder inputs and $\mathbf{X}_{\text{encoder}} \in \mathbb{R}^{T_{\text{encoder}} \times D}$ are the encoder outputs. The resulting $\mathbf{Q} \in \mathbb{R}^{T_{\text{decoder}} \times D_k}$, $\mathbf{K} \in \mathbb{R}^{T_{\text{encoder}} \times D_k}$, and $\mathbf{V} \in \mathbb{R}^{T_{\text{encoder}} \times D_v}$ are then used in the scaled dot-product attention as usual.
+</div>
+
 </div>
 
 ---
@@ -906,6 +924,40 @@ Where: $D = 12{,}288$ (model dimension), $D_{\text{ff}} = 4D = 49{,}152$ (feedfo
     <img src="assets/images/06-attention_transformer/transformer_example_enc_dec.png" alt="Attention Mechanism">
     <div class="reference">
         Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+---
+
+## Continuous Encoder Example: Vision Transformer
+
+- Vision Transformer (ViT) applies Transformer architecture to image classification by treating images as sequences of patches
+- Input images are divided into fixed-size patches, flattened and linearly projected into continuous patch embeddings
+- Patch embeddings are continuous vectors unlike discrete token embeddings in NLP
+- A special [CLS] token is prepended to the sequence to aggregate information for classification
+- Positional encodings preserve spatial information before processing through the Transformer encoder
+- A classification head applied to the [CLS] token output performs the final classification
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+    <img src="assets/images/06-attention_transformer/transformer_example_vit.png" alt="Attention Mechanism">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+---
+
+## Continuous Encoder-Decoder Example: pGESAM
+
+- The pGESAM architecture is an encoder-decoder Transformer for continuous timbre and pitch embeddings
+- The encoder processes timbre (2D float via linear projection) and pitch (1D via learned embedding) representations
+- The decoder autoregressively generates audio codec tokens using masked self-attention
+- Cross-attention conditions generation on the encoder's continuous timbre-pitch representations
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 100%;">
+    <img src="assets/images/01-history/pgesam.svg" alt="Attention Mechanism">
+    <div class="reference">
+        Source: Limberg, C., Schulz, F., Zhang, Z., & Weinzierl, S. (2025). Pitch-Conditioned Instrument Sound Synthesisfrom an Interactive Timbre Latent Space. <em>28th International Conference on Digital Audio Effects (DAFx25)</em>, 1–8. https://dafx.de/paper-archive/2025/DAFx25_paper_58.pdf
     </div>
 </div>
 
