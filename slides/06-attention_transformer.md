@@ -82,7 +82,7 @@
         <div class="timeline-title">Deep architectures</div>
         <div class="timeline-text">Deep architectures and generative models transforming AI capabilities</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2015:1,2016:0,2017:1">
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2015:1,2016:0,2017:1,2021:1">
         {{TIMELINE:timeline_deep_architectures}}
     </div>
 </div>
