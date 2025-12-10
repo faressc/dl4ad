@@ -218,6 +218,7 @@
 - Add dropout, but pay attention with dropout and batch normalization together
 - Try weight decay (L2 regularization) on the weights of the model
 - Introduce early stopping based on the validation performance
+- Transfer learning from a pretrained model can help regularization as well as it can be considered as inductive bias towards solutions that generalize well
 
 </div>
 
@@ -233,6 +234,7 @@
 - Then tune the batch size, model architecture, and regularization parameters
 - Consider using learning rate schedules or adaptive optimizers
 - Monitor the training and validation performance closely to avoid overfitting during hyperparameter tuning
+- Use ensembles of models or mixtures of experts to boost performance further
 - Finally, let the model train for a longer time to see if the performance improves further
 
 </div>
