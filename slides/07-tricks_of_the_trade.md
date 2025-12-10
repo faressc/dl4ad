@@ -176,10 +176,11 @@
 
 - Fix a random seed for reproducibility
 - Start with a very simple "toy" model architecture
-- Compute a simple human-understandable baseline metrics (e.g., accuracy) on the train and validation set
+- Compute a simple human-understandable baseline metrics (e.g., accuracy, confusion matrix) on the train and validation set (use k-fold cross-validation for small datasets)
 - Verify the loss function and metrics at initialization (e.g., random predictions should yield expected loss)
 - Initialize weights properly (e.g. if you are regressing some values with mean 100, initialize the last layer bias to 100)
 - Use a small subset (as little as 2 samples) of the train set to verify that the model can overfit it (i.e., loss goes to zero)
+- Analyze and visualize model predictions at different layer stages (e.g., attention maps, embeddings, feature maps)
 - Increase the complexity of the model gradually and monitor the performance on train and validation sets
 - Visualize and analyze predictions on a fixed (unshuffled) set of samples from the validation set after every epoch
 - Check the gradients and weights statistics (e.g., make sure they are not vanishing or exploding)
@@ -229,6 +230,9 @@
 <div style="font-size: 0.8em;">
 
 - Once you have a working model with good generalization performance, try to tune the hyperparameters
+- Have a good version control system in place to track experiments - e.g., [dvc](https://dvc.org/)
+- Have a systematic way to log and visualize training and validation metrics - e.g., [tensorboard](https://www.tensorflow.org/tensorboard) or [wandb](https://wandb.ai/) (Commercial)
+- Optimize computation efficiency i.e., use mixed precision training
 - Use random search or Bayesian optimization instead of grid search - i.e. with [optuna](https://optuna.org/)
 - Focus on tuning the learning rate first, as it has the largest impact on performance
 - Then tune the batch size, model architecture, and regularization parameters
