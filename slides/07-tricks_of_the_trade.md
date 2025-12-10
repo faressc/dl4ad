@@ -167,6 +167,7 @@
 - Check for class imbalance
 - Visualize distributions of features and pay special attention to outliers
 - Finally, normalize or standardize features if necessary
+- Check for data leakage between train and validation sets
 
 ---
 
@@ -183,7 +184,7 @@
 - Analyze and visualize model predictions at different layer stages (e.g., attention maps, embeddings, feature maps)
 - Increase the complexity of the model gradually and monitor the performance on train and validation sets
 - Visualize and analyze predictions on a fixed (unshuffled) set of samples from the validation set after every epoch
-- Check the gradients and weights statistics (e.g., make sure they are not vanishing or exploding)
+- Check the gradients and weights statistics for the different layers (e.g., make sure they are not vanishing or exploding)
 
 </div>
 
@@ -213,7 +214,7 @@
 
 - Once you can overfit the training set, try to improve the generalization performance
 - The best regularization method is to get more data
-- If that is not possible, try data augmentation techniques suitable for your data modality
+- If that is not possible, try data augmentation techniques suitable for your data modality (only on the training set)
 - Decrease the model complexity if possible
 - Pay attention to spuriously correlated features in the data and try to remove features that do not generalize well
 - Add dropout, but pay attention with dropout and batch normalization together
@@ -234,7 +235,7 @@
 - Have a systematic way to log and visualize training and validation metrics - e.g., [tensorboard](https://www.tensorflow.org/tensorboard) or [wandb](https://wandb.ai/) (Commercial)
 - Optimize computation efficiency i.e., use mixed precision training
 - Use random search or Bayesian optimization instead of grid search - i.e. with [optuna](https://optuna.org/)
-- Focus on tuning the learning rate first, as it has the largest impact on performance
+- Focus on tuning the learning rate first, as it has the largest impact on performance, try using a learning rate finder, consider using warmup strategies
 - Then tune the batch size, model architecture, and regularization parameters
 - Consider using learning rate schedules or adaptive optimizers
 - Monitor the training and validation performance closely to avoid overfitting during hyperparameter tuning
