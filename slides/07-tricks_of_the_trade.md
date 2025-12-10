@@ -237,10 +237,10 @@
 - Use random search or Bayesian optimization instead of grid search - i.e. with [optuna](https://optuna.org/)
 - Focus on tuning the learning rate first, as it has the largest impact on performance, try using a learning rate finder, consider using warmup strategies
 - Then tune the batch size, model architecture, and regularization parameters
-- Consider using learning rate schedules or adaptive optimizers
+- Consider using learning rate schedules, adaptive optimizers or different input representations
 - Monitor the training and validation performance closely to avoid overfitting during hyperparameter tuning
 - Use ensembles of models or mixtures of experts to boost performance further
-- Finally, let the model train for a longer time to see if the performance improves further
+- Finally, let the model train for a longer time to see if the performance improves further and use model checkpointing to save the best performing model
 
 </div>
 
