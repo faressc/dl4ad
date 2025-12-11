@@ -162,6 +162,7 @@
 
 ## Become one with the Data
 
+- Use a feature representation that makes sense for your data (Use the knowledge from MIRMLA course)
 - Understand the data you are working with
 - Visualize samples from the dataset
 - Check for class imbalance
@@ -184,7 +185,7 @@
 - Analyze and visualize model predictions at different layer stages (e.g., attention maps, embeddings, feature maps)
 - Increase the complexity of the model gradually and monitor the performance on train and validation sets
 - Visualize and analyze predictions on a fixed (unshuffled) set of samples from the validation set after every epoch
-- Check the gradients and weights statistics for the different layers (e.g., make sure they are not vanishing or exploding)
+- Check the weights and neuron, as well as their gradients - compute statistics for the different layers (e.g., make sure they are not vanishing or exploding)
 
 </div>
 
@@ -200,7 +201,7 @@
 - Make sure your model can overfit on a small subset of the training data (e.g., 100 samples)
 - Gradually increase the model complexity one step at a time until you can overfit on the full training set
 - Be careful not to overcomplicate the model too early
-- Beware of learning rate schedules as they often depend on the total number of epochs
+- Beware of learning rate schedules if they are dependent on the number of epochs
 - When training deep models, check for vanishing or exploding gradients and apply residual connections if necessary
 - When having unstable activation scales consider using normalization layers
 
@@ -246,7 +247,382 @@
 
 ---
 
+# Tricks of the Trade
 
+---
+
+## Choice of Activation Functions
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Activation</th>
+<th>Function</th>
+<th>Typical Use Case</th>
+<th>Network Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>ReLU</strong></td>
+<td>$\text{ReLU}(z) = \max(0, z)$</td>
+<td>Hidden layers (default choice)</td>
+<td>CNNs, MLPs, ResNets</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Leaky ReLU / PReLU</strong></td>
+<td>$\text{LeakyReLU}(z) = \max(\alpha z, z)$</td>
+<td>Hidden layers (when dying ReLU is an issue)</td>
+<td>Deep CNNs, GANs</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>GELU</strong></td>
+<td>$\text{GELU}(z) = z \cdot \Phi(z)$</td>
+<td>Hidden layers in modern architectures</td>
+<td>Transformers, BERT, GPT</td>
+</tr>
+<tr class="fragment" data-fragment-index="7">
+<td><strong>Swish / SiLU</strong></td>
+<td>$\text{Swish}(z) = \frac{z}{1 + e^{-z}}$</td>
+<td>Hidden layers in deep networks</td>
+<td>EfficientNet, modern CNNs</td>
+</tr>
+<tr class="fragment" data-fragment-index="9">
+<td><strong>Tanh</strong></td>
+<td>$\tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}$</td>
+<td>Hidden layers, gates</td>
+<td>RNNs, LSTMs, GRUs</td>
+</tr>
+<tr class="fragment" data-fragment-index="11">
+<td><strong>Sigmoid</strong></td>
+<td>$\sigma(z) = \frac{1}{1 + e^{-z}}$</td>
+<td>Output layer (binary classification), gates</td>
+<td>Binary classifiers, LSTM gates</td>
+</tr>
+<tr class="fragment" data-fragment-index="13">
+<td><strong>Softmax</strong></td>
+<td>$\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}$</td>
+<td>Output layer (multi-class classification)</td>
+<td>Multi-class classifiers</td>
+</tr>
+<tr class="fragment" data-fragment-index="15">
+<td><strong>Linear</strong></td>
+<td>$f(z) = z$</td>
+<td>Output layer (regression)</td>
+<td>Regression models</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/ReLUActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/LeakyReLUActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/GELUActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="8" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/SwishActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/TanhActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="12" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/03-perceptrons/1080p60/SigmoidActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="14" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/SoftmaxActivationVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Choice of Initialization Schemes
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Initialization</th>
+<th>Method</th>
+<th>Typical Use Case</th>
+<th>Network Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Xavier / Glorot</strong></td>
+<td>$\mathbf{W} \sim \mathcal{U}\left[-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right]$</td>
+<td>Hidden layers with tanh/sigmoid activations</td>
+<td>MLPs, shallow networks</td>
+</tr>
+<tr class="fragment" data-fragment-index="2">
+<td><strong>He (Kaiming)</strong></td>
+<td>$\mathbf{W} \sim \mathcal{N}\left(0, \frac{2}{n_{in}}\right)$</td>
+<td>Hidden layers with ReLU activations</td>
+<td>CNNs, ResNets, deep networks</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>LeCun</strong></td>
+<td>$\mathbf{W} \sim \mathcal{N}\left(0, \frac{1}{n_{in}}\right)$</td>
+<td>Hidden layers with SELU activations</td>
+<td>Self-normalizing networks - Networks designed to maintain mean and variance without normalization</td>
+</tr>
+<tr class="fragment" data-fragment-index="4">
+<td><strong>Orthogonal</strong></td>
+<td>$\mathbf{W}$ = orthogonal matrix</td>
+<td>Recurrent connections</td>
+<td>RNNs, LSTMs, GRUs</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>Zero</strong></td>
+<td>$\mathbf{W} = 0$</td>
+<td>Bias terms only</td>
+<td>All networks (biases)</td>
+</tr>
+<tr class="fragment" data-fragment-index="6">
+<td><strong>Constant</strong></td>
+<td>$\mathbf{W} = c$</td>
+<td>Specific layer requirements</td>
+<td>Output layers (regression)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="8" style="width: 80%; text-align: left;">
+
+**Key Principle:** Match initialization to activation function to maintain stable gradient flow
+- Use He for ReLU and variants
+- Use Xavier for tanh/sigmoid
+- Use Orthogonal for recurrent connections
+
+</div>
+
+---
+
+## Choice of Optimizers
+
+<div style="font-size: 0.70em;">
+
+<table>
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 35%;">
+<col style="width: 30%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th>Optimizer</th>
+<th>Update Rule</th>
+<th>Typical Use Case</th>
+<th>Network Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<tr class="fragment" data-fragment-index="2">
+<td><strong>Mini-batch SGD + Momentum</strong></td>
+<td>$\mathbf{m}_{t} = \beta \mathbf{m}_{t-1} + \nabla \mathcal{L}$ <br> $\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \mathbf{m}_{t}$</td>
+<td>Computer vision, training from scratch - noisier updates can better find global minima</td>
+<td>CNNs, ResNets, image classification</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Mini-batch SGD + RMSprop</strong></td>
+<td>$\mathbf{v}_t = \beta \mathbf{v}_{t-1} + (1-\beta)(\nabla \mathcal{L})^2$ <br> $\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \frac{\eta}{\sqrt{\mathbf{v}_t + \epsilon}} \nabla \mathcal{L}$</td>
+<td>Recurrent networks, non-stationary objectives</td>
+<td>RNNs, online learning</td>
+</tr>
+<tr class="fragment" data-fragment-index="4">
+<td><strong>Adam (RMSprop + Momentum)</strong></td>
+<td>$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla \mathcal{L}$ <br> $\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla \mathcal{L})^2$ <br> $\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \frac{\eta}{\sqrt{\mathbf{v}_t + \epsilon}} \mathbf{m}_t$</td>
+<td>Default choice for most problems</td>
+<td>Transformers, GANs, general purpose</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>AdamW</strong></td>
+<td>Adam + decoupled weight decay</td>
+<td>Modern deep learning, large models</td>
+<td>BERT, GPT, ViT, large-scale models</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="9" style="width: 80%; text-align: left;">
+
+**Key Principle:** Match optimizer to your problem characteristics
+- **Adam/AdamW**: Default choice for most modern architectures (LR ~ 1e-3 to 1e-4)
+- **SGD + Momentum**: Best for CNNs when training from scratch (LR ~ 0.1 with schedule)
+- **RMSprop**: Good for RNNs and non-stationary problems
+- **AdamW**: Preferred over Adam for large models with weight decay
+
+</div>
+
+---
+
+## Learning Rate Schedules
+
+<div style="font-size: 0.90em;">
+
+- LR schedules can significantly impact convergence and performance
+- Use step-based schedules (not epoch-based) for flexibility across batch sizes
+
+</div>
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Schedule</th>
+<th>Formula</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Step Decay</strong></td>
+<td>$\eta_t = \eta_0 \times \gamma^{\lfloor t / T \rfloor}$</td>
+<td>Simple baseline, works well for CNNs</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Linear Decay</strong></td>
+<td>$\eta_t = \eta_0 - \frac{(\eta_0 - \eta_{min}) \cdot t}{T}$</td>
+<td>Linear decay from initial to minimum LR</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>Exponential Decay</strong></td>
+<td>$\eta_t = \eta_0 \times \gamma^t$</td>
+<td>Smooth continuous decay</td>
+</tr>
+<tr class="fragment" data-fragment-index="7">
+<td><strong>Cosine Annealing</strong></td>
+<td>$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)$</td>
+<td>Transformers, modern architectures, smoother than step decay</td>
+</tr>
+<tr class="fragment" data-fragment-index="9">
+<td><strong>One Cycle Policy</strong></td>
+<td>Warmup then cosine annealing</td>
+<td>Fast convergence, good generalization, allows big learning rates, limited training budget</td>
+</tr>
+<tr class="fragment" data-fragment-index="11">
+<td><strong>Warm Restarts (SGDR)</strong></td>
+<td>$\eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})\left(1 + \cos\left(\frac{\pi T_{cur}}{T_i}\right)\right)$</td>
+<td>Snapshot ensembling, escape local minima, exploration</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/StepDecaySchedule.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/LinearDecaySchedule.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="6" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/ExponentialDecaySchedule.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="8" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/CosineAnnealingSchedule.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/OneCyclePolicySchedule.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="12" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/07-tricks_of_the_trade/1080p60/WarmRestartsSchedule.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="13" style="width: 80%; text-align: left;">
+    Attention: Learning rate schedules interact with optimizers differently; Consider the momentum term in optimizers like SGD with momentum or Adam when designing schedules.
+</div>
+
+---
+
+## Residual Connections
+
+- When training deep models, check for vanishing or exploding gradients and apply residual connections if necessary
+- Residual connections help gradients flow through deep networks by providing shortcut paths
+- 
+
+---
+
+## Normalization Layers
+
+
+---
+
+## Regularization Techniques
+
+- Dropout
+- Weight Decay
+- Data Augmentation
+- Early Stopping
+
+---
+
+## Transfer Learning & Pretrained Models
 
 ---
 
