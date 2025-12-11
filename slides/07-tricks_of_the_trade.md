@@ -499,16 +499,16 @@
 
 ## Learning Rate Schedules
 
-<div style="font-size: 0.90em;">
+<div style="font-size: 0.80em;">
 
 - LR schedules can significantly impact convergence and performance
 - Use step-based schedules (not epoch-based) for flexibility across batch sizes
 
 </div>
 
-<div style="font-size: 0.70em;">
+<div style="margin-top: 0px; font-size: 0.70em;">
 
-<table>
+<table style="margin-top: 10px;">
 <thead>
 <tr>
 <th>Schedule</th>
@@ -595,34 +595,267 @@
 </div>
 
 <div class="highlight image-overlay fragment" data-fragment-index="13" style="width: 80%; text-align: left;">
-    Attention: Learning rate schedules interact with optimizers differently; Consider the momentum term in optimizers like SGD with momentum or Adam when designing schedules.
+    Attention: Learning rate schedules interact with optimizers differently; I.e. consider the momentum term when designing schedules.
 </div>
 
 ---
 
 ## Residual Connections
 
-- When training deep models, check for vanishing or exploding gradients and apply residual connections if necessary
-- Residual connections help gradients flow through deep networks by providing shortcut paths
-- 
+- Researchers found that when stacking many layers, the training error first decreases and then increases, indicating a fundamental optimization issue
+- Even with proper initialization - the gradient updates in early layers are very unpredictable and unstable
+
+<div class="image-overlay fragment appear-vanish" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 90%;">
+    <img src="assets/images/07-tricks_of_the_trade/gradient_of_inputs_across_layer_sizes.png" alt="Residual Connections Visualization" style="width: 100%; height: auto;">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="image-overlay fragment appear-vanish" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 60%;">
+    <img src="assets/images/07-tricks_of_the_trade/loss_landscape_for_no_res.png" alt="Residual Connections Visualization" style="width: 100%; height: auto;">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="3">
+
+- Residual connections (skip connections) help mitigate this issue by allowing gradients to flow directly through the network - essentially bypassing some layers
+
+</div>
+
+<div class="image-overlay fragment appear-vanish" data-fragment-index="4" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <strong>Where to place Residual Connections?</strong>
+    <img src="assets/images/07-tricks_of_the_trade/position_in_residual_layers.png" alt="Residual Connections Visualization" style="width: 100%; height: auto;">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="image-overlay fragment appear-vanish" data-fragment-index="5" style="position: absolute; left: 960px; top: 540px; text-align: center;">
+    <strong>Where to place Residual Connections?</strong>
+    <img src="assets/images/07-tricks_of_the_trade/position_in_residual_layers_solution.png" alt="Residual Connections Visualization" style="width: 100%; height: auto;">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="6">
+
+- Residual connections have become a standard component in deep architectures (e.g., ResNets, Transformers) to facilitate training of very deep networks
+- They help maintain the loss landscape smoothness and improve convergence
+
+</div>
+
+<div class="image-overlay fragment appear-vanish" data-fragment-index="7" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 90%;">
+    <img src="assets/images/07-tricks_of_the_trade/loss_landscape_for_resnets.png" alt="Residual Connections Visualization" style="width: 100%; height: auto;">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="fragment" data-fragment-index="8">
+
+- If the input and output dimensions differ, use a linear projection (1x1 convolution) to match dimensions before addition
+
+</div>
+
+<div class="image-overlay fragment highlight" data-fragment-index="9" style="text-align: left; width: 80%;">
+    Attention: When using residual connections, the variance of the outputs can increase, so consider using normalization layers to stabilize training.
+</div>
 
 ---
 
 ## Normalization Layers
 
+<div style="font-size: 0.8em;">
+
+- Normalization layers stabilize training by controlling the distribution of activations across layers - mitigates internal covariate shift:  **General form:** $\hat{x} = \gamma \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta$ (where $\gamma, \beta$ are learnable; RMS Norm omits $\mu$ and $\beta$)
+
+</div>
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Normalization</th>
+<th>Normalized Over</th>
+<th>When to Use</th>
+<th>Network Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Batch Norm</strong></td>
+<td>Across the batch - computes mean/variance over all samples for each feature</td>
+<td>Large batch sizes, CNNs</td>
+<td>ResNets, VGG</td>
+</tr>
+<tr class="fragment" data-fragment-index="2">
+<td><strong>Layer Norm</strong></td>
+<td>Across features - computes mean/variance over all features in each sample</td>
+<td>Small batches, sequences</td>
+<td>Transformers, RNNs, NLP</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Instance Norm</strong></td>
+<td>Across spatial dimensions (H×W per channel, per sample) - normalizes each channel independently</td>
+<td>Style transfer, GANs</td>
+<td>Image generation, artistic style</td>
+</tr>
+<tr class="fragment" data-fragment-index="4">
+<td><strong>Group Norm</strong></td>
+<td>Across channel groups + spatial dimensions - divides channels into groups</td>
+<td>Small batches, alternatives to BN</td>
+<td>Object detection, segmentation</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>RMS Norm</strong></td>
+<td>Across features (like Layer Norm but without mean centering) - only normalizes by RMS</td>
+<td>Transformers, efficiency</td>
+<td>LLMs, modern transformers</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="image-overlay fragment appear-vanish" data-fragment-index="6" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 90%;">
+    <img src="assets/images/07-tricks_of_the_trade/norms.png" alt="Residual Connections Visualization" style="width: 100%; height: auto;">
+    <div class="reference" style="text-align: center;">
+    Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="7" style="width: 80%; text-align: left;">
+
+**Key Principles:**
+- Batch Norm for CNNs with large batches
+- Layer Norm for transformers and RNNs
+- Avoid Batch Norm + Dropout together (variance issues)
+- Layer Norm + Dropout works well (common in Transformers)
+- Place normalization after activation in residual blocks (post-activation)
+
+</div>
 
 ---
 
 ## Regularization Techniques
 
-- Dropout
-- Weight Decay
-- Data Augmentation
-- Early Stopping
+- Regularization prevents overfitting by constraining model complexity or adding controlled noise during training
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Method</th>
+<th>Typical Values</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Dropout</strong></td>
+<td>Randomly zero neurons with probability $p$</td>
+<td>$p = 0.2$ to $0.5$</td>
+<td>MLPs, avoid with Batch Norm</td>
+</tr>
+<tr class="fragment" data-fragment-index="2">
+<td><strong>Weight Decay (L2)</strong></td>
+<td>Add $\lambda \|\mathbf{W}\|^2$ to loss</td>
+<td>$\lambda = 1e-4$ to $1e-5$</td>
+<td>All networks, use with AdamW</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Data Augmentation</strong></td>
+<td>Transform inputs (crop, flip, noise, etc.)</td>
+<td>Task-specific</td>
+<td>Limited data, computer vision, audio</td>
+</tr>
+<tr class="fragment" data-fragment-index="4">
+<td><strong>Early Stopping</strong></td>
+<td>Stop when validation loss stops improving</td>
+<td>Patience: 5-20 epochs</td>
+<td>All tasks, prevents overfitting</td>
+</tr>
+<tr class="fragment" data-fragment-index="5">
+<td><strong>Label Smoothing</strong></td>
+<td>Soften one-hot labels: $y = (1-\alpha)y + \alpha/K$</td>
+<td>$\alpha = 0.1$</td>
+<td>Classification, improve calibration</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="6" style="width: 80%; text-align: left;">
+
+**Best Practices:**
+- Start without regularization, overfit first
+- Add data augmentation before other techniques
+- Use weight decay with all optimizers
+- Combine multiple techniques carefully as they can have interactions that degrade performance
+
+</div>
 
 ---
 
 ## Transfer Learning & Pretrained Models
+
+- Transfer learning leverages pretrained models to improve performance on new tasks with less data and computation
+- **Key Insight:** Features learned on large datasets transfer well to related tasks, especially lower-level features
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Method</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Feature Extraction</strong></td>
+<td>Freeze pretrained layers, train only new head</td>
+<td>Small dataset, similar domain</td>
+</tr>
+<tr class="fragment" data-fragment-index="2">
+<td><strong>Fine-tuning</strong></td>
+<td>Unfreeze layers, train with small LR (1e-5 to 1e-4)</td>
+<td>Medium/large dataset, related domain</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Discriminative LR</strong></td>
+<td>Lower LR for early layers, higher for head</td>
+<td>Avoid catastrophic forgetting</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="fragment" data-fragment-index="4">
+
+**Popular Sources:** Vision (ImageNet, CLIP) • Audio (AudioSet, Wav2Vec 2.0, Whisper) • Text (BERT, GPT) • Multi-modal (CLIP, DALL-E)
+
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="5" style="width: 80%; text-align: left;">
+
+**Best Practices:**
+
+- Match input preprocessing to pretrained model requirements
+- Consider domain similarity when choosing layers to transfer
+- Use lower LR to preserve pretrained features
+
+</div>
 
 ---
 
