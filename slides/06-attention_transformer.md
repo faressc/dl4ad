@@ -92,7 +92,7 @@
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Advanced learning techniques and representation learning breakthroughs</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2014:1,2015:0,2016:0">
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2013:1,2014:1,2015:0,2016:0">
         {{TIMELINE:timeline_deep_training}}
     </div>
 </div>

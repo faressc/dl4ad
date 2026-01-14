@@ -92,7 +92,7 @@
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Advanced learning techniques and representation learning breakthroughs</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2014:1,2015:0,2016:0">
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2013:0,2014:0,2015:0,2016:0">
         {{TIMELINE:timeline_deep_training}}
     </div>
 </div>
@@ -185,7 +185,7 @@
 - Analyze and visualize model predictions at different layer stages (e.g., attention maps, embeddings, feature maps)
 - Increase the complexity of the model gradually and monitor the performance on train and validation sets
 - Visualize and analyze predictions on a fixed (unshuffled) set of samples from the validation set after every epoch
-- Check the weights and neuron, as well as their gradients - compute statistics for the different layers (e.g., make sure they are not vanishing or exploding)
+- Check the weights and neurons, as well as their gradients - compute statistics for the different layers (e.g., make sure they are not vanishing or exploding)
 
 </div>
 
@@ -201,7 +201,7 @@
 - Make sure your model can overfit on a small subset of the training data (e.g., 100 samples)
 - Gradually increase the model complexity one step at a time until you can overfit on the full training set
 - Be careful not to overcomplicate the model too early
-- Beware of learning rate schedules if they are dependent on the number of epochs
+- Beware of learning rate schedules
 - When training deep models, check for vanishing or exploding gradients and apply residual connections if necessary
 - When having unstable activation scales consider using normalization layers
 
