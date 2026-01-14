@@ -160,6 +160,57 @@ with $\bigcup_{i=1}^{n} = A_1 \cup A_2 \cup \ldots \cup A_n$ and $A_i \cap A_j =
 
 ---
 
+## Event Relationships
+
+<div style="font-size: 0.85em;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Condition</th>
+      <th>Formula</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Disjoint/Mutually Exclusive</td>
+      <td>Cannot both occur</td>
+      <td>$A \cap B = \emptyset$</td>
+      <td>$P(A \cap B) = 0$</td>
+    </tr>
+    <tr>
+      <td>Overlapping</td>
+      <td>Can both occur</td>
+      <td>$A \cap B \neq \emptyset$</td>
+      <td>$P(A \cap B) > 0$</td>
+    </tr>
+    <tr>
+      <td>Independent</td>
+      <td>Don't affect each other</td>
+      <td>$P(A \cap B) = P(A)P(B)$</td>
+      <td>$P(A|B) = P(A)$</td>
+    </tr>
+    <tr>
+      <td>Dependent</td>
+      <td>Affect each other</td>
+      <td>$P(A \cap B) \neq P(A)P(B)$</td>
+      <td>$P(A|B) \neq P(A)$</td>
+    </tr>
+    <tr>
+      <td>Conditional Independence</td>
+      <td>Independent given C</td>
+      <td>$P(A \cap B|C) = P(A|C)P(B|C)$</td>
+      <td>$P(A|B,C) = P(A|C)$</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+---
+
 ## Random Variables
 
 A **random variable** $X: \Omega \to \mathbb{R}$ is a measurable function that assigns a numerical value to each outcome
@@ -197,7 +248,11 @@ Takes on any value within an interval or the entire real line
 
 For a **discrete** random variable $X$, the PMF $p_X: \mathbb{R} \to [0,1]$ gives the probability of each value:
 
+<div class="formula">
+
 $$p_X(x) = P(\omega \in \Omega : X(\omega) = x)$$
+
+</div>
 
 **Properties:**
 
@@ -218,21 +273,29 @@ $$p_X(x) = P(\omega \in \Omega : X(\omega) = x)$$
 
 ## Probability Density Function (PDF)
 
-For a **continuous** random variable $X$, the PDF $f_X: \mathbb{R} \to [0, \infty)$ describes the density of probability:
+For a **continuous** random variable $X$, the PDF $p_X: \mathbb{R} \to [0, \infty)$ describes the density of probability:
 
-$$P(\{\omega \in \Omega : a \leq X(\omega) \leq b\}) = \int_a^b f_X(x) \, dx$$
+<div class="formula">
+
+$$P(\{\omega \in \Omega : a \leq X(\omega) \leq b\}) = \int_a^b p_X(x) \, dx$$
+
+</div>
 
 **Properties:**
 
-1. $f_X(x) \geq 0$ for all $x$
-2. $\int_{-\infty}^{\infty} f_X(x) \, dx = 1$
+1. $p_X(x) \geq 0$ for all $x$
+2. $\int_{-\infty}^{\infty} p_X(x) \, dx = 1$
 3. $P(\{\omega \in \Omega : X(\omega) = x\}) = 0$ for any specific value (probability is in intervals, not points)
 
 <div class="fragment image-overlay">
 
 **Example:** Standard Normal Distribution
 
-$$f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
+<div class="formula">
+
+$$p_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
+
+</div>
 
 </div>
 
@@ -244,17 +307,183 @@ $$f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
 
 | Property | PMF (Discrete) | PDF (Continuous) |
 |----------|----------------|------------------|
-| Notation | $p_X(x)$ | $f_X(x)$ |
+| Notation | $p_X(x)$ | $p_X(x)$ |
 | Value meaning | Actual probability | Probability density |
-| Summing/Integrating | $\sum_x p_X(x) = 1$ | $\int_{-\infty}^{\infty} f_X(x) dx = 1$ |
+| Summing/Integrating | $\sum_x p_X(x) = 1$ | $\int_{-\infty}^{\infty} p_X(x) dx = 1$ |
 | Point probability | $P(X=x) = p_X(x)$ | $P(X=x) = 0$ |
-| Interval probability | $\sum_{x \in [a,b]} p_X(x)$ | $\int_a^b f_X(x) dx$ |
+| Interval probability | $\sum_{x \in [a,b]} p_X(x)$ | $\int_a^b p_X(x) dx$ |
 | Range of values | $[0, 1]$ | $[0, \infty)$ |
 
 </div>
 
 **Key insight:** For continuous variables, the PDF can exceed 1 (it's a density, not a probability), but the integral over any region is always $\leq 1$.
 
+---
+
+<!-- ## Cumulative Distribution Function (CDF)
+
+The **Cumulative Distribution Function** (CDF) $F_X: \mathbb{R} \to [0,1]$ gives the probability that a random variable $X$ takes on a value less than or equal to $x$:
+
+<div class="formula">
+
+$$F_X(x) = P(X \leq x)$$
+
+</div>
+
+**For Discrete Random Variables:**
+
+<div class="formula">
+
+$$F_X(x) = \sum_{t \leq x} p_X(t)$$
+
+</div>
+
+**For Continuous Random Variables:**
+
+<div class="formula">
+
+$$F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt$$
+
+</div>
+
+**Properties:**
+
+1. Non-decreasing: If $a < b$, then $F_X(a) \leq F_X(b)$
+2. Limits: $\lim_{x \to -\infty} F_X(x) = 0$ and $\lim_{x \to \infty} F_X(x) = 1$
+3. Right-continuous: $F_X(x) = \lim_{t \to x^+} F_X(t)$
+4. Relationship to PMF/PDF:
+   - Discrete: $p_X(x) = F_X(x) - F_X(x^-)$
+   - Continuous: $f_X(x) = \frac{d}{dx} F_X(x)$  -->
+
+## Types of Distributions
+
+<div style="display: flex; gap: 2em;">
+
+<div style="flex: 1;">
+
+**Discrete Distributions**
+
+- **Bernoulli Distribution**: Models a single binary outcome (success/failure)
+- **Binomial Distribution**: Models the number of successes in a fixed number of independent Bernoulli trials
+- **Poisson Distribution**: Models the number of events occurring in a fixed interval of time/space
+
+</div>
+
+<div style="flex: 1;">
+
+**Continuous Distributions**
+
+- **Normal Distribution**: Models a continuous variable with a bell-shaped curve
+- **Exponential Distribution**: Models the time between events in a Poisson process
+- **Uniform Distribution**: Models a variable with equal probability over an interval
+
+</div>
 
 ---
 
+## Joint Distributions
+
+For continuous multiple random variables $X$ and $Y$, the **joint distribution** describes the probability of their combined outcomes.
+
+<div class="formula">
+$$
+\begin{aligned}
+P(a \leq X \leq b, c \leq Y \leq d) &= \int_{a}^{b} \int_{c}^{d} p_{X,Y}(x,y) \, dy \, dx \\
+P(A) &= \iint_{(x,y) \in A} p_{X,Y}(x,y) \, dy \, dx, \quad A \subseteq \mathbb{R}^2 \\
+\text{where } p_{X,Y}(x,y) &\geq 0 \\
+\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} p_{X,Y}(x,y) \, dy \, dx &= 1
+\end{aligned}
+$$
+</div>
+
+For $n$ random variables, the joint PDF is $p_{X_1, X_2, \ldots, X_n}(x_1, x_2, \ldots, x_n)$.
+
+---
+
+## Marginal Distributions
+
+The **marginal distribution** of a random variable is obtained by integrating the joint distribution over the other variable(s).
+
+<div class="formula">
+$$
+\begin{aligned}
+p_X(x) &= \int_{-\infty}^{\infty} p_{X,Y}(x,y) \, dy \\
+p_Y(y) &= \int_{-\infty}^{\infty} p_{X,Y}(x,y) \, dx
+\end{aligned}
+$$
+</div>
+
+This process is called **marginalization**. It is also applicable higher dimensions: for $n$ variables, integrate over $n-1$ variables to get the marginal of one variable.
+
+---
+
+## Conditional Distributions
+
+The **conditional distribution** of a random variable given another is derived from the joint distribution.
+
+<div class="formula">
+$$
+\begin{aligned}
+p_{X|Y}(x|y) &= \frac{p_{X,Y}(x,y)}{p_Y(y)} \quad \text{or} \quad p_{Y|X}(y|x) &= \frac{p_{X,Y}(x,y)}{p_X(x)}
+\end{aligned}
+$$
+</div>
+
+<div style="font-size: 0.85em;">
+
+**Interpretation of $p_{X|Y}(x|y)$:**
+
+<div style="display: flex; gap: 2em;">
+<div style="flex: 1;">
+
+**As a function of $x$ (with $y$ fixed)**
+
+This is the conditional probability distribution of $X$ given $Y=y$. It describes the probability distribution over $X$ when we know $Y=y$.
+
+Must integrate/sum to 1: $\int p_{X|Y}(x|y) \, dx = 1$
+
+</div>
+<div style="flex: 1;">
+
+**As a function of $y$ (with $x$ fixed)**
+
+This is the **likelihood** of $y$ given the observed value $X=x$. It measures the relative support for different values of $y$.
+
+Does **NOT** sum to 1 over $y$.
+
+</div>
+</div>
+
+</div>
+
+---
+
+## Independence of Random Variables
+
+Two random variables $X$ and $Y$ are **independent** if knowing the value of one provides no information about the other:
+
+<div class="formula">
+$$
+\begin{aligned}
+p_{X,Y}(x,y) &= p_X(x) \cdot p_Y(y) \\
+p_{X|Y}(x|y) &= p_X(x) \\
+p_{Y|X}(y|x) &= p_Y(y)
+\end{aligned}
+$$
+</div>
+
+---
+
+## Bayes' Theorem
+
+Bayes' theorem relates the conditional and marginal distributions of random variables.
+
+<div class="formula">
+$$
+p_{X|Y}(x|y) = \frac{p_{Y|X}(y|x) p_X(x)}{p_Y(y)}, \quad p_Y(y) > 0
+$$
+</div>
+
+This theorem is fundamental in Bayesian inference, allowing us to update our beliefs about $X$ after observing $Y$.
+
+---
