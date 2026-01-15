@@ -637,11 +637,11 @@ $$
 
 | Event | Prior × Likelihood | Posterior |
 |-------|-------------------|-----------|
-| Doorbell | $0.6 \times 0.3 = 0.18$ | $0.18/0.295 = 0.61$ |
-| Dog bark | $0.35 \times 0.1 = 0.035$ | $0.035/0.295 = 0.12$ |
-| Glass breaking | $0.05 \times 0.9 = 0.045$ | $0.045/0.295 = 0.15$ |
+| Doorbell | $0.6 \times 0.3 = 0.18$ | $0.18/0.26 = 0.69$ |
+| Dog bark | $0.35 \times 0.1 = 0.035$ | $0.035/0.26 = 0.14$ |
+| Glass breaking | $0.05 \times 0.9 = 0.045$ | $0.045/0.26 = 0.17$ |
 
-Evidence: $p_X(x) = 0.18 + 0.035 + 0.045 = 0.295$
+Evidence: $p_X(x) = 0.18 + 0.035 + 0.045 = 0.26$
 
 </div>
 
@@ -658,9 +658,9 @@ Evidence: $p_X(x) = 0.18 + 0.035 + 0.045 = 0.295$
 ## From Probabilities to Predictions
 
 **From our audio example, we now have:**
-- $p_{Y|X}(\text{doorbell}|x) = 0.61$
-- $p_{Y|X}(\text{dog bark}|x) = 0.12$
-- $p_{Y|X}(\text{glass breaking}|x) = 0.15$
+- $p_{Y|X}(\text{doorbell}|x) = 0.69$
+- $p_{Y|X}(\text{dog bark}|x) = 0.14$
+- $p_{Y|X}(\text{glass breaking}|x) = 0.17$
 
 <div class="fragment">
 
