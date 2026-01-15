@@ -320,41 +320,6 @@ $$p_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
 
 ---
 
-<!-- ## Cumulative Distribution Function (CDF)
-
-The **Cumulative Distribution Function** (CDF) $F_X: \mathbb{R} \to [0,1]$ gives the probability that a random variable $X$ takes on a value less than or equal to $x$:
-
-<div class="formula">
-
-$$F_X(x) = P(X \leq x)$$
-
-</div>
-
-**For Discrete Random Variables:**
-
-<div class="formula">
-
-$$F_X(x) = \sum_{t \leq x} p_X(t)$$
-
-</div>
-
-**For Continuous Random Variables:**
-
-<div class="formula">
-
-$$F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt$$
-
-</div>
-
-**Properties:**
-
-1. Non-decreasing: If $a < b$, then $F_X(a) \leq F_X(b)$
-2. Limits: $\lim_{x \to -\infty} F_X(x) = 0$ and $\lim_{x \to \infty} F_X(x) = 1$
-3. Right-continuous: $F_X(x) = \lim_{t \to x^+} F_X(t)$
-4. Relationship to PMF/PDF:
-   - Discrete: $p_X(x) = F_X(x) - F_X(x^-)$
-   - Continuous: $f_X(x) = \frac{d}{dx} F_X(x)$  -->
-
 ## Types of Distributions
 
 <div style="display: flex; gap: 2em;">
@@ -381,9 +346,70 @@ $$F_X(x) = \int_{-\infty}^{x} f_X(t) \, dt$$
 
 ---
 
+## Expected Value
+
+<div style="font-size: 0.85em;">
+
+The **expected value** (or **expectation**) of a random variable is the probability-weighted average of all possible values.
+
+<div style="display: flex; gap: 2em;">
+<div style="flex: 1;">
+
+**Discrete Random Variable**
+
+<div class="formula">
+
+$$\mathbb{E}[X] = \sum_{x} x \cdot p_X(x)$$
+
+</div>
+
+</div>
+<div style="flex: 1;">
+
+**Continuous Random Variable**
+
+<div class="formula">
+
+$$\mathbb{E}[X] = \int_{-\infty}^{\infty} x \cdot p_X(x) \, dx$$
+
+</div>
+
+</div>
+</div>
+
+**Expectation of a Function:**
+
+<div class="formula">
+
+$$\mathbb{E}[g(X)] = \sum_{x} g(x) \cdot p_X(x) \quad \text{or} \quad \mathbb{E}[g(X)] = \int_{-\infty}^{\infty} g(x) \cdot p_X(x) \, dx$$
+
+</div>
+
+</div>
+
+---
+
+## Properties of Expectation
+
+<div style="font-size: 0.70em;">
+
+| Property | Formula | Note |
+|----------|---------|------|
+| Linearity of Expectation | $\mathbb{E}[aX + bY] = a\mathbb{E}[X] + b\mathbb{E}[Y]$ | Holds for *any* $X$ and $Y$, even if dependent! |
+| Expectation of a Constant | $\mathbb{E}[c] = c$ | |
+| Product of Independent Variables | $\mathbb{E}[XY] = \mathbb{E}[X] \cdot \mathbb{E}[Y]$ | Only if $X$ and $Y$ are independent |
+| Conditional Expectation (Discrete) | $\mathbb{E}[X \| Y = y] = \sum_{x} x \cdot p_{X\|Y}(x\|y)$ | |
+| Conditional Expectation (Continuous) | $\mathbb{E}[X \| Y = y] = \int_{-\infty}^{\infty} x \cdot p_{X\|Y}(x\|y) \, dx$ | |
+
+</div>
+
+---
+
 ## Joint Distributions
 
 For continuous multiple random variables $X$ and $Y$, the **joint distribution** describes the probability of their combined outcomes.
+
+<div style="font-size: 0.85em;">
 
 <div class="formula">
 $$
@@ -397,6 +423,16 @@ $$
 </div>
 
 For $n$ random variables, the joint PDF is $p_{X_1, X_2, \ldots, X_n}(x_1, x_2, \ldots, x_n)$.
+
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1">
+    <img src="assets/images/08-probability_fundamentals/joint_probability.png" alt="Joint Probability Distribution" style="max-width: 100%; height: auto; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
 
 ---
 
@@ -419,7 +455,10 @@ This process is called **marginalization**. It is also applicable higher dimensi
 
 ## Conditional Distributions
 
+<div style="font-size: 0.85em;">
+
 The **conditional distribution** of a random variable given another is derived from the joint distribution.
+
 
 <div class="formula">
 $$
@@ -428,8 +467,6 @@ p_{X|Y}(x|y) &= \frac{p_{X,Y}(x,y)}{p_Y(y)} \quad \text{or} \quad p_{Y|X}(y|x) &
 \end{aligned}
 $$
 </div>
-
-<div style="font-size: 0.85em;">
 
 **Interpretation of $p_{X|Y}(x|y)$:**
 
@@ -447,13 +484,20 @@ Must integrate/sum to 1: $\int p_{X|Y}(x|y) \, dx = 1$
 
 **As a function of $y$ (with $x$ fixed)**
 
-This is the **likelihood** of $y$ given the observed value $X=x$. It measures the relative support for different values of $y$.
+This is the **likelihood** $L(y; x)$ of $y$ given the observed value $X=x$. It measures the relative support for different values of $y$.
 
 Does **NOT** sum to 1 over $y$.
 
 </div>
 </div>
 
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="width: 80%;">
+    <img src="assets/images/08-probability_fundamentals/conditional_probability.png" alt="Conditional Probability Distribution" style="max-width: 100%; height: auto; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
 </div>
 
 ---
@@ -472,18 +516,725 @@ p_{Y|X}(y|x) &= p_Y(y)
 $$
 </div>
 
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="width: 80%; top: 70%;">
+    <img src="assets/images/08-probability_fundamentals/conditional_independence.png" alt="Conditional Independence" style="max-width: 100%; height: auto; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
+    </div>
+</div>
+
+
 ---
 
 ## Bayes' Theorem
 
-Bayes' theorem relates the conditional and marginal distributions of random variables.
+**Bayes' theorem** relates the conditional and marginal probabilities of random variables.
+
+<div style="fragment" data-fragment-index="1">
+
+We can derive it from the definition of conditional probability:
 
 <div class="formula">
 $$
-p_{X|Y}(x|y) = \frac{p_{Y|X}(y|x) p_X(x)}{p_Y(y)}, \quad p_Y(y) > 0
+p_{X,Y}(x,y) = p_{X|Y}(x|y) \cdot p_Y(y) = p_{Y|X}(y|x) \cdot p_X(x)
 $$
 </div>
 
-This theorem is fundamental in Bayesian inference, allowing us to update our beliefs about $X$ after observing $Y$.
+</div>
+
+<div class="fragment" data-fragment-index="2">
+
+Rearranging gives Bayes' theorem:
+
+<div class="formula">
+$$
+p_{Y|X}(y|x) = \frac{p_{X|Y}(x|y) \cdot p_Y(y)}{p_X(x)}
+$$
+</div>
 
 ---
+
+## Bayes' Theorem Components
+
+<div class="formula">
+$$
+\underbrace{p_{Y|X}(y|x)}_{\color{#BF85FC}{\textbf{Posterior}}} = \frac{\overbrace{p_{X|Y}(x|y)}^{\color{#55A49F}{\textbf{Likelihood}}} \cdot \overbrace{p_Y(y)}^{\color{#FE938C}{\textbf{Prior}}}}{\underbrace{p_X(x)}_{\color{#77af49}{\textbf{Evidence}}}}
+$$
+</div>
+
+<div style="font-size: 0.85em;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Term</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong style="color: var(--fs-highlight-background);">Posterior</strong></td>
+      <td>$p_{Y|X}(y | x)$</td>
+      <td>Updated belief about $Y$ after observing $X=x$</td>
+    </tr>
+    <tr>
+      <td><strong style="color: var(--fs-link-color);">Likelihood</strong></td>
+      <td>$p_{X|Y}(x | y)$</td>
+      <td>Probability of observing $X=x$ given $Y=y$</td>
+    </tr>
+    <tr>
+      <td><strong style="color: var(--fs-link-color-hover);">Prior</strong></td>
+      <td>$p_Y(y)$</td>
+      <td>Initial belief about $Y$ before observing any data</td>
+    </tr>
+    <tr>
+      <td><strong style="color: var(--fs-fragment-select-color-1);">Evidence</strong></td>
+      <td>$p_X(x)$</td>
+      <td>Normalizing constant ensuring posterior sums to 1</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+---
+
+## Example: Audio Event Detection
+
+**Scenario:** A smart speaker detects an audio event and needs to classify it
+
+**Classes:** $y \in \{\text{doorbell}, \text{dog bark}, \text{glass breaking}\}$
+
+<div style="display: flex; gap: 2em;">
+<div style="flex: 1;">
+
+**Prior** $p_Y(y)$ — How often each event occurs:
+- $p_Y(\text{doorbell}) = 0.6$
+- $p_Y(\text{dog bark}) = 0.35$
+- $p_Y(\text{glass breaking}) = 0.05$
+
+</div>
+<div style="flex: 1;">
+
+**Likelihood** $p_{X|Y}(x|y)$ — Audio features given event:
+- $p_{X|Y}(\text{high freq burst}|\text{doorbell}) = 0.3$
+- $p_{X|Y}(\text{high freq burst}|\text{dog bark}) = 0.1$
+- $p_{X|Y}(\text{high freq burst}|\text{glass breaking}) = 0.9$
+
+</div>
+</div>
+
+---
+
+## Example: Audio Event Detection
+
+**Observed:** Audio contains high-frequency burst pattern
+
+**Applying Bayes' theorem:**
+
+<div style="font-size: 0.70em;">
+
+| Event | Prior × Likelihood | Posterior |
+|-------|-------------------|-----------|
+| Doorbell | $0.6 \times 0.3 = 0.18$ | $0.18/0.295 = 0.61$ |
+| Dog bark | $0.35 \times 0.1 = 0.035$ | $0.035/0.295 = 0.12$ |
+| Glass breaking | $0.05 \times 0.9 = 0.045$ | $0.045/0.295 = 0.15$ |
+
+Evidence: $p_X(x) = 0.18 + 0.035 + 0.045 = 0.295$
+
+</div>
+
+<div class="fragment">
+
+**Result:** Despite glass breaking having the highest likelihood (0.9), the **doorbell** has the highest posterior (0.61) because it's much more common!
+
+**The prior matters!**
+
+</div>
+
+---
+
+## From Probabilities to Predictions
+
+**From our audio example, we now have:**
+- $p_{Y|X}(\text{doorbell}|x) = 0.61$
+- $p_{Y|X}(\text{dog bark}|x) = 0.12$
+- $p_{Y|X}(\text{glass breaking}|x) = 0.15$
+
+<div class="fragment">
+
+**Question:** Which class should we actually predict?
+
+**We need a decision rule!**
+
+The **Bayesian Decision Rule** provides a principled way to make predictions based on posterior probabilities and a specified loss function.
+
+</div>
+
+---
+
+## Bayesian Decision Rule
+
+**Goal:** Choose class $\hat{y}$ that maximizes some criterion based on posterior probabilities
+
+<div class="formula">
+$$\hat{y} = \arg\min_{\hat{y}} \sum_{y} \mathcal{L}(y, \hat{y}) \cdot p_{Y|X}(y|x)$$
+</div>
+
+We iterate over all possible true classes $y$ to compute expected loss for predicting $\hat{y}$. What if the true class is $y$ but we predicted $\hat{y}$?
+
+**Where:**
+$\mathcal{L}(y, \hat{y})$ = loss incurred for predicting $\hat{y}$ when true class is $y$. I.e, 0-1 loss:
+
+<div class="formula">
+$$\mathcal{L}(y, \hat{y}) = \begin{cases}
+0 & \text{if } y = \hat{y} \\
+1 & \text{if } y \neq \hat{y}
+\end{cases}$$
+</div>
+
+---
+
+## From Bayesian Decision Rule to MAP
+
+**Recall:** Bayesian Decision Rule with 0-1 loss
+
+$$\hat{y} = \arg\min_{\hat{y}} \sum_{y} \mathcal{L}(y, \hat{y}) \cdot p_{Y|X}(y|x)$$
+
+<div class="fragment">
+
+**Step 1:** With 0-1 loss, $\mathcal{L}(y, \hat{y}) = 0$ when $y = \hat{y}$, and $1$ otherwise
+
+$$\sum_{y} \mathcal{L}(y, \hat{y}) \cdot p_{Y|X}(y|x) = \sum_{y \neq \hat{y}} 1 \cdot p_{Y|X}(y|x) = \sum_{y \neq \hat{y}} p_{Y|X}(y|x)$$
+
+</div>
+
+<div class="fragment">
+
+**Step 2:** Since probabilities sum to 1: $\displaystyle\sum_{y} p_{Y|X}(y|x) = p_{Y|X}(\hat{y}|x) + \sum_{y \neq \hat{y}} p_{Y|X}(y|x) = 1$
+
+$$\sum_{y \neq \hat{y}} p_{Y|X}(y|x) = 1 - p_{Y|X}(\hat{y}|x)$$
+
+</div>
+
+---
+
+## Maximum A Posteriori (MAP)
+
+**Step 3:** The expected loss simplifies to:
+
+$$\text{Expected Loss} = 1 - p_{Y|X}(\hat{y}|x)$$
+
+**Minimizing** $1 - p_{Y|X}(\hat{y}|x)$ $\Leftrightarrow$ **Maximizing** $p_{Y|X}(\hat{y}|x)$
+
+<div class="formula">
+$$\hat{y}_{\text{MAP}} = \arg\max_y p_{Y|X}(y|x)$$
+</div>
+
+<div class="fragment">
+
+**By Bayes' theorem:**
+
+<div class="formula">
+$$\hat{y}_{\text{MAP}} = \arg\max_y \frac{p_{X|Y}(x|y) \cdot p_Y(y)}{p_X(x)} = \arg\max_y p_{X|Y}(x|y) \cdot p_Y(y)$$
+</div>
+
+(Can drop $p_X(x)$ since it is the same for all classes)
+
+</div>
+
+---
+
+## MAP Components
+
+**Uses both:**
+
+1. **Likelihood** $p_{X|Y}(x|y)$: "How well does this class explain the audio features?"
+2. **Prior** $p_Y(y)$: "How common is this sound event?"
+
+<div class="fragment">
+
+**Audio Event Detection with MAP:**
+
+- $p_{Y|X}(\text{doorbell}|x) \propto 0.3 \times 0.6 = 0.18$
+- $p_{Y|X}(\text{dog bark}|x) \propto 0.1 \times 0.35 = 0.035$
+- $p_{Y|X}(\text{glass breaking}|x) \propto 0.9 \times 0.05 = 0.045$
+
+**After normalization:** $p_{Y|X}(\text{doorbell}|x) = 0.61$
+
+**MAP prediction: doorbell** ✓ (despite glass breaking having highest likelihood!)
+
+</div>
+
+---
+
+## Maximum Likelihood (ML)
+
+<div class="fragment appear-vanish" data-fragment-index="0">
+
+**MAP requires knowing the prior** $p_Y(y)$
+
+- What if we don't know the prior?
+- What if we want to ignore it?
+- What if all classes are equally likely?
+
+</div>
+
+<div class="fragment" data-fragment-index="1">
+
+**Starting from MAP:**
+<div>
+$$\hat{y}_{\text{MAP}} = \arg\max_y p_{X|Y}(x|y) \cdot p_Y(y)$$
+</div>
+
+**If we ignore $p_Y(y)$ (or assume uniform prior):**
+
+<div class="formula">
+$$\hat{y}_{\text{ML}} = \arg\max_y p_{X|Y}(x|y)$$
+</div>
+
+<div class="highlight">
+This is Maximum Likelihood (ML)
+</div>
+
+</div>
+
+---
+
+## ML Properties
+
+<div class="formula">
+$$\hat{y}_{\text{ML}} = \arg\max_y p_{X|Y}(x|y)$$
+</div>
+
+**Properties:**
+
+- Choose class that makes the data **most likely**
+- **Only** uses the likelihood
+- **Ignores** prior probabilities
+
+<div class="fragment">
+
+**Audio Event Detection with ML:**
+
+- Glass breaking: $p_{X|Y}(\text{high freq burst}|\text{glass}) = 0.9$ ← highest!
+- Doorbell: $0.3$, Dog bark: $0.1$
+
+**ML predicts: glass breaking** (ignores that glass breaking is rare!)
+
+</div>
+
+---
+
+## MAP vs ML: Key Difference
+
+<div style="font-size: 0.85em;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Formula</th>
+      <th>Uses Prior?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>MAP</strong></td>
+      <td>$\arg\max_y p_{X|Y}(x|y) \cdot p_Y(y)$</td>
+      <td>✓ Yes</td>
+    </tr>
+    <tr>
+      <td><strong>ML</strong></td>
+      <td>$\arg\max_y p_{X|Y}(x|y)$</td>
+      <td>✗ No</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div class="fragment">
+
+**Key insight:** ML is just MAP with an assumption (uniform prior)
+
+$$\boxed{\text{ML} \subset \text{MAP}}$$
+
+</div>
+
+---
+
+## Decision Rules Hierarchy
+
+**The complete picture:**
+
+<div class="formula">
+
+$$
+\begin{aligned}
+&\textbf{Bayesian Decision Rule} \text{ (most general)}\\\\
+&\quad\downarrow\text{ Special case: 0-1 loss}\\\\
+&\textbf{MAP} \text{ (uses prior + likelihood)}\\\\
+&\quad\downarrow \text{ Special case: uniform prior}\\\\
+&\textbf{ML} \text{ (likelihood only)}
+\end{aligned}
+$$
+
+</div>
+
+**Each level is a simplification of the one above!**
+
+---
+
+## ML/MAP for Parameter Estimation
+
+**Two Applications of ML/MAP:**
+
+<div style="display: flex; gap: 2em;">
+<div style="flex: 1;">
+
+**Classification/Prediction**
+- Given: Trained model with known parameters $\theta$
+- Goal: Predict class $y$ for new data $x$
+- Method: $\arg\max_y p_{Y|X}(y|x, \theta)$
+
+</div>
+<div style="flex: 1;">
+
+**Parameter Learning/Training**
+- Given: Training data $\mathcal{D}$
+- Goal: Learn the model parameters $\theta$
+- Method: $\arg\max_\theta p_{\Theta|\mathcal{D}}(\theta|\mathcal{D})$
+
+</div>
+</div>
+
+<div class="fragment">
+
+**Same principles, different purposes!**
+
+</div>
+
+---
+
+## Which Parameters?
+
+**Parameters** $\boldsymbol{\theta}$ define your model (recall from Lecture 2):
+
+<div style="font-size: 0.85em;">
+
+| Model | Parameters $\boldsymbol{\theta}$ |
+|-------|-------------------|
+| Simple linear regression | $f_{\boldsymbol{\theta}}(x) = \theta_0 + \theta_1 x$ |
+| Binary classifier | $f_{\boldsymbol{\theta}}(\mathbf{x}) = \theta_0 + \theta_1 x_1 + \theta_2 x_2$ |
+| Perceptron | Weights $\mathbf{w}$ and bias $b$ in $\phi(\mathbf{w}^\top \mathbf{x} + b)$ |
+| MLP / Neural network | All weights and biases across layers |
+| Other NN architectures | Various weights, biases, convolution filters, etc. |
+
+</div>
+
+**Goal:** Find the best $\boldsymbol{\theta}^*$ that explains the training data!
+
+---
+
+## Maximum Likelihood Estimation (MLE)
+
+**Idea:** Choose parameters that make the observed data most likely
+
+Given training data $\mathcal{D} = \{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n, y_n)\}$:
+
+<div class="formula">
+$$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
+</div>
+
+<div class="fragment">
+
+In practice, use **log-likelihood** (easier to optimize):
+
+<div class="formula">
+$$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \sum_{i=1}^n \log p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
+</div>
+
+</div>
+
+---
+
+## Example: Audio Event Detection
+
+**Setup:**
+- Data: $\mathcal{D} = \{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n, y_n)\}$
+- $\mathbf{x}_i \in \mathbb{R}^d$: audio features (MFCCs, spectral centroid, zero-crossing rate, etc.)
+- $y_i \in \{0, 1\}$: label (1 = glass breaking, 0 = not glass breaking)
+- $\boldsymbol{\theta} = \mathbf{w} \in \mathbb{R}^d$: weight vector
+
+<div class="fragment">
+
+**Model:**
+
+<div class="formula">
+$$p_{Y|X,\Theta}(y=1|\mathbf{x}, \mathbf{w}) = \sigma(\mathbf{w}^\top \mathbf{x}) = \frac{1}{1 + e^{-\mathbf{w}^\top \mathbf{x}}}$$
+</div>
+
+where $\sigma$ is the sigmoid function.
+
+</div>
+
+---
+
+## Applying MLE
+
+<div style="font-size: 0.85em;">
+
+**Likelihood for one example** (handles both $y_i = 0$ and $y_i = 1$):
+
+<div class="formula">
+$$p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \mathbf{w}) = \sigma(\mathbf{w}^\top \mathbf{x}_i)^{y_i} \cdot (1-\sigma(\mathbf{w}^\top \mathbf{x}_i))^{1-y_i}$$
+</div>
+
+<div class="fragment appear-vanish" data-fragment-index="0">
+
+**Why this form?** The exponents act as "switches" (Bernoulli trick):
+
+<div style="font-size: 0.85em;">
+
+| $y_i$ | Formula becomes | Result |
+|-------|-----------------|--------|
+| 1 | $\sigma(\cdot)^1 \cdot (1-\sigma(\cdot))^0$ | $\sigma(\mathbf{w}^\top \mathbf{x}_i)$ |
+| 0 | $\sigma(\cdot)^0 \cdot (1-\sigma(\cdot))^1$ | $1 - \sigma(\mathbf{w}^\top \mathbf{x}_i)$ |
+
+</div>
+
+</div>
+
+<div class="fragment" data-fragment-index="1">
+
+**Full log-likelihood** (assuming i.i.d. data):
+
+<div class="formula">
+$$L(\mathbf{w}) = \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+</div>
+
+**This is the binary cross-entropy loss!**
+
+</div>
+
+<div class="fragment">
+
+**MLE solution** (no closed form → use gradient descent):
+
+<div class="formula">
+$$\hat{\mathbf{w}}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## Example: Audio Event Detection
+
+**Data:**
+
+<div style="font-size: 0.60em;">
+
+| Audio Sample | Features $\mathbf{x}_i$ | Label $y_i$ |
+|--------------|------------------------|-------------|
+| 1 | [high freq, short burst, sharp onset] | 1 (glass) |
+| 2 | [mid freq, sustained, smooth onset] | 0 (not glass) |
+| 3 | [high freq, impulse, broadband] | 1 (glass) |
+
+</div>
+
+<div class="fragment" style="font-size: 0.85em;">
+
+**Goal:** Find weights $\mathbf{w}$ that maximize $\displaystyle\prod_{i=1}^3 p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \mathbf{w})$, such that:
+
+- $\sigma(\mathbf{w}^\top \mathbf{x}_1) \approx 1$ (high probability of glass breaking for sample 1)
+- $\sigma(\mathbf{w}^\top \mathbf{x}_2) \approx 0$ (low probability for sample 2)
+- $\sigma(\mathbf{w}^\top \mathbf{x}_3) \approx 1$ (high probability of glass breaking for sample 3)
+
+</div>
+
+---
+
+## MAP for Parameters
+
+**Idea:** Choose parameters with highest posterior probability given data
+
+**Apply Bayes' theorem to parameters:**
+
+<div class="formula">
+
+$$p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \frac{p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_\mathcal{D}(\mathcal{D})}$$
+
+</div>
+
+<div class="fragment">
+
+**MAP estimate:**
+<div>
+$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$$
+</div>
+
+**Relationship:** $\boxed{\text{MAP} = \text{MLE} + \text{Prior on parameters}}$
+
+</div>
+
+---
+
+## Example: Audio Event Detection
+
+<div style="font-size: 0.85em;">
+
+**Recall MLE objective:**
+<div>
+$$\hat{\mathbf{w}}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+</div>
+
+<div class="fragment">
+
+**Add a prior:** Assume weights are Gaussian $p_W(\mathbf{w}) = \mathcal{N}(\mathbf{0}, \lambda^{-1}\mathbf{I})$
+
+$$\log p_W(\mathbf{w}) = -\frac{\lambda}{2}\|\mathbf{w}\|^2 + \text{const}$$
+
+</div>
+
+<div class="fragment">
+
+**MAP objective** (log-posterior = log-likelihood + log-prior):
+
+<div class="formula">
+$$\hat{\mathbf{w}}_{\text{MAP}} = \arg\max_{\mathbf{w}} \left[\underbrace{\hat{\mathbf{w}}_{\text{MLE}}}_{\text{cross-entropy (from likelihood)}} - \underbrace{\frac{\lambda}{2}\|\mathbf{w}\|^2}_{\text{L2 regularization (from prior)}} \right]$$
+</div>
+
+**This is regularized logistic regression for audio classification!**
+
+</div>
+
+</div>
+
+---
+
+## Regularization = Bayesian Prior
+
+<div class="highlight">
+Regularization is just MAP estimation!
+</div>
+
+<div style="font-size: 0.85em;">
+
+**MLE** (no regularization):
+<div>
+$$\hat{\mathbf{w}}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+</div>
+
+This is **logistic regression with cross-entropy loss**!
+
+<div class="fragment">
+
+**MAP** with Gaussian prior $p_W(\mathbf{w}) \sim \mathcal{N}(\mathbf{0}, \lambda^{-1}\mathbf{I})$:
+
+<div>
+$$\hat{\mathbf{w}}_{\text{MAP}} = \arg\max_{\mathbf{w}} \left[ \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right] - \frac{\lambda}{2}\|\mathbf{w}\|^2 \right]$$
+</div>
+
+This is **L2-regularized logistic regression**!
+
+</div>
+
+</div>
+
+---
+
+## Regularization Types and Priors
+
+<div style="font-size: 0.85em;">
+
+| Regularization | Prior Distribution | Effect on Audio Classifier |
+|----------------|-------------------|---------------------------|
+| None | Uniform (no prior) | MLE: weights can grow large |
+| L2 (Ridge) | Gaussian $\mathcal{N}(\mathbf{0}, \sigma^2 \mathbf{I})$ | Prefer small weights for all audio features |
+| L1 (Lasso) | Laplace | Prefer sparse weights (few features matter) |
+| Elastic Net | Gaussian + Laplace | Combination of both |
+
+</div>
+
+<div class="fragment">
+
+**Key insight:**
+$$\boxed{\text{Regularization} = \text{Prior belief about parameters}}$$
+
+**Regularization strength $\lambda$** = How strongly you believe weights should be small
+
+**For audio:** L1 might select only the most discriminative spectral features!
+
+</div>
+
+---
+
+## Comparison: Both Applications
+
+<div style="font-size: 0.8em;">
+
+<table>
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Parameter Learning</th>
+      <th>Classification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Phase</strong></td>
+      <td>Training</td>
+      <td>Testing/Inference</td>
+    </tr>
+    <tr>
+      <td><strong>Unknown</strong></td>
+      <td>Parameters $\theta$</td>
+      <td>Class $y$</td>
+    </tr>
+    <tr>
+      <td><strong>Given</strong></td>
+      <td>Training data $\mathcal{D}$</td>
+      <td>Features $x$, learned $\hat{\theta}$</td>
+    </tr>
+    <tr>
+      <td><strong>MLE/ML</strong></td>
+      <td>$\arg\max_\theta p_{\mathcal{D}|\Theta}(\mathcal{D}|\theta)$</td>
+      <td>$\arg\max_y p_{X|Y}(x|y,\hat{\theta})$</td>
+    </tr>
+    <tr>
+      <td><strong>MAP</strong></td>
+      <td>$\arg\max_\theta p_{\Theta|\mathcal{D}}(\theta|\mathcal{D})$</td>
+      <td>$\arg\max_y p_{Y|X}(y|x,\hat{\theta})$</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+---
+
+## Key Takeaways
+
+<div style="font-size: 0.85em;">
+
+1. **Probabilistic ML** provides a principled framework for handling uncertainty
+
+2. **Bayesian classification** uses Bayes' theorem to compute $p_{Y|X}(y|x)$
+
+3. **Decision rules** (ML, MAP, Bayesian) tell us how to make predictions
+
+4. **Same principles apply** to both classification (predict $y$) and parameter learning (estimate $\theta$)
+
+5. **MAP is generally better** than ML because it uses more information
+
+6. **Regularization is Bayesian:** It's just MAP with a prior on parameters!
+
+7. **Hierarchy:** Bayesian Decision → MAP → ML (each is a special case)
+
+</div>
