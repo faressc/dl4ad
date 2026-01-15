@@ -7,6 +7,7 @@ matplotlib
 numpy
 pandas
 scipy
+seaborn
 sounddevice
 tensorflow
 tensorflow-datasets
