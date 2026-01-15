@@ -647,7 +647,7 @@ Evidence: $p_X(x) = 0.18 + 0.035 + 0.045 = 0.26$
 
 <div class="fragment">
 
-**Result:** Despite glass breaking having the highest likelihood (0.9), the **doorbell** has the highest posterior (0.61) because it's much more common!
+**Result:** Despite glass breaking having the highest likelihood (0.9), the **doorbell** has the highest posterior (0.69) because it's much more common!
 
 **The prior matters!**
 
