@@ -344,6 +344,21 @@ $$p_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
 
 </div>
 
+<div class="fragment appear-vanish image-overlay" data-fragment-index="0" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/08-probability_fundamentals/1080p60/BernoulliDistributionVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/08-probability_fundamentals/1080p60/NormalDistributionVisualization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
 ---
 
 ## Expected Value
