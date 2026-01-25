@@ -910,7 +910,7 @@ $$
 <div style="flex: 1;">
 
 **Classification/Prediction**
-- Given: Trained model with known parameters $\theta$
+- Given: The probabilistic model $p_{Y|X}(y|x, \theta)$ (defined by parameters $\theta$)
 - Goal: Predict class $y$ for new data $x$
 - Method: $\arg\max_y p_{Y|X}(y|x, \theta)$
 
@@ -928,6 +928,17 @@ $$
 <div class="fragment">
 
 **Same principles, different purposes!**
+
+**For parameter learning, we'll start with MAP and derive MLE as a special case...**
+
+<div class="fragment highlight image-overlay" style="text-align: left; width: 80%;">
+
+**About the notation:**
+- $p_{Y,X}(y,x)$ ← joint distribution **of** $Y$ and $X$ (no conditioning)
+- $p_{Y|X}(y|x)$ ← distribution of $Y$ **given** $X$ (conditioning on $X$)
+- $p_{Y|X,\Theta}(y|x,\theta)$ ← distribution of $Y$ **given** $X$ and $\Theta$ (conditioning on their joint)
+
+The comma after the bar means "AND" — we condition on both simultaneously.
 
 </div>
 
@@ -953,6 +964,68 @@ $$
 
 ---
 
+## From MAP to MLE for Parameters
+
+**Starting point: MAP estimate**
+
+<div>
+$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D})$$
+</div>
+
+<div class="fragment">
+
+**Apply Bayes' theorem to the parameters:**
+
+$$p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \frac{p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_\mathcal{D}(\mathcal{D})}$$
+
+</div>
+
+<div class="fragment">
+
+**Simplify the MAP objective:**
+
+<div>
+$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} \frac{p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_\mathcal{D}(\mathcal{D})}$$
+</div>
+
+</div>
+
+---
+
+## From MAP to MLE (continued)
+
+Since $p_\mathcal{D}(\mathcal{D})$ doesn't depend on $\boldsymbol{\theta}$, we can drop it:
+
+<div>
+$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$$
+</div>
+
+<div class="fragment">
+
+**Two components:**
+- $p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta})$ = **Likelihood** of data given parameters
+- $p_\Theta(\boldsymbol{\theta})$ = **Prior** on parameters
+
+</div>
+
+<div class="fragment">
+
+**What if we have no prior knowledge?** Or assume a uniform prior over $\boldsymbol{\theta}$?
+
+$$p_\Theta(\boldsymbol{\theta}) = \text{constant}$$
+
+Then MAP reduces to:
+
+<div>
+$$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta})$$
+</div>
+
+**This is Maximum Likelihood Estimation (MLE)!**
+
+</div>
+
+---
+
 ## Maximum Likelihood Estimation (MLE)
 
 **Idea:** Choose parameters that make the observed data most likely
@@ -963,7 +1036,83 @@ Given training data $\mathcal{D} = \{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n,
 $$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
 </div>
 
+**But why does this equality hold?** Let's derive it step by step...
+
+---
+
+## Deriving the MLE Formula
+
+**Step 1: Define the dataset**
+
+$$\mathcal{D} = \{(\mathbf{x}_1, y_1), (\mathbf{x}_2, y_2), \ldots, (\mathbf{x}_n, y_n)\}$$
+
+We can separate into inputs and outputs: $\mathcal{D} = (X, Y)$ where:
+- $X = \{\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n\}$ (all inputs)
+- $Y = \{y_1, y_2, \ldots, y_n\}$ (all outputs)
+
 <div class="fragment">
+
+**Step 2: What does $p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta})$ mean?**
+
+$$p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) = p_{X,Y|\Theta}(X, Y|\boldsymbol{\theta})$$
+
+This is the joint probability of observing all inputs **and** outputs given parameters $\boldsymbol{\theta}$.
+
+</div>
+
+---
+
+## Deriving the MLE Formula (continued)
+
+**Step 3: Apply conditional probability**
+
+$$p_{X,Y|\Theta}(X, Y|\boldsymbol{\theta}) = p_{Y|X,\Theta}(Y|X, \boldsymbol{\theta}) \cdot p_{X|\Theta}(X|\boldsymbol{\theta})$$
+
+<div class="fragment">
+
+**Key assumption in supervised learning:** We assume inputs $X$ are given/fixed (not modeled by $\boldsymbol{\theta}$), so we focus only on modeling $Y$ given $X$:
+
+$$p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \propto p_{Y|X,\Theta}(Y|X, \boldsymbol{\theta})$$
+
+</div>
+
+<div class="fragment">
+
+**Step 4: Expand the joint probability of all outputs**
+
+$$p_{Y|X,\Theta}(Y|X, \boldsymbol{\theta}) = p_{Y|X,\Theta}(y_1, y_2, \ldots, y_n|\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_n, \boldsymbol{\theta})$$
+
+</div>
+
+---
+
+## Deriving the MLE Formula (continued)
+
+**Step 5: Apply i.i.d. assumption**
+
+**Critical assumption:** Data points are **independent and identically distributed** (i.i.d.)
+
+**Independence means:** Given $\mathbf{x}_i$ and $\boldsymbol{\theta}$, the output $y_i$ doesn't depend on other data points:
+
+<div class="formula">
+$$p_{Y|X,\Theta}(y_i|\mathbf{x}_1, \ldots, \mathbf{x}_n, y_1, \ldots, y_{i-1}, y_{i+1}, \ldots, y_n, \boldsymbol{\theta}) = p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
+</div>
+
+<div class="fragment">
+
+**Because of independence, the joint probability factorizes:**
+
+<div class="formula">
+$$p_{Y|X,\Theta}(y_1, \ldots, y_n|\mathbf{x}_1, \ldots, \mathbf{x}_n, \boldsymbol{\theta}) = \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
+</div>
+
+**This is the product form in MLE!** The comma in $p_{Y|X,\Theta}$ indicates conditioning on both $X$ and parameters $\Theta$, not a joint distribution.
+
+</div>
+
+---
+
+## MLE in Practice
 
 In practice, use **log-likelihood** (easier to optimize):
 
@@ -971,7 +1120,10 @@ In practice, use **log-likelihood** (easier to optimize):
 $$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \sum_{i=1}^n \log p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
 </div>
 
-</div>
+**Why logarithm?**
+- Products become sums (easier to compute gradients)
+- Prevents numerical underflow with small probabilities
+- Doesn't change the argmax (log is monotonic)
 
 ---
 
