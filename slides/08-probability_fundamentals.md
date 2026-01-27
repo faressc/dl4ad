@@ -19,7 +19,7 @@
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:1,1812:1,1815:0,1830:1,1922:1">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:1,1812:1,1815:0,1922:1">
         {{TIMELINE:timeline_probability_statistics}}
     </div>
 </div>
@@ -744,7 +744,7 @@ $$\text{Expected Loss} = 1 - p_{Y|X}(\hat{y}|x)$$
 **Minimizing** $1 - p_{Y|X}(\hat{y}|x)$ $\Leftrightarrow$ **Maximizing** $p_{Y|X}(\hat{y}|x)$
 
 <div class="formula">
-$$\hat{y}_{\text{MAP}} = \arg\max_y p_{Y|X}(y|x)$$
+$$\hat{y}_{\text{MAP}} = \arg\max_{\hat{y}} p_{Y|X}(\hat{y}|x)$$
 </div>
 
 <div class="fragment">
@@ -752,7 +752,7 @@ $$\hat{y}_{\text{MAP}} = \arg\max_y p_{Y|X}(y|x)$$
 **By Bayes' theorem:**
 
 <div class="formula">
-$$\hat{y}_{\text{MAP}} = \arg\max_y \frac{p_{X|Y}(x|y) \cdot p_Y(y)}{p_X(x)} = \arg\max_y p_{X|Y}(x|y) \cdot p_Y(y)$$
+$$\hat{y}_{\text{MAP}} = \arg\max_{\hat{y}} \frac{p_{X|Y}(x|\hat{y}) \cdot p_Y(\hat{y})}{p_X(x)} = \arg\max_{\hat{y}} p_{X|Y}(x|\hat{y}) \cdot p_Y(\hat{y})$$
 </div>
 
 (Can drop $p_X(x)$ since it is the same for all classes)
@@ -767,18 +767,19 @@ $$\hat{y}_{\text{MAP}} = \arg\max_y \frac{p_{X|Y}(x|y) \cdot p_Y(y)}{p_X(x)} = \
 
 1. **Likelihood** $p_{X|Y}(x|y)$: "How well does this class explain the audio features?"
 2. **Prior** $p_Y(y)$: "How common is this sound event?"
+3. **MAP Prediction**: Choose class maximizing the product of likelihood and prior
 
 <div class="fragment">
 
 **Audio Event Detection with MAP:**
 
-- $p_{Y|X}(\text{doorbell}|x) \propto 0.3 \times 0.6 = 0.18$
-- $p_{Y|X}(\text{dog bark}|x) \propto 0.1 \times 0.35 = 0.035$
-- $p_{Y|X}(\text{glass breaking}|x) \propto 0.9 \times 0.05 = 0.045$
-
-**After normalization:** $p_{Y|X}(\text{doorbell}|x) = 0.61$
+- $p_{X|Y}(x|\text{doorbell}) \times p_Y(\text{doorbell}) = 0.3 \times 0.6 = 0.18$
+- $p_{X|Y}(x|\text{dog bark}) \times p_Y(\text{dog bark}) = 0.1 \times 0.35 = 0.035$
+- $p_{X|Y}(x|\text{glass breaking}) \times p_Y(\text{glass breaking}) = 0.9 \times 0.05 = 0.045$
 
 **MAP prediction: doorbell** ✓ (despite glass breaking having highest likelihood!)
+
+**After normalization**: Devide by evidence $p_X(x) = 0.26$ to get posteriors => $p_{Y|X}(\text{doorbell}|x) = 0.69$
 
 </div>
 
@@ -800,13 +801,13 @@ $$\hat{y}_{\text{MAP}} = \arg\max_y \frac{p_{X|Y}(x|y) \cdot p_Y(y)}{p_X(x)} = \
 
 **Starting from MAP:**
 <div>
-$$\hat{y}_{\text{MAP}} = \arg\max_y p_{X|Y}(x|y) \cdot p_Y(y)$$
+$$\hat{y}_{\text{MAP}} = \arg\max_{\hat{y}} p_{X|Y}(x|\hat{y}) \cdot p_Y(\hat{y})$$
 </div>
 
-**If we ignore $p_Y(y)$ (or assume uniform prior):**
+**If we ignore $p_Y(\hat{y})$ (or assume uniform prior):**
 
 <div class="formula">
-$$\hat{y}_{\text{ML}} = \arg\max_y p_{X|Y}(x|y)$$
+$$\hat{y}_{\text{ML}} = \arg\max_{\hat{y}} p_{X|Y}(x|\hat{y})$$
 </div>
 
 <div class="highlight">
@@ -820,7 +821,7 @@ This is Maximum Likelihood (ML)
 ## ML Properties
 
 <div class="formula">
-$$\hat{y}_{\text{ML}} = \arg\max_y p_{X|Y}(x|y)$$
+$$\hat{y}_{\text{ML}} = \arg\max_{\hat{y}} p_{X|Y}(x|\hat{y})$$
 </div>
 
 **Properties:**
@@ -857,12 +858,12 @@ $$\hat{y}_{\text{ML}} = \arg\max_y p_{X|Y}(x|y)$$
   <tbody>
     <tr>
       <td><strong>MAP</strong></td>
-      <td>$\arg\max_y p_{X|Y}(x|y) \cdot p_Y(y)$</td>
+      <td>$\arg\max_{\hat{y}} p_{X|Y}(x|\hat{y}) \cdot p_Y(\hat{y})$</td>
       <td>✓ Yes</td>
     </tr>
     <tr>
       <td><strong>ML</strong></td>
-      <td>$\arg\max_y p_{X|Y}(x|y)$</td>
+      <td>$\arg\max_{\hat{y}} p_{X|Y}(x|\hat{y})$</td>
       <td>✗ No</td>
     </tr>
   </tbody>
@@ -912,7 +913,8 @@ $$
 **Classification/Prediction**
 - Given: The probabilistic model $p_{Y|X}(y|x, \theta)$ (defined by parameters $\theta$)
 - Goal: Predict class $y$ for new data $x$
-- Method: $\arg\max_y p_{Y|X}(y|x, \theta)$
+- Method (MAP): $\arg\max_{\hat{y}} p_{Y|X}(\hat{y}|x, \theta)$
+- Method (ML): $\arg\max_{\hat{y}} p_{X|Y}(x|\hat{y}, \theta)$
 
 </div>
 <div style="flex: 1;">
@@ -920,7 +922,8 @@ $$
 **Parameter Learning/Training**
 - Given: Training data $\mathcal{D}$
 - Goal: Learn the model parameters $\theta$
-- Method: $\arg\max_\theta p_{\Theta|\mathcal{D}}(\theta|\mathcal{D})$
+- Method (MAP): $\arg\max_\theta p_{\Theta|\mathcal{D}}(\theta|\mathcal{D})$
+- Method (ML): $\arg\max_\theta p_{\mathcal{D}|\Theta}(\mathcal{D}|\theta)$
 
 </div>
 </div>
@@ -928,8 +931,6 @@ $$
 <div class="fragment">
 
 **Same principles, different purposes!**
-
-**For parameter learning, we'll start with MAP and derive MLE as a special case...**
 
 <div class="fragment highlight image-overlay" style="text-align: left; width: 80%;">
 
@@ -969,7 +970,7 @@ The comma after the bar means "AND" — we condition on both simultaneously.
 **Starting point: MAP estimate**
 
 <div>
-$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D})$$
+$$\boldsymbol{\theta}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D})$$
 </div>
 
 <div class="fragment">
@@ -985,7 +986,7 @@ $$p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \frac{p_{\mathcal{D}
 **Simplify the MAP objective:**
 
 <div>
-$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} \frac{p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_\mathcal{D}(\mathcal{D})}$$
+$$\boldsymbol{\theta}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} \frac{p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_\mathcal{D}(\mathcal{D})}$$
 </div>
 
 </div>
@@ -997,7 +998,7 @@ $$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} \frac{
 Since $p_\mathcal{D}(\mathcal{D})$ doesn't depend on $\boldsymbol{\theta}$, we can drop it:
 
 <div>
-$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$$
+$$\boldsymbol{\theta}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$$
 </div>
 
 <div class="fragment">
@@ -1017,7 +1018,7 @@ $$p_\Theta(\boldsymbol{\theta}) = \text{constant}$$
 Then MAP reduces to:
 
 <div>
-$$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta})$$
+$$\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta})$$
 </div>
 
 **This is Maximum Likelihood Estimation (MLE)!**
@@ -1033,7 +1034,7 @@ $$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\ma
 Given training data $\mathcal{D} = \{(\mathbf{x}_1, y_1), \ldots, (\mathbf{x}_n, y_n)\}$:
 
 <div class="formula">
-$$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
+$$\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
 </div>
 
 **But why does this equality hold?** Let's derive it step by step...
@@ -1117,7 +1118,7 @@ $$p_{Y|X,\Theta}(y_1, \ldots, y_n|\mathbf{x}_1, \ldots, \mathbf{x}_n, \boldsymbo
 In practice, use **log-likelihood** (easier to optimize):
 
 <div class="formula">
-$$\hat{\boldsymbol{\theta}}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \sum_{i=1}^n \log p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
+$$\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \sum_{i=1}^n \log p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$$
 </div>
 
 **Why logarithm?**
@@ -1191,7 +1192,7 @@ $$L(\mathbf{w}) = \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}
 **MLE solution** (no closed form → use gradient descent):
 
 <div class="formula">
-$$\hat{\mathbf{w}}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+$$\mathbf{w}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
 </div>
 
 </div>
@@ -1242,7 +1243,7 @@ $$p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \frac{p_{\mathcal{D}
 
 **MAP estimate:**
 <div>
-$$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$$
+$$\boldsymbol{\theta}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \arg\max_{\boldsymbol{\theta}} p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$$
 </div>
 
 **Relationship:** $\boxed{\text{MAP} = \text{MLE} + \text{Prior on parameters}}$
@@ -1257,7 +1258,7 @@ $$\hat{\boldsymbol{\theta}}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} p_{\Th
 
 **Recall MLE objective:**
 <div>
-$$\hat{\mathbf{w}}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+$$\mathbf{w}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
 </div>
 
 <div class="fragment">
@@ -1273,7 +1274,7 @@ $$\log p_W(\mathbf{w}) = -\frac{\lambda}{2}\|\mathbf{w}\|^2 + \text{const}$$
 **MAP objective** (log-posterior = log-likelihood + log-prior):
 
 <div class="formula">
-$$\hat{\mathbf{w}}_{\text{MAP}} = \arg\max_{\mathbf{w}} \left[\underbrace{\hat{\mathbf{w}}_{\text{MLE}}}_{\text{cross-entropy (from likelihood)}} - \underbrace{\frac{\lambda}{2}\|\mathbf{w}\|^2}_{\text{L2 regularization (from prior)}} \right]$$
+$$\mathbf{w}_{\text{MAP}} = \arg\max_{\mathbf{w}} \left[\underbrace{\mathbf{w}_{\text{MLE}}}_{\text{cross-entropy (from likelihood)}} - \underbrace{\frac{\lambda}{2}\|\mathbf{w}\|^2}_{\text{L2 regularization (from prior)}} \right]$$
 </div>
 
 **This is regularized logistic regression for audio classification!**
@@ -1294,7 +1295,7 @@ Regularization is just MAP estimation!
 
 **MLE** (no regularization):
 <div>
-$$\hat{\mathbf{w}}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
+$$\mathbf{w}_{\text{MLE}} = \arg\max_{\mathbf{w}} \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right]$$
 </div>
 
 This is **logistic regression with cross-entropy loss**!
@@ -1304,7 +1305,7 @@ This is **logistic regression with cross-entropy loss**!
 **MAP** with Gaussian prior $p_W(\mathbf{w}) \sim \mathcal{N}(\mathbf{0}, \lambda^{-1}\mathbf{I})$:
 
 <div>
-$$\hat{\mathbf{w}}_{\text{MAP}} = \arg\max_{\mathbf{w}} \left[ \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right] - \frac{\lambda}{2}\|\mathbf{w}\|^2 \right]$$
+$$\mathbf{w}_{\text{MAP}} = \arg\max_{\mathbf{w}} \left[ \sum_{i=1}^n \left[ y_i \log \sigma(\mathbf{w}^\top \mathbf{x}_i) + (1-y_i) \log(1-\sigma(\mathbf{w}^\top \mathbf{x}_i)) \right] - \frac{\lambda}{2}\|\mathbf{w}\|^2 \right]$$
 </div>
 
 This is **L2-regularized logistic regression**!
@@ -1367,17 +1368,17 @@ $$\boxed{\text{Regularization} = \text{Prior belief about parameters}}$$
     <tr>
       <td><strong>Given</strong></td>
       <td>Training data $\mathcal{D}$</td>
-      <td>Features $x$, learned $\hat{\theta}$</td>
+      <td>Features $x$, learned $\theta$</td>
     </tr>
     <tr>
       <td><strong>MLE/ML</strong></td>
       <td>$\arg\max_\theta p_{\mathcal{D}|\Theta}(\mathcal{D}|\theta)$</td>
-      <td>$\arg\max_y p_{X|Y}(x|y,\hat{\theta})$</td>
+      <td>$\arg\max_{\hat{y}} p_{X|Y}(x|\hat{y},\theta)$</td>
     </tr>
     <tr>
       <td><strong>MAP</strong></td>
       <td>$\arg\max_\theta p_{\Theta|\mathcal{D}}(\theta|\mathcal{D})$</td>
-      <td>$\arg\max_y p_{Y|X}(y|x,\hat{\theta})$</td>
+      <td>$\arg\max_{\hat{y}} p_{Y|X}(\hat{y}|x,\theta)$</td>
     </tr>
   </tbody>
 </table>
