@@ -115,17 +115,17 @@
 
 **Foundation:** Random variables ($X$, $Y$) with distributions (PMF/PDF), characterized by expectation, joint/marginal/conditional probabilities
 
-**Bayes' Theorem:** $p_{Y|X}(y|x) = \frac{p_{X|Y}(x|y) \cdot p_Y(y)}{p_X(x)}$ — connects posterior, likelihood, and prior
+**Bayes' Theorem:** $p_{Y|X}(\mathbf{y}|\mathbf{x}) = \frac{p_{X|Y}(\mathbf{x}|\mathbf{y}) \cdot p_Y(\mathbf{y})}{p_X(\mathbf{x})}$ — connects posterior, likelihood, and prior
 
 **Decision Rules (Classification):**
-- Bayesian: $\arg\min_{\hat{y}} \sum_{y} \mathcal{L}(y, \hat{y}) \cdot p_{Y|X}(y|x)$ (minimize expected loss)
-- MAP: $\arg\max_{\hat{y}} p_{X|Y}(x|\hat{y}) p_Y(\hat{y})$ (0-1 loss → maximize posterior)
-- ML: $\arg\max_{\hat{y}} p_{X|Y}(x|\hat{y})$ (uniform prior → maximize likelihood)
+- Bayesian: $\arg\min_{\hat{\mathbf{y}}} \sum_{\mathbf{y}} \mathcal{L}(\mathbf{y}, \hat{\mathbf{y}}) \cdot p_{Y|X}(\mathbf{y}|\mathbf{x})$ (minimize expected loss)
+- MAP: $\arg\max_{\hat{\mathbf{y}}} p_{X|Y}(\mathbf{x}|\hat{\mathbf{y}}) p_Y(\hat{\mathbf{y}})$ (0-1 loss → maximize posterior)
+- ML: $\arg\max_{\hat{\mathbf{y}}} p_{X|Y}(\mathbf{x}|\hat{\mathbf{y}})$ (uniform prior → maximize likelihood)
 
 **Parameter Estimation (Training):**
 - Bayesian: $p_{\Theta|\mathcal{D}}(\boldsymbol{\theta}|\mathcal{D}) = \frac{p_{\mathcal{D}|\Theta}(\mathcal{D}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_{\mathcal{D}}(\mathcal{D})}$ (full posterior distribution)
-- MAP: $\arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$ (mode of posterior = **regularization**)
-- MLE: $\arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(y_i|\mathbf{x}_i, \boldsymbol{\theta})$ (uniform prior)
+- MAP: $\arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(\mathbf{y}_i|\mathbf{x}_i, \boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})$ (mode of posterior = **regularization**)
+- MLE: $\arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(\mathbf{y}_i|\mathbf{x}_i, \boldsymbol{\theta})$ (uniform prior)
 
 **Key:** Same probabilistic framework applies to both **what to predict** (classification) and **how to learn** (training)
 
@@ -153,15 +153,21 @@ In supervised learning, we have access to a labeled dataset:
 
 where each input $\mathbf{x}_i$ is paired with a corresponding output $\mathbf{y}_i$.
 
+<div class="fragment appear-vanish" data-fragment-index="1">
+
 **Probabilistic Formulation:**
 
-We can frame supervised learning probabilistically by assuming the data is generated from some conditional distribution $p_{Y|X,\Theta}(y|\mathbf{x}, \boldsymbol{\theta})$ parameterized by $\boldsymbol{\theta}$. Using Bayes' theorem, the posterior distribution over parameters is:
+We can frame supervised learning probabilistically by assuming the data is generated from some conditional distribution $p_{Y|X,\Theta}(\mathbf{y}|\mathbf{x}, \boldsymbol{\theta})$ parameterized by $\boldsymbol{\theta}$. Using Bayes' theorem, the posterior distribution over parameters is:
 
 <div class="formula">
   $$
   p_{\Theta|X,Y}(\boldsymbol{\theta}|\mathbf{X}, \mathbf{Y}) = \frac{p_{X,Y|\Theta}(\mathbf{X}, \mathbf{Y}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_{X,Y}(\mathbf{X}, \mathbf{Y})}
   $$
 </div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
 
 **Parameter Estimation:**
 
@@ -171,6 +177,8 @@ In practice, we typically estimate a single "best" parameter value rather than c
   $$
 \theta_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(\mathbf{y}_i|\mathbf{x}_i, \boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})
   $$
+</div>
+
 </div>
 
 </div>
@@ -195,6 +203,8 @@ We only have access to observations without corresponding labels:
   $$
 </div>
 
+<div class="fragment appear-vanish" data-fragment-index="1">
+
 **Probabilistic Formulation:**
 
 We model the data distribution directly as $p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta})$. The goal is to find parameters that explain the observed data:
@@ -204,6 +214,10 @@ We model the data distribution directly as $p_{X|\Theta}(\mathbf{x}|\boldsymbol{
   p_{\Theta|X}(\boldsymbol{\theta}|\mathbf{X}) = \frac{p_{X|\Theta}(\mathbf{X}|\boldsymbol{\theta}) \cdot p_\Theta(\boldsymbol{\theta})}{p_X(\mathbf{X})}
   $$
 </div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
 
 **Parameter Estimation:**
 
@@ -217,6 +231,8 @@ Using Maximum Likelihood Estimation, we find parameters that maximize the probab
 
 </div>
 
+</div>
+
 ---
 
 ## Latent Variables
@@ -225,28 +241,272 @@ Using Maximum Likelihood Estimation, we find parameters that maximize the probab
 
 <img src="assets/images/09-latent_models/unsupervised_learning.svg" alt="Latent Variable Model" style="float: right; width: 30%; margin-left: 20px; margin-bottom: 20px;">
 
-So far, we have focused on datasets with fully observed variables. However, in many real-world scenarios, some variables are **unobserved** or **hidden**.
+But sometimes, it is difficult to model the data distribution directly. Instead, we can introduce latent (hidden) variables that capture underlying factors and try to model the joint distribution of observed and latent variables.
 
-**Motivation:**
+The latent variable model assumes that each observation $\mathbf{x}$ is generated from a latent variable $\mathbf{z}$ through a conditional distribution $p_{X|Z,\Theta}(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta})$.
 
-- Data often has underlying structure not directly measurable
-- Examples: topics in documents, speaker identity in audio, object pose in images
+We can express the marginal likelihood of the observed data by integrating out the latent variables:
 
-**Latent Variable Model:**
-
-We introduce latent variables $\mathbf{z}$ to capture hidden factors:
-
-<div class="formula" style="width: 60%; margin-left: 0;">
+<div class="formula" style="width: 63%; margin-left: 0;">
   $$
 p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) = \int p_{X|Z,\Theta}(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z}
   $$
 </div>
 
-**Key Insight:**
+<div class="fragment appear" data-fragment-index="1">
 
-The observed data $\mathbf{x}$ is generated by first sampling a latent variable $\mathbf{z}$ from a prior $p_{Z|\Theta}(\mathbf{z}|\boldsymbol{\theta})$, then generating $\mathbf{x}$ conditioned on $\mathbf{z}$.
+**Parameter Estimation:**
 
-**Challenge:** The integral (marginalization over $\mathbf{z}$) is often intractable!
+To estimate the parameters $\boldsymbol{\theta}$ in the presence of latent variables, we can use Maximum Likelihood Estimation (MLE) by maximizing the marginal likelihood:
+
+<div class="formula">
+  $$
+\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{X|\Theta}(\mathbf{x}_i|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n \int p_{X|Z,\Theta}(\mathbf{x}_i|\mathbf{z}, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z}
+  $$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## From Latent Variables to Clustering
+
+<div style="font-size: 0.75em;">
+
+**The Challenge:** The integral $\int p(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \cdot p(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z}$ is often intractable for continuous $\mathbf{z}$.
+
+<div class="fragment appear" data-fragment-index="1">
+
+**Simplification:** What if $\mathbf{z}$ is **discrete**? Let $z \in \{1, 2, ..., K\}$ represent a cluster assignment.
+
+The integral becomes a tractable **sum**:
+
+<div class="formula">
+  $$
+p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) = \sum_{k=1}^K p_{X|Z,\Theta}(\mathbf{x}|z=k, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(z=k|\boldsymbol{\theta})
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**Gaussian Mixture Model (GMM):** Choose Gaussian components with mixing weights $\pi_k$:
+
+<div class="formula">
+  $$
+p(\mathbf{x}|\boldsymbol{\theta}) = \sum_{k=1}^K \pi_k \cdot \mathcal{N}(\mathbf{x}|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
+  $$
+</div>
+
+| Latent Variable Model | Gaussian Mixture Model |
+|:----------------------|:-----------------------|
+| $p_{Z\|\Theta}(\mathbf{z}\|\boldsymbol{\theta})$ | $\pi_k$ (mixing weights, $\sum_k \pi_k = 1$) |
+| $p_{X\|Z,\Theta}(\mathbf{x}\|\mathbf{z}, \boldsymbol{\theta})$ | $\mathcal{N}(\mathbf{x}\|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)$ |
+
+</div>
+
+</div>
+
+---
+
+## The GMM Optimization Problem
+
+<div style="font-size: 0.75em;">
+
+**MLE Objective:** Maximize the log-likelihood over all data points:
+
+<div class="formula">
+  $$
+\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \sum_{i=1}^n \log \left( \sum_{k=1}^K \pi_k \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \right)
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+**The Problem:** The **log of the sum** prevents closed-form solutions!
+
+Taking the derivative with respect to $\boldsymbol{\mu}_k$ using the chain rule:
+
+<div class="formula">
+  $$
+\frac{\partial \mathcal{L}}{\partial \boldsymbol{\mu}_k} = \sum_{i=1}^n \frac{\pi_k \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)}{\sum_{j=1}^K \pi_j \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_j, \boldsymbol{\Sigma}_j)} \cdot \boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_i - \boldsymbol{\mu}_k)
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+Setting to zero and solving, we get a **circular dependency**:
+
+<div class="formula">
+  $$
+\boldsymbol{\mu}_k = \frac{\sum_{i=1}^n \gamma_{ik} \mathbf{x}_i}{\sum_{i=1}^n \gamma_{ik}} \quad \text{where} \quad \gamma_{ik} = \frac{\pi_k \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)}{\sum_{j=1}^K \pi_j \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_j, \boldsymbol{\Sigma}_j)}
+  $$
+</div>
+
+<div>
+$\boldsymbol{\mu}_k$ appears on <strong>both sides</strong> — the solution depends on $\gamma_{ik}$, which depends on $\boldsymbol{\mu}_k$ itself!
+</div>
+
+</div>
+
+</div>
+
+---
+
+## Contrast: Single Gaussian vs. Mixture
+
+<div style="font-size: 0.75em;">
+
+**Single Gaussian** (no mixture, no sum inside log):
+
+<div class="formula">
+  $$
+\log p(\mathbf{x}|\boldsymbol{\mu}, \boldsymbol{\Sigma}) = -\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) + \text{const}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+Taking derivative and setting to zero gives a **clean closed-form**:
+
+<div class="formula">
+  $$
+\boldsymbol{\mu}_{\text{MLE}} = \frac{1}{n} \sum_{i=1}^n \mathbf{x}_i
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**Gaussian Mixture** (sum inside log):
+
+The log doesn't "pass through" to individual components. All parameters remain coupled in the denominator of $\gamma_{ik}$, creating the circular dependency.
+
+**Key Insight:** If we **knew the cluster assignments** $z_i$, we could reduce each cluster to a single Gaussian problem!
+
+- Each $\boldsymbol{\mu}_k$ would just be the mean of points assigned to cluster $k$
+- But we don't know $z_i$ — that's what we're trying to learn!
+
+</div>
+
+</div>
+
+---
+
+## The EM Algorithm: Intuition
+
+<div style="font-size: 0.75em;">
+
+**Chicken-and-egg problem:**
+- If we knew **parameters** $\boldsymbol{\theta}$, we could compute cluster assignments $z_i$
+- If we knew **assignments** $z_i$, we could easily estimate parameters $\boldsymbol{\theta}$
+
+<div class="fragment appear" data-fragment-index="1">
+
+**EM Solution:** Alternate between the two!
+
+<div style="display: flex; justify-content: space-around; margin: 20px 0;">
+  <div style="text-align: center; padding: 15px; border: 2px solid #4CAF50; border-radius: 10px; width: 40%;">
+    <strong>E-Step (Expectation)</strong><br>
+    Given current $\boldsymbol{\theta}^{(t)}$,<br>
+    compute <em>soft</em> cluster assignments<br>
+    $\gamma_{ik} = p(z_i = k | \mathbf{x}_i, \boldsymbol{\theta}^{(t)})$
+  </div>
+  <div style="font-size: 2em; align-self: center;">→</div>
+  <div style="text-align: center; padding: 15px; border: 2px solid #2196F3; border-radius: 10px; width: 40%;">
+    <strong>M-Step (Maximization)</strong><br>
+    Given responsibilities $\gamma_{ik}$,<br>
+    update parameters<br>
+    $\boldsymbol{\theta}^{(t+1)}$
+  </div>
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**Guaranteed Properties:**
+- Log-likelihood **never decreases** at each iteration
+- Converges to a **local maximum** (not necessarily global)
+
+</div>
+
+</div>
+
+---
+
+## EM for Gaussian Mixture Models
+
+<div style="font-size: 0.7em;">
+
+**E-Step:** Compute responsibilities (posterior probability that point $i$ belongs to cluster $k$):
+
+<div class="formula">
+  $$
+\gamma_{ik} = \frac{\pi_k \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)}{\sum_{j=1}^K \pi_j \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_j, \boldsymbol{\Sigma}_j)}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+**M-Step:** Update parameters using weighted statistics:
+
+<div class="formula">
+  $$
+\begin{aligned}
+N_k &= \sum_{i=1}^n \gamma_{ik} & &\text{(effective number of points in cluster } k \text{)} \\[0.5em]
+\boldsymbol{\mu}_k^{\text{new}} &= \frac{1}{N_k} \sum_{i=1}^n \gamma_{ik} \mathbf{x}_i & &\text{(weighted mean)} \\[0.5em]
+\boldsymbol{\Sigma}_k^{\text{new}} &= \frac{1}{N_k} \sum_{i=1}^n \gamma_{ik} (\mathbf{x}_i - \boldsymbol{\mu}_k^{\text{new}})(\mathbf{x}_i - \boldsymbol{\mu}_k^{\text{new}})^\top & &\text{(weighted covariance)} \\[0.5em]
+\pi_k^{\text{new}} &= \frac{N_k}{n} & &\text{(mixing weight)}
+\end{aligned}
+  $$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## EM Algorithm: Summary
+
+<div style="font-size: 0.75em;">
+
+```
+Initialize: θ⁽⁰⁾ = {μₖ, Σₖ, πₖ} randomly or with k-means
+
+Repeat until convergence:
+    
+    E-Step: For each point i and cluster k, compute:
+            γᵢₖ = P(zᵢ = k | xᵢ, θ⁽ᵗ⁾)
+    
+    M-Step: Update parameters:
+            μₖ ← weighted mean of points
+            Σₖ ← weighted covariance
+            πₖ ← fraction of responsibility
+    
+    Check: Δ log-likelihood < ε → stop
+```
+
+<div class="fragment appear" data-fragment-index="1">
+
+**K-Means as a Special Case:**
+
+| GMM with EM | K-Means |
+|:------------|:--------|
+| Soft assignments $\gamma_{ik} \in [0,1]$ | Hard assignments $\gamma_{ik} \in \{0,1\}$ |
+| Full covariance $\boldsymbol{\Sigma}_k$ | Spherical: $\boldsymbol{\Sigma}_k = \sigma^2 \mathbf{I}$ |
+| Probabilistic model | Distance-based heuristic |
+
+K-means is the limit of GMM-EM as $\sigma \to 0$ (hard assignments)
+
+</div>
 
 </div>
 
