@@ -432,10 +432,27 @@ The log doesn't "pass through" to individual components. All parameters remain c
 
 **Connection to Lecture 08:** Recall our two applications of Bayesian inference:
 
-| Step | What it does | Relation to Prob. Fundamentals |
-|:-----|:-------------|:-------------------------------|
-| **E-Step** | Compute **full posterior** $p(z\|x, \boldsymbol{\theta})$ | Like classification, but returns **entire distribution** (not just MAP argmax) |
-| **M-Step** | Maximize expected complete-data log-likelihood | **Weighted MLE** — each point contributes to all clusters via $\gamma_{ik}$ |
+<table style="font-size: 0.7em; width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr style="border-bottom: 2px solid #333;">
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Step</th>
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">What it does</th>
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Relation to Prob. Fundamentals</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;"><strong>E-Step</strong></td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Compute <strong>full posterior</strong> $p(z|x, \boldsymbol{\theta})$</td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Like classification, but returns <strong>entire distribution</strong> (not just MAP argmax)</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;"><strong>M-Step</strong></td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Maximize expected complete-data log-likelihood</td>
+      <td style="padding: 8px; border: 1px solid #ccc;"><strong>Weighted MLE</strong> — each point contributes to all clusters via $\gamma_{ik}$</td>
+    </tr>
+  </tbody>
+</table>
 
 **Key insight:** If E-step used MAP (hard assignments), we'd get K-means. Soft assignments are what make EM different!
 
@@ -509,13 +526,28 @@ Repeat until convergence:
 
 **K-Means as a Special Case:**
 
-| GMM with EM | K-Means |
-|:------------|:--------|
-| Soft assignments $\gamma_{ik} \in [0,1]$ | Hard assignments $\gamma_{ik} \in \{0,1\}$ |
-| Full covariance $\boldsymbol{\Sigma}_k$ | Spherical: $\boldsymbol{\Sigma}_k = \sigma^2 \mathbf{I}$ |
-| Probabilistic model | Distance-based heuristic |
-
-K-means is the limit of GMM-EM as $\sigma \to 0$ (hard assignments)
+<table style="font-size: 0.7em; width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr style="border-bottom: 2px solid #333;">
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">GMM with EM</th>
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">K-Means</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;">Soft assignments $\gamma_{ik} \in [0,1]$</td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Hard assignments $\gamma_{ik} \in \{0,1\}$</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;">Full covariance $\boldsymbol{\Sigma}_k$</td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Spherical: $\boldsymbol{\Sigma}_k = \sigma^2 \mathbf{I}$</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;">Probabilistic model</td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Distance-based heuristic</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -584,11 +616,26 @@ The log of a weighted average is **at least** the weighted average of logs.
 
 </div>
 
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style=" top: 70%;">
+    <img src="assets/images/09-latent_models/jensen_inequality_discrete.png" alt="Joint Probability Distribution" style="max-width: 100%; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince) - adapted</a>
+    </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style="width: 80%; top: 70%;">
+    <img src="assets/images/09-latent_models/jensen_inequality_continuous.png" alt="Joint Probability Distribution" style="max-width: 100%; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince) - adapted</a>
+    </div>
+</div>
+
+
 ---
 
 ## ELBO: Evidence Lower Bound
 
-<div style="font-size: 0.75em;">
+<div style="font-size: 0.65em;">
 
 To tackle this, we introduce a variational distribution $q_{Z|X}(\mathbf{z}|\mathbf{x})$ over the latent variables and use Jensen's inequality to derive a lower bound on the log likelihood:
 
@@ -639,7 +686,7 @@ This lower bound is called the **Evidence Lower Bound (ELBO)**:
 
 ## Kullback-Leibler (KL) Divergence
 
-<div style="font-size: 0.75em;">
+<div style="font-size: 0.70em;">
 
 The **KL divergence** measures how different one probability distribution is from another:
 
@@ -676,14 +723,13 @@ D_{\text{KL}}(q \,\|\, p) = \mathbb{E}_{q} \left[ \log \frac{q(z)}{p(z)} \right]
 
 ## Evidence Decomposition
 
-<div style="font-size: 0.7em;">
+<div style="font-size: 0.65em;">
 
 **Key insight:** Let's rewrite the ELBO using the chain rule $p(\mathbf{x}, z|\boldsymbol{\theta}) = p(z|\mathbf{x}, \boldsymbol{\theta}) \cdot p(\mathbf{x}|\boldsymbol{\theta})$:
 
 <div class="formula">
   $$
 \begin{aligned}
-\text{ELBO}(q, \boldsymbol{\theta}) &= \mathbb{E}_{q} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
 &= \mathbb{E}_{q} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{q} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
 &= \log p(\mathbf{x}|\boldsymbol{\theta}) - \mathbb{E}_{q} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]\\
 &= \log p(\mathbf{x}|\boldsymbol{\theta}) - D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
@@ -707,11 +753,15 @@ Rearranging gives the **fundamental decomposition**:
 
 **This tells us:**
 
+<div style="font-size: 0.65em;">
+
 | Property | Explanation |
 |:---------|:------------|
 | ELBO is a **lower bound** | Since $D_{\text{KL}} \geq 0$ always |
 | The **gap** is the KL divergence | From $q$ to the true posterior $p(z\|\mathbf{x}, \boldsymbol{\theta})$ |
 | **Tight bound** when $q = p(z\|\mathbf{x}, \boldsymbol{\theta})$ | Setting $q$ to the true posterior makes $D_{\text{KL}} = 0$ |
+
+</div>
 
 </div>
 
@@ -797,6 +847,15 @@ After the E-step, the bound is tight:
 </div>
 
 </div>
+
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style=" width: 90%;">
+    <img src="assets/images/09-latent_models/em_elbo.png" alt="Joint Probability Distribution" style="max-width: 100%; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince) - adapted</a>
+    </div>
+</div>
+
 
 ---
 
@@ -963,6 +1022,13 @@ We've **raised the ELBO** by finding better parameters!
 
 </div>
 
+<div class="fragment appear-vanish image-overlay" data-fragment-index="3" style=" width: 90%;">
+    <img src="assets/images/09-latent_models/em_elbo.png" alt="Joint Probability Distribution" style="max-width: 100%; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince) - adapted</a>
+    </div>
+</div>
+
 ---
 
 ## Connecting the Dots
@@ -985,12 +1051,18 @@ We've **raised the ELBO** by finding better parameters!
 
 </div>
 
+<div class="fragment image-overlay" data-fragment-index="3" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/09-latent_models/1080p60/EMVisualization1D.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
 
 ---
 
 ## Why the Log-Likelihood Increases
 
-<div style="font-size: 0.65em;">
+<div style="font-size: 0.5em;">
 
 **After E-step** (before M-step): We set $q = p(z|x, \boldsymbol{\theta}^{(t)})$, so $D_{\text{KL}} = 0$
 
@@ -1033,18 +1105,11 @@ Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \bolds
 
 </div>
 
-<div class="fragment image-overlay" data-fragment-index="3" style="text-align: center; width: 1200px; height: auto;">
-    <video width="100%" data-autoplay loop muted controls>
-        <source src="assets/videos/09-latent_models/1080p60/EMVisualization1D.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
-
 ---
 
 ## Summary: Latent Variable Models & EM
 
-<div style="font-size: 0.68em;">
+<div style="font-size: 0.65em;">
 
 **Latent Variable Models:**
 - Introduce hidden variables $\mathbf{z}$ to model complex data distributions
@@ -1052,10 +1117,27 @@ Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \bolds
 
 **The EM Algorithm:**
 
-| Step | What it does | Why it works |
-|:-----|:-------------|:-------------|
-| **E-Step** | Compute $\gamma_{ik} = p(z_i=k\|\mathbf{x}_i, \boldsymbol{\theta}^{(t)})$ | Minimizes KL divergence → makes ELBO tight |
-| **M-Step** | Update $\boldsymbol{\theta}$ via weighted MLE | Maximizes Q-function → raises ELBO |
+<table style="font-size: 0.65em; width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr style="border-bottom: 2px solid #333;">
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Step</th>
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">What it does</th>
+      <th style="text-align: left; padding: 8px; border: 1px solid #ccc;">Why it works</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;"><strong>E-Step</strong></td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Compute $\gamma_{ik} = p(z_i=k|\mathbf{x}_i, \boldsymbol{\theta}^{(t)})$</td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Minimizes KL divergence → makes ELBO tight</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px; border: 1px solid #ccc;"><strong>M-Step</strong></td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Update $\boldsymbol{\theta}$ via weighted MLE</td>
+      <td style="padding: 8px; border: 1px solid #ccc;">Maximizes Q-function → raises ELBO</td>
+    </tr>
+  </tbody>
+</table>
 
 **Key Theoretical Insights:**
 - **ELBO**: $\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}) + D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}))$
@@ -1067,5 +1149,3 @@ Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \bolds
 - K-means = EM with hard assignments ($\gamma_{ik} \in \{0,1\}$)
 
 </div>
-
----
