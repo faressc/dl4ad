@@ -476,6 +476,13 @@ N_k &= \sum_{i=1}^n \gamma_{ik} & &\text{(effective number of points in cluster 
 
 </div>
 
+<div class="fragment image-overlay" data-fragment-index="2" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/09-latent_models/1080p60/EMStepByStep.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
 ---
 
 ## EM Algorithm: Summary
@@ -512,6 +519,13 @@ K-means is the limit of GMM-EM as $\sigma \to 0$ (hard assignments)
 
 </div>
 
+</div>
+
+<div class="fragment image-overlay" data-fragment-index="2" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/09-latent_models/1080p60/EMVisualization1D.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 
 ---
@@ -951,3 +965,107 @@ We've **raised the ELBO** by finding better parameters!
 
 ---
 
+## Connecting the Dots
+
+<div style="font-size: 0.7em;">
+
+**From theory to practice:** The variational derivation justifies exactly what we presented intuitively!
+
+| Intuitive View | Variational Derivation |
+|:---------------|:-----------------------|
+| E-step: Compute soft assignments $\gamma_{ik}$ | Minimize $D_{\text{KL}}(q \,\|\, p)$ → set $q = p(z\|x, \boldsymbol{\theta})$ |
+| M-step: Weighted MLE for each cluster | Maximize $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \mathbb{E}_q[\log p(x,z\|\boldsymbol{\theta})]$ |
+| Log-likelihood increases | ELBO ↑ (E-step tightens, M-step raises) |
+
+</div>
+
+<div class="fragment appear highlight" data-fragment-index="1">
+
+**Why does EM converge?**
+
+</div>
+
+
+---
+
+## Why the Log-Likelihood Increases
+
+<div style="font-size: 0.65em;">
+
+**After E-step** (before M-step): We set $q = p(z|x, \boldsymbol{\theta}^{(t)})$, so $D_{\text{KL}} = 0$
+
+<div class="formula">
+  $$
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}) + \underbrace{D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}))}_{= 0}
+  $$
+</div>
+
+Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)})$
+
+<div class="fragment appear" data-fragment-index="1">
+
+**After M-step**: We found $\boldsymbol{\theta}^{(t+1)}$ that maximizes ELBO, but $q$ is now stale (computed with old $\boldsymbol{\theta}^{(t)}$):
+
+<div class="formula">
+  $$
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}) + \underbrace{D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t+1)}))}_{\geq 0}
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**Combining the inequalities:**
+
+1. M-step maximized ELBO: $\text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t)})$
+2. KL is non-negative: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)})$
+
+<div class="formula">
+  $$
+\boxed{\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t)}) = \log p(\mathbf{x}|\boldsymbol{\theta}^{(t)})}
+  $$
+</div>
+
+**The log-likelihood is monotonically non-decreasing!** EM is guaranteed to converge to a local maximum.
+
+</div>
+
+</div>
+
+<div class="fragment image-overlay" data-fragment-index="3" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/09-latent_models/1080p60/EMVisualization1D.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Summary: Latent Variable Models & EM
+
+<div style="font-size: 0.68em;">
+
+**Latent Variable Models:**
+- Introduce hidden variables $\mathbf{z}$ to model complex data distributions
+- Marginal likelihood: $p(\mathbf{x}|\boldsymbol{\theta}) = \int p(\mathbf{x}, z|\boldsymbol{\theta}) \, dz$ — intractable due to log-of-sum
+
+**The EM Algorithm:**
+
+| Step | What it does | Why it works |
+|:-----|:-------------|:-------------|
+| **E-Step** | Compute $\gamma_{ik} = p(z_i=k\|\mathbf{x}_i, \boldsymbol{\theta}^{(t)})$ | Minimizes KL divergence → makes ELBO tight |
+| **M-Step** | Update $\boldsymbol{\theta}$ via weighted MLE | Maximizes Q-function → raises ELBO |
+
+**Key Theoretical Insights:**
+- **ELBO**: $\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}) + D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}))$
+- **Convergence guarantee**: Log-likelihood is monotonically non-decreasing
+- **Connection to Lecture 08**: E-step = full posterior, M-step = weighted MLE
+
+**GMM as a Concrete Example:**
+- Discrete latent $z \in \{1, \ldots, K\}$ = cluster assignment
+- K-means = EM with hard assignments ($\gamma_{ik} \in \{0,1\}$)
+
+</div>
+
+---
