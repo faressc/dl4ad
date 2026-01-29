@@ -594,11 +594,11 @@ The problem is the **log of the sum** — prevents closed-form solutions!
 
 **Jensen's Inequality** provides a key tool for handling the log of a sum.
 
-For a **concave function** $f$ (like $\log$) and any distribution $q$ over $z$:
+For a **concave function** $f$ (like $\log$) and any distribution $p$ over $z$:
 
 <div class="formula">
   $$
-f\left( \mathbb{E}_q[g(z)] \right) \geq \mathbb{E}_q\left[ f(g(z)) \right]
+f\left( \mathbb{E}_p[g(z)] \right) \geq \mathbb{E}_p\left[ f(g(z)) \right]
   $$
 </div>
 
