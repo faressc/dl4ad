@@ -249,7 +249,7 @@ We can express the marginal likelihood of the observed data by integrating out t
 
 <div class="formula" style="width: 63%; margin-left: 0;">
   $$
-p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) = \int p_{X|Z,\Theta}(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z}
+p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) = \int p_{X|Z,\Theta}(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z} = \int p_{X,Z | \Theta}(\mathbf{x},\mathbf{z} |\boldsymbol{\theta}) \, d\mathbf{z}
   $$
 </div>
 
@@ -261,7 +261,7 @@ To estimate the parameters $\boldsymbol{\theta}$ in the presence of latent varia
 
 <div class="formula">
   $$
-\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{X|\Theta}(\mathbf{x}_i|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n \int p_{X|Z,\Theta}(\mathbf{x}_i|\mathbf{z}, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z}
+\boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{X|\Theta}(\mathbf{x}_i|\boldsymbol{\theta}) = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n \int p_{X,Z | \Theta}(\mathbf{x},\mathbf{z} |\boldsymbol{\theta}) \, d\mathbf{z}
   $$
 </div>
 
@@ -275,7 +275,7 @@ To estimate the parameters $\boldsymbol{\theta}$ in the presence of latent varia
 
 <div style="font-size: 0.75em;">
 
-**The Challenge:** The integral $\int p(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \cdot p(\mathbf{z}|\boldsymbol{\theta}) \, d\mathbf{z}$ is often intractable for continuous $\mathbf{z}$.
+**The Challenge:** The integral $\int p_{X,Z | \Theta}(\mathbf{x},\mathbf{z} |\boldsymbol{\theta}) \, d\mathbf{z}$ is often intractable for continuous $\mathbf{z}$.
 
 <div class="fragment appear" data-fragment-index="1">
 
@@ -285,9 +285,8 @@ The integral becomes a tractable **sum**:
 
 <div class="formula">
   $$
-p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) = \sum_{k=1}^K p_{X|Z,\Theta}(\mathbf{x}|z=k, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(z=k|\boldsymbol{\theta})
+p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) = \sum_{k=1}^K p_{X,Z|\Theta}(\mathbf{x}, z=k |\boldsymbol{\theta}) = \sum_{k=1}^K p_{X|Z,\Theta}(\mathbf{x}|z=k, \boldsymbol{\theta}) \cdot p_{Z|\Theta}(z=k|\boldsymbol{\theta})
   $$
-</div>
 
 </div>
 
@@ -421,7 +420,7 @@ The log doesn't "pass through" to individual components. All parameters remain c
   <div style="font-size: 2em; align-self: center;">→</div>
   <div style="text-align: center; padding: 15px; border: 2px solid #2196F3; border-radius: 10px; width: 40%;">
     <strong>M-Step (Maximization)</strong><br>
-    Given responsibilities $\gamma_{ik}$,<br>
+    Given soft cluster assignments $\gamma_{ik}$,<br>
     update parameters<br>
     $\boldsymbol{\theta}^{(t+1)}$
   </div>
@@ -431,9 +430,14 @@ The log doesn't "pass through" to individual components. All parameters remain c
 
 <div class="fragment appear" data-fragment-index="2">
 
-**Guaranteed Properties:**
-- Log-likelihood **never decreases** at each iteration
-- Converges to a **local maximum** (not necessarily global)
+**Connection to Lecture 08:** Recall our two applications of Bayesian inference:
+
+| Step | What it does | Relation to Prob. Fundamentals |
+|:-----|:-------------|:-------------------------------|
+| **E-Step** | Compute **full posterior** $p(z\|x, \boldsymbol{\theta})$ | Like classification, but returns **entire distribution** (not just MAP argmax) |
+| **M-Step** | Maximize expected complete-data log-likelihood | **Weighted MLE** — each point contributes to all clusters via $\gamma_{ik}$ |
+
+**Key insight:** If E-step used MAP (hard assignments), we'd get K-means. Soft assignments are what make EM different!
 
 </div>
 
@@ -505,6 +509,441 @@ Repeat until convergence:
 | Probabilistic model | Distance-based heuristic |
 
 K-means is the limit of GMM-EM as $\sigma \to 0$ (hard assignments)
+
+</div>
+
+</div>
+
+---
+
+## Deriving EM via Variational Inference
+
+<div style="font-size: 0.75em;">
+
+**Remember:** Our goal is to maximize the log marginal likelihood:
+
+<div class="formula">
+  $$
+\begin{aligned}
+p_{X|\Theta}(\mathbf{X}|\boldsymbol{\theta}) &= \prod_{i=1}^n p_{X|\Theta}(\mathbf{x}_i|\boldsymbol{\theta}) \\
+&= \prod_{i=1}^n \sum_{k=1}^K \pi_k \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \\
+\log p_{X|\Theta}(\mathbf{X}|\boldsymbol{\theta}) &= \sum_{i=1}^n \log \left( \sum_{k=1}^K \pi_k \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \right)
+\end{aligned}
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear highlight" data-fragment-index="1">
+
+The problem is the **log of the sum** — prevents closed-form solutions!
+
+</div>
+
+---
+
+## Jensen's Inequality
+
+<div style="font-size: 0.75em;">
+
+**Jensen's Inequality** provides a key tool for handling the log of a sum.
+
+For a **concave function** $f$ (like $\log$) and any distribution $q$ over $z$:
+
+<div class="formula">
+  $$
+f\left( \mathbb{E}_q[g(z)] \right) \geq \mathbb{E}_q\left[ f(g(z)) \right]
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+**Applied to the logarithm with discrete distribution $p$:**
+
+<div class="formula">
+  $$
+\log \left( \sum_z p(z) \cdot g(z) \right) \geq \sum_z p(z) \cdot \log g(z)
+  $$
+</div>
+
+The log of a weighted average is **at least** the weighted average of logs.
+
+</div>
+
+---
+
+## ELBO: Evidence Lower Bound
+
+<div style="font-size: 0.75em;">
+
+To tackle this, we introduce a variational distribution $q_{Z|X}(\mathbf{z}|\mathbf{x})$ over the latent variables and use Jensen's inequality to derive a lower bound on the log likelihood:
+
+<div class="formula">
+  $$
+\begin{aligned}
+\log p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) &= \log \left( \sum_{k=1}^K p_{X,Z|\Theta}(\mathbf{x}, z=k|\boldsymbol{\theta}) \right) \\
+&= \log \left( \sum_{k=1}^K q_{Z|X}(z=k|\mathbf{x}) \cdot \frac{p_{X,Z|\Theta}(\mathbf{x}, z=k|\boldsymbol{\theta})}{q_{Z|X}(z=k|\mathbf{x})} \right) \\
+&= \log \left( \mathbb{E}_{q_{Z|X}} \left[ \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right] \right) \\
+&\geq \mathbb{E}_{q_{Z|X}} \left[ \log \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right] \quad \text{(Jensen's inequality)}
+\end{aligned}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+This lower bound is called the **Evidence Lower Bound (ELBO)**:
+
+<div class="formula">
+  $$
+\text{ELBO}(q, \boldsymbol{\theta}) = \mathbb{E}_{q_{Z|X}} \left[ \log \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right]
+  $$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## Evidence Decomposition
+
+<div style="font-size: 0.7em;">
+
+**Key insight:** Let's rewrite the ELBO using the chain rule $p(\mathbf{x}, z|\boldsymbol{\theta}) = p(z|\mathbf{x}, \boldsymbol{\theta}) \cdot p(\mathbf{x}|\boldsymbol{\theta})$:
+
+<div class="formula">
+  $$
+\begin{aligned}
+\text{ELBO}(q, \boldsymbol{\theta}) &= \mathbb{E}_{q} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \mathbb{E}_{q} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{q} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \log p(\mathbf{x}|\boldsymbol{\theta}) - \underbrace{\mathbb{E}_{q} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]}_{D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)}
+\end{aligned}
+  $$
+</div>
+
+---
+
+## Kullback-Leibler (KL) Divergence
+
+<div style="font-size: 0.75em;">
+
+The **KL divergence** measures how different one probability distribution is from another:
+
+<div class="formula">
+  $$
+D_{\text{KL}}(q \,\|\, p) = \mathbb{E}_{q} \left[ \log \frac{q(z)}{p(z)} \right] = \sum_z q(z) \log \frac{q(z)}{p(z)}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+**Key properties:**
+
+| Property | Meaning |
+|:---------|:--------|
+| $D_{\text{KL}}(q \,\|\, p) \geq 0$ | Always non-negative |
+| $D_{\text{KL}}(q \,\|\, p) = 0 \iff q = p$ | Zero only when distributions are identical |
+| $D_{\text{KL}}(q \,\|\, p) \neq D_{\text{KL}}(p \,\|\, q)$ | **Not symmetric** — order matters! |
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**Intuition:** KL divergence measures the "extra bits" needed to encode samples from $q$ using a code optimized for $p$.
+
+- Large $D_{\text{KL}}$: $q$ and $p$ are very different
+- Small $D_{\text{KL}}$: $q$ approximates $p$ well
+
+</div>
+
+</div>
+
+---
+
+## Evidence Decomposition
+
+<div style="font-size: 0.7em;">
+
+**Key insight:** Let's rewrite the ELBO using the chain rule $p(\mathbf{x}, z|\boldsymbol{\theta}) = p(z|\mathbf{x}, \boldsymbol{\theta}) \cdot p(\mathbf{x}|\boldsymbol{\theta})$:
+
+<div class="formula">
+  $$
+\begin{aligned}
+\text{ELBO}(q, \boldsymbol{\theta}) &= \mathbb{E}_{q} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \mathbb{E}_{q} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{q} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \log p(\mathbf{x}|\boldsymbol{\theta}) - \mathbb{E}_{q} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]\\
+&= \log p(\mathbf{x}|\boldsymbol{\theta}) - D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
+\end{aligned}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+Rearranging gives the **fundamental decomposition**:
+
+<div class="formula">
+  $$
+\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}) + D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**This tells us:**
+
+| Property | Explanation |
+|:---------|:------------|
+| ELBO is a **lower bound** | Since $D_{\text{KL}} \geq 0$ always |
+| The **gap** is the KL divergence | From $q$ to the true posterior $p(z\|\mathbf{x}, \boldsymbol{\theta})$ |
+| **Tight bound** when $q = p(z\|\mathbf{x}, \boldsymbol{\theta})$ | Setting $q$ to the true posterior makes $D_{\text{KL}} = 0$ |
+
+</div>
+
+</div>
+
+---
+
+## The E-Step: Making the Bound Tight
+
+<div style="font-size: 0.7em;">
+
+At iteration $t$, we have current parameters $\boldsymbol{\theta}^{(t)}$. From the decomposition:
+
+<div class="formula">
+  $$
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}) + D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right)
+  $$
+</div>
+
+We want to first **maximize the ELBO w.r.t. $q$** to make the bound as tight as possible.
+
+<div class="fragment appear" data-fragment-index="1">
+
+<div class="formula">
+  $$
+\begin{aligned}
+q^{(t+1)}(z|\mathbf{x}) &= \arg\max_{q} \text{ELBO}(q, \boldsymbol{\theta}^{(t)})\\
+&= \arg\max_{q} \left( \log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) - D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right) \right) \\
+\end{aligned}
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+Since $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)})$ is constant w.r.t. $q$, this is equivalent to minimizing the KL divergence:
+
+<div class="formula">
+  $$
+q^{(t+1)}(z|\mathbf{x}) = \arg\min_{q} D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right)
+  $$
+</div>
+
+</div>
+
+---
+
+## The E-Step: Making the Bound Tight
+
+<div style="font-size: 0.7em;">
+
+Since $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)})$ is constant w.r.t. $q$, this is equivalent to minimizing the KL divergence:
+
+<div class="formula">
+  $$
+q^{(t+1)}(z|\mathbf{x}) = \arg\min_{q} D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right)
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+The minimum is achieved when the two distributions are equal. In the case of GMMs, this gives the familiar E-step update:
+
+<div class="formula">
+  $$
+q^{(t+1)}(z=k|\mathbf{x}_i) = p(z=k|\mathbf{x}_i, \boldsymbol{\theta}^{(t)}) = \frac{\pi_k^{(t)} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k^{(t)}, \boldsymbol{\Sigma}_k^{(t)})}{\sum_{j=1}^K \pi_j^{(t)} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_j^{(t)}, \boldsymbol{\Sigma}_j^{(t)})}
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+After the E-step, the bound is tight:
+
+<div class="formula">
+  $$
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t)})
+  $$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## The M-Step: Raising the Bound
+
+<div style="font-size: 0.7em;">
+
+Now we fix $q(z|\mathbf{x}) = q^{(t+1)}(z|\mathbf{x})$ and maximize the ELBO with respect to $\boldsymbol{\theta}$:
+
+<div class="formula">
+  $$
+\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta})
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+Recall the ELBO definition:
+
+<div class="formula">
+  $$
+\text{ELBO}(q, \boldsymbol{\theta}) = \mathbb{E}_{q} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right]
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+Since $q$ is **fixed**, the entropy term $-\mathbb{E}_{q}[\log q(z|\mathbf{x})]$ is constant w.r.t. $\boldsymbol{\theta}$:
+
+<div class="formula">
+  $$
+\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \mathbb{E}_{q^{(t+1)}} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right]
+  $$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## The M-Step: The Q-Function
+
+<div style="font-size: 0.7em;">
+
+The quantity we maximize is called the **Q-function** (expected complete-data log-likelihood):
+
+<div class="formula">
+  $$
+Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \mathbb{E}_{q^{(t+1)}} \left[ \log p(\mathbf{X}, \mathbf{Z}|\boldsymbol{\theta}) \right] = \sum_{i=1}^{n} \sum_z q^{(t+1)}(z|\mathbf{x}_i) \log p(\mathbf{x}_i, z|\boldsymbol{\theta})
+  $$
+</div>
+
+*Notation: $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)})$ means "Q as a function of $\boldsymbol{\theta}$, where $\boldsymbol{\theta}^{(t)}$ was used to compute $q^{(t+1)}$" — **not** a conditional probability!*
+
+<div class="fragment appear" data-fragment-index="1">
+
+For GMMs, the joint factors as $p(\mathbf{x}_i, z_i=k|\boldsymbol{\theta}) = p(\mathbf{x}_i|z_i=k, \boldsymbol{\theta}) \cdot p(z_i=k|\boldsymbol{\theta}) = \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \cdot \pi_k$
+
+Taking the log: $\log p(\mathbf{x}_i, z_i=k|\boldsymbol{\theta}) = \log \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) + \log \pi_k$
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+Substituting into the Q-function with $q^{(t+1)}(z_i = k) = \gamma_{ik}$:
+
+<div class="formula">
+  $$
+Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \sum_{i=1}^{n} \sum_{k=1}^{K} \gamma_{ik} \left[ \log \pi_k + \log \mathcal{N}(\mathbf{x}_i | \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \right]
+  $$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="3">
+
+**Key insight:** The log is now **inside** the sum over $k$, not outside!
+
+- Each term involves only **one** component's parameters
+- This is a **weighted log-likelihood** — we can maximize in closed form!
+
+</div>
+
+</div>
+
+---
+
+## The M-Step: Closed-Form Updates
+
+<div style="font-size: 0.65em;">
+
+To maximize $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)})$, we take derivatives and set to zero.
+
+**For $\boldsymbol{\mu}_k$:** Using $\log \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) = -\frac{1}{2}(\mathbf{x}_i - \boldsymbol{\mu}_k)^\top \boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_i - \boldsymbol{\mu}_k) + \text{const}$
+
+<div class="formula">
+  $$
+\frac{\partial Q}{\partial \boldsymbol{\mu}_k} = \sum_{i=1}^{n} \gamma_{ik} \boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_i - \boldsymbol{\mu}_k) = 0 \quad \Rightarrow \quad \boldsymbol{\mu}_k = \frac{\sum_{i=1}^{n} \gamma_{ik} \mathbf{x}_i}{\sum_{i=1}^{n} \gamma_{ik}}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+**For $\pi_k$:** Maximize $\sum_k N_k \log \pi_k$ subject to $\sum_k \pi_k = 1$ using Lagrange multipliers:
+
+<div class="formula">
+  $$
+\frac{\partial}{\partial \pi_k}\left[\sum_k N_k \log \pi_k + \lambda\left(\sum_k \pi_k - 1\right)\right] = \frac{N_k}{\pi_k} + \lambda = 0 \quad \Rightarrow \quad \pi_k = \frac{N_k}{n}
+  $$
+</div>
+
+where $N_k = \sum_{i=1}^n \gamma_{ik}$ and $\lambda = -n$ from the constraint.
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**For $\boldsymbol{\Sigma}_k$:** Similar derivation using matrix calculus gives:
+
+<div class="formula">
+  $$
+\boldsymbol{\Sigma}_k = \frac{\sum_{i=1}^{n} \gamma_{ik} (\mathbf{x}_i - \boldsymbol{\mu}_k)(\mathbf{x}_i - \boldsymbol{\mu}_k)^\top}{\sum_{i=1}^{n} \gamma_{ik}}
+  $$
+</div>
+
+</div>
+
+</div>
+
+---
+
+## The M-Step: Summary
+
+<div style="font-size: 0.7em;">
+
+Maximizing $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)})$ gives the familiar M-step updates:
+
+<div class="formula">
+  $$
+\begin{aligned}
+\pi_k^{(t+1)} &= \frac{1}{n} \sum_{i=1}^{n} \gamma_{ik} \\[0.8em]
+\boldsymbol{\mu}_k^{(t+1)} &= \frac{\sum_{i=1}^{n} \gamma_{ik} \mathbf{x}_i}{\sum_{i=1}^{n} \gamma_{ik}} \\[0.8em]
+\boldsymbol{\Sigma}_k^{(t+1)} &= \frac{\sum_{i=1}^{n} \gamma_{ik} (\mathbf{x}_i - \boldsymbol{\mu}_k^{(t+1)})(\mathbf{x}_i - \boldsymbol{\mu}_k^{(t+1)})^\top}{\sum_{i=1}^{n} \gamma_{ik}}
+\end{aligned}
+  $$
+</div>
+
+<div class="fragment appear" data-fragment-index="1">
+
+**After the M-step:**
+
+<div class="formula">
+  $$
+\text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t)})
+  $$
+</div>
+
+We've **raised the ELBO** by finding better parameters!
 
 </div>
 
