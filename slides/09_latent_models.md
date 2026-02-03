@@ -598,7 +598,7 @@ For a **concave function** $f$ (like $\log$) and any distribution $p$ over $z$:
 
 <div class="formula">
   $$
-f\left( \mathbb{E}_p[g(z)] \right) \geq \mathbb{E}_p\left[ f(g(z)) \right]
+f\left( \mathbb{E}_{z \sim p(z)}[g(z)] \right) \geq \mathbb{E}_{z \sim p(z)}\left[ f(g(z)) \right]
   $$
 </div>
 
@@ -644,8 +644,8 @@ To tackle this, we introduce a variational distribution $q_{Z|X}(\mathbf{z}|\mat
 \begin{aligned}
 \log p_{X|\Theta}(\mathbf{x}|\boldsymbol{\theta}) &= \log \left( \sum_{k=1}^K p_{X,Z|\Theta}(\mathbf{x}, z=k|\boldsymbol{\theta}) \right) \\
 &= \log \left( \sum_{k=1}^K q_{Z|X}(z=k|\mathbf{x}) \cdot \frac{p_{X,Z|\Theta}(\mathbf{x}, z=k|\boldsymbol{\theta})}{q_{Z|X}(z=k|\mathbf{x})} \right) \\
-&= \log \left( \mathbb{E}_{q_{Z|X}} \left[ \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right] \right) \\
-&\geq \mathbb{E}_{q_{Z|X}} \left[ \log \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right] \quad \text{(Jensen's inequality)}
+&= \log \left( \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right] \right) \\
+&\geq \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right] \quad \text{(Jensen's inequality)}
 \end{aligned}
   $$
 </div>
@@ -656,7 +656,7 @@ This lower bound is called the **Evidence Lower Bound (ELBO)**:
 
 <div class="formula">
   $$
-\text{ELBO}(q, \boldsymbol{\theta}) = \mathbb{E}_{q_{Z|X}} \left[ \log \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right]
+\text{ELBO}(q, \boldsymbol{\theta}) = \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log \frac{p_{X,Z|\Theta}(\mathbf{x}, z|\boldsymbol{\theta})}{q_{Z|X}(z|\mathbf{x})} \right]
   $$
 </div>
 
@@ -675,9 +675,9 @@ This lower bound is called the **Evidence Lower Bound (ELBO)**:
 <div class="formula">
   $$
 \begin{aligned}
-\text{ELBO}(q, \boldsymbol{\theta}) &= \mathbb{E}_{q} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
-&= \mathbb{E}_{q} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{q} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
-&= \log p(\mathbf{x}|\boldsymbol{\theta}) - \underbrace{\mathbb{E}_{q} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]}_{D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)}
+\text{ELBO}(q, \boldsymbol{\theta}) &= \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \log p(\mathbf{x}|\boldsymbol{\theta}) - \underbrace{\mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]}_{D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)}
 \end{aligned}
   $$
 </div>
@@ -692,7 +692,7 @@ The **KL divergence** measures how different one probability distribution is fro
 
 <div class="formula">
   $$
-D_{\text{KL}}(q \,\|\, p) = \mathbb{E}_{q} \left[ \log \frac{q(z)}{p(z)} \right] = \sum_z q(z) \log \frac{q(z)}{p(z)}
+D_{\text{KL}}(q \,\|\, p) = \mathbb{E}_{z \sim q(z)} \left[ \log \frac{q(z)}{p(z)} \right] = \sum_z q(z) \log \frac{q(z)}{p(z)}
   $$
 </div>
 
@@ -730,8 +730,9 @@ D_{\text{KL}}(q \,\|\, p) = \mathbb{E}_{q} \left[ \log \frac{q(z)}{p(z)} \right]
 <div class="formula">
   $$
 \begin{aligned}
-&= \mathbb{E}_{q} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{q} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right] \\
-&= \log p(\mathbf{x}|\boldsymbol{\theta}) - \mathbb{E}_{q} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]\\
+\text{ELBO}(q, \boldsymbol{\theta}) &= \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(\mathbf{x}|\boldsymbol{\theta}) \right] - \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log q(z|\mathbf{x}) \right] \\
+&= \log p(\mathbf{x}|\boldsymbol{\theta}) - \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log \frac{q(z|\mathbf{x})}{p(z|\mathbf{x}, \boldsymbol{\theta})} \right]\\
 &= \log p(\mathbf{x}|\boldsymbol{\theta}) - D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
 \end{aligned}
   $$
@@ -743,7 +744,7 @@ Rearranging gives the **fundamental decomposition**:
 
 <div class="formula">
   $$
-\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}) + D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
+\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}; \mathbf{x}) + D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
   $$
 </div>
 
@@ -777,7 +778,7 @@ At iteration $t$, we have current parameters $\boldsymbol{\theta}^{(t)}$. From t
 
 <div class="formula">
   $$
-\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}) + D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right)
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}; \mathbf{x}) + D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right)
   $$
 </div>
 
@@ -788,7 +789,7 @@ We want to first **maximize the ELBO w.r.t. $q$** to make the bound as tight as 
 <div class="formula">
   $$
 \begin{aligned}
-q^{(t+1)}(z|\mathbf{x}) &= \arg\max_{q} \text{ELBO}(q, \boldsymbol{\theta}^{(t)})\\
+q^{(t+1)}(z|\mathbf{x}) &= \arg\max_{q} \text{ELBO}(q, \boldsymbol{\theta}^{(t)}; \mathbf{x})\\
 &= \arg\max_{q} \left( \log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) - D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}) \right) \right) \\
 \end{aligned}
   $$
@@ -828,7 +829,11 @@ The minimum is achieved when the two distributions are equal. In the case of GMM
 
 <div class="formula">
   $$
-q^{(t+1)}(z=k|\mathbf{x}_i) = p(z=k|\mathbf{x}_i, \boldsymbol{\theta}^{(t)}) = \frac{\pi_k^{(t)} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k^{(t)}, \boldsymbol{\Sigma}_k^{(t)})}{\sum_{j=1}^K \pi_j^{(t)} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_j^{(t)}, \boldsymbol{\Sigma}_j^{(t)})}
+\begin{aligned}
+q^{(t+1)}(z=k|\mathbf{x}_i) &= p(z=k|\mathbf{x}_i, \boldsymbol{\theta}^{(t)})\\
+&= \frac{p(\mathbf{x}_i|z=k, \boldsymbol{\theta}^{(t)}) \cdot p(z=k|\boldsymbol{\theta}^{(t)})}{p(\mathbf{x}_i|\boldsymbol{\theta}^{(t)})} \\
+&= \frac{\mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_k^{(t)}, \boldsymbol{\Sigma}_k^{(t)})\cdot \pi_k^{(t)} }{\sum_{j=1}^K \pi_j^{(t)} \cdot \mathcal{N}(\mathbf{x}_i|\boldsymbol{\mu}_j^{(t)}, \boldsymbol{\Sigma}_j^{(t)})}
+\end{aligned}
   $$
 </div>
 
@@ -840,7 +845,7 @@ After the E-step, the bound is tight:
 
 <div class="formula">
   $$
-\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t)})
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t)}; \mathbf{x})
   $$
 </div>
 
@@ -867,7 +872,7 @@ Now we fix $q(z|\mathbf{x}) = q^{(t+1)}(z|\mathbf{x})$ and maximize the ELBO wit
 
 <div class="formula">
   $$
-\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta})
+\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}; \mathbf{x})
   $$
 </div>
 
@@ -877,7 +882,7 @@ Recall the ELBO definition:
 
 <div class="formula">
   $$
-\text{ELBO}(q, \boldsymbol{\theta}) = \mathbb{E}_{q} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{q} \left[ \log q(z|\mathbf{x}) \right]
+\text{ELBO}(q, \boldsymbol{\theta}; \mathbf{x}) = \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{z \sim q(z|\mathbf{x})} \left[ \log q(z|\mathbf{x}) \right]
   $$
 </div>
 
@@ -885,11 +890,11 @@ Recall the ELBO definition:
 
 <div class="fragment appear" data-fragment-index="2">
 
-Since $q$ is **fixed**, the entropy term $-\mathbb{E}_{q}[\log q(z|\mathbf{x})]$ is constant w.r.t. $\boldsymbol{\theta}$:
+Since $q$ is **fixed**, the entropy term $-\mathbb{E}_{z \sim q(z|\mathbf{x})}[\log q(z|\mathbf{x})]$ is constant w.r.t. $\boldsymbol{\theta}$:
 
 <div class="formula">
   $$
-\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \mathbb{E}_{q^{(t+1)}} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right]
+\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \mathbb{E}_{z \sim q^{(t+1)}(z|\mathbf{x})} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right]
   $$
 </div>
 
@@ -907,7 +912,7 @@ The quantity we maximize is called the **Q-function** (expected complete-data lo
 
 <div class="formula">
   $$
-Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \mathbb{E}_{q^{(t+1)}} \left[ \log p(\mathbf{X}, \mathbf{Z}|\boldsymbol{\theta}) \right] = \sum_{i=1}^{n} \sum_z q^{(t+1)}(z|\mathbf{x}_i) \log p(\mathbf{x}_i, z|\boldsymbol{\theta})
+Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \sum_{i=1}^{n} \mathbb{E}_{z_i \sim q^{(t+1)}(z_i|\mathbf{x}_i)} \left[ \log p(\mathbf{x}_i, z_i|\boldsymbol{\theta}) \right] = \sum_{i=1}^{n} \sum_z q^{(t+1)}(z_i|\mathbf{x}_i) \log p(\mathbf{x}_i, z_i|\boldsymbol{\theta})
   $$
 </div>
 
@@ -1012,7 +1017,7 @@ Maximizing $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)})$ gives the familia
 
 <div class="formula">
   $$
-\text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t)})
+\text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t+1)}; \mathbf{x}) \geq \text{ELBO}(q^{(t+1)}, \boldsymbol{\theta}^{(t)}; \mathbf{x})
   $$
 </div>
 
@@ -1037,11 +1042,28 @@ We've **raised the ELBO** by finding better parameters!
 
 **From theory to practice:** The variational derivation justifies exactly what we presented intuitively!
 
-| Intuitive View | Variational Derivation |
-|:---------------|:-----------------------|
-| E-step: Compute soft assignments $\gamma_{ik}$ | Minimize $D_{\text{KL}}(q \,\|\, p)$ → set $q = p(z\|x, \boldsymbol{\theta})$ |
-| M-step: Weighted MLE for each cluster | Maximize $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \mathbb{E}_q[\log p(x,z\|\boldsymbol{\theta})]$ |
-| Log-likelihood increases | ELBO ↑ (E-step tightens, M-step raises) |
+<table>
+  <thead>
+    <tr>
+      <th>Intuitive View</th>
+      <th>Variational Derivation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E-step: Compute soft assignments $\gamma_{ik}$</td>
+      <td>Minimize $D_{\text{KL}}(q \,\|\, p)$ → set $q = p(z|x, \boldsymbol{\theta})$</td>
+    </tr>
+    <tr>
+      <td>M-step: Weighted MLE for each cluster</td>
+      <td>Maximize $Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) = \mathbb{E}_{z \sim q(z|x)}[\log p(x,z|\boldsymbol{\theta})]$</td>
+    </tr>
+    <tr>
+      <td>Log-likelihood increases</td>
+      <td>ELBO ↑ (E-step tightens, M-step raises)</td>
+    </tr>
+  </tbody>
+</table>
 
 </div>
 
@@ -1068,11 +1090,11 @@ We've **raised the ELBO** by finding better parameters!
 
 <div class="formula">
   $$
-\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}) + \underbrace{D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}))}_{= 0}
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}; \mathbf{x}) + \underbrace{D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t)}))}_{= 0}
   $$
 </div>
 
-Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)})$
+Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t)}; \mathbf{x})$
 
 <div class="fragment appear" data-fragment-index="1">
 
@@ -1080,7 +1102,7 @@ Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \bolds
 
 <div class="formula">
   $$
-\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}) + \underbrace{D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t+1)}))}_{\geq 0}
+\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) = \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}; \mathbf{x}) + \underbrace{D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}^{(t+1)}))}_{\geq 0}
   $$
 </div>
 
@@ -1090,12 +1112,12 @@ Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \bolds
 
 **Combining the inequalities:**
 
-1. M-step maximized ELBO: $\text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t)})$
-2. KL is non-negative: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)})$
+1. M-step maximized ELBO: $\text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}; \mathbf{x}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t)}; \mathbf{x})$
+2. KL is non-negative: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}; \mathbf{x})$
 
 <div class="formula">
   $$
-\boxed{\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t)}) = \log p(\mathbf{x}|\boldsymbol{\theta}^{(t)})}
+\boxed{\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t+1)}; \mathbf{x}) \geq \text{ELBO}(q, \boldsymbol{\theta}^{(t)}; \mathbf{x}) = \log p(\mathbf{x}|\boldsymbol{\theta}^{(t)})}
   $$
 </div>
 
@@ -1140,7 +1162,7 @@ Therefore: $\log p(\mathbf{x}|\boldsymbol{\theta}^{(t)}) = \text{ELBO}(q, \bolds
 </table>
 
 **Key Theoretical Insights:**
-- **ELBO**: $\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}) + D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}))$
+- **ELBO**: $\log p(\mathbf{x}|\boldsymbol{\theta}) = \text{ELBO}(q, \boldsymbol{\theta}; \mathbf{x}) + D_{\text{KL}}(q \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}))$
 - **Convergence guarantee**: Log-likelihood is monotonically non-decreasing
 - **Connection to Lecture 08**: E-step = full posterior, M-step = weighted MLE
 
