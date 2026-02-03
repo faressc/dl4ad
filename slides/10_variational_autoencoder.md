@@ -437,13 +437,39 @@ $$
 
 <div class="fragment appear" data-fragment-index="1">
 
-**VAE (optimize $q$ and $\boldsymbol{\theta}$ jointly):**
+**VAE (optimize $\boldsymbol{\phi}$ and $\boldsymbol{\theta}$ jointly):**
 
 <div class="formula">
 $$
 \text{ELBO}(\boldsymbol{\phi}, \boldsymbol{\theta}) = \sum_{i=1}^{n} \left[ \mathbb{E}_{\mathbf{z} \sim q(\mathbf{z}|\mathbf{x}_i, \boldsymbol{\phi})} \left[ \log p(\mathbf{x}_i|\mathbf{z}, \boldsymbol{\theta}) \right] - D_{\text{KL}}\left( q(\mathbf{z}|\mathbf{x}_i, \boldsymbol{\phi}) \,\|\, p(\mathbf{z}) \right) \right]
 $$
 </div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="2">
+
+**Goal:** Maximize the ELBO with respect to both $\boldsymbol{\theta}$ and $\boldsymbol{\phi}$
+
+<div class="formula">
+$$
+\boldsymbol{\phi}^*, \boldsymbol{\theta}^* = \arg\max_{\boldsymbol{\phi}, \boldsymbol{\theta}} \sum_{i=1}^{n} \text{ELBO}(\boldsymbol{\phi}, \boldsymbol{\theta}; \mathbf{x}_i)
+$$
+</div>
+
+</div>
+
+<div class="fragment appear" data-fragment-index="3">
+
+**Problem: The reconstruction term involves an expectation**
+
+<div class="formula">
+$$
+\mathbb{E}_{\mathbf{z} \sim q(\mathbf{z}|\mathbf{x}, \boldsymbol{\phi})} \left[ \log p(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \right] = \int q(\mathbf{z}|\mathbf{x}, \boldsymbol{\phi}) \log p(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta}) \, d\mathbf{z}
+$$
+</div>
+
+This integral has no closed form when $p(\mathbf{x}|\mathbf{z}, \boldsymbol{\theta})$ is a neural network!
 
 </div>
 
@@ -496,6 +522,13 @@ $$
 
 </div>
 
+</div>
+
+<div class="fragment image-overlay" data-fragment-index="4" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/10-variational_autoencoder/1080p60/MonteCarloConvergence.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 
 ---
@@ -1070,6 +1103,17 @@ $$
 | Intractable expectation | Monte Carlo sampling ($L=1$ suffices) |
 | Non-differentiable sampling | Reparameterization trick |
 
+</div>
+
+---
+
+## VAE Architecture Overview
+
+<div style="text-align: center; width: 100%; height: auto;">
+    <video width="80%" data-autoplay loop muted controls>
+        <source src="assets/videos/10-variational_autoencoder/1080p60/VAEArchitecture.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 
 ---
