@@ -189,44 +189,44 @@ Note: If you don't know if your course counts, drop me an email.
     </thead>
     <tbody>
         <tr>
-            <td class="date">16.10.2025</td>
+            <td class="date">15.04.2026</td>
             <td>Introduction</td>
         </tr>
         <tr>
-            <td class="date">23.10.2025</td>
+            <td class="date">22.04.2026</td>
             <td>History of Neural Audio Systems</td>
         </tr>
         <tr class="fragment custom appear-table highlight">
-            <td class="date">26.10.2025</td>
+            <td class="date">26.04.2026</td>
             <td>Course Application Deadline</td>
         </tr>
         <tr>
-            <td class="date">30.10.2025</td>
+            <td class="date">29.04.2026</td>
             <td>Machine Learning Fundamentals</td>
         </tr>
         <tr>
-            <td class="date">06.11.2025</td>
+            <td class="date">06.05.2026</td>
             <td>Perceptrons</td>
         </tr>
         <tr>
-            <td class="date">13.11.2025</td>
+            <td class="date">13.05.2026</td>
             <td>Convolutional Layers</td>
         </tr>
-        <tr>
-            <td class="date">20.11.2025</td>
-            <td>Recurrent Layers</td>
-        </tr>
         <tr class="fragment custom appear-table highlight">
-            <td class="date">23.11.2025</td>
+            <td class="date">17.05.2026</td>
             <td>Project Proposal Deadline & Group Selection</td>
         </tr>
         <tr>
-            <td class="date">27.11.2025</td>
-            <td>Autoencoders / Transformers</td>
+            <td class="date">20.05.2026</td>
+            <td>Recurrent Layers</td>
         </tr>
         <tr>
-            <td class="date">04.12.2025</td>
-            <td>Tricks of the Trade / Preprocessing / Training Deep Architectures</td>
+            <td class="date">27.05.2026</td>
+            <td>Attention and Transformers</td>
+        </tr>
+        <tr>
+            <td class="date">03.06.2026</td>
+            <td>Tricks of the Trade</td>
         </tr>
     </tbody>
 </table>
@@ -244,39 +244,31 @@ Note: If you don't know if your course counts, drop me an email.
     </thead>
     <tbody>
         <tr>
-            <td class="date">11.12.2025</td>
-            <td>Real-Time Inference</td>
+            <td class="date">10.06.2026</td>
+            <td>Probability Fundamentals</td>
         </tr>
         <tr class="fragment custom appear-table highlight">
-            <td class="date">18.12.2025</td>
+            <td class="date">17.06.2026</td>
             <td>Project Pitches (14:00 - 18:00)</td>
         </tr>
         <tr>
-            <td class="date">08.01.2026</td>
-            <td>Bayesian Inference</td>
+            <td class="date">24.06.2026</td>
+            <td>Latent Models</td>
         </tr>
         <tr>
-            <td class="date">15.01.2026</td>
-            <td>Variational Inference</td>
-        </tr>
-        <tr>
-            <td class="date">22.01.2026</td>
+            <td class="date">01.07.2026</td>
             <td>Variational Autoencoder</td>
         </tr>
         <tr>
-            <td class="date">29.01.2026</td>
-            <td>Adversarial Training</td>
-        </tr>
-        <tr>
-            <td class="date">05.02.2026</td>
-            <td>Diffusion Models</td>
+            <td class="date">08.07.2026</td>
+            <td>TBD</td>
         </tr>
         <tr class="fragment custom appear-table highlight">
-            <td class="date">12.02.2026</td>
+            <td class="date">15.07.2026</td>
             <td>Project Presentations (14:00 - 18:00)</td>
         </tr>
         <tr class="fragment custom appear-table highlight">
-            <td class="date">31.03.2026</td>
+            <td class="date">30.09.2026</td>
             <td>Final Project Submission</td>
         </tr>
     </tbody>
@@ -292,7 +284,7 @@ Note: If you don't know if your course counts, drop me an email.
 
 <div style="display: flex; flex-direction: column; gap: 20px; font-size: 0.9em;">
     <div>
-        <strong>Application Deadline:</strong> 26.10.2025
+        <strong>Application Deadline:</strong> 26.04.2026
     </div>
     <div>
         <strong>How to Apply:</strong> Send a confirmation email to <a href="mailto:fares.schulz@tu-berlin.de">fares.schulz@tu-berlin.de</a>
@@ -308,7 +300,7 @@ Note: If you don't know if your course counts, drop me an email.
         </ul>
     </div>
     <div>
-        <strong>Note:</strong> The course is limited to 16 participants. Selection will be based on a lottery. After receiving confirmation, enroll in MOSES until 6. November 2025.
+        <strong>Note:</strong> The course is limited to 16 participants. Selection will be based on a lottery. After receiving confirmation, enroll in MOSES by 07.05.2026.
     </div>
 </div>
 
@@ -316,13 +308,13 @@ Note: If you don't know if your course counts, drop me an email.
 
 ## Graded Deliverables
 
-**Project Presentation** (1/3 Grade) – *Date:* 12.02.2026
+**Project Presentation** (1/3 Grade) – *Date:* 15.07.2026
 
 <ul class="small">
     <li>10-minute presentation per group and 5-minute Q&A session</li>
 </ul>
 
-**Git repository** (1/3 Grade) – *Deadline:* 31.03.2026
+**Git repository** (1/3 Grade) – *Deadline:* 30.09.2026
 
 <ul class="small">
     <li>README with clear, step-by-step instructions for running your code</li>
@@ -330,7 +322,7 @@ Note: If you don't know if your course counts, drop me an email.
     <li>Well-commented source code</li>
 </ul>
 
-**Project Paper** (1/3 Grade) – *Deadline:* 31.03.2026
+**Project Paper** (1/3 Grade) – *Deadline:* 30.09.2026
 
 <ul class="small">
     <li>Maximum 4 pages</li>
@@ -362,7 +354,7 @@ Note: If you don't know if your course counts, drop me an email.
         <ul>
             <li>Submit your project proposal starting now</li>
             <li>Receive feedback and incorporate it into your proposal</li>
-            <li><strong>Project proposal deadline:</strong> 23.11.2025</li>
+            <li><strong>Project proposal deadline:</strong> 17.05.2026</li>
         </ul>
     </div>
     <div>
