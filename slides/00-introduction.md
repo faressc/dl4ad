@@ -300,7 +300,7 @@ Note: If you don't know if your course counts, drop me an email.
         </ul>
     </div>
     <div>
-        <strong>Note:</strong> The course is limited to 16 participants. Selection will be based on a lottery. After receiving confirmation, enroll in MOSES by 07.05.2026.
+        <strong>Note:</strong> The course is limited to 16 participants. Selection will be based on a lottery. After receiving confirmation, <strong>enroll in MOSES by 07.05.2026</strong> if required. Enrollment is necessary if this course completes your full "Machine Learning and Big Data Processing with Audio and Music" module.
     </div>
 </div>
 
