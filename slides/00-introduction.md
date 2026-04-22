@@ -371,6 +371,11 @@ Note: If you don't know if your course counts, drop me an email.
 
 ---
 
+<h1 style="margin: 18% 0 120px 0;">Past Years Projects</h1>
+
+<!-- .slide: data-state="no-header" -->
+---
+
 ## Additional Resources
 
 - [Creative Machine Learning](https://github.com/acids-ircam/creative_ml) – Prof. Philippe Esling

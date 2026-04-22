@@ -8,6 +8,76 @@ Notes:
 
 ---
 
+## Math Notation
+
+<div style="font-size: 0.8em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 60px; margin-top: 20px;">
+    <div>
+        <p><strong>Scalars</strong> — lowercase italic (plain or Greek)<br>
+        $x,\ y,\ N,\ t,\ \eta,\ \lambda,\ \sigma^2$</p>
+        <p><strong>Vectors</strong> — bold lowercase<br>
+        $\mathbf{x},\ \mathbf{y},\ \boldsymbol{\theta},\ \boldsymbol{\epsilon}$</p>
+        <p><strong>Matrices</strong> — bold uppercase<br>
+        $\mathbf{X},\ \mathbf{W},\ \mathbf{\Sigma}$</p>
+        <p><strong>Sets &amp; spaces</strong> — calligraphic; $\mathbb{R}$ for reals, $\mathbb{E}$ for expectation<br>
+        $\mathcal{X},\ \mathcal{Y},\ \mathcal{F}_{\Theta},\ \Theta,\ \mathbb{R}^d$</p>
+        <p><strong>Accents</strong> — $\hat{\cdot}$ estimated/predicted, $\bar{\cdot}$ mean, $^*$ optimal/true<br>
+        $\hat{\boldsymbol{\theta}},\ \bar{\mathbf{x}},\ \boldsymbol{\theta}^*$</p>
+    </div>
+    <div>
+        <p><strong>Functions</strong> — lowercase, optionally parameterized via subscript (e.g., $f_{\boldsymbol{\theta}}$); $\ell$ for per-sample loss, $\mathcal{L}$ for aggregated loss / training objective, $\hat{R}$ for empirical risk, $L$ for likelihood<br>
+        $f(\mathbf{x}),\ f_{\boldsymbol{\theta}}(\mathbf{x}),\ \ell(\hat{\mathbf{y}}, \mathbf{y}),\ \mathcal{L}(\boldsymbol{\theta}),\ L(\boldsymbol{\theta})$</p>
+        <p><strong>Probabilities</strong> — $p(x)$ PMF/PDF at value $x$; $p(x \mid y)$ conditional ($\mid$ = "given")<br>
+        $p(x),\ p(x, y),\ p(x \mid y)$</p>
+        <p><strong>Operators</strong> — transpose, norm, gradient, argmin/argmax<br>
+        $\mathbf{X}^\top,\ \lVert\mathbf{w}\rVert_2,\ \nabla_{\boldsymbol{\theta}}\ell,\ \argmin\limits_{\boldsymbol{\theta}\in\Theta}$</p>
+        <p><strong>Indexing</strong> — $i$ for samples, $t$ for iterations<br>
+        $\mathbf{x}_i,\ \boldsymbol{\theta}_{t+1},\ \mathcal{D} = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace_{i=1}^{N}$</p>
+    </div>
+</div>
+
+---
+
+## Machine Learning Definition
+
+<div style="text-align: center;">
+    <video width="70%" data-autoplay loop muted controls>
+        <source src="assets/videos/02-machine_learning_fundamentals/1080p60/EmpiricalRiskMinimization.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+---
+
+## Machine Learning Definition
+
+<div style="font-size: 0.9em;">
+
+**Definition**: Learning a function that maps inputs to outputs based on labeled training examples.
+
+**Goal**: Minimize the difference between predicted and actual outputs.
+
+**Mathematical Formulation**:
+
+- Given a dataset $D = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace$ for $i = 1, \ldots, N$, where $\mathbf{x}_i \in \mathcal{X}$ are input features and $\mathbf{y}_i \in \mathcal{Y}$ are corresponding labels and $N$ is the number of samples.
+
+<div>
+<ul>
+<li>Find a function $f_{\boldsymbol{\theta}}: \mathcal{X} \to \mathcal{Y}$$ from the parametrized family $\mathcal{F}_{\Theta} = \lbrace f_{\boldsymbol{\theta}} : \boldsymbol{\theta} \in \Theta\rbrace$ by choosing the parameters $\boldsymbol{\theta}^*$ that minimize the empirical risk:
+</ul>
+</div>
+
+<div class="formula">
+$$
+\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta}) = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)
+$$
+</div>
+
+where $$\ell$$ is a single sample loss function quantifying the difference between prediction $f_{\boldsymbol{\theta}}(\mathbf{x}_i)$ and true label $\mathbf{y}_i$.
+
+</div>
+
+---
+
 ## Mathematical Foundations
 
 <div class="timeline-container" style="flex-direction: row;">
@@ -27,13 +97,19 @@ Notes:
     </div>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="1" style="margin-top: 20px;">
+<div class="fragment appear-vanish" data-fragment-index="1" style="margin-top: 20px; font-size: 0.8em;">
     <p><strong>Least Squares:</strong> Method to find the best-fitting curve by minimizing the sum of squared residuals:</p>
     <div class="formula">
-        $$\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \sum_{i=1}^{n} (y_i - f(\mathbf{x}_i, \boldsymbol{\theta}))^2 \text{,}$$
+        $$\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \sum_{i=1}^{N} (y_i - f(\mathbf{x}_i, \boldsymbol{\theta}))^2 \text{.}$$
     </div>
     <p style="text-align: center; margin: 10px 0;">
-        where $y_i$ are observed values, $f(\mathbf{x}_i, \boldsymbol{\theta})$ are predicted values, and $\boldsymbol{\theta}$ are parameters
+        This is exactly empirical risk minimization with the squared-error loss $\ell(\hat{y}, y) = (y - \hat{y})^2$:
+    </p>
+    <div class="formula">
+        $$\boldsymbol{\theta}^* = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta}) = \argmin\limits_{\boldsymbol{\theta} \in \Theta} \frac{1}{N} \sum_{i=1}^{N} \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)$$
+    </div>
+    <p style="text-align: center; margin: 10px 0;">
+        (the $\tfrac{1}{N}$ is a positive constant and doesn't affect the argmin)
     </p>
 </div>
 
@@ -43,17 +119,17 @@ Notes:
         $$\boldsymbol{\theta}^* = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y} \text{,}$$
     </div>
     <p style="text-align: center; margin: 10px 0;">
-        where $\mathbf{X}$ is the data matrix (observations $ \times $ features), $\mathbf{y}$ is the target vector, and $\boldsymbol{\theta}^*$ are the optimal parameters
+        where $\mathbf{X} \in \mathbb{R}^{N \times d}$ is the data matrix (observations $\times$ features), $\mathbf{y} \in \mathbb{R}^{N}$ is the target vector, and $\boldsymbol{\theta}^* \in \mathbb{R}^{d}$ are the optimal parameters
     </p>
 </div>
 
 <div class="fragment appear-vanish" data-fragment-index="3" style="margin-top: 20px;">
-    <p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient:</p>
+    <p><strong>Gradient Descent:</strong> Iterative optimization algorithm that updates parameters $\boldsymbol{\theta}$ by moving in the direction opposite to the gradient of the empirical risk:</p>
     <div class="formula">
-        $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}_t) \text{, with } t = 0, 1, 2, \ldots, T$$
+        $$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}_t) \text{, with } t = 0, 1, 2, \ldots, T$$
     </div>
     <p style="text-align: center; margin: 10px 0;">
-        $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta}_t)$ is the gradient of the loss function at iteration $t$
+        $\eta$ is the learning rate and $\nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}_t)$ is the gradient of the empirical risk at iteration $t$
     </p>
 </div>
 
@@ -67,18 +143,23 @@ Notes:
     </p>
 </div>
 
-<div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px;">
+<div class="fragment appear-vanish" data-fragment-index="5" style="margin-top: 20px; font-size: 0.8em;">
     <p><strong>Principal Component Analysis (PCA):</strong> Dimensionality reduction technique that finds orthogonal directions of maximum variance:</p>
     <div class="formula">
         $$
         \begin{aligned}
-        \mathbf{w}_1 & = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \frac{1}{N} (\mathbf{X}\mathbf{w})^\top (\mathbf{X}\mathbf{w})\\
-        & = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^\top \mathbf{X}^\top \mathbf{X} \mathbf{w} = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^\top \mathbf{\Sigma} \mathbf{w} \text{,}
+        \mathbf{w}_1 & = \argmax\limits_{\|\mathbf{w}\|=1} \text{Var}(\mathbf{X}\mathbf{w}) = \argmax\limits_{\|\mathbf{w}\|=1} \mathbf{w}^\top \mathbf{\Sigma} \mathbf{w} \text{.}
         \end{aligned}
         $$
     </div>
     <p style="text-align: center; margin: 10px 0;">
-        where $\mathbf{X}$ is the data matrix, $\mathbf{\Sigma}$ is the covariance matrix, and $\mathbf{w}$ are the principal components (eigenvectors)
+        Maximizing this quadratic form under $\|\mathbf{w}\|=1$ reduces to the eigenvalue problem
+    </p>
+    <div class="formula">
+        $$\mathbf{\Sigma}\mathbf{w} = \lambda \mathbf{w} \text{,}$$
+    </div>
+    <p style="text-align: center; margin: 10px 0;">
+        so principal components are eigenvectors of $\mathbf{\Sigma}$, with eigenvalues $\lambda_i$ equal to the variance along each direction
     </p>
 </div>
 
@@ -110,7 +191,7 @@ Notes:
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:0,1815:3,1830:6,1922:9">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1763:0,1815:3,1922:6">
         {{TIMELINE:timeline_probability_statistics}}
     </div>
 </div>
@@ -128,10 +209,10 @@ Notes:
 <div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="text-align: center; width: 60%;">
 <p><strong>Bayes' Theorem:</strong> Relates conditional probabilities and forms the foundation of Bayesian inference:</p>
 <div class="formula">
-    $$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+    $$p(y \mid x) = \frac{p(x \mid y) \cdot p(y)}{p(x)}$$
 </div>
 <p style="text-align: center; margin: 10px 0;">
-    where $P(A|B)$ is the posterior probability, $P(B|A)$ is the likelihood, $P(A)$ is the prior, and $P(B)$ is the evidence
+    where $p(y \mid x)$ is the posterior, $p(x \mid y)$ is the likelihood, $p(y)$ is the prior, and $p(x)$ is the evidence
 </p>
 </div>
 
@@ -149,29 +230,18 @@ Notes:
 
 <div class="fragment" data-fragment-index="5"></div>
 
+
 <div class="fragment appear-vanish image-overlay" data-fragment-index="7" style="text-align: center; width: 60%;">
-<p><strong>Central Limit Theorem (CLT):</strong> The average of many independently sampled random variables approaches a normal distribution, <em>regardless of the original distribution</em>:</p>
+<p><strong>Maximum Likelihood Estimation (MLE):</strong> Method to estimate parameters by maximizing the likelihood of the observed dataset $\mathcal{D} = \lbrace \mathbf{x}_i \rbrace_{i=1}^{N}$:</p>
 <div class="formula">
-    $$\bar{X} \xrightarrow{d} \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right) \text{ as } n \to \infty$$
+    $$\boldsymbol{\theta}^*_{\text{MLE}} = \argmax\limits_{\boldsymbol{\theta}\in\Theta} L(\boldsymbol{\theta} \mid \mathcal{D}) = \argmax\limits_{\boldsymbol{\theta}\in\Theta} \prod_{i=1}^{N} p(\mathbf{x}_i \mid \boldsymbol{\theta})$$
 </div>
 <p style="text-align: center; margin: 10px 0;">
-    where $\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i$ is the sample mean, $\mu$ is the population mean, $\sigma^2$ is the population variance, and $n$ is the sample size
+    where $\boldsymbol{\theta}$ are the parameters, $L$ is the likelihood function, and the factorization assumes i.i.d. samples
 </p>
 </div>
 
 <div class="fragment" data-fragment-index="8"></div>
-
-<div class="fragment appear-vanish image-overlay" data-fragment-index="10" style="text-align: center; width: 60%;">
-<p><strong>Maximum Likelihood Estimation (MLE):</strong> Method to estimate parameters by maximizing the likelihood function:</p>
-<div class="formula">
-    $$\boldsymbol{\theta}^*_{\text{MLE}} = \argmax\limits_{\boldsymbol{\theta}\in\Theta} L(\boldsymbol{\theta} | \mathbf{x}) = \argmax\limits_{\boldsymbol{\theta}\in\Theta} \prod_{i=1}^{n} P(x_i | \boldsymbol{\theta})$$
-</div>
-<p style="text-align: center; margin: 10px 0;">
-    where $\boldsymbol{\theta}$ are the parameters to estimate, $L$ is the likelihood function, and $\mathbf{x}$ is the observed data
-</p>
-</div>
-
-<div class="fragment" data-fragment-index="11"></div>
 
 Notes:
 
@@ -635,13 +705,16 @@ Notes:
     <div style="font-size: 0.85em; line-height: 1;">
         <p style="margin-bottom: 15px;"><strong>Adaptive Moment Estimation</strong> - combines momentum and RMSprop:</p>
         <p style="margin-bottom: 10px;"><strong>First moment (momentum):</strong></p>
-        <div class="formula">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t)$$</div>
+        <div class="formula">$$\mathbf{m}_t = \beta_1 \mathbf{m}_{t-1} + (1-\beta_1)\nabla_{\boldsymbol{\theta}}\hat{R}(\boldsymbol{\theta}_t)$$</div>
         <p style="margin-bottom: 10px;"><strong>Second moment (RMSprop):</strong></p>
-        <div class="formula">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}\mathcal{L}(\boldsymbol{\theta}_t))^2$$</div>
+        <div class="formula">$$\mathbf{v}_t = \beta_2 \mathbf{v}_{t-1} + (1-\beta_2)(\nabla_{\boldsymbol{\theta}}\hat{R}(\boldsymbol{\theta}_t))^2$$</div>
         <p style="margin-bottom: 10px;"><strong>Bias correction:</strong></p>
         <div class="formula">$$\hat{\mathbf{m}}_t = \frac{\mathbf{m}_t}{1-\beta_1^t}, \quad \hat{\mathbf{v}}_t = \frac{\mathbf{v}_t}{1-\beta_2^t}$$</div>
         <p style="margin-bottom: 10px;"><strong>Parameter update:</strong></p>
-        <div class="formula">$$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \alpha \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{v}}_t} + \epsilon}$$</div>
+        <div class="formula">$$\boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \eta \frac{\hat{\mathbf{m}}_t}{\sqrt{\hat{\mathbf{v}}_t} + \varepsilon}$$</div>
+        <p style="text-align: center; margin-top: 10px; font-size: 0.9em;">
+            where $\mathbf{m}_t, \mathbf{v}_t$ are running estimates of the gradient's first/second moments, $\beta_1, \beta_2 \in [0,1)$ are their decay rates, $\eta$ is the learning rate, and $\varepsilon$ is a small constant for numerical stability
+        </p>
     </div>
 </div>
 
@@ -765,7 +838,7 @@ Notes:
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="15" style="text-align: center; width: 1400px; height: 787.5px; top: 110%;">
-    <iframe width="1400" height="787.5" src="https://www.youtube.com/embed/7UR00wokYzE?si=u6LdwjgCqxoIoQUQ&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <iframe width="1400" height="787.5"  src="https://www.youtube.com/embed/F8nEVlDtoL8?si=13Kr2yUg9WhzKeKR&amp;start=224" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 Notes:
@@ -996,7 +1069,7 @@ Notes:
 </div> -->
 
 <div class="highlight" style="text-align: center; padding: 20px; margin-top: 60px;">
-    <strong>Open-source • Web Demonstration</strong>
+    <strong>Open-source • <a href="https://pgesam.faresschulz.com/">Web Demonstration</a></strong>
 </div>
 
 <div class="reference" style="font-size: 0.75em;">
