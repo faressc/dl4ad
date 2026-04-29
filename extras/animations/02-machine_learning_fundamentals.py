@@ -727,7 +727,10 @@ class BiasVarianceTradeoff(Scene):
             stroke_opacity=0.8
         )
         
-        true_label = Text("True Function f(x)", font_size=24, color=WHITE)
+        true_label = VGroup(
+            Text("True Function ", font_size=24, color=WHITE),
+            MathTex(r"f^*(x)", font_size=28, color=WHITE)
+        ).arrange(RIGHT, buff=0.15)
         true_label.to_edge(LEFT).shift(UP * 1.5)
         
         self.play(Create(true_func), Write(true_label))
@@ -1319,7 +1322,7 @@ class EmpiricalRiskMinimization(Scene):
 
         # Minimization goal
         minimize_goal = MathTex(
-            r"\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta})",
+            r"\boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta})",
             font_size=26
         )
         minimize_goal.next_to(minimize_title, DOWN, aligned_edge=LEFT)
@@ -1401,7 +1404,7 @@ class EmpiricalRiskMinimization(Scene):
             MathTex(r"\text{II. Function: } f_{\boldsymbol{\theta}}: \mathcal{X} \to \mathcal{Y}", font_size=20),
             MathTex(r"\text{III. Loss: } \ell(f_{\boldsymbol{\theta}}(x_i), y_i)", font_size=20),
             MathTex(r"\text{IV. Empirical Risk: } \hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(\cdot)", font_size=20),
-            MathTex(r"\text{V. Goal: } \boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta})", font_size=20)
+            MathTex(r"\text{V. Goal: } \boldsymbol{\theta}^* = \arg\min\limits_{\boldsymbol{\theta} \in \Theta} \hat{R}(\boldsymbol{\theta})", font_size=20)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
         summary_points.next_to(summary_title, DOWN, aligned_edge=LEFT)
         
