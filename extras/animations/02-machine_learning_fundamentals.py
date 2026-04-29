@@ -1155,8 +1155,8 @@ class EmpiricalRiskMinimization(Scene):
         )
         
         # Add labels
-        x_label = MathTex(r"\mathbf{x} \in \mathcal{X}", font_size=24)
-        y_label = MathTex(r"\mathbf{y} \in \mathcal{Y}", font_size=24)
+        x_label = MathTex(r"x \in \mathcal{X}", font_size=24)
+        y_label = MathTex(r"y \in \mathcal{Y}", font_size=24)
         x_label.next_to(axes.x_axis, DOWN)
         y_label.next_to(axes.y_axis, LEFT)
         
@@ -1173,7 +1173,7 @@ class EmpiricalRiskMinimization(Scene):
         
         # Dataset notation
         dataset_notation = MathTex(
-            r"D = \{(\mathbf{x}_i, \mathbf{y}_i)\}_{i=1}^N",
+            r"D = \{(x_i, y_i)\}_{i=1}^N",
             font_size=28
         )
         dataset_notation.next_to(dataset_title, DOWN, aligned_edge=LEFT)
@@ -1253,7 +1253,7 @@ class EmpiricalRiskMinimization(Scene):
         
         # Loss notation
         loss_notation = MathTex(
-            r"\ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)",
+            r"\ell(f_{\boldsymbol{\theta}}(x_i), y_i)",
             font_size=28
         )
         loss_notation.next_to(loss_title, DOWN, aligned_edge=LEFT)
@@ -1284,7 +1284,7 @@ class EmpiricalRiskMinimization(Scene):
         
         # Empirical risk formula
         risk_formula = MathTex(
-            r"\hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)",
+            r"\hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(f_{\boldsymbol{\theta}}(x_i), y_i)",
             font_size=26
         )
         risk_formula.next_to(risk_title, DOWN, aligned_edge=LEFT)
@@ -1397,9 +1397,9 @@ class EmpiricalRiskMinimization(Scene):
         self.play(Write(summary_title))
         
         summary_points = VGroup(
-            MathTex(r"\text{I. Dataset: } D = \{(\mathbf{x}_i, \mathbf{y}_i)\}_{i=1}^N", font_size=20),
+            MathTex(r"\text{I. Dataset: } D = \{(x_i, y_i)\}_{i=1}^N", font_size=20),
             MathTex(r"\text{II. Function: } f_{\boldsymbol{\theta}}: \mathcal{X} \to \mathcal{Y}", font_size=20),
-            MathTex(r"\text{III. Loss: } \ell(f_{\boldsymbol{\theta}}(\mathbf{x}_i), \mathbf{y}_i)", font_size=20),
+            MathTex(r"\text{III. Loss: } \ell(f_{\boldsymbol{\theta}}(x_i), y_i)", font_size=20),
             MathTex(r"\text{IV. Empirical Risk: } \hat{R}(\boldsymbol{\theta}) = \frac{1}{N} \sum_{i=1}^N \ell(\cdot)", font_size=20),
             MathTex(r"\text{V. Goal: } \boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta})", font_size=20)
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.3)

@@ -19,7 +19,7 @@
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1815:0">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1815:0, 1830:0">
         {{TIMELINE:timeline_probability_statistics}}
     </div>
 </div>
@@ -130,7 +130,7 @@
 
 **Mathematical Formulation**:
 
-- Given a dataset $D = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace$ for $i = 1, \ldots, N$, where $\mathbf{x}_i \in \mathcal{X}$ are input features and $\mathbf{y}_i \in \mathcal{Y}$ are corresponding labels and $N$ is the number of samples.
+- Given a dataset $D = \lbrace(\mathbf{x}_i, \mathbf{y}_i)\rbrace$ for $i = 1, \ldots, N$, where $\mathbf{x}_i \in \mathcal{X}$ are input features and $\mathbf{y}_i \in \mathcal{Y}$ are corresponding labels and $N$ is the number of samples (e.g., $\mathcal{X} \subseteq \mathbb{R}^d$ and $\mathcal{Y} = \mathbb{R}$ for regression or $\mathcal{Y} = \lbrace 1, \ldots, K \rbrace$ for classification).
 
 - Find a function $$f_{\boldsymbol{\theta}}: \mathcal{X} \to \mathcal{Y}$$ parameterized by $$\boldsymbol{\theta}$$ that minimizes the empirical risk:
 
@@ -198,14 +198,62 @@ The loss function $$\ell$$ quantifies the difference between the predicted outpu
         \quad \implies \quad 
         \hat{R} = \mathcal{L}_{2} = \text{MSE} = \frac{1}{N} \sum_{i=1}^N \lVert \hat{\mathbf{y}}_i - \mathbf{y}_i \rVert_2^2$$
     </li>
-    <li><strong>Hinge loss function</strong>: $\ell_{\text{hinge}}(\hat{y}_i^{\text{pre-}\sigma}, y_i)$
+    <li><strong>Hinge loss function</strong>: $\ell_{\text{hinge}}(\hat{y}_i^{\text{raw}}, y_i)$
         $$
         \begin{aligned}
-         = \max(0, 1 - y_i \hat{y}_i^{\text{pre-}\sigma}) \implies \hat{R} = \mathcal{L}_{\text{hinge}} = \frac{1}{N} \sum_{i=1}^N \max(0, 1 - y_i \hat{y}_i^{\text{pre-}\sigma}) \text{ for } y_i \in \{-1, 1\}
+         = \max(0, 1 - y_i \hat{y}_i^{\text{raw}}) \implies \hat{R} = \mathcal{L}_{\text{hinge}} = \frac{1}{N} \sum_{i=1}^N \max(0, 1 - y_i \hat{y}_i^{\text{raw}}) \text{ for } y_i \in \{-1, 1\}
         \end{aligned}
         $$
     </li>
 </ul>
+
+</div>
+
+---
+
+## The Data-Generating Process
+
+<div style="font-size: 0.78em;">
+
+We never observe the **true** input-output relationship directly — only finite, noisy samples. To reason about generalization, we postulate a **theoretical** model of how the data was generated:
+
+<div class="formula">
+$$
+y_i = f^*(\mathbf{x}_i) + \epsilon_i
+$$
+</div>
+
+- $f^*: \mathcal{X} \to \mathcal{Y}$ — the **true, unknown function**. A theoretical construct: it exists in our model of the world, but we never see it directly. Our goal is to *approximate* it with $f_{\boldsymbol{\theta}}$.
+- $\epsilon_i$ — **inherent randomness**: measurement noise, unobserved variables, genuine stochasticity. Assumed independent across samples (i.i.d.).
+
+**The Gaussian assumption**: a common *modeling choice* is that errors are normally distributed with zero mean and constant variance $\sigma^2$:
+
+<div class="formula">
+$$
+\epsilon_i \sim \mathcal{N}(0, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{\epsilon_i^2}{2\sigma^2}}
+$$
+</div>
+
+</div>
+
+<div class="image-overlay fragment" style="width: 75%; font-size: 0.85em;">
+
+<strong>Why Gaussian is the default:</strong>
+
+<ul style="margin: 0.3em 0;">
+    <li><em>Central Limit Theorem</em> — aggregate noise from many small independent sources tends toward Gaussian.</li>
+    <li><em>Mathematical convenience</em> — minimizing MSE corresponds exactly to fitting under Gaussian errors.</li>
+    <li><em>Closed-form solutions</em> — linear regression with Gaussian errors yields $\boldsymbol{\theta}^* = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.</li>
+</ul>
+
+<strong>But this is an assumption, not a fact.</strong> Other noise models lead to other losses:
+
+<ul style="margin: 0.3em 0;">
+    <li>Laplace $\to$ L1 / MAE (robust to outliers)</li>
+    <li>Bernoulli / categorical $\to$ cross-entropy (classification)</li>
+</ul>
+
+Real data often violates Gaussianity — yet the assumption is so embedded in standard practice (MSE, ridge, GPs, VAEs) that much of ML is implicitly Gaussian.
 
 </div>
 
@@ -220,14 +268,6 @@ The loss function $$\ell$$ quantifies the difference between the predicted outpu
 <div class="formula">
 $$
 y_i = f^*(\mathbf{x}_i) + \epsilon_i\text{, }
-$$
-</div>
-
-where $\epsilon_i$ represents inherent noise or randomness in the data generation process. E.g., normal distribution:
-
-<div class="formula">
-$$
-\epsilon_i \sim \mathcal{N}(0, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{\epsilon_i^2}{2\sigma^2}}
 $$
 </div>
 
@@ -432,7 +472,7 @@ where $\eta > 0$ is the learning rate and $T$ is the total number of iterations.
 
 - **Convergence**: Steepest descent → critical point where $\nabla_{\boldsymbol{\theta}} \hat{R}(\boldsymbol{\theta}^*) = 0$
 - **Critical points**: Local minima (stable, target) / Maxima (unstable, avoided) / Saddle points (unstable, avoided)
-- **Note**: GD with appropriate $\eta$ converges to local minima or saddle points, not maxima (SGD adds noise that helps escape saddle points)
+- **Note**: GD with appropriate $\eta$ converges to local minima or saddle points, not maxima
 
 </div>
 
@@ -519,6 +559,8 @@ $$
 \boldsymbol{\theta}_{t+1} = \boldsymbol{\theta}_t - \frac{\eta}{|B_t|} \sum_{i \in B_t} \nabla_{\boldsymbol{\theta}} \ell(f_{\boldsymbol{\theta}_t}(\mathbf{x}_i), \mathbf{y}_i), \quad \text{where } B_t \subset \{1, \ldots, N\}, |B_t| = b
 $$
 </div>
+
+**Note**: The stochasticity in SGD and mini-batch GD adds noise to the gradient estimate, which helps escape saddle points and shallow local minima.
 
 **Other Variants**: Momentum, AdaGrad, RMSProp, Adam — adapt learning rates and incorporate momentum
 
