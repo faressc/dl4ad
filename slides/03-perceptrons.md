@@ -19,7 +19,7 @@
         <div class="timeline-title">Probability & Statistics</div>
         <div class="timeline-text">Basis for Bayesian methods, statistical inference, and generative models</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1815:0">
+    <div class="timeline" style="width: 80%; --start-year: 1676; --end-year: 1951;" data-timeline-fragments-select="1815:0,1830:0">
         {{TIMELINE:timeline_probability_statistics}}
     </div>
 </div>
@@ -55,7 +55,7 @@
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Methods for efficient learning and gradient-based optimization</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1970:0,1986:1,1992:1,2010:1,2012:1">
+    <div class="timeline" style="width: 80%; --start-year: 1943; --end-year: 2012;" data-timeline-fragments-select="1967:0,1970:0,1986:1,2010:1">
         {{TIMELINE:timeline_early_nn_training}}
     </div>
 </div>
@@ -92,7 +92,7 @@
         <div class="timeline-title">Training & Optimization</div>
         <div class="timeline-text">Advanced learning techniques and representation learning breakthroughs</div>
     </div>
-    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;" data-timeline-fragments-select="2015:0,2016:0">
+    <div class="timeline" style="width: 80%; --start-year: 2013; --end-year: 2023;">
         {{TIMELINE:timeline_deep_training}}
     </div>
 </div>
@@ -623,14 +623,14 @@ In element-wise form, each neuron computes:
 <div class="formula" style="margin-top: 20px;">
 $$
 \begin{aligned}
-z_j^{(l)} & = \sum_{i=1}^{M'} W_{ji}^{(l)} h_i^{(l-1)} + b_j^{(l)} \\
+z_j^{(l)} & = \sum_{k=1}^{M'} W_{jk}^{(l)} h_k^{(l-1)} + b_j^{(l)} \\
 h_j^{(l)} & = \sigma(z_j^{(l)})
 \end{aligned}
 $$
 </div>
 where:
 
-- $i$ indexes neurons in the previous layer
+- $k$ indexes neurons in the previous layer
 - $j$ indexes neurons in the current layer
 
 </div>
@@ -700,17 +700,19 @@ Backpropagation is an efficient algorithm to compute these gradients using the c
 
 <div style="font-size: 0.80em;">
 
-<div><strong>MSE Loss</strong>: $\mathcal{L} = \frac{1}{N}\sum_{i=1}^{N}\Vert\mathbf{y}_i - \hat{\mathbf{y}}_i\Vert^2 = \frac{1}{N}\sum_{i=1}^{N}\sum_{j}(y_{ij} - \hat{y}_{ij})^2$</div>
+<div><strong>MSE Loss</strong>: $\mathcal{L} = \frac{1}{N}\sum_{i=1}^{N} \ell_i$, with per-sample loss $\ell_i = \Vert\mathbf{y}_i - \hat{\mathbf{y}}_i\Vert^2 = \sum_{j}(y_{ij} - \hat{y}_{ij})^2$</div>
+
+<div style="margin-top: 10px;">By linearity, the aggregate gradient is the average of per-sample gradients: $\nabla_{\boldsymbol{\theta}} \mathcal{L} = \frac{1}{N}\sum_{i=1}^{N} \nabla_{\boldsymbol{\theta}} \ell_i$ — so we derive backprop for a single sample $i$ and average at the end.</div>
 
 **Step 1**: Compute gradient w.r.t. output layer pre-activation $\mathbf{z}_i^{(L)}$ for each sample $i$
 
 <div class="fragment" data-fragment-index="1">
 
-Apply the **chain rule**: $\mathcal{L}_i$ depends on $\mathbf{z}_i^{(L)}$ through $\hat{\mathbf{y}}_i$. For each sample $i$ and output neuron $j$:
+Apply the **chain rule**: $\ell_i$ depends on $\mathbf{z}_i^{(L)}$ through $\hat{\mathbf{y}}_i$. For each sample $i$ and output neuron $j$:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(L)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial \hat{y}_{ij}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial \hat{y}_{ij}}{\partial z_{ij}^{(L)}}} \color{black}{=} \color{#FF6B6B}{\frac{2}{N}(\hat{y}_{ij} - y_{ij})} \color{black}{\cdot} \color{#4ECDC4}{\sigma'(z_{ij}^{(L)})}
+\frac{\partial \ell_i}{\partial z_{ij}^{(L)}} = \color{#FF6B6B}{\frac{\partial \ell_i}{\partial \hat{y}_{ij}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial \hat{y}_{ij}}{\partial z_{ij}^{(L)}}} \color{black}{=} \color{#FF6B6B}{2(\hat{y}_{ij} - y_{ij})} \color{black}{\cdot} \color{#4ECDC4}{\sigma'(z_{ij}^{(L)})}
 $$
 </div>
 
@@ -722,7 +724,7 @@ In vector form for sample $i$, this gives us the **error term**:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\boldsymbol{\delta}_i^{(L)} = \frac{2}{N}(\hat{\mathbf{y}}_i - \mathbf{y}_i) \odot \sigma'(\mathbf{z}_i^{(L)})
+\boldsymbol{\delta}_i^{(L)} = 2(\hat{\mathbf{y}}_i - \mathbf{y}_i) \odot \sigma'(\mathbf{z}_i^{(L)})
 $$
 </div>
 
@@ -741,7 +743,7 @@ where $\odot$ is element-wise multiplication.
 **Step 2**: Compute gradients w.r.t. weights and biases for sample $i$
 
 <div>
-Given $\boldsymbol{\delta}_i^{(L)} = \frac{\partial \mathcal{L}_i}{\partial \mathbf{z}_i^{(L)}}$ for sample $i$ and forward pass $z_{ij}^{(L)} = \sum_{k=1}^{M^{(L-1)}} W_{jk}^{(L)} h_{ik}^{(L-1)} + b_j^{(L)}$:
+Given $\boldsymbol{\delta}_i^{(L)} = \frac{\partial \ell_i}{\partial \mathbf{z}_i^{(L)}}$ for sample $i$ and forward pass $z_{ij}^{(L)} = \sum_{k=1}^{M^{(L-1)}} W_{jk}^{(L)} h_{ik}^{(L-1)} + b_j^{(L)}$:
 </div>
 
 <div class="fragment" data-fragment-index="1">
@@ -750,11 +752,11 @@ Given $\boldsymbol{\delta}_i^{(L)} = \frac{\partial \mathcal{L}_i}{\partial \mat
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}_i}{\partial W_{jk}^{(L)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(L)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(L)}}{\partial W_{jk}^{(L)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(L)}} \color{black}{\cdot} \color{#4ECDC4}{h_{ik}^{(L-1)}}
+\frac{\partial \ell_i}{\partial W_{jk}^{(L)}} = \color{#FF6B6B}{\frac{\partial \ell_i}{\partial z_{ij}^{(L)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(L)}}{\partial W_{jk}^{(L)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(L)}} \color{black}{\cdot} \color{#4ECDC4}{h_{ik}^{(L-1)}}
 $$
 </div>
 
-In matrix form: $\frac{\partial \mathcal{L}_i}{\partial \mathbf{W}^{(L)}} = \boldsymbol{\delta}_i^{(L)} (\mathbf{h}_i^{(L-1)})^\top$
+In matrix form: $\frac{\partial \ell_i}{\partial \mathbf{W}^{(L)}} = \boldsymbol{\delta}_i^{(L)} (\mathbf{h}_i^{(L-1)})^\top$
 
 </div>
 
@@ -764,7 +766,7 @@ In matrix form: $\frac{\partial \mathcal{L}_i}{\partial \mathbf{W}^{(L)}} = \bol
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}_i}{\partial b_j^{(L)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(L)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(L)}}{\partial b_j^{(L)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(L)}} \color{black}{\cdot} \color{#4ECDC4}{1} \color{black}{=} \delta_{ij}^{(L)}
+\frac{\partial \ell_i}{\partial b_j^{(L)}} = \color{#FF6B6B}{\frac{\partial \ell_i}{\partial z_{ij}^{(L)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(L)}}{\partial b_j^{(L)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(L)}} \color{black}{\cdot} \color{#4ECDC4}{1} \color{black}{=} \delta_{ij}^{(L)}
 $$
 </div>
 
@@ -781,11 +783,11 @@ $$
 **Step 3**: Propagate error backwards to hidden layer $l$ for sample $i$
 
 <div class="fragment" data-fragment-index="1">
-To compute $\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}}$, we use the chain rule through layer $l+1$, as $\mathcal{L}_i$ depends on $z_{ij}^{(l)}$ via all neurons in layer $l+1$:
+To compute $\frac{\partial \ell_i}{\partial z_{ij}^{(l)}}$, we use the chain rule through layer $l+1$, as $\ell_i$ depends on $z_{ij}^{(l)}$ via all neurons in layer $l+1$:
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}} = \sum_{m=1}^{M^{(l+1)}} \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{im}^{(l+1)}}} \color{black}{\cdot} \color{#95E1D3}{\frac{\partial z_{im}^{(l+1)}}{\partial h_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial h_{ij}^{(l)}}{\partial z_{ij}^{(l)}}}
+\frac{\partial \ell_i}{\partial z_{ij}^{(l)}} = \sum_{m=1}^{M^{(l+1)}} \color{#FF6B6B}{\frac{\partial \ell_i}{\partial z_{im}^{(l+1)}}} \color{black}{\cdot} \color{#95E1D3}{\frac{\partial z_{im}^{(l+1)}}{\partial h_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial h_{ij}^{(l)}}{\partial z_{ij}^{(l)}}}
 $$
 </div>
 
@@ -818,7 +820,7 @@ In vector form: $\boldsymbol{\delta}_i^{(l)} = \left[(\mathbf{W}^{(l+1)})^\top \
 **Step 4**: Compute gradients w.r.t. weights and biases for sample $i$ (same as output layer!)
 
 <div>
-Given $\boldsymbol{\delta}_i^{(l)} = \frac{\partial \mathcal{L}_i}{\partial \mathbf{z}_i^{(l)}}$ for sample $i$ and forward pass $z_{ij}^{(l)} = \sum_{k=1}^{M^{(l-1)}} W_{jk}^{(l)} h_{ik}^{(l-1)} + b_j^{(l)}$:
+Given $\boldsymbol{\delta}_i^{(l)} = \frac{\partial \ell_i}{\partial \mathbf{z}_i^{(l)}}$ for sample $i$ and forward pass $z_{ij}^{(l)} = \sum_{k=1}^{M^{(l-1)}} W_{jk}^{(l)} h_{ik}^{(l-1)} + b_j^{(l)}$:
 </div>
 
 <div class="fragment" data-fragment-index="1">
@@ -827,11 +829,11 @@ Given $\boldsymbol{\delta}_i^{(l)} = \frac{\partial \mathcal{L}_i}{\partial \mat
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}_i}{\partial W_{jk}^{(l)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(l)}}{\partial W_{jk}^{(l)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(l)}} \color{black}{\cdot} \color{#4ECDC4}{h_{ik}^{(l-1)}}
+\frac{\partial \ell_i}{\partial W_{jk}^{(l)}} = \color{#FF6B6B}{\frac{\partial \ell_i}{\partial z_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(l)}}{\partial W_{jk}^{(l)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(l)}} \color{black}{\cdot} \color{#4ECDC4}{h_{ik}^{(l-1)}}
 $$
 </div>
 
-In matrix form: $\frac{\partial \mathcal{L}_i}{\partial \mathbf{W}^{(l)}} = \boldsymbol{\delta}_i^{(l)} (\mathbf{h}_i^{(l-1)})^\top$
+In matrix form: $\frac{\partial \ell_i}{\partial \mathbf{W}^{(l)}} = \boldsymbol{\delta}_i^{(l)} (\mathbf{h}_i^{(l-1)})^\top$
 
 </div>
 
@@ -841,7 +843,7 @@ In matrix form: $\frac{\partial \mathcal{L}_i}{\partial \mathbf{W}^{(l)}} = \bol
 
 <div class="formula" style="margin-top: 20px;">
 $$
-\frac{\partial \mathcal{L}_i}{\partial b_j^{(l)}} = \color{#FF6B6B}{\frac{\partial \mathcal{L}_i}{\partial z_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(l)}}{\partial b_j^{(l)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(l)}} \color{black}{\cdot} \color{#4ECDC4}{1} \color{black}{=} \delta_{ij}^{(l)}
+\frac{\partial \ell_i}{\partial b_j^{(l)}} = \color{#FF6B6B}{\frac{\partial \ell_i}{\partial z_{ij}^{(l)}}} \color{black}{\cdot} \color{#4ECDC4}{\frac{\partial z_{ij}^{(l)}}{\partial b_j^{(l)}}} \color{black}{=} \color{#FF6B6B}{\delta_{ij}^{(l)}} \color{black}{\cdot} \color{#4ECDC4}{1} \color{black}{=} \delta_{ij}^{(l)}
 $$
 </div>
 
@@ -859,25 +861,25 @@ $$
 
 <div style="flex: 1;">
 
-**Forward Pass**:
-1. Input: $\mathbf{h}^{(0)} = \mathbf{x}$
+**Forward Pass** (per sample $i$):
+1. Input: $\mathbf{h}_i^{(0)} = \mathbf{x}_i$
 2. For $l = 1, \ldots, L$:
-   - $\mathbf{z}^{(l)} = \mathbf{W}^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)}$
-   - $\mathbf{h}^{(l)} = \sigma(\mathbf{z}^{(l)})$
-3. Output: $\hat{\mathbf{y}} = \mathbf{h}^{(L)}$
-4. Loss: $\mathcal{L}(\mathbf{y}, \hat{\mathbf{y}})$
+   - $\mathbf{z}_i^{(l)} = \mathbf{W}^{(l)} \mathbf{h}_i^{(l-1)} + \mathbf{b}^{(l)}$
+   - $\mathbf{h}_i^{(l)} = \sigma(\mathbf{z}_i^{(l)})$
+3. Output: $\hat{\mathbf{y}}_i = \mathbf{h}_i^{(L)}$
+4. Per-sample loss: $\ell_i(\mathbf{y}_i, \hat{\mathbf{y}}_i)$
 
 </div>
 
 <div style="flex: 1;">
 
-**Backward Pass**:
-1. Output layer: $\boldsymbol{\delta}^{(L)} = \frac{\partial \mathcal{L}}{\partial \hat{\mathbf{y}}} \odot \sigma'(\mathbf{z}^{(L)})$
+**Backward Pass** (per sample $i$):
+1. Output layer: $\boldsymbol{\delta}_i^{(L)} = \frac{\partial \ell_i}{\partial \hat{\mathbf{y}}_i} \odot \sigma'(\mathbf{z}_i^{(L)})$
 2. For $l = L-1, \ldots, 1$:
-   - $\boldsymbol{\delta}^{(l)} = [(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}^{(l+1)}] \odot \sigma'(\mathbf{z}^{(l)})$
-3. Gradients for all layers:
-   - $\frac{\partial \mathcal{L}}{\partial \mathbf{W}^{(l)}} = \boldsymbol{\delta}^{(l)} (\mathbf{h}^{(l-1)})^\top$
-   - $\frac{\partial \mathcal{L}}{\partial \mathbf{b}^{(l)}} = \boldsymbol{\delta}^{(l)}$
+   - $\boldsymbol{\delta}_i^{(l)} = [(\mathbf{W}^{(l+1)})^\top \boldsymbol{\delta}_i^{(l+1)}] \odot \sigma'(\mathbf{z}_i^{(l)})$
+3. Per-sample gradients:
+   - $\frac{\partial \ell_i}{\partial \mathbf{W}^{(l)}} = \boldsymbol{\delta}_i^{(l)} (\mathbf{h}_i^{(l-1)})^\top$
+   - $\frac{\partial \ell_i}{\partial \mathbf{b}^{(l)}} = \boldsymbol{\delta}_i^{(l)}$
 
 </div>
 
@@ -887,7 +889,7 @@ $$
 
 <div class="fragment" data-fragment-index="1" style="font-size: 0.75em;">
 
-**Weight Update** (Gradient Descent):
+**Weight Update** (Gradient Descent): average per-sample gradients to get $\nabla_{\boldsymbol{\theta}} \mathcal{L} = \frac{1}{N}\sum_{i=1}^{N} \nabla_{\boldsymbol{\theta}} \ell_i$, then
 
 <div class="formula">
 $$
@@ -908,11 +910,11 @@ where $\eta$ is the learning rate.
 
 <div style="font-size: 0.75em; margin-top: 40px;">
 
-For a single neuron $j$ in layer $l$, the gradient with respect to its weight $W_{ji}^{(l)}$ is:
+For a single sample (sample index dropped) and neuron $j$ in layer $l$, the per-sample gradient with respect to weight $W_{ji}^{(l)}$ is:
 
 <div class="formula">
 $$
-\frac{\partial \mathcal{L}}{\partial W_{ji}^{(l)}} = \delta_j^{(l)} h_i^{(l-1)}
+\frac{\partial \ell}{\partial W_{jk}^{(l)}} = \delta_j^{(l)} h_k^{(l-1)}
 $$
 </div>
 
@@ -921,9 +923,9 @@ where the error term $\delta_j^{(l)}$ is computed as:
 <div class="formula">
 $$
 \delta_j^{(l)} = \begin{cases}
-\left(\frac{\partial \mathcal{L}}{\partial \hat{y}_j}\right) \sigma'(z_j^{(L)}) & \text{if } l = L \text{ (output layer)} \\
+\left(\frac{\partial \ell}{\partial \hat{y}_j}\right) \sigma'(z_j^{(L)}) & \text{if } l = L \text{ (output layer)} \\
 \\
-\left(\sum_{k=1}^{M^{(l+1)}} W_{kj}^{(l+1)} \delta_k^{(l+1)}\right) \sigma'(z_j^{(l)}) & \text{if } l < L \text{ (hidden layer)}
+\left(\sum_{m=1}^{M^{(l+1)}} W_{mj}^{(l+1)} \delta_m^{(l+1)}\right) \sigma'(z_j^{(l)}) & \text{if } l < L \text{ (hidden layer)}
 \end{cases}
 $$
 </div>
@@ -967,65 +969,6 @@ This recursive structure enables efficient gradient computation through the chai
         <source src="assets/videos/03-perceptrons/1080p60/XORTanhTransformation.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-</div>
-
----
-
-## Regularization Techniques
-
-To prevent overfitting in multilayer perceptrons, we can use various regularization techniques:
-
-<div style="font-size: 0.90em;">
-
-<div class="fragment" data-fragment-index="1">
-
-- **L1 or L2 Regularization (Weight Decay for SGD)**: Adds a penalty term to the loss function proportional to the magnitude of the weights.
-
-</div>
-<div class="formula fragment appear-vanish" data-fragment-index="1">
-$$
-\begin{aligned}
-\mathcal{L}_{reg} & = \mathcal{L} + \mathcal{R} \\
-\mathcal{R}_1 & = \lambda \sum_{l} \sum_{i,j} |W_{ij}^{(l)}| \quad \text{(L1 Regularization)} \\
-\mathcal{R}_2 & = \lambda \sum_{l} \sum_{i,j} (W_{ij}^{(l)})^2 \quad \text{(L2 Regularization)}
-\end{aligned}
-$$
-</div>
-
-<div class="fragment" data-fragment-index="2">
-
-- **Batch Normalization**: Normalizes the inputs of each layer to have zero mean and unit variance, improving training stability.
-
-</div>
-<div class="formula fragment appear-vanish" data-fragment-index="2">
-$$
-\begin{aligned}
-\mu_B & = \frac{1}{m} \sum_{i=1}^{m} z_i \\
-\sigma_B^2 & = \frac{1}{m} \sum_{i=1}^{m} (z_i - \mu_B)^2\\
-\hat{z}_i & = \frac{z_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}
-\end{aligned}
-$$
-</div>
-
-<div class="fragment" data-fragment-index="3">
-
-- **Dropout**: Randomly sets a fraction of the neurons to zero during training to prevent co-adaptation.
-
-</div>
-
-<div class="fragment appear-vanish" data-fragment-index="3" style="text-align: center;">
-
-<img src="assets/images/03-perceptrons/dropout.webp" alt="Dropout Illustration" style="width: 30%; margin-top: 20px;">
-<div class="reference" style="text-align: center; margin-top: 10px;">Source: https://medium.com/@amarbudhiraja/https-medium-com-amarbudhiraja-learning-less-to-learn-better-dropout-in-deep-machine-learning-74334da4bfc5</div>
-
-</div>
-
-<div class="fragment" data-fragment-index="4">
-
-- **Early Stopping**: Monitors validation loss during training and stops when it starts to increase.
-
-</div>
-
 </div>
 
 ---
@@ -1074,6 +1017,57 @@ $$
 
 </div>
 
+</div>
+
+---
+
+## What are Hyperparameters?
+
+<div style="font-size: 0.85em;">
+
+In machine learning, we distinguish between two types of variables:
+
+- **Parameters**: Learned automatically from data during training (e.g., weights $\mathbf{W}^{(l)}$ and biases $\mathbf{b}^{(l)}$)
+- **Hyperparameters**: Set manually *before* training — they control the learning process itself
+
+<div class="fragment" data-fragment-index="1" style="margin-top: 30px;">
+
+**Common hyperparameters in MLPs:**
+
+<table style="margin-top: 20px;">
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Architecture</strong></td>
+<td>Number of layers $L$, neurons per layer $M^{(l)}$, activation function $\sigma$</td>
+</tr>
+<tr>
+<td><strong>Optimization</strong></td>
+<td>Learning rate $\eta$, batch size, number of epochs, optimizer (SGD, Adam, ...)</td>
+</tr>
+<tr>
+<td><strong>Regularization</strong></td>
+<td>L1/L2 penalty $\lambda$, dropout rate, early stopping patience</td>
+</tr>
+<tr>
+<td><strong>Initialization</strong></td>
+<td>Weight init scheme (Xavier, He, ...), random seed</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+<div class="fragment image-overlay highlight" data-fragment-index="2" style="text-align: left;">
+Hyperparameters are typically tuned by evaluating <strong>validation set</strong> performance using grid search, random search, or Bayesian optimization.<br>
+→ Poor hyperparameter choices can prevent learning entirely, even with a correct architecture and dataset!
 </div>
 
 ---
