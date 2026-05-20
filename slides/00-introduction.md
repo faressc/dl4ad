@@ -224,9 +224,9 @@ Note: If you don't know if your course counts, drop me an email.
             <td class="date">27.05.2026</td>
             <td>Attention and Transformers</td>
         </tr>
-        <tr>
+        <tr class="fragment custom appear-table highlight">
             <td class="date">03.06.2026</td>
-            <td>Tricks of the Trade</td>
+            <td>Project Pitches (14:00 - 18:00)</td>
         </tr>
     </tbody>
 </table>
@@ -245,11 +245,11 @@ Note: If you don't know if your course counts, drop me an email.
     <tbody>
         <tr>
             <td class="date">10.06.2026</td>
-            <td>Probability Fundamentals</td>
+            <td>Tricks of the Trade</td>
         </tr>
-        <tr class="fragment custom appear-table highlight">
+        <tr>
             <td class="date">17.06.2026</td>
-            <td>Project Pitches (14:00 - 18:00)</td>
+            <td>Probability Fundamentals</td>
         </tr>
         <tr>
             <td class="date">24.06.2026</td>
