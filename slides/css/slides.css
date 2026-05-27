@@ -390,7 +390,7 @@
 
 .tile {
   background: var(--fs-surface);
-  border: 1px solid var(--fs-border);
+  border: 2px solid var(--fs-border);
   border-radius: 16px;
   padding: 40px 30px;
   box-shadow: 0 0px 20px var(--fs-shadow-color-light);
@@ -418,7 +418,7 @@
   font-size: 0.65em;
   font-style: italic;
   padding-top: 15px;
-  border-top: 1px solid var(--fs-border);
+  border-top: 2px solid var(--fs-border);
 }
 
 .applications-label {
@@ -648,7 +648,7 @@
   word-wrap: normal;
   background: var(--fs-surface);
   color: var(--fs-text-color);
-  border: 1px solid var(--fs-border);
+  border: 2px solid var(--fs-border);
   border-radius: 8px;
   font-weight: 400;
 }
@@ -794,7 +794,7 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 4px 20px var(--fs-shadow-color-light);
-  border: 1px solid var(--fs-border);
+  border: 2px solid var(--fs-border);
   font-family: var(--fs-main-font);
   font-size: 1.1em;
   max-width: 95%;
