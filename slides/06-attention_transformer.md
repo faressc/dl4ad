@@ -300,7 +300,7 @@ where $t$ is the token position, $i$ is the dimension index, and $d_{\text{model
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism">
+    <img src="assets/images/06-attention_transformer/single_head_attention_raw.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
@@ -496,7 +496,7 @@ $$
 </div>
 
 <div class="fragment appear-vanish image-overlay" data-fragment-index="1" style="position: absolute; left: 960px; top: 540px; text-align: center; width: 30%;">
-    <img src="assets/images/06-attention_transformer/multihead_attention_raw.png" alt="Attention Mechanism">
+    <img src="assets/images/06-attention_transformer/single_head_attention_raw.png" alt="Attention Mechanism">
     <div class="reference">
     Source: <a href="https://arxiv.org/abs/1706.03762" target="_blank">Attention is All You Need</a>
     </div>
