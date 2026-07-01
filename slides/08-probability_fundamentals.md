@@ -320,6 +320,29 @@ $$p_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$$
 
 ---
 
+## Probability Notation
+
+<div style="font-size: 0.8em; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 60px; margin-top: 20px;">
+    <div>
+        <p><strong>Big P</strong> — probability of an <em>event</em> (a set or inequality); returns a number in $[0,1]$<br>
+        $P(A),\ P(\Omega) = 1,\ P(a \leq X \leq b),\ P(X \in A)$</p>
+        <p><strong>Small p</strong> — PMF (discrete) or PDF (continuous) of a random variable evaluated at a <em>value</em>; densities can exceed 1<br>
+        $p_X(x),\ p_{X,Y}(x,y)$</p>
+        <p><strong>Subscripts</strong> — identify <em>which</em> random variable(s) the distribution refers to; the arguments are the values they take. Often dropped when unambiguous: $p(x) \equiv p_X(x)$<br>
+        $p_X(x),\ p_{X,Y}(x,y),\ p_{X|Y}(x \mid y)$</p>
+        <p><strong>Relation</strong> — for discrete $X$, $p_X(x) = P(X = x)$; for continuous $X$, $P(a \leq X \leq b) = \int_a^b p_X(x)\,dx$</p>
+    </div>
+    <div>
+        <p><strong>Conditional</strong> — $\mid$ reads "given"; a comma on the right of $\mid$ conditions on multiple variables at once<br>
+        $p_{X|Y}(x \mid y),\ p_{Y|X,\Theta}(y \mid x, \boldsymbol{\theta})$</p>
+        <p><strong>Sample space &amp; events</strong> — $\Omega$ sample space, $\omega \in \Omega$ outcome, $\mathcal{F}$ $\sigma$-algebra of events, $A \in \mathcal{F}$ event</p>
+        <p><strong>Common objects</strong> — $\mathbb{E}[\cdot]$ expectation, $\mathcal{N}(\mu, \sigma^2)$ normal distribution, $\mathcal{D}$ dataset, $\boldsymbol{\theta} \in \Theta$ parameters<br>
+        $\mathbb{E}[X],\ X \sim \mathcal{N}(0, 1),\ \mathcal{D} = \lbrace(\mathbf{x}_i, y_i)\rbrace_{i=1}^{N}$</p>
+    </div>
+</div>
+
+---
+
 ## Types of Distributions
 
 <div style="display: flex; gap: 2em;">
