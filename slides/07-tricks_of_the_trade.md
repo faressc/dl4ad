@@ -742,6 +742,67 @@
 
 ---
 
+## Weight Normalization
+
+<div style="font-size: 0.8em;">
+
+- Instead of normalizing activations, **reparameterize the weights** themselves to decouple their magnitude from their direction
+- Each weight vector is written as $\mathbf{w} = g \cdot \dfrac{\mathbf{v}}{\lVert \mathbf{v} \rVert}$, where the scalar $g$ controls the magnitude and $\mathbf{v}$ controls the direction - both are learned by gradient descent
+- This speeds up convergence by improving the conditioning of the optimization problem, similar to batch norm, but **without depending on the batch**
+
+</div>
+
+<div style="font-size: 0.70em;">
+
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Weight Norm</th>
+<th>Batch Norm</th>
+</tr>
+</thead>
+<tbody>
+<tr class="fragment" data-fragment-index="1">
+<td><strong>Normalizes</strong></td>
+<td>Weights (per output neuron)</td>
+<td>Activations (per feature)</td>
+</tr>
+<tr class="fragment" data-fragment-index="2">
+<td><strong>Batch dependence</strong></td>
+<td>None - deterministic per sample</td>
+<td>Strong - needs sufficient batch size</td>
+</tr>
+<tr class="fragment" data-fragment-index="3">
+<td><strong>Train/Eval behavior</strong></td>
+<td>Identical (no running statistics)</td>
+<td>Differs (uses running statistics)</td>
+</tr>
+<tr class="fragment" data-fragment-index="4">
+<td><strong>Overhead</strong></td>
+<td>Cheap, no extra activations stored</td>
+<td>Extra memory and compute</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+<div class="highlight image-overlay fragment" data-fragment-index="5" style="width: 80%; text-align: left;">
+
+**Key Principles:**
+- Useful when batch norm is impractical: small batches, RNNs, reinforcement learning, online/streaming settings, and generative models (e.g., GANs, flows)
+- Pair with **data-dependent initialization** - set $g$ and biases from a first minibatch so initial activations have unit variance
+- Related idea: **Weight Standardization** normalizes weights to zero mean / unit variance and pairs well with Group Norm
+
+</div>
+
+<div class="reference" style="text-align: center;">
+    Source: <a href="https://arxiv.org/abs/1602.07868" target="_blank">Weight Normalization (Salimans & Kingma, 2016)</a>
+</div>
+
+---
+
 ## Regularization Techniques
 
 - Regularization prevents overfitting by constraining model complexity or adding controlled noise during training
