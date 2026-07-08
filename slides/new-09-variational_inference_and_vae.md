@@ -463,15 +463,8 @@ $$
 </table>
 </div>
 
-<div class="fragment highlight" style="font-size: 0.75em;">
+<div class="fragment highlight" data-fragment-index="1" style="font-size: 0.75em;">
 <p>Because we cannot make the bound tight, we no longer alternate E/M. Instead we optimize <strong>both</strong> $\boldsymbol{\theta}$ and $\boldsymbol{\phi}$ <strong>jointly</strong> by gradient ascent on the ELBO.</p>
-</div>
-
-<div class="fragment image-overlay" data-fragment-index="1" style="text-align: center; width: 1200px; height: auto;">
-    <video width="100%" data-autoplay loop muted controls>
-        <source src="assets/videos/10-variational_autoencoder/1080p60/VAEArchitecture.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
 </div>
 
 ---
@@ -513,9 +506,18 @@ $$
 </div>
 </div>
 
-<div class="fragment highlight" style="font-size: 0.75em;">
+<div class="fragment highlight" data-fragment-index="1" style="font-size: 0.75em;">
 <p><strong>Trade-off:</strong> reconstruction wants $q$ specific to each $\mathbf{x}$; regularization wants $q$ near the prior. Two obstacles remain: the reconstruction <strong>expectation is intractable</strong>, and it <strong>depends on $\boldsymbol{\phi}$ through sampling</strong>.</p>
 </div>
+
+
+<div class="fragment image-overlay" data-fragment-index="2" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/10-variational_autoencoder/1080p60/VAEArchitecture.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
 
 ---
 
@@ -646,7 +648,7 @@ $$
 </div>
 
 <div class="fragment highlight" style="font-size: 0.75em;">
-<p>So the two ELBO terms are handled differently: <strong>reconstruction</strong> via Monte Carlo + reparameterization, <strong>regularization</strong> via this closed form.</p>
+<p>In practice, we compute these two ELBO terms in different ways: the <strong>reconstruction</strong> term is estimated with Monte Carlo samples and the reparameterization trick, while the <strong>regularization</strong> term is computed exactly with this closed-form KL formula.</p>
 </div>
 
 ---
