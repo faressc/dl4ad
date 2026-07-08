@@ -221,11 +221,12 @@ $$
 ## Evidence Decomposition
 
 <div style="font-size: 0.68em;">
-<p>Rewrite the ELBO using the chain rule $p(\mathbf{x}, z|\boldsymbol{\theta}) = p(z|\mathbf{x}, \boldsymbol{\theta}) \cdot p(\mathbf{x}|\boldsymbol{\theta})$:</p>
+<p>Start from the ELBO obtained at the end of Jensen, then rewrite it using the chain rule $p(\mathbf{x}, z|\boldsymbol{\theta}) = p(z|\mathbf{x}, \boldsymbol{\theta}) \cdot p(\mathbf{x}|\boldsymbol{\theta})$:</p>
 <div class="formula">
 $$
 \begin{aligned}
 \text{ELBO}(q, \boldsymbol{\theta})
+&= \mathbb{E}_{z \sim q} \left[ \log \frac{p(\mathbf{x}, z|\boldsymbol{\theta})}{q(z|\mathbf{x})} \right] \\
 &= \mathbb{E}_{z \sim q} \left[ \log p(z|\mathbf{x}, \boldsymbol{\theta}) \right] + \log p(\mathbf{x}|\boldsymbol{\theta}) - \mathbb{E}_{z \sim q} \left[ \log q(z|\mathbf{x}) \right] \\
 &= \log p(\mathbf{x}|\boldsymbol{\theta}) - D_{\text{KL}}\left( q(z|\mathbf{x}) \,\|\, p(z|\mathbf{x}, \boldsymbol{\theta}) \right)
 \end{aligned}
@@ -275,7 +276,25 @@ $$
 ## The M-Step: Raising the Bound
 
 <div style="font-size: 0.72em;">
-<p>Now fix $q = q^{(t+1)}$ and maximize the ELBO w.r.t. $\boldsymbol{\theta}$. The entropy term $-\mathbb{E}_q[\log q]$ is constant in $\boldsymbol{\theta}$, leaving the <strong>Q-function</strong> (expected complete-data log-likelihood):</p>
+<p>Now fix $q = q^{(t+1)}$ and maximize the ELBO w.r.t. $\boldsymbol{\theta}$:</p>
+<div class="formula">
+$$
+\begin{aligned}
+	\text{ELBO}(q^{(t+1)}, \boldsymbol{\theta})
+&= \mathbb{E}_{z \sim q^{(t+1)}} \left[ \log p(\mathbf{x}, z|\boldsymbol{\theta}) \right] - \mathbb{E}_{z \sim q^{(t+1)}} \left[ \log q^{(t+1)}(z|\mathbf{x}) \right] \\
+&= Q(\boldsymbol{\theta}; \boldsymbol{\theta}^{(t)}) - H\!\left(q^{(t+1)}\right)
+\end{aligned}
+$$
+</div>
+<p>The entropy term $-\mathbb{E}_q[\log q]$ is constant in $\boldsymbol{\theta}$, so the maximizer is unchanged; this leaves the <strong>Q-function</strong> (expected complete-data log-likelihood).</p>
+</div>
+
+---
+
+## The M-Step: Raising the Bound (continued)
+
+<div style="font-size: 0.72em;">
+<p>Continuing from above, we optimize the Q-function:</p>
 <div class="formula">
 $$
 \begin{aligned}
@@ -294,6 +313,13 @@ $$
 <div class="fragment" data-fragment-index="1">
 <p>The log is now <strong>inside</strong> the sum over $k$ — each term involves only one component, so maximization is <strong>closed-form</strong> (the familiar weighted mean / covariance / mixing-weight updates). This <strong>raises</strong> the ELBO.</p>
 </div>
+</div>
+
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="width: 88%;">
+    <img src="assets/images/09-latent_models/em_elbo.png" alt="EM and the ELBO" style="max-width: 100%; margin: 30px;">
+    <div class="reference">
+        Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince) - adapted</a>
+    </div>
 </div>
 
 ---
@@ -326,7 +352,7 @@ $$
 <p>The likelihood is not manufactured from nothing — EM is <strong>coordinate ascent on one bounded objective</strong> $F(q, \boldsymbol{\theta}) = \mathbb{E}_q[\log p(\mathbf{x}, \mathbf{z}|\boldsymbol{\theta})] - \mathbb{E}_q[\log q]$.</p>
 <ul>
 <li><strong>E-step</strong> moves only $q$ → the log-likelihood $\log p(\mathbf{x}|\boldsymbol{\theta})$ is <strong>unchanged</strong>; it just sets $D_{\text{KL}} = 0$ and tightens the bound (no likelihood spent).</li>
-<li><strong>M-step</strong> moves $\boldsymbol{\theta}$ → a genuine weighted-MLE fit to the <strong>data</strong> — this is the "fuel."</li>
+<li><strong>M-step</strong> moves $\boldsymbol{\theta}$ → a genuine weighted-MLE fit to the <strong>data</strong></li>
 </ul>
 </div>
 
@@ -439,6 +465,13 @@ $$
 
 <div class="fragment highlight" style="font-size: 0.75em;">
 <p>Because we cannot make the bound tight, we no longer alternate E/M. Instead we optimize <strong>both</strong> $\boldsymbol{\theta}$ and $\boldsymbol{\phi}$ <strong>jointly</strong> by gradient ascent on the ELBO.</p>
+</div>
+
+<div class="fragment image-overlay" data-fragment-index="1" style="text-align: center; width: 1200px; height: auto;">
+    <video width="100%" data-autoplay loop muted controls>
+        <source src="assets/videos/10-variational_autoencoder/1080p60/VAEArchitecture.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 
 ---
