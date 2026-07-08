@@ -278,7 +278,17 @@ $$
 <p>Now fix $q = q^{(t+1)}$ and maximize the ELBO w.r.t. $\boldsymbol{\theta}$. The entropy term $-\mathbb{E}_q[\log q]$ is constant in $\boldsymbol{\theta}$, leaving the <strong>Q-function</strong> (expected complete-data log-likelihood):</p>
 <div class="formula">
 $$
-\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \underbrace{\sum_{i} \sum_{k} \gamma_{ik} \left[ \log \pi_k + \log \mathcal{N}(\mathbf{x}_i | \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \right]}_{Q(\boldsymbol{\theta};\, \boldsymbol{\theta}^{(t)})}
+\begin{aligned}
+Q(\boldsymbol{\theta};\, \boldsymbol{\theta}^{(t)})
+&= \sum_{i} \mathbb{E}_{z \sim q^{(t+1)}(z|\mathbf{x}_i)} \left[ \log p_{X,Z|\Theta}(\mathbf{x}_i, z|\boldsymbol{\theta}) \right] \\
+&= \sum_{i} \sum_{k} \underbrace{q^{(t+1)}(z=k|\mathbf{x}_i)}_{=\, \gamma_{ik}} \; \log \underbrace{p_{X,Z|\Theta}(\mathbf{x}_i, z=k|\boldsymbol{\theta})}_{=\, \pi_k \, \mathcal{N}(\mathbf{x}_i | \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)}
+\end{aligned}
+$$
+</div>
+<p>Substituting the E-step responsibilities $\gamma_{ik}$ and the factorized GMM joint:</p>
+<div class="formula">
+$$
+\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} \sum_{i} \sum_{k} \gamma_{ik} \left[ \log \pi_k + \log \mathcal{N}(\mathbf{x}_i | \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k) \right]
 $$
 </div>
 <div class="fragment" data-fragment-index="1">
@@ -306,6 +316,31 @@ $$
 
 <div class="fragment highlight" style="font-size: 0.8em;">
 <p>The log-likelihood is <strong>monotonically non-decreasing</strong> → EM converges to a local maximum. This E-then-M "tighten then raise" pattern is the template for the VAE.</p>
+</div>
+
+---
+
+## Where the Likelihood Gain Comes From
+
+<div style="font-size: 0.75em;">
+<p>The likelihood is not manufactured from nothing — EM is <strong>coordinate ascent on one bounded objective</strong> $F(q, \boldsymbol{\theta}) = \mathbb{E}_q[\log p(\mathbf{x}, \mathbf{z}|\boldsymbol{\theta})] - \mathbb{E}_q[\log q]$.</p>
+<ul>
+<li><strong>E-step</strong> moves only $q$ → the log-likelihood $\log p(\mathbf{x}|\boldsymbol{\theta})$ is <strong>unchanged</strong>; it just sets $D_{\text{KL}} = 0$ and tightens the bound (no likelihood spent).</li>
+<li><strong>M-step</strong> moves $\boldsymbol{\theta}$ → a genuine weighted-MLE fit to the <strong>data</strong> — this is the "fuel."</li>
+</ul>
+</div>
+
+<div class="fragment" data-fragment-index="1" style="font-size: 0.72em;">
+<p>Each round's gain splits into two non-negative but <strong>bounded</strong> pieces (after the M-step, $q$ is stale, so the KL gap reopens):</p>
+<div class="formula">
+$$
+\underbrace{\log p(\mathbf{x}|\boldsymbol{\theta}^{(t+1)}) - \log p(\mathbf{x}|\boldsymbol{\theta}^{(t)})}_{\Delta \,\geq\, 0} = \underbrace{\big[F(q, \boldsymbol{\theta}^{(t+1)}) - F(q, \boldsymbol{\theta}^{(t)})\big]}_{\text{M-step raised the ELBO}} + \underbrace{D_{\text{KL}}\big(q \,\|\, p(\mathbf{z}|\mathbf{x}, \boldsymbol{\theta}^{(t+1)})\big)}_{\text{gap that reopened}}
+$$
+</div>
+</div>
+
+<div class="fragment highlight" data-fragment-index="2" style="font-size: 0.78em;">
+<p>$\log p(\mathbf{x}|\boldsymbol{\theta})$ has a <strong>ceiling</strong> (fixed dataset) → a monotone, bounded sequence <strong>must converge</strong>. Not a perpetuum mobile but a ball <strong>relaxing to the bottom of a landscape</strong>: it moves while the parameters still mis-fit the data, and stops at a <strong>local</strong> optimum. The energy was in the data all along.</p>
 </div>
 
 ---

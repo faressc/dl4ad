@@ -285,7 +285,7 @@ $$
 
 ## Joint, Marginal & Conditional
 
-<div style="font-size: 0.82em;">
+<div style="font-size: 0.68em;">
 <p>For random variables $X$ and $Y$:</p>
 
 <div class="fragment" data-fragment-index="1">
@@ -325,14 +325,14 @@ $$
 </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="width: 68%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="2" style="width: 40%;">
     <img src="assets/images/08-probability_fundamentals/joint_probability.png" alt="Joint Distribution" style="max-width: 100%; height: auto; margin: 30px;">
     <div class="reference">
         Joint $p_{X,Y}(x,y)$. Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
     </div>
 </div>
 
-<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="width: 68%;">
+<div class="fragment appear-vanish image-overlay" data-fragment-index="4" style="width: 40%;">
     <img src="assets/images/08-probability_fundamentals/joint_probability.png" alt="Joint Distribution with Marginals" style="max-width: 100%; height: auto; margin: 30px;">
     <div class="reference">
         The marginals $p_X(x)$ and $p_Y(y)$ are the projections of the joint onto each axis. Source: <a href="https://github.com/udlbook/udlbook" target="_blank">Understanding Deep Learning (Prince)</a>
@@ -578,7 +578,7 @@ $$
 \boldsymbol{\theta}_{\text{MAP}} = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{Y|X,\Theta}(\mathbf{y}_i|\mathbf{x}_i, \boldsymbol{\theta})\, p_\Theta(\boldsymbol{\theta})
 $$
 </div>
-<div style="text-align: center;"><img src="assets/images/09-latent_models/supervised_learning.svg" alt="Supervised learning graphical model" style="width: 60%; margin-top: 10px;"></div>
+<div style="text-align: center;"><img src="assets/images/09-latent_models/supervised_learning.svg" alt="Supervised learning graphical model" style="width: 50%; margin-top: 10px;"></div>
 </div>
 <div style="flex: 1;">
 <p><strong>Unsupervised</strong></p>
@@ -589,11 +589,11 @@ $$
 \boldsymbol{\theta}_{\text{MLE}} = \arg\max_{\boldsymbol{\theta}} \prod_{i=1}^n p_{X|\Theta}(\mathbf{x}_i|\boldsymbol{\theta})
 $$
 </div>
-<div style="text-align: center;"><img src="assets/images/09-latent_models/unsupervised_learning_no_latents.svg" alt="Unsupervised learning graphical model" style="width: 35%; margin-top: 10px;"></div>
+<div style="text-align: center;"><img src="assets/images/09-latent_models/unsupervised_learning_no_latents.svg" alt="Unsupervised learning graphical model" style="width: 19.5%; margin-top: 10px;"></div>
 </div>
 </div>
 
-<div class="fragment highlight" style="font-size: 0.8em;">
+<div class="fragment highlight image-overlay" style="font-size: 0.8em;">
 <p>Goal of unsupervised learning: <strong>discover hidden structure</strong> in the data — clusters, factors of variation, a generative process.</p>
 </div>
 
