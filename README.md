@@ -1,3 +1,5 @@
+
+
 # Deep Learning for Audio Data (DL4AD)
 
 **Course Repository** | TU Berlin | Audio Communication Group  
@@ -42,6 +44,7 @@ dl4ad/
 │
 ├── extras/                          # Additional learning resources
 │   ├── machine_learning_history.md
+│   ├── mathematical-derivations/     # Mathematical derivations
 │   ├── neural_audio_systems_milestones.md
 │   └── animations/                  # Manim animations source code
 │
