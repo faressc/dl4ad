@@ -3,6 +3,8 @@
 const fs = require('fs').promises;
 const path = require('path');
 
+const HIDDEN_FROM_INDEX_PREFIX = 'short-';
+
 async function combineSlides() {
   const slidesDir = path.join(__dirname, '../slides');
   const slideFiles = await fs.readdir(slidesDir);
@@ -69,7 +71,12 @@ async function generateHTML(isDev = false) {
       
       await fs.writeFile(path.join(distDir, outputFilename), html);
       console.log(`✅ Generated ${outputFilename}`);
-      
+
+      // Short versions are built but only reachable via direct link
+      if (slide.filename.startsWith(HIDDEN_FROM_INDEX_PREFIX)) {
+        continue;
+      }
+
       presentationFiles.push({
         filename: outputFilename,
         title: title

@@ -1,4 +1,4 @@
-# Probability & Latent Variable Models
+# Probability & Latent Variable Models (Short Version)
 
 ---
 

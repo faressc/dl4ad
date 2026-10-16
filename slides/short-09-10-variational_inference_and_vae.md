@@ -1,4 +1,4 @@
-# Variational Inference & the VAE
+# Variational Inference & the VAE (Short Version)
 
 ---
 
