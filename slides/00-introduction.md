@@ -131,6 +131,11 @@ Notes:
             <li>Jupyter Notebooks: Practical implementations in Python</li>
             <li>Projects: Hands-on experience with deep learning in audio</li>
         </ul>
+        <strong>When?</strong>
+        <ul>
+            <li>Lecture: Fridays 14:15 - 15:45</li>
+            <li>Tutorial: Fridays 16:00 - 17:00 (Jupyter notebooks)</li>
+        </ul>
         <strong>Where?</strong>
         <ul>
             <li>Learning resources: Slides, Jupyter notebooks and more available on the course repository</li>

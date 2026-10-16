@@ -1,6 +1,6 @@
 ---
 name: update-semester-dates
-description: Roll the DL4AD course over to the next TU Berlin semester. Research the official Vorlesungszeit and Berlin public holidays, collect the lecture weekday/time/room, MOSES deadline and Zoom link, propose a new schedule (lectures, course application deadline, project proposal deadline & group selection, project pitches, project presentations, final submission), apply it everywhere in the slides, then rewrite the ISIS course description and give the ISIS project-group opening/closing times. Use this whenever Fares mentions the next/new semester, Wintersemester/Sommersemester, WS/SS/WiSe/SoSe, updating dates or deadlines in the slides, the "Dates and Deadlines" slide, the ISIS description, or preparing the course for a new term, even if he only asks about one of these dates.
+description: Roll the DL4AD course over to the next TU Berlin semester. Research the official Vorlesungszeit and Berlin public holidays, collect the lecture weekday/time/room, tutorial time, MOSES deadline and Zoom link, propose a new schedule (lectures, course application deadline, project proposal deadline & group selection, project pitches, project presentations, final submission), apply it everywhere in the slides, then rewrite the ISIS course description and give the ISIS project-group opening/closing times. Use this whenever Fares mentions the next/new semester, Wintersemester/Sommersemester, WS/SS/WiSe/SoSe, updating dates or deadlines in the slides, the "Dates and Deadlines" slide, the ISIS description, or preparing the course for a new term, even if he only asks about one of these dates.
 ---
 
 # Update semester dates
@@ -24,10 +24,10 @@ Then find every other place a schedule date lives:
 ```bash
 python3 -I .claude/skills/update-semester-dates/scripts/find_dates.py <every old date as YYYY-MM-DD>
 git grep -n "Project Proposal Deadline Reminder"   # which deck currently holds the reminder slide
-git grep -nE "14:00 - 18:00|14:15"                  # old time strings
+git grep -nE "[0-9]{2}:[0-9]{2} - [0-9]{2}:[0-9]{2}|days [0-9]{2}:" -- 'slides/*.md'   # time ranges and weekdays
 ```
 
-Typical locations, all in `slides/00-introduction.md`: the Dates and Deadlines table; Course Application (application deadline, MOSES enrollment deadline); Graded Deliverables (presentation date, git repository deadline and project paper deadline, both = final submission); Projects (proposal deadline). The "Project Proposal Deadline Reminder" slide has no date, but its *position* matters (phase 4). Avoid broad grep patterns of your own on `slides/assets/`, since it contains huge single-line SVGs that flood the output.
+Typical locations, all in `slides/00-introduction.md`: Course Structure ("When?" block: lecture and tutorial weekday and time); the Dates and Deadlines table; Course Application (application deadline, MOSES enrollment deadline); Graded Deliverables (presentation date, git repository deadline and project paper deadline, both = final submission); Projects (proposal deadline). The "Project Proposal Deadline Reminder" slide has no date, but its *position* matters (phase 4). Avoid broad grep patterns of your own on `slides/assets/`, since it contains huge single-line SVGs that flood the output.
 
 Work out which semester the slides currently describe and which one comes next.
 
@@ -46,11 +46,12 @@ Note the source URLs; you'll cite them in the proposal.
 Ask everything in **one plain message**, because most answers are free text (a room, a URL, a date). For any value you can guess from the current slides, show the old value as the default so he can just confirm.
 
 - Lecture weekday and time (start–end, e.g. 14:15–15:45)
+- Tutorial time. Since WS 2026/27 a 60-minute tutorial follows the lecture on the same day after a 15-minute break (16:00–17:00 after a 14:15–15:45 lecture); the Jupyter notebooks are worked through there. Ask whether it still runs and at what time, especially if the lecture time changed.
 - Room (e.g. E-N 152)
 - Date of the first lecture, if it isn't the first lecture weekday in the Vorlesungszeit
 - MOSES registration (enrollment) deadline
 - New Zoom link
-- Time window for Project Pitches and Project Presentations. These are extended sessions, currently "14:00 - 18:00". Ask whether it stays the same, especially if the lecture time changed.
+- Time window for Project Pitches and Project Presentations. These are extended sessions that replace the lecture and the tutorial on that day, currently "14:15 - 17:45". Ask whether it stays the same, especially if the lecture or tutorial time changed.
 
 ## Phase 4: Propose the schedule
 
@@ -81,7 +82,7 @@ Present the proposal as **one table**: new date (with weekday) | item | old date
 
 After Fares approves:
 
-1. Update every location found in phase 1. Keep each location's existing date format (the slides use `DD.MM.YYYY`). For the Dates and Deadlines table, keep the existing HTML structure. Deadline rows keep `class="fragment custom appear-table highlight"`. When an item changes position (topic *or* deadline row), move the whole `<tr>` rather than just rewriting dates. Keep the two columns roughly balanced; if rows were added or removed, re-split at a natural point (e.g. right after the pitches) so the left column has the same number of rows as the right, or one more. Update the pitch/presentation time window if it changed.
+1. Update every location found in phase 1. Keep each location's existing date format (the slides use `DD.MM.YYYY`). For the Dates and Deadlines table, keep the existing HTML structure. Deadline rows keep `class="fragment custom appear-table highlight"`. When an item changes position (topic *or* deadline row), move the whole `<tr>` rather than just rewriting dates. Keep the two columns roughly balanced; if rows were added or removed, re-split at a natural point (e.g. right after the pitches) so the left column has the same number of rows as the right, or one more. Update the pitch/presentation time window if it changed, and the lecture/tutorial weekday and times in the Course Structure "When?" block.
 2. Move the reminder slide if that was agreed.
 3. The room and Zoom link are **not** in the slides by design (the repo is public via GitHub Pages). Only update them in the repo if an old room string actually turned up in phase 1.
 4. Verify: rerun `find_dates.py` with all old dates. It should report 0 hits; explain any hit you kept on purpose. Then run `npm run build` to make sure the decks still build.
@@ -91,8 +92,9 @@ After Fares approves:
 
 Ask Fares to paste the current ISIS course description **as HTML source** (the code view of the ISIS editor). Then:
 
-- Replace every date, weekday, time, room and Zoom link with the new values. Keep the formatting style each passage already uses: ISIS tends to use long dates like "Friday, 16 October 2026, at 14:15" and en dashes in time ranges. Make sure every weekday matches its date.
-- If there is a preliminary note at the top (something like *"The dates in this description will be updated before the first lecture on …, it will be held in hybrid format, in room … and on Zoom (link to follow)."*), remove it entirely, including its wrapping element. It has done its job once the real dates are in.
+- Replace every date, weekday, time, room and Zoom link with the new values. Keep the formatting style each passage already uses: the schedule entries look like "Friday, 16.10.2026 – 14:15-15:45" (en dash between date and time, plain hyphen inside the time range), the preliminary note uses long dates like "Friday, 16 October 2026, at 14:15". Make sure every weekday matches its date.
+- The "Where and When?" list has the room, the Zoom link, and the lecture and tutorial times. Update all of them.
+- If there is a preliminary note at the top (something like *"The dates in this description will be updated before the first lecture on …, it will be held in hybrid format, in room … and on Zoom (link to follow)."*), remove it entirely, including its wrapping spans and the `<br><br>` after it. It has done its job once the real dates are in. It has sat inside the `<h4>` of the "Contact:" heading; keep that heading.
 - Leave all other content and markup untouched. Don't reformat or "improve" it.
 - Return the **complete** new HTML in a single code block so it can be pasted straight back. Above it, give a short list of what changed. Mention anything in the ISIS text that didn't map cleanly onto the new schedule rather than guessing.
 

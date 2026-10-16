@@ -120,6 +120,8 @@ npm install
 
 ### Working with Jupyter Notebooks
 
+The notebooks are worked through together in the weekly tutorial that follows the lecture.
+
 1. **Open VS Code** in the repository directory
 2. **Open a notebook** from the `notebooks/` folder
 3. **Select Python interpreter** from your `.venv` environment
