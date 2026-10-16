@@ -4,7 +4,8 @@ dist/
 **/.venv/
 
 ./markdownlint.json
-.claude/
+.claude/*
+!.claude/skills/
 
 **/media/
 **/__pycache__/
